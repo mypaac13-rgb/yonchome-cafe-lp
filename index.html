@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yonchome Cafe | 高円寺のレトロカフェ＆ダイニング</title>
+    <meta name="description" content="おかげさまで創業40年。高円寺Yonchome Cafeは、1986年から変わらず街と人に寄り添い続けています。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Yonchome Cafe | 高円寺のレトロカフェ＆ダイニング" />
+    <meta property="og:description" content="1986年創業。高円寺の二階にある、レトロで雰囲気のあるカフェ＆ダイニング。" />
+    <meta property="og:url" content="https://mypaac13-rgb.github.io/yonchome-cafe-lp/" />
+    <meta property="og:image" content="https://mypaac13-rgb.github.io/yonchome-cafe-lp/hero-main-upscaled.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Klee+One:wght@400;600&family=Caveat:wght@400;500;600;700&family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Yusei+Magic&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      /* ── Grain texture overlay ── */
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.032;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+        background-size: 180px 180px;
+      }
+
+      /* ── Hero load animations ── */
+      @keyframes heroFadeUp {
+        from { opacity: 0; transform: translateY(22px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .hero-copy .hero-copy-inner > * {
+        animation: heroFadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+      .hero-copy .hero-copy-inner > *:nth-child(1) { animation-delay: 5.1s; }
+      .hero-copy .hero-copy-inner > *:nth-child(2) { animation-delay: 5.3s; }
+      .hero-copy .hero-copy-inner > *:nth-child(3) { animation-delay: 5.45s; }
+      .hero-copy .hero-copy-inner > *:nth-child(4) { animation-delay: 5.6s; }
+      .hero-copy .hero-copy-inner > *:nth-child(5) { animation-delay: 5.75s; }
+
+      /* ── Scroll animations ── */
+      .anim-up {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .anim-up.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── Hero fonts ── */
+      .hero-copy h1,
+      .hero-copy .hero-line-small {
+        font-family: 'Zen Old Mincho', serif;
+        font-weight: 400;
+      }
+      .hero-copy .hero-en {
+        font-family: 'Zen Old Mincho', serif;
+        font-weight: 400;
+      }
+
+      /* ── Hero ── */
+      .hero-section { padding-top: 0; }
+      .photo-panel-hero { min-height: 100svh; }
+      .hero-image {
+        object-position: center 40%;
+        filter: brightness(0.48) saturate(0.72) sepia(0.12) contrast(1.02);
+      }
+      .hero-copy {
+        width: min(72vw, 800px);
+        transform: translate(-50%, -48%);
+      }
+
+      .anniv-badge {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 6px 0;
+        color: var(--accent);
+        font-family: var(--font-body);
+        font-size: 0.68rem;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+      }
+      .anniv-number {
+        display: block;
+        font-family: 'Zen Old Mincho', serif;
+        font-size: clamp(6rem, 20vw, 16rem);
+        font-weight: 700;
+        line-height: 0.85;
+        letter-spacing: -0.02em;
+        color: transparent;
+        -webkit-text-stroke: 1.5px rgba(196, 160, 66, 0.38);
+        margin-bottom: 24px;
+        user-select: none;
+      }
+      .anniv-hero-year {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        margin-bottom: 18px;
+        color: rgba(239, 226, 210, 0.6);
+        font-family: var(--font-body);
+        font-size: clamp(0.7rem, 1.1vw, 0.84rem);
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+      }
+      .anniv-hero-year span { color: var(--accent); }
+
+      /* ── Message ── */
+      .message-section { padding-top: 148px; position: relative; }
+      .message-layout {
+        display: block;
+        width: 100%;
+      }
+      .message-anchor { position: sticky; top: 120px; }
+      .message-anchor-year {
+        display: block;
+        font-family: var(--font-body);
+        font-size: clamp(2.8rem, 5vw, 4.2rem);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        color: var(--text);
+        line-height: 1;
+      }
+      .message-anchor-arrow {
+        display: block;
+        margin: 8px 0;
+        color: var(--accent);
+        font-size: 1.3rem;
+        line-height: 1;
+      }
+      .message-anchor-kicker {
+        display: inline-block;
+        margin-top: 20px;
+        color: rgba(237, 218, 168, 0.65);
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        line-height: 1.9;
+      }
+      .message-anchor-divider {
+        display: block;
+        width: 32px;
+        height: 1px;
+        margin: 20px 0;
+        background: rgba(196, 160, 66, 0.5);
+      }
+      .message-body { padding-top: 8px; }
+      .message-block { margin-bottom: 52px; }
+      .message-pull {
+        font-family: 'Klee One', var(--font-display);
+        font-size: clamp(1.28rem, 2.4vw, 1.82rem);
+        font-weight: 600;
+        line-height: 1.85;
+        letter-spacing: 0.04em;
+        color: var(--text);
+        padding-left: 22px;
+        border-left: 2px solid var(--accent);
+        margin-bottom: 22px;
+      }
+      .message-text {
+        font-family: var(--font-display);
+        font-size: clamp(0.95rem, 1.4vw, 1.06rem);
+        font-weight: 500;
+        line-height: 2.3;
+        letter-spacing: 0.04em;
+        color: rgba(239, 226, 210, 0.82);
+        word-break: keep-all;
+        overflow-wrap: break-word;
+      }
+      .message-text + .message-text { margin-top: 22px; }
+      .message-image-wrap {
+        margin: 48px 0;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 233, 212, 0.07);
+      }
+      .message-image-wrap img {
+        width: 100%;
+        aspect-ratio: 16 / 7;
+        object-fit: cover;
+        object-position: center 55%;
+        display: block;
+        filter: brightness(0.55) saturate(0.78) sepia(0.28) contrast(1.08);
+      }
+      .message-image-caption {
+        position: absolute;
+        bottom: 20px;
+        right: 24px;
+        color: rgba(237, 218, 168, 0.55);
+        font-family: var(--font-body);
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      /* ── Full-width 2-col photos ── */
+      .message-photo-wide {
+        /* section-shell の余白を突き破って全幅に */
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-top: 72px;
+        margin-bottom: 72px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3px;
+        overflow: hidden;
+      }
+      .message-photo-wide-item {
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        transform: scale(0.88) translateY(28px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .message-photo-wide-item:nth-child(1) { transition-delay: 0.05s; }
+      .message-photo-wide-item:nth-child(2) { transition-delay: 0.22s; }
+      .message-photo-wide-item.is-visible {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+      .message-photo-wide-item img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.88) saturate(0.92) contrast(1.02);
+        transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .message-photo-wide-item:hover img {
+        transform: scale(1.04);
+      }
+      .message-closing {
+        margin-top: 60px;
+        padding-top: 48px;
+        border-top: 1px solid rgba(240, 216, 190, 0.12);
+      }
+      .message-closing-main {
+        font-family: var(--font-display);
+        font-size: clamp(1.08rem, 1.7vw, 1.4rem);
+        font-weight: 900;
+        line-height: 1.85;
+        letter-spacing: 0.04em;
+        color: var(--text);
+        word-break: keep-all;
+        overflow-wrap: break-word;
+      }
+      .message-closing-en {
+        display: block;
+        margin-top: 14px;
+        color: var(--accent);
+        font-family: var(--font-body);
+        font-size: 0.74rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      /* ── Gallery: horizontal scroll ── */
+      .gallery-scroll-outer {
+        position: relative;
+        height: 320vh; /* スクロール量 = 写真数分 */
+      }
+      .gallery-scroll-sticky {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .gallery-scroll-header {
+        padding-top: 48px;
+        padding-bottom: 32px;
+        flex-shrink: 0;
+      }
+      .gallery-scroll-header h2 {
+        font-size: clamp(2rem, 5vw, 4rem);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--text);
+      }
+      .gallery-scroll-sub {
+        margin-top: 8px;
+        font-family: var(--font-body);
+        font-size: 0.82rem;
+        color: rgba(239, 226, 210, 0.5);
+        letter-spacing: 0.12em;
+      }
+      .gallery-scroll-track {
+        display: flex;
+        gap: 12px;
+        padding: 0 clamp(20px, 4vw, 64px);
+        will-change: transform;
+        flex-shrink: 0;
+      }
+      .gallery-scroll-item {
+        position: relative;
+        flex-shrink: 0;
+        width: 62vw;
+        overflow: hidden;
+        border-radius: 2px;
+      }
+      .gallery-scroll-item img {
+        width: 100%;
+        height: auto;
+        max-height: 72vh;
+        object-fit: contain;
+        display: block;
+        filter: brightness(0.88) saturate(0.92) contrast(1.02);
+        transition: filter 0.6s ease;
+      }
+      .gallery-scroll-item:hover img {
+        filter: brightness(0.96) saturate(0.96) contrast(1.01);
+      }
+      .gallery-scroll-caption {
+        position: absolute;
+        bottom: 14px;
+        left: 18px;
+        color: rgba(237, 218, 168, 0.55);
+        font-family: var(--font-body);
+        font-size: 0.62rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      /* ── Gallery: magazine grid ── */
+      .gallery-section { padding-top: 140px; }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr;
+        grid-template-rows: 300px 300px;
+        gap: 6px;
+        margin-top: 64px;
+        padding: 0 clamp(24px, 5vw, 80px);
+      }
+      .gallery-grid-item {
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        transform: scale(0.88) translateY(24px);
+        transition:
+          opacity 0.55s ease,
+          transform 0.65s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .gallery-grid-item.is-visible {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+      .gallery-grid-item:first-child {
+        grid-row: 1 / 3;
+      }
+      .gallery-grid-item:last-child {
+        grid-column: 2 / 4;
+      }
+      .gallery-grid-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.88) saturate(0.92) contrast(1.02);
+        transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), filter 0.8s ease;
+      }
+      .gallery-grid-item:hover img {
+        transform: scale(1.06);
+        filter: brightness(0.96) saturate(0.96) contrast(1.01);
+      }
+      .gallery-grid-caption {
+        position: absolute;
+        bottom: 16px;
+        left: 20px;
+        color: rgba(237, 218, 168, 0.55);
+        font-family: var(--font-body);
+        font-size: 0.62rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        pointer-events: none;
+      }
+
+      /* ── Zine / human-feel elements ── */
+
+      /* 日記っぽい短文 */
+      .diary-note {
+        font-family: 'Klee One', serif;
+        font-size: 0.72rem;
+        color: rgba(196, 160, 66, 0.5);
+        letter-spacing: 0.06em;
+        line-height: 1.8;
+        transform: rotate(-1.2deg);
+        display: inline-block;
+        pointer-events: none;
+        user-select: none;
+      }
+      .diary-note-blue {
+        color: rgba(58, 82, 130, 0.55);
+        transform: rotate(0.8deg);
+      }
+      .diary-note-red {
+        color: rgba(140, 55, 55, 0.5);
+        transform: rotate(-0.6deg);
+      }
+
+      /* 手書き風SVGのラッパー */
+      .handwritten-deco {
+        display: inline-block;
+        pointer-events: none;
+        user-select: none;
+        color: rgba(196, 160, 66, 0.45);
+      }
+      .handwritten-deco-blue { color: rgba(58, 82, 130, 0.4); }
+      .handwritten-deco-red  { color: rgba(140, 55, 55, 0.45); }
+
+      /* OPENスタンプ風 */
+      .open-stamp {
+        display: inline-block;
+        font-family: 'Klee One', serif;
+        font-size: 0.68rem;
+        letter-spacing: 0.22em;
+        color: rgba(140, 55, 55, 0.6);
+        border: 1.5px solid rgba(140, 55, 55, 0.4);
+        border-radius: 2px;
+        padding: 3px 10px;
+        transform: rotate(-4deg);
+        pointer-events: none;
+      }
+
+      /* section-head に下線の手書き感 */
+      .section-head h2 {
+        position: relative;
+      }
+
+      /* くすんだアクセント */
+      .accent-rust  { color: #8B3535; }
+      .accent-blue  { color: #3A5282; }
+      .accent-dim   { color: rgba(207,129,72,0.45); }
+
+      /* ── About ── */
+      .about-kicker {
+        display: inline-block;
+        margin-bottom: 10px;
+        color: rgba(237, 218, 168, 0.65);
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      /* ── Banners (大きめ・目立つ) ── */
+      .banner-section { padding-top: 120px; }
+      .banner-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 40px;
+      }
+      .banner-item {
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        min-height: 520px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 233, 212, 0.08);
+        text-decoration: none;
+        color: inherit;
+      }
+      .banner-item::after {
+        position: absolute;
+        inset: 0;
+        content: "";
+        background: linear-gradient(
+          0deg,
+          rgba(10, 6, 4, 0.92) 0%,
+          rgba(10, 6, 4, 0.35) 50%,
+          rgba(10, 6, 4, 0.05) 100%
+        );
+        pointer-events: none;
+      }
+      .banner-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .banner-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.46) saturate(0.76) sepia(0.28) contrast(1.08);
+        transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), filter 0.9s ease;
+      }
+      .banner-item:hover .banner-bg img {
+        transform: scale(1.05);
+        filter: brightness(0.56) saturate(0.82) sepia(0.22) contrast(1.08);
+      }
+      .banner-body {
+        position: relative;
+        z-index: 1;
+        padding: 44px 48px 52px;
+        width: 100%;
+      }
+      .banner-kicker {
+        display: inline-block;
+        margin-bottom: 12px;
+        padding: 5px 0;
+        color: var(--accent);
+        font-family: var(--font-body);
+        font-size: 0.66rem;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+      }
+      .banner-title {
+        font-family: var(--font-display);
+        font-size: clamp(1.5rem, 2.8vw, 2.4rem);
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        line-height: 1.4;
+        color: var(--text);
+        margin: 0 0 16px;
+      }
+      .banner-desc {
+        margin: 0 0 28px;
+        color: rgba(239, 226, 210, 0.7);
+        font-family: var(--font-display);
+        font-size: clamp(0.92rem, 1.3vw, 1.02rem);
+        font-weight: 500;
+        line-height: 1.9;
+        letter-spacing: 0.03em;
+      }
+      .banner-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        min-height: 48px;
+        padding: 0;
+        border: none;
+        border-bottom: 1px solid rgba(196, 160, 66, 0.4);
+        color: var(--accent);
+        font-family: var(--font-body);
+        font-size: 0.74rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        transition: background 0.3s, border-color 0.3s, gap 0.3s;
+      }
+      .banner-item:hover .banner-cta {
+        gap: 16px;
+        background: rgba(196, 160, 66, 0.1);
+        border-color: var(--accent);
+      }
+
+      /* ── CTA ── */
+      .cta-section { padding-top: 120px; }
+      .cta-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+        padding: 48px 52px;
+        border: 1px solid rgba(240, 216, 190, 0.12);
+        background: rgba(34, 22, 18, 0.5);
+      }
+      .cta-text h3 {
+        font-family: var(--font-display);
+        font-size: clamp(1.2rem, 2vw, 1.6rem);
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        line-height: 1.6;
+        color: var(--text);
+      }
+      .cta-text p {
+        margin-top: 8px;
+        color: rgba(239, 226, 210, 0.65);
+        font-size: 0.86rem;
+        line-height: 1.8;
+        letter-spacing: 0.03em;
+      }
+      .cta-buttons { display: flex; gap: 12px; flex-shrink: 0; }
+      .btn-accent {
+        display: inline-flex;
+        align-items: center;
+        min-height: 52px;
+        padding: 0 28px;
+        background: var(--accent);
+        border: 1px solid var(--accent);
+        color: #1a0e0b;
+        font-family: var(--font-body);
+        font-size: 0.76rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      /* ── Info ── */
+      .info-section { padding-top: 120px; }
+
+      /* ── Party Modal ── */
+      .party-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 8000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+      .party-modal[aria-hidden="false"] {
+        opacity: 1;
+        visibility: visible;
+      }
+      .party-modal-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(6, 3, 2, 0.88);
+        border: none;
+        cursor: pointer;
+      }
+      .party-modal-frame {
+        position: relative;
+        z-index: 1;
+        max-height: 92svh;
+        max-width: min(520px, 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transform: scale(0.94) translateY(12px);
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .party-modal[aria-hidden="false"] .party-modal-frame {
+        transform: scale(1) translateY(0);
+      }
+      .party-modal-frame img {
+        width: 100%;
+        height: auto;
+        max-height: 85svh;
+        object-fit: contain;
+        display: block;
+        border-radius: 8px;
+        /* フィルターなし — 鮮明表示 */
+        filter: none;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
+      }
+      .party-modal-close {
+        position: absolute;
+        top: -14px;
+        right: -14px;
+        z-index: 2;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid rgba(240, 216, 190, 0.3);
+        background: rgba(20, 12, 8, 0.9);
+        color: rgba(239, 226, 210, 0.85);
+        font-size: 1.1rem;
+        line-height: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, border-color 0.2s;
+      }
+      .party-modal-close:hover {
+        background: rgba(40, 24, 16, 0.98);
+        border-color: var(--accent);
+      }
+
+      /* ── banner-item / hero-bottom-banner as button ── */
+      button.banner-item,
+      button.hero-bottom-banner {
+        background: none;
+        cursor: pointer;
+        text-align: left;
+        width: 100%;
+        border: none;
+      }
+
+      /* ── Hero bottom banners ── */
+      .hero-bottom-banners {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+      }
+      .hero-bottom-banner {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 22px clamp(20px, 3vw, 48px);
+        background: rgba(10, 6, 4, 0.74);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-top: 1px solid rgba(240, 216, 190, 0.13);
+        text-decoration: none;
+        color: inherit;
+        transition: background 0.35s ease;
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          background 0.35s ease,
+          opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .hero-bottom-banner.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .hero-bottom-banner:first-child {
+        border-right: 1px solid rgba(240, 216, 190, 0.13);
+      }
+      .hero-bottom-banner:hover {
+        background: rgba(24, 14, 10, 0.92);
+      }
+      .hero-bottom-banner-kicker {
+        flex-shrink: 0;
+        padding: 4px 0;
+        color: var(--accent);
+        font-family: var(--font-body);
+        font-size: 0.62rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+      .hero-bottom-banner-title {
+        flex: 1;
+        font-family: var(--font-display);
+        font-size: clamp(0.96rem, 1.4vw, 1.18rem);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: var(--text);
+        line-height: 1.4;
+      }
+      .hero-bottom-banner-sub {
+        display: block;
+        margin-top: 2px;
+        color: rgba(239, 226, 210, 0.48);
+        font-family: var(--font-body);
+        font-size: 0.68rem;
+        font-weight: 400;
+        letter-spacing: 0.08em;
+      }
+      .hero-bottom-banner-arrow {
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--accent);
+        font-size: 1rem;
+        transition: transform 0.35s ease, background 0.35s ease;
+      }
+      .hero-bottom-banner:hover .hero-bottom-banner-arrow {
+        transform: translateX(5px);
+        background: rgba(196, 160, 66, 0.12);
+      }
+
+      /* ── Extra animations ── */
+      @keyframes countUp {
+        from { opacity: 0; transform: translateY(12px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes lineGrow {
+        from { transform: scaleX(0); }
+        to   { transform: scaleX(1); }
+      }
+      @keyframes pulseAccent {
+        0%, 100% { opacity: 1; }
+        50%       { opacity: 0.55; }
+      }
+
+      .anniv-badge {
+        animation: heroFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation-delay: 5.1s;
+      }
+      .anniv-number {
+        animation: countUp 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation-delay: 5.2s;
+      }
+
+      /* message blocks stagger */
+      .message-block,
+      .message-image-wrap,
+      .message-closing {
+        opacity: 0;
+        transform: translateY(26px);
+        transition:
+          opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .message-block.is-visible,
+      .message-image-wrap.is-visible,
+      .message-closing.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* accent line on message-pull grows in */
+      .message-pull {
+        border-left-width: 0;
+        transition: border-left-width 0s;
+      }
+      .message-block.is-visible .message-pull {
+        border-left-width: 2px;
+        transition: border-left-width 0.4s ease 0.3s;
+      }
+
+      /* ── News ── */
+      .news-section { padding-top: 140px; }
+      .news-list {
+        list-style: none;
+        margin: 48px 0 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+      }
+      .news-item {
+        display: flex;
+        flex-direction: column;
+      }
+      .news-thumb {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 4 / 3;
+        margin-bottom: 18px;
+        background: rgba(34, 22, 18, 0.6);
+      }
+      .news-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.58) saturate(0.78) sepia(0.28) contrast(1.08);
+        transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .news-item:hover .news-thumb img {
+        transform: scale(1.05);
+      }
+      .news-meta {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+      .news-date {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        color: rgba(237, 218, 168, 0.5);
+      }
+      .news-tag {
+        display: inline-block;
+        font-family: var(--font-body);
+        font-size: 0.6rem;
+        letter-spacing: 0.16em;
+        color: var(--accent);
+        border: 1px solid rgba(196, 160, 66, 0.4);
+        padding: 2px 8px;
+        white-space: nowrap;
+      }
+      .news-title {
+        font-family: var(--font-display);
+        font-size: clamp(0.94rem, 1.3vw, 1.04rem);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: var(--text);
+        line-height: 1.65;
+        margin: 0 0 8px;
+      }
+      .news-body {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 0.84rem;
+        font-weight: 500;
+        line-height: 1.9;
+        letter-spacing: 0.03em;
+        color: rgba(239, 226, 210, 0.6);
+      }
+      @media (max-width: 1080px) {
+        .news-list { grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 720px) {
+        .news-list { grid-template-columns: 1fr; gap: 40px; }
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 1080px) {
+        .message-layout { grid-template-columns: 1fr; gap: 48px; }
+        .message-anchor { position: static; }
+        .gallery-grid {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 240px 240px;
+        }
+        .gallery-grid-item:first-child { grid-row: auto; }
+        .gallery-grid-item:last-child { grid-column: auto; }
+        .banner-grid { grid-template-columns: 1fr; }
+        .banner-item { min-height: 420px; }
+        .cta-inner { flex-direction: column; align-items: flex-start; }
+      }
+      @media (max-width: 720px) {
+        .anniv-number { font-size: clamp(5rem, 26vw, 10rem); }
+        .hero-copy { width: min(90vw, 520px); }
+        .message-section { padding-top: 96px; }
+        .message-pull { font-size: 1.14rem; }
+        .gallery-grid {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 180px 180px;
+        }
+        .banner-body { padding: 32px 28px 40px; }
+        .cta-inner { padding: 32px 24px; }
+        .company-nav { flex-direction: column; align-items: flex-start; gap: 16px; }
+        .company-nav-links { flex-wrap: wrap; gap: 16px 24px; }
+        .company-nav-logo img { max-width: 180px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-loader" aria-hidden="true">
+      <div class="loader-inner">
+        <p class="loader-concept"><span class="loader-line"><span>人</span><span>が</span><span>集</span><span>ま</span><span>り</span><span>、</span></span><span class="loader-line"><span>心</span><span>が</span><span>ほ</span><span>ど</span><span>け</span><span>る</span><span>場</span><span>所</span><span>。</span></span></p>
+        <img class="loader-logo" src="./loader-logo.png" alt="" />
+      </div>
+    </div>
+
+    <header class="site-header">
+      <a class="site-logo" href="#top" aria-label="Yonchome cafe">
+        <img src="./loader-logo.png" alt="" />
+      </a>
+      <div class="header-right">
+        <nav class="site-nav-links" aria-label="Page links">
+          <a href="./yonchome-party.html">貸し切り</a>
+          <a href="./yonchome-recruit.html">採用</a>
+          <a href="./company.html">企業情報</a>
+        </nav>
+        <div class="header-divider"></div>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a class="nav-reserve" href="tel:0353771726">電話予約</a>
+          <a class="nav-icon" href="https://x.com/yonchomecafe" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" fill="currentColor" />
+            </svg>
+          </a>
+          <a class="nav-icon" href="https://www.instagram.com/yonchome_cafe/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9a4.5 4.5 0 0 1-4.5 4.5h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3Zm0 1.5A3 3 0 0 0 4.5 7.5v9a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-9a3 3 0 0 0-3-3h-9Zm9.75 1.125a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5Z" fill="currentColor" />
+            </svg>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+
+      <!-- HERO -->
+      <section class="hero-section">
+        <div class="hero-media photo-panel photo-panel-hero">
+          <img class="hero-image" src="./hero-main-upscaled.jpg" alt="高円寺Yonchome Cafeの店内" />
+        </div>
+        <!-- Hero bottom banners -->
+        <div class="hero-bottom-banners">
+          <a class="hero-bottom-banner" href="./yonchome-party.html">
+            <span class="hero-bottom-banner-kicker">Private Party</span>
+            <span class="hero-bottom-banner-title">
+              貸し切りパーティー
+              <span class="hero-bottom-banner-sub">20名〜 ／ 3プランからご選択</span>
+            </span>
+            <span class="hero-bottom-banner-arrow">→</span>
+          </a>
+          <button class="hero-bottom-banner" type="button" id="shooting-banner-btn">
+            <span class="hero-bottom-banner-kicker">Shooting</span>
+            <span class="hero-bottom-banner-title">
+              撮影利用の案内
+              <span class="hero-bottom-banner-sub">ロケ・写真撮影 ／ お気軽にご相談ください</span>
+            </span>
+            <span class="hero-bottom-banner-arrow">→</span>
+          </button>
+        </div>
+
+        <div class="hero-copy">
+          <div class="hero-copy-inner">
+            <span class="anniv-badge">40th Anniversary — 1986–2026</span>
+            <span class="anniv-number" aria-hidden="true">40</span>
+            <div class="anniv-hero-year">
+              <span>1986</span>
+              <span style="color:rgba(239,226,210,0.3);">—</span>
+              <span>2026</span>
+            </div>
+            <h1>
+              おかげさまで、創業40年。
+              <br />
+              <span class="hero-line-small">高円寺二階のカフェ＆ダイニング</span>
+            </h1>
+            <p class="hero-en">
+              Forty years of warmth, stories, and a second-floor view of Koenji.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MESSAGE -->
+      <section class="message-section section-shell" id="message">
+        <div class="message-layout">
+          <div class="message-body">
+            <div class="message-block">
+              <p class="message-pull">おかげさまで、創業40年。</p>
+              <p class="message-text">この場所を選び、足を運んでくださったお客さまのおかげで、ここまで続けてこられました。</p>
+            </div>
+            <div class="message-photo-wide">
+              <div class="message-photo-wide-item">
+                <img src="./lunch-food.jpg" alt="Yonchome Cafeのランチ" />
+              </div>
+              <div class="message-photo-wide-item">
+                <img src="./drink-photo.jpg" alt="Yonchome Cafeのドリンク" />
+              </div>
+            </div>
+            <div class="message-block">
+              <p class="message-pull">「ここに来ると落ち着く」<br>「変わらなくてホッとする」</p>
+              <p class="message-text">流行が移り変わり、街の景色も、人の暮らし方も変わっていく中で、そんな声に何度も救われてきました。</p>
+              <p class="message-text">長年愛されてきた味、空気、会話の距離感──それらは、この40年で自然と育ってきた、何より大切なものです。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <div class="gallery-scroll-outer" id="gallery">
+        <div class="gallery-scroll-sticky">
+          <div class="gallery-scroll-header section-shell">
+            <h2 class="anim-up">Gallery</h2>
+            <p class="gallery-scroll-sub anim-up">The spaces and moments that make up forty years.</p>
+          </div>
+          <div class="gallery-scroll-track" id="galleryTrack">
+            <div class="gallery-scroll-item">
+              <img src="./interior-mosaic.jpg" alt="高円寺駅を望むモザイク装飾" loading="lazy" />
+              <span class="gallery-scroll-caption">mosaic</span>
+            </div>
+            <div class="gallery-scroll-item">
+              <img src="./interior-clock.jpg" alt="ロンドンの駅で使用されていた時計" loading="lazy" />
+              <span class="gallery-scroll-caption">1986 —</span>
+            </div>
+            <div class="gallery-scroll-item">
+              <img src="./interior-stainedglass-2.jpg" alt="フランスの教会のステンドグラス" loading="lazy" />
+              <span class="gallery-scroll-caption">stained glass</span>
+            </div>
+            <div class="gallery-scroll-item">
+              <img src="./interior-soda.jpg" alt="Sodaのステンドグラス" loading="lazy" />
+              <span class="gallery-scroll-caption">soda</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </section>
+
+      <!-- MENU INFO -->
+      <section class="store-section section-shell" id="menu">
+        <div class="store-heading">
+          <h2>Yonchome Cafe Information</h2>
+        </div>
+        <nav class="info-link-list" aria-label="メニュー・サービス情報">
+          <button type="button" data-info-title="Lunch" data-info-body="平日オープンから15:00までのランチ。パスタ2種、ボウル、プレート、オムレツをご用意しています。価格は1,350円。ミニサラダ、コーヒーまたは紅茶付きです。+150円でその他ドリンクに変更できます。パスタ・ライスは大盛り無料。ランチデザートは400円です。" data-info-cover="./lunch-pasta.png">
+            【ランチ】平日オープンから15:00まで
+          </button>
+          <button type="button" data-info-title="Happy Hour" data-info-body="ハッピーアワーは平日の15:00から18:00まで。夕方前の一杯を気軽に楽しめます。">
+            【ハッピーアワー】平日15:00から18:00まで
+          </button>
+          <button type="button" data-info-title="Smoking" data-info-body="" data-info-poster="./smoking-info.png" data-info-image-only="true">
+            【喫煙情報】18:00までは喫煙ブース / 18:00以降はお席にて可
+          </button>
+          <button type="button" data-info-title="Private Party / Shooting" data-info-body="貸切パーティー、歓送迎会、二次会、ロケ・写真撮影など、用途に合わせてお気軽にお問い合わせください。人数や時間、内容に合わせてご相談可能です。お電話または店頭にて承っております。" data-info-phone="0353771726" data-info-cover="./about-interior.jpg">
+            【貸切・撮影のご相談】お気軽にお問い合わせください
+          </button>
+        </nav>
+      </section>
+
+      <!-- BANNERS：採用・貸し切りを大きく目立たせる -->
+      <section class="banner-section section-shell" id="banners">
+        <div class="banner-grid">
+          <button class="banner-item" type="button" id="party-banner-btn">
+            <div class="banner-bg">
+              <img src="./about-interior.jpg" alt="" />
+            </div>
+            <div class="banner-body">
+              <span class="banner-kicker">Private Party</span>
+              <h3 class="banner-title">貸し切りパーティー</h3>
+              <p class="banner-desc">
+                歓送迎会・誕生日会・二次会・撮影など、<br />
+                理想のパーティーをこの空間でカスタマイズ。<br />
+                20名〜受付、3つのプランをご用意しています。
+              </p>
+              <span class="banner-cta">プランを見る →</span>
+            </div>
+          </button>
+          <a class="banner-item" href="./yonchome-recruit.html">
+            <div class="banner-bg">
+              <img src="./interior-stainedglass.jpg" alt="" />
+            </div>
+            <div class="banner-body">
+              <span class="banner-kicker">Recruit</span>
+              <h3 class="banner-title">スタッフ募集</h3>
+              <p class="banner-desc">
+                創業40年の店で、一緒に働きませんか。<br />
+                人と関わるのが好きな人、誰かのために<br />
+                自然に動ける人を歓迎します。経験不問。
+              </p>
+              <span class="banner-cta">採用情報を見る →</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+
+      <!-- NEWS -->
+      <section class="news-section section-shell" id="news">
+        <div class="section-head wide">
+          <h2>News</h2>
+          <div class="lead-block">
+            <p class="lead-ja">Yonchome Cafeからの新着情報。</p>
+            <p class="lead-en">Latest updates from Yonchome Cafe.</p>
+          </div>
+        </div>
+        <ul class="news-list">
+          <!-- ▼ ここに新着記事を追加してください ▼ -->
+          <li class="news-item">
+            <div class="news-thumb">
+              <img src="./about-interior.jpg" alt="ウェブサイトをリニューアルしました" loading="lazy" />
+            </div>
+            <div class="news-meta">
+              <time class="news-date" datetime="2026-05-29">2026.05.29</time>
+              <span class="news-tag">お知らせ</span>
+            </div>
+            <p class="news-title">ウェブサイトをリニューアルしました</p>
+            <p class="news-body">創業40周年を記念して、ウェブサイトをリニューアルいたしました。今後もYonchome Cafeをよろしくお願いいたします。</p>
+          </li>
+          <!-- ▲ ここに新着記事を追加してください ▲ -->
+        </ul>
+      </section>
+
+      <!-- INFORMATION -->
+      <section class="info-section section-shell" id="info">
+        <div class="section-head wide">
+          <h2>Information</h2>
+        </div>
+
+        <!-- 会社情報ナビ -->
+        <nav class="company-nav anim-up" aria-label="会社情報">
+          <div class="company-nav-links">
+            <a class="company-nav-link" href="./company.html">会社概要</a>
+            <button class="company-nav-link company-nav-link--contact" type="button" id="contact-toggle" aria-expanded="false">
+              お問い合わせ
+              <span class="contact-popup" id="contact-popup" aria-hidden="true">
+                <span class="contact-popup-label">TEL</span>
+                <a class="contact-popup-tel" href="tel:0353771726">03-5377-1726</a>
+              </span>
+            </button>
+            <a class="company-nav-link" href="./legal.html">特定商取引に基づく表示</a>
+            <a class="company-nav-link" href="./privacy.html">個人情報保護方針</a>
+          </div>
+          <div class="company-nav-sns">
+            <a class="company-nav-sns-icon" href="https://www.instagram.com/yonchome_cafe/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                <path d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9a4.5 4.5 0 0 1-4.5 4.5h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3Zm0 1.5A3 3 0 0 0 4.5 7.5v9a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-9a3 3 0 0 0-3-3h-9Zm9.75 1.125a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5Z" fill="currentColor"/>
+              </svg>
+            </a>
+            <a class="company-nav-sns-icon" href="https://x.com/yonchomecafe" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" fill="currentColor"/>
+              </svg>
+            </a>
+          </div>
+        </nav>
+        <div class="company-nav-divider"></div>
+
+        <div class="info-grid">
+          <div>
+            <span>Shop name</span>
+            <p>Yonchome cafe</p>
+          </div>
+          <div>
+            <span>Address</span>
+            <p>〒166-0003<br />東京都杉並区高円寺南4丁目28-10<br />高円寺リリエンハイム 2F</p>
+            <a class="info-button" href="https://www.google.com/maps/search/?api=1&query=%E3%80%92166-0003%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%9D%89%E4%B8%A6%E5%8C%BA%E9%AB%98%E5%86%86%E5%AF%BA%E5%8D%97%EF%BC%94%E4%B8%81%E7%9B%AE%EF%BC%92%EF%BC%98%E2%88%92%EF%BC%91%EF%BC%90%20%E9%AB%98%E5%86%86%E5%AF%BA%E3%83%AA%E3%83%AA%E3%82%A8%E3%83%B3%E3%83%8F%E3%82%A4%E3%83%A0%202F" target="_blank" rel="noreferrer">Google Maps</a>
+          </div>
+          <div>
+            <span>Open</span>
+            <p>平日 10:30 - 23:00<br />土日祝 11:30 - 23:00</p>
+          </div>
+          <div>
+            <span>Reserve</span>
+            <p>予約・お問い合わせ</p>
+            <div class="info-button-row">
+              <a class="info-button" href="tel:0353771726">TEL 03-5377-1726</a>
+              <a class="info-button" href="https://www.instagram.com/yonchome_cafe/" target="_blank" rel="noreferrer">Instagram</a>
+            </div>
+          </div>
+          <div>
+            <span>Payment</span>
+            <p>現金 / 電子決済 / 楽天ペイ / PayPay / 交通系ICカード / au PAY<br />クレジットカード / VISA / Mastercard / JCB / American Express</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer section-shell">
+      <img class="footer-logo" src="./loader-logo.png" alt="Yonchome Cafe" />
+      <p>© Yonchome cafe — Est. 1986</p>
+    </footer>
+
+    <!-- Party Modal -->
+    <div class="party-modal" id="party-modal" aria-hidden="true" role="dialog" aria-label="貸し切りパーティーメニュー">
+      <button class="party-modal-backdrop" type="button" aria-label="閉じる"></button>
+      <div class="party-modal-frame">
+        <button class="party-modal-close" type="button" aria-label="閉じる">×</button>
+        <img src="./party-photo.jpg" alt="貸し切りパーティーメニュー表" />
+      </div>
+    </div>
+
+    <!-- Info Modal -->
+    <div class="info-modal" aria-hidden="true">
+      <button class="info-modal-backdrop" type="button" aria-label="閉じる"></button>
+      <div class="info-modal-frame">
+        <button class="info-modal-close" type="button" aria-label="閉じる">×</button>
+        <div class="info-modal-card" role="dialog" aria-modal="true" aria-labelledby="info-modal-title">
+          <img class="info-modal-cover" src="" alt="" hidden />
+          <img class="info-modal-poster" src="" alt="" hidden />
+          <span class="info-modal-kicker" id="info-modal-title"></span>
+          <p id="info-modal-body"></p>
+          <a class="info-modal-phone" href="tel:0353771726" hidden>03-5377-1726</a>
+          <div class="info-modal-controls">
+            <button class="info-modal-scroll info-modal-scroll-prev" type="button">前へ</button>
+            <button class="info-modal-scroll info-modal-scroll-next" type="button">次へ</button>
+          </div>
+          <div class="info-modal-gallery" aria-label="メニュー画像"></div>
+        </div>
+      </div>
+    </div>
+
+    <a class="float-reserve" href="tel:0353771726" aria-label="電話で予約する">電話で予約する</a>
+
+    <script>
+      // Info modal
+      const infoModal = document.querySelector(".info-modal");
+      const infoTitle = document.querySelector("#info-modal-title");
+      const infoBody = document.querySelector("#info-modal-body");
+      const infoGallery = document.querySelector(".info-modal-gallery");
+      const infoCover = document.querySelector(".info-modal-cover");
+      const infoPoster = document.querySelector(".info-modal-poster");
+      const infoControls = document.querySelector(".info-modal-controls");
+      const infoPhone = document.querySelector(".info-modal-phone");
+      const closeInfoModal = () => infoModal.setAttribute("aria-hidden", "true");
+
+      document.querySelectorAll(".info-link-list button").forEach((button) => {
+        button.addEventListener("click", () => {
+          infoTitle.textContent = button.dataset.infoTitle;
+          infoBody.textContent = button.dataset.infoBody;
+          infoGallery.innerHTML = "";
+          infoPoster.hidden = true;
+          infoPhone.hidden = true;
+
+          if (button.dataset.infoPoster) {
+            infoPoster.src = button.dataset.infoPoster;
+            infoPoster.alt = `${button.dataset.infoTitle} information`;
+            infoPoster.hidden = false;
+            infoTitle.hidden = button.dataset.infoImageOnly === "true";
+            infoBody.hidden = button.dataset.infoImageOnly === "true";
+          } else {
+            infoTitle.hidden = false;
+            infoBody.hidden = false;
+          }
+          if (button.dataset.infoCover) {
+            infoCover.src = button.dataset.infoCover;
+            infoCover.alt = `${button.dataset.infoTitle} image`;
+            infoCover.hidden = false;
+          } else {
+            infoCover.hidden = true;
+          }
+          if (button.dataset.infoPhone) {
+            infoPhone.href = `tel:${button.dataset.infoPhone}`;
+            infoPhone.textContent = button.dataset.infoPhone;
+            infoPhone.hidden = false;
+          }
+          if (button.dataset.infoGallery) {
+            button.dataset.infoGallery.split("||").forEach((item) => {
+              const [src, title, description] = item.split("::");
+              const figure = document.createElement("figure");
+              const img = document.createElement("img");
+              img.src = src.trim();
+              img.alt = title ? title.trim() : button.dataset.infoTitle;
+              figure.appendChild(img);
+              if (title || description) {
+                const caption = document.createElement("figcaption");
+                if (title) { const h = document.createElement("span"); h.textContent = title.trim(); caption.appendChild(h); }
+                if (description) { const p = document.createElement("p"); p.textContent = description.trim(); caption.appendChild(p); }
+                figure.appendChild(caption);
+              }
+              infoGallery.appendChild(figure);
+            });
+            infoGallery.hidden = false;
+            infoControls.hidden = false;
+          } else {
+            infoGallery.hidden = true;
+            infoControls.hidden = true;
+          }
+          infoModal.setAttribute("aria-hidden", "false");
+        });
+      });
+
+      document.querySelector(".info-modal-close").addEventListener("click", closeInfoModal);
+      document.querySelector(".info-modal-backdrop").addEventListener("click", closeInfoModal);
+      document.querySelector(".info-modal-scroll-prev").addEventListener("click", () => {
+        infoGallery.scrollBy({ left: -320, behavior: "smooth" });
+      });
+      document.querySelector(".info-modal-scroll-next").addEventListener("click", () => {
+        infoGallery.scrollBy({ left: 320, behavior: "smooth" });
+      });
+      infoGallery.addEventListener("wheel", (e) => {
+        if (infoGallery.hidden) return;
+        e.preventDefault();
+        infoGallery.scrollLeft += e.deltaY + e.deltaX;
+      }, { passive: false });
+
+      // Shooting banner → 既存の貸切・撮影モーダルを開く
+      document.getElementById("shooting-banner-btn")?.addEventListener("click", () => {
+        const shootingBtn = document.querySelector('[data-info-title="Private Party / Shooting"]');
+        if (shootingBtn) shootingBtn.click();
+      });
+
+      // Party modal
+      const partyModal = document.getElementById("party-modal");
+      const partyOpen  = () => { partyModal.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden"; };
+      const partyClose = () => { partyModal.setAttribute("aria-hidden", "true");  document.body.style.overflow = ""; };
+      document.getElementById("party-banner-btn")?.addEventListener("click", partyOpen);
+      partyModal.querySelector(".party-modal-backdrop").addEventListener("click", partyClose);
+      partyModal.querySelector(".party-modal-close").addEventListener("click", partyClose);
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") partyClose(); });
+
+      // Contact popup toggle
+      const contactToggle = document.getElementById("contact-toggle");
+      if (contactToggle) {
+        contactToggle.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const isOpen = contactToggle.getAttribute("aria-expanded") === "true";
+          contactToggle.setAttribute("aria-expanded", !isOpen);
+        });
+        document.addEventListener("click", () => {
+          contactToggle.setAttribute("aria-expanded", "false");
+        });
+        document.getElementById("contact-popup")?.addEventListener("click", (e) => {
+          e.stopPropagation();
+        });
+      }
+
+      // Float reserve
+      const floatReserve = document.querySelector(".float-reserve");
+      const heroSection = document.querySelector(".hero-section");
+      new IntersectionObserver(
+        ([entry]) => floatReserve.classList.toggle("is-visible", !entry.isIntersecting),
+        { threshold: 0.2 }
+      ).observe(heroSection);
+
+      // Scroll animations
+      const animTargets = [
+        ".message-layout",
+        ".gallery-section .section-head",
+        ".gallery-strip-item",
+        ".about-section .split-layout",
+        ".store-section .store-heading",
+        ".info-link-list button",
+        ".banner-section .section-head",
+        ".banner-item",
+        ".cta-inner",
+        ".info-section .section-head",
+        ".info-grid > div",
+      ];
+
+      document.querySelectorAll(animTargets.join(",")).forEach((el) => {
+        el.classList.add("anim-up");
+        const siblings = [...el.parentElement.children].filter((c) => c.classList.contains("anim-up"));
+        const idx = siblings.indexOf(el);
+        if (idx > 0) el.style.transitionDelay = `${idx * 0.09}s`;
+      });
+
+      const scrollObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              scrollObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+      );
+
+      document.querySelectorAll(".anim-up").forEach((el) => scrollObserver.observe(el));
+
+      // ── Message blocks ──
+      document.querySelectorAll(".message-block, .message-image-wrap, .message-closing").forEach((el, i) => {
+        scrollObserver.observe(el);
+        el.style.transitionDelay = `${i * 0.06}s`;
+      });
+
+      // ── Full-width photos ──
+      document.querySelectorAll(".message-photo-wide-item").forEach((el) => {
+        scrollObserver.observe(el);
+      });
+
+      // ── Gallery horizontal scroll ──
+      const galleryOuter = document.querySelector(".gallery-scroll-outer");
+      const galleryTrack = document.getElementById("galleryTrack");
+      if (galleryOuter && galleryTrack) {
+        window.addEventListener("scroll", () => {
+          const rect = galleryOuter.getBoundingClientRect();
+          const outerH = galleryOuter.offsetHeight;
+          const progress = Math.max(0, Math.min(1, -rect.top / (outerH - window.innerHeight)));
+          const maxX = galleryTrack.scrollWidth - window.innerWidth;
+          galleryTrack.style.transform = `translateX(${-progress * maxX}px)`;
+        }, { passive: true });
+      }
+
+      // ── Hero bottom banners slide up on load ──
+      document.querySelectorAll(".hero-bottom-banner").forEach((el, i) => {
+        el.style.transitionDelay = `${5.8 + i * 0.15}s`;
+        setTimeout(() => el.classList.add("is-visible"), 0);
+      });
+
+      // ── Loader character animation ──
+      document.querySelectorAll(".loader-concept .loader-line span").forEach((el, i) => {
+        el.style.animationDelay = `${0.3 + i * 0.15}s`;
+      });
+
+      // ── Count-up animation for "40" ──
+      const annivNum = document.querySelector(".anniv-number");
+      if (annivNum) {
+        let started = false;
+        const startCount = () => {
+          if (started) return;
+          started = true;
+          let count = 0;
+          const target = 40;
+          const duration = 1400;
+          const step = duration / target;
+          const timer = setInterval(() => {
+            count++;
+            annivNum.textContent = count;
+            if (count >= target) clearInterval(timer);
+          }, step);
+        };
+        // start after loader fades (~3s)
+        setTimeout(startCount, 5200);
+      }
+
+      // ── Parallax on hero image ──
+      const heroImg = document.querySelector(".hero-image");
+      if (heroImg) {
+        window.addEventListener("scroll", () => {
+          const scrollY = window.scrollY;
+          heroImg.style.transform = `translateY(${scrollY * 0.28}px)`;
+        }, { passive: true });
+      }
+    </script>
+  </body>
+</html>

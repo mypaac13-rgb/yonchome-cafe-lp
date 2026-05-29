@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yonchome Cafe — 創業40周年</title>
+    <meta name="description" content="おかげさまで創業40年。高円寺Yonchome Cafeは、1986年から変わらず街と人に寄り添い続けています。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Klee+One:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      /* ── 40th Anniversary additions ── */
+
+      .hero-section {
+        padding-top: 0;
+      }
+
+      .photo-panel-hero {
+        min-height: 100svh;
+      }
+
+      .hero-image {
+        object-position: center 40%;
+        filter: brightness(0.48) saturate(0.72) sepia(0.12) contrast(1.02);
+      }
+
+      .hero-copy {
+        width: min(72vw, 800px);
+        transform: translate(-50%, -48%);
+      }
+
+      .anniv-badge {
+        display: inline-block;
+        margin-bottom: 20px;
+        padding: 6px 18px;
+        border: 1px solid rgba(207, 129, 72, 0.55);
+        color: var(--accent);
+        font-family: var(--font-body);
+        font-size: 0.68rem;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+      }
+
+      .anniv-number {
+        display: block;
+        font-family: var(--font-body);
+        font-size: clamp(5.5rem, 18vw, 15rem);
+        font-weight: 600;
+        line-height: 0.82;
+        letter-spacing: -0.04em;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(239, 226, 210, 0.32);
+        text-stroke: 1px rgba(239, 226, 210, 0.32);
+        margin-bottom: 24px;
+        user-select: none;
+      }
+
+      .anniv-hero-year {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        margin-bottom: 18px;
+        color: rgba(239, 226, 210, 0.6);
+        font-family: var(--font-body);
+        font-size: clamp(0.7rem, 1.1vw, 0.84rem);
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+      }
+
+      .anniv-hero-year span {
+        color: var(--accent);
+      }
+
+      /* ── Message section ── */
+
+      .message-section {
+        padding-top: 148px;
+      }
+
+      .message-layout {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 80px;
+        align-items: start;
+      }
+
+      .message-anchor {
+        position: sticky;
+        top: 120px;
+      }
+
+      .message-anchor-year {
+        display: block;
+        font-family: var(--font-body);
+        font-size: clamp(2.8rem, 5vw, 4.2rem);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        color: var(--text);
+        line-height: 1;
+      }
+
+      .message-anchor-arrow {
+        display: block;
+        margin: 8px 0;
+        color: var(--accent);
+        font-size: 1.3rem;
+        line-height: 1;
+      }
+
+      .message-anchor-kicker {
+        display: inline-block;
+        margin-top: 20px;
+        color: rgba(244, 217, 188, 0.65);
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        line-height: 1.9;
+      }
+
+      .message-anchor-divider {
+        display: block;
+        width: 32px;
+        height: 1px;
+        margin: 20px 0;
+        background: rgba(207, 129, 72, 0.5);
+      }
+
+      .message-body {
+        padding-top: 8px;
+      }
+
+      .message-block {
+        margin-bottom: 52px;
+      }
+
+      .message-pull {
+        font-family: var(--font-display);
+        font-size: clamp(1.18rem, 2.2vw, 1.68rem);
+        font-weight: 900;
+        line-height: 1.75;
+        letter-spacing: 0.03em;
+        color: var(--text);
+        padding-left: 22px;
+        border-left: 2px solid var(--accent);
+        margin-bottom: 22px;
+      }
+
+      .message-text {
+        font-family: var(--font-display);
+        font-size: clamp(0.95rem, 1.4vw, 1.06rem);
+        font-weight: 500;
+        line-height: 2.3;
+        letter-spacing: 0.04em;
+        color: rgba(239, 226, 210, 0.82);
+      }
+
+      .message-text + .message-text {
+        margin-top: 22px;
+      }
+
+      .message-image-wrap {
+        margin: 48px 0;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 233, 212, 0.07);
+      }
+
+      .message-image-wrap img {
+        width: 100%;
+        aspect-ratio: 16 / 7;
+        object-fit: cover;
+        object-position: center 55%;
+        display: block;
+        filter: brightness(0.62) saturate(0.75) sepia(0.12) contrast(1.02);
+      }
+
+      .message-image-caption {
+        position: absolute;
+        bottom: 20px;
+        right: 24px;
+        color: rgba(244, 217, 188, 0.55);
+        font-family: var(--font-body);
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .message-closing {
+        margin-top: 60px;
+        padding-top: 48px;
+        border-top: 1px solid rgba(240, 216, 190, 0.12);
+      }
+
+      .message-closing-main {
+        font-family: var(--font-display);
+        font-size: clamp(1.28rem, 2.4vw, 1.9rem);
+        font-weight: 900;
+        line-height: 1.75;
+        letter-spacing: 0.04em;
+        color: var(--text);
+      }
+
+      .message-closing-en {
+        display: block;
+        margin-top: 14px;
+        color: var(--accent);
+        font-family: var(--font-body);
+        font-size: 0.74rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+
+      /* ── Gallery strip ── */
+
+      .gallery-section {
+        padding-top: 120px;
+      }
+
+      .gallery-strip {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr 1fr 1.6fr;
+        gap: 12px;
+        margin-top: 40px;
+      }
+
+      .gallery-strip-item {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(255, 233, 212, 0.06);
+      }
+
+      .gallery-strip-item img {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.68) saturate(0.78) sepia(0.1) contrast(1.02);
+        transition: transform 0.65s ease, filter 0.65s ease;
+      }
+
+      .gallery-strip-item:hover img {
+        transform: scale(1.04);
+        filter: brightness(0.76) saturate(0.85) sepia(0.08) contrast(1.02);
+      }
+
+      .gallery-strip-item:nth-child(2),
+      .gallery-strip-item:nth-child(3) {
+        margin-top: 32px;
+      }
+
+      /* ── About section ── */
+
+      .about-kicker {
+        display: inline-block;
+        margin-bottom: 10px;
+        color: rgba(244, 217, 188, 0.65);
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+      }
+
+      /* ── CTA banner ── */
+
+      .cta-section {
+        padding-top: 120px;
+      }
+
+      .cta-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+        padding: 48px 52px;
+        border: 1px solid rgba(240, 216, 190, 0.12);
+        background: rgba(34, 22, 18, 0.5);
+      }
+
+      .cta-text h3 {
+        font-family: var(--font-display);
+        font-size: clamp(1.2rem, 2vw, 1.6rem);
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        line-height: 1.6;
+        color: var(--text);
+      }
+
+      .cta-text p {
+        margin-top: 8px;
+        color: rgba(239, 226, 210, 0.65);
+        font-size: 0.86rem;
+        line-height: 1.8;
+        letter-spacing: 0.03em;
+      }
+
+      .cta-buttons {
+        display: flex;
+        gap: 12px;
+        flex-shrink: 0;
+      }
+
+      .btn-accent {
+        display: inline-flex;
+        align-items: center;
+        min-height: 52px;
+        padding: 0 28px;
+        background: var(--accent);
+        border: 1px solid var(--accent);
+        color: #1a0e0b;
+        font-family: var(--font-body);
+        font-size: 0.76rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+
+      /* ── Responsive ── */
+
+      @media (max-width: 1080px) {
+        .message-layout {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+
+        .message-anchor {
+          position: static;
+        }
+
+        .gallery-strip {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .gallery-strip-item:nth-child(2),
+        .gallery-strip-item:nth-child(3) {
+          margin-top: 0;
+        }
+
+        .cta-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .anniv-number {
+          font-size: clamp(5rem, 26vw, 10rem);
+        }
+
+        .hero-copy {
+          width: min(90vw, 520px);
+        }
+
+        .message-section {
+          padding-top: 96px;
+        }
+
+        .message-pull {
+          font-size: 1.14rem;
+        }
+
+        .gallery-strip {
+          grid-template-columns: 1fr 1fr;
+          gap: 8px;
+        }
+
+        .gallery-strip-item img {
+          aspect-ratio: 1 / 1;
+        }
+
+        .cta-inner {
+          padding: 32px 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-loader" aria-hidden="true">
+      <img class="loader-logo" src="./loader-logo.png" alt="" />
+    </div>
+
+    <header class="site-header">
+      <a class="site-logo" href="#top" aria-label="Yonchome cafe">
+        <img src="./loader-logo.png" alt="" />
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="nav-reserve" href="tel:0353771726">電話予約</a>
+        <a class="nav-icon" href="https://x.com/yonchomecafe" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" fill="currentColor" />
+          </svg>
+        </a>
+        <a class="nav-icon" href="https://www.instagram.com/yonchome_cafe/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9a4.5 4.5 0 0 1-4.5 4.5h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3Zm0 1.5A3 3 0 0 0 4.5 7.5v9a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-9a3 3 0 0 0-3-3h-9Zm9.75 1.125a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5Z" fill="currentColor" />
+          </svg>
+        </a>
+      </nav>
+    </header>
+
+    <main id="top">
+
+      <!-- HERO -->
+      <section class="hero-section">
+        <div class="hero-media photo-panel photo-panel-hero">
+          <img class="hero-image" src="./hero-main-upscaled.jpg" alt="高円寺Yonchome Cafeの店内" />
+        </div>
+        <div class="hero-copy">
+          <div class="hero-copy-inner">
+            <span class="anniv-badge">40th Anniversary — 1986–2026</span>
+            <span class="anniv-number" aria-hidden="true">40</span>
+            <div class="anniv-hero-year">
+              <span>1986</span>
+              <span style="color:rgba(239,226,210,0.3);">—</span>
+              <span>2026</span>
+            </div>
+            <h1>
+              おかげさまで、創業40年。
+              <br />
+              <span class="hero-line-small">高円寺二階のカフェ＆ダイニング</span>
+            </h1>
+            <p class="hero-en">
+              Forty years of warmth, stories, and a second-floor view of Koenji.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- MESSAGE -->
+      <section class="message-section section-shell" id="message">
+        <div class="message-layout">
+
+          <div class="message-anchor">
+            <span class="message-anchor-year">1986</span>
+            <span class="message-anchor-arrow">↓</span>
+            <span class="message-anchor-year">2026</span>
+            <span class="message-anchor-divider"></span>
+            <span class="message-anchor-kicker">
+              A message<br />from<br />Yonchome Cafe
+            </span>
+          </div>
+
+          <div class="message-body">
+
+            <div class="message-block">
+              <p class="message-pull">
+                おかげさまで創業40年を迎えました。
+              </p>
+              <p class="message-text">
+                ここまで続けてこられたのは、間違いなく、この場所を選び、足を運び、時間を過ごしてくださったお客さま一人ひとりのおかげです。
+              </p>
+            </div>
+
+            <div class="message-image-wrap">
+              <img src="./about-interior.jpg" alt="Yonchome Cafeの店内インテリア" />
+              <span class="message-image-caption">Yonchome Cafe, Koenji 2F</span>
+            </div>
+
+            <div class="message-block">
+              <p class="message-pull">
+                「ここに来ると落ち着く」<br />「変わらなくてホッとする」
+              </p>
+              <p class="message-text">
+                流行が移り変わり、街の景色も、人の暮らし方も変わっていく中で、そんな声に何度も救われてきました。
+              </p>
+              <p class="message-text">
+                だから私は、yonchome cafeを無理に新しい店にしたいとは思っていません。長年愛されてきた味、空気、会話の距離感——それらは、この40年で自然と育ってきた、何より大切なものです。
+              </p>
+            </div>
+
+            <div class="message-block">
+              <p class="message-pull">
+                守るべきものは守りながら、<br />今の時代に合った形で、少しずつ進化していく。
+              </p>
+              <p class="message-text">
+                一方で、時代に取り残されたいわけでもありません。そのバランスを丁寧に考え続けていきたいと思っています。
+              </p>
+            </div>
+
+            <div class="message-image-wrap">
+              <img src="./interior-stainedglass.jpg" alt="海外から輸入したステンドグラス" />
+              <span class="message-image-caption">Imported stained glass, 1986</span>
+            </div>
+
+            <div class="message-block">
+              <p class="message-text">
+                yonchome cafeが、誰かの初めてのカフェになり、誰かの日常になり、やがて「昔よく通っていた店」として思い出される。
+              </p>
+              <p class="message-text">
+                そんなふうに、人の人生の中にそっと存在し続ける場所であれたら、これ以上の喜びはありません。
+              </p>
+            </div>
+
+            <div class="message-closing">
+              <p class="message-closing-main">
+                40年という節目は、ゴールではなく、また新しいスタートです。<br />
+                これからもこの場所で、変わらない安心と、新しい時間を重ねていきたい。<br />
+                yonchome cafeは、これからも街と人に寄り添う店であり続けます。
+              </p>
+              <span class="message-closing-en">Yonchome Cafe — Since 1986</span>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="gallery-section section-shell" id="gallery">
+        <div class="section-head wide">
+          <h2>Gallery</h2>
+          <div class="lead-block">
+            <p class="lead-ja">40年を彩る、空間と時間。</p>
+            <p class="lead-en">The spaces and moments that make up forty years.</p>
+          </div>
+        </div>
+        <div class="gallery-strip">
+          <div class="gallery-strip-item">
+            <img src="./interior-mosaic.jpg" alt="高円寺駅を望むモザイク装飾" loading="lazy" />
+          </div>
+          <div class="gallery-strip-item">
+            <img src="./interior-clock.jpg" alt="ロンドンの駅で使用されていた時計" loading="lazy" />
+          </div>
+          <div class="gallery-strip-item">
+            <img src="./interior-soda.jpg" alt="Sodaのステンドグラス" loading="lazy" />
+          </div>
+          <div class="gallery-strip-item">
+            <img src="./interior-stainedglass-2.jpg" alt="フランスの教会のステンドグラス" loading="lazy" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="about-section section-shell" id="about">
+        <div class="split-layout reverse">
+          <div class="photo-panel photo-panel-about">
+            <img class="store-image about-image" src="./store-entrance.jpeg" alt="Yonchome Cafe 入口" />
+          </div>
+          <div class="text-block">
+            <div class="section-head">
+              <span class="about-kicker">About</span>
+            </div>
+            <div class="lead-block">
+              <p class="lead-ja">
+                高円寺駅南口から徒歩1分。<br />
+                二階にある、レトロで雰囲気のある空間。
+              </p>
+              <p class="lead-en" style="margin-top:14px;">
+                1986年創業。アンティーク家具と温かみのある照明が織りなす店内は、ドラマ・映画のロケ地としても知られています。ランチ・カフェ・ディナー・ハッピーアワーと、幅広いシーンでお楽しみいただけます。
+              </p>
+            </div>
+            <div class="wrap-btn">
+              <a class="btn-line" href="#info">店舗情報を見る</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MENU INFO -->
+      <section class="store-section section-shell" id="menu">
+        <div class="store-heading">
+          <h2>Yonchome Cafe Menu &amp; Hours</h2>
+        </div>
+        <nav class="info-link-list" aria-label="メニュー・サービス情報">
+          <button type="button"
+            data-info-title="Lunch"
+            data-info-body="平日オープンから15:00までのランチ。パスタ2種、ボウル、プレート、オムレツをご用意しています。価格は1,350円。ミニサラダ、コーヒーまたは紅茶付きです。+150円でその他ドリンクに変更できます。パスタ・ライスは大盛り無料。ランチデザートは400円です。"
+            data-info-cover="./lunch-pasta.png">
+            【ランチ】平日オープンから15:00まで
+          </button>
+          <button type="button"
+            data-info-title="Food & Drink Menu"
+            data-info-body="定番のフードメニューから、カフェドリンク、クリームソーダ、アルコールまで幅広く楽しめます。"
+            data-info-gallery="./food-tacorice.webp::Taco Rice::自家製チリーミートのタコライス。野菜とチーズ、半熟卵を合わせた当店イチオシの人気メニュー。||./menu-burger-beer.jpg::Burger & Beer::牛肉100%のパテを使ったボリュームたっぷりの絶品ハンバーガー。||./menu-nachos.jpg::Nachos::お酒と一緒にも楽しめる、シェアにおすすめの一品。||./menu-waffle.jpg::Waffle Plate::甘さと食事感を楽しめるワッフルプレート。||./menu-cafe-drinks.jpg::Cafe Drink::クリームソーダやカフェドリンク、アルコール種類豊富にご用意しております。">
+            【フード・ドリンクメニュー】お食事とカフェドリンク、アルコール
+          </button>
+          <button type="button"
+            data-info-title="Happy Hour"
+            data-info-body="ハッピーアワーは平日の15:00から18:00まで。夕方前の一杯を気軽に楽しめます。">
+            【ハッピーアワー】平日15:00から18:00まで
+          </button>
+          <button type="button"
+            data-info-title="Free Drink"
+            data-info-body="アルコール、ソフトドリンク飲み放題コース 2,000円。カフェ＆ダイニングバーならではの豊富な種類のカクテル、ソフトドリンクをご用意しております。※テーブルチャージ無し。グランドメニューからお一人様2品以上のご注文をお願いしております。"
+            data-info-poster="./free-drink-menu.svg">
+            【飲み放題メニュー】パーティー向けドリンクプラン
+          </button>
+          <button type="button"
+            data-info-title="Smoking"
+            data-info-body=""
+            data-info-poster="./smoking-info.png"
+            data-info-image-only="true">
+            【喫煙情報】18:00までは喫煙ブース / 18:00以降はお席にて可
+          </button>
+          <button type="button"
+            data-info-title="Private Party / Shooting"
+            data-info-body="貸切パーティー、歓送迎会、二次会、ロケ・写真撮影など、用途に合わせてお気軽にお問い合わせください。人数や時間、内容に合わせてご相談可能です。お電話または店頭にて承っております。"
+            data-info-phone="0353771726"
+            data-info-cover="./about-interior.jpg">
+            【貸切・撮影のご相談】お気軽にお問い合わせください
+          </button>
+        </nav>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-section section-shell">
+        <div class="cta-inner">
+          <div class="cta-text">
+            <h3>創業40年の味と空間を、ぜひ体験してください。</h3>
+            <p>高円寺駅南口から徒歩1分。二階のドアをあけてお越しください。</p>
+          </div>
+          <div class="cta-buttons">
+            <a class="btn-accent" href="tel:0353771726">電話で予約する</a>
+            <a class="btn-line" href="#info">アクセス</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- INFO -->
+      <section class="info-section section-shell" id="info">
+        <div class="section-head wide">
+          <h2>Info</h2>
+        </div>
+        <div class="info-grid">
+          <div>
+            <span>Shop name</span>
+            <p>Yonchome cafe</p>
+          </div>
+          <div>
+            <span>Address</span>
+            <p>
+              〒166-0003<br />
+              東京都杉並区高円寺南4丁目28-10<br />
+              高円寺リリエンハイム 2F
+            </p>
+            <a class="info-button"
+              href="https://www.google.com/maps/search/?api=1&query=%E3%80%92166-0003%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%9D%89%E4%B8%A6%E5%8C%BA%E9%AB%98%E5%86%86%E5%AF%BA%E5%8D%97%EF%BC%94%E4%B8%81%E7%9B%AE%EF%BC%92%EF%BC%98%E2%88%92%EF%BC%91%EF%BC%90%20%E9%AB%98%E5%86%86%E5%AF%BA%E3%83%AA%E3%83%AA%E3%82%A8%E3%83%B3%E3%83%8F%E3%82%A4%E3%83%A0%202F"
+              target="_blank" rel="noreferrer">
+              Google Maps
+            </a>
+          </div>
+          <div>
+            <span>Open</span>
+            <p>平日 10:30 - 23:00<br />土日祝 11:30 - 23:00</p>
+          </div>
+          <div>
+            <span>Reserve</span>
+            <p>予約・お問い合わせ</p>
+            <div class="info-button-row">
+              <a class="info-button" href="tel:0353771726">TEL 03-5377-1726</a>
+              <a class="info-button" href="https://www.instagram.com/yonchome_cafe/" target="_blank" rel="noreferrer">Instagram</a>
+            </div>
+          </div>
+          <div>
+            <span>Payment</span>
+            <p>
+              現金 / 電子決済 / 楽天ペイ / PayPay / 交通系ICカード / au PAY<br />
+              クレジットカード / VISA / Mastercard / JCB / American Express
+            </p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer section-shell">
+      <p>© Yonchome cafe — Est. 1986</p>
+    </footer>
+
+    <!-- Info Modal -->
+    <div class="info-modal" aria-hidden="true">
+      <button class="info-modal-backdrop" type="button" aria-label="閉じる"></button>
+      <div class="info-modal-frame">
+        <button class="info-modal-close" type="button" aria-label="閉じる">×</button>
+        <div class="info-modal-card" role="dialog" aria-modal="true" aria-labelledby="info-modal-title">
+          <img class="info-modal-cover" src="" alt="" hidden />
+          <img class="info-modal-poster" src="" alt="" hidden />
+          <span class="info-modal-kicker" id="info-modal-title"></span>
+          <p id="info-modal-body"></p>
+          <a class="info-modal-phone" href="tel:0353771726" hidden>03-5377-1726</a>
+          <div class="info-modal-controls">
+            <button class="info-modal-scroll info-modal-scroll-prev" type="button">前へ</button>
+            <button class="info-modal-scroll info-modal-scroll-next" type="button">次へ</button>
+          </div>
+          <div class="info-modal-gallery" aria-label="メニュー画像"></div>
+        </div>
+      </div>
+    </div>
+
+    <a class="float-reserve" href="tel:0353771726" aria-label="電話で予約する">電話で予約する</a>
+
+    <script>
+      const infoModal = document.querySelector(".info-modal");
+      const infoTitle = document.querySelector("#info-modal-title");
+      const infoBody = document.querySelector("#info-modal-body");
+      const infoGallery = document.querySelector(".info-modal-gallery");
+      const infoCover = document.querySelector(".info-modal-cover");
+      const infoPoster = document.querySelector(".info-modal-poster");
+      const infoControls = document.querySelector(".info-modal-controls");
+      const infoPhone = document.querySelector(".info-modal-phone");
+      const closeInfoModal = () => infoModal.setAttribute("aria-hidden", "true");
+
+      document.querySelectorAll(".info-link-list button").forEach((button) => {
+        button.addEventListener("click", () => {
+          infoTitle.textContent = button.dataset.infoTitle;
+          infoBody.textContent = button.dataset.infoBody;
+          infoGallery.innerHTML = "";
+          infoPoster.hidden = true;
+          infoPhone.hidden = true;
+
+          if (button.dataset.infoPoster) {
+            infoPoster.src = button.dataset.infoPoster;
+            infoPoster.alt = `${button.dataset.infoTitle} information`;
+            infoPoster.hidden = false;
+            infoTitle.hidden = button.dataset.infoImageOnly === "true";
+            infoBody.hidden = button.dataset.infoImageOnly === "true";
+          } else {
+            infoTitle.hidden = false;
+            infoBody.hidden = false;
+          }
+
+          if (button.dataset.infoCover) {
+            infoCover.src = button.dataset.infoCover;
+            infoCover.alt = `${button.dataset.infoTitle} image`;
+            infoCover.hidden = false;
+          } else {
+            infoCover.hidden = true;
+          }
+
+          if (button.dataset.infoPhone) {
+            infoPhone.href = `tel:${button.dataset.infoPhone}`;
+            infoPhone.textContent = button.dataset.infoPhone;
+            infoPhone.hidden = false;
+          }
+
+          if (button.dataset.infoGallery) {
+            button.dataset.infoGallery.split("||").forEach((item) => {
+              const [src, title, description] = item.split("::");
+              const figure = document.createElement("figure");
+              const img = document.createElement("img");
+              img.src = src.trim();
+              img.alt = title ? title.trim() : button.dataset.infoTitle;
+              figure.appendChild(img);
+              if (title || description) {
+                const caption = document.createElement("figcaption");
+                if (title) {
+                  const heading = document.createElement("span");
+                  heading.textContent = title.trim();
+                  caption.appendChild(heading);
+                }
+                if (description) {
+                  const text = document.createElement("p");
+                  text.textContent = description.trim();
+                  caption.appendChild(text);
+                }
+                figure.appendChild(caption);
+              }
+              infoGallery.appendChild(figure);
+            });
+            infoGallery.hidden = false;
+            infoControls.hidden = false;
+          } else {
+            infoGallery.hidden = true;
+            infoControls.hidden = true;
+          }
+
+          infoModal.setAttribute("aria-hidden", "false");
+        });
+      });
+
+      document.querySelector(".info-modal-close").addEventListener("click", closeInfoModal);
+      document.querySelector(".info-modal-backdrop").addEventListener("click", closeInfoModal);
+      document.querySelector(".info-modal-scroll-prev").addEventListener("click", () => {
+        infoGallery.scrollBy({ left: -320, behavior: "smooth" });
+      });
+      document.querySelector(".info-modal-scroll-next").addEventListener("click", () => {
+        infoGallery.scrollBy({ left: 320, behavior: "smooth" });
+      });
+      infoGallery.addEventListener("wheel", (event) => {
+        if (infoGallery.hidden) return;
+        event.preventDefault();
+        infoGallery.scrollLeft += event.deltaY + event.deltaX;
+      }, { passive: false });
+
+      const floatReserve = document.querySelector(".float-reserve");
+      const heroSection = document.querySelector(".hero-section");
+      new IntersectionObserver(
+        ([entry]) => floatReserve.classList.toggle("is-visible", !entry.isIntersecting),
+        { threshold: 0.2 }
+      ).observe(heroSection);
+    </script>
+  </body>
+</html>

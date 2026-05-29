@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>貸し切りパーティー | Yonchome Cafe</title>
+  <meta name="description" content="Yonchome Cafeの貸し切りパーティー。飲み放題付き3プラン。平日20名〜¥3,500、土日祝30名〜¥5,500。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:     #0d0804;
+      --panel:  #1c1108;
+      --text:   #ede0c4;
+      --muted:  rgba(237,224,196,0.55);
+      --accent: #c4a042;
+      --line:   rgba(196,160,66,0.2);
+      --ff-jp:   'Shippori Mincho', serif;
+      --ff-type: 'Special Elite', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--ff-jp);
+      line-height: 1.8;
+    }
+
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ---- HEADER ---- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 28px;
+      background: rgba(13, 8, 4, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .site-logo img {
+      height: 34px;
+      width: auto;
+      opacity: 0.9;
+    }
+
+    .site-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .site-nav-links a {
+      font-family: var(--ff-jp);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .site-nav-links a:hover,
+    .site-nav-links a[aria-current] { color: var(--accent); }
+
+    .site-nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-icon {
+      display: flex;
+      align-items: center;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+    .nav-icon:hover { color: var(--accent); }
+    .nav-icon svg { width: 18px; height: 18px; }
+
+    /* ---- MAIN ---- */
+    .page-main {
+      padding: 56px 20px 72px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .flyer-wrap {
+      width: 100%;
+      max-width: 640px;
+    }
+
+    .flyer-wrap img {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+
+    /* ---- CONTACT ---- */
+    .contact-block {
+      width: 100%;
+      max-width: 640px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 40px 32px;
+      text-align: center;
+    }
+
+    .contact-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .contact-sub {
+      font-size: 0.82rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      line-height: 2;
+      margin-bottom: 28px;
+    }
+
+    .contact-btns {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 32px;
+      background: var(--accent);
+      color: var(--bg);
+      font-family: var(--ff-jp);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      border-radius: 2px;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.82; }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 28px;
+      border: 1px solid rgba(237,224,196,0.25);
+      color: var(--text);
+      font-family: var(--ff-jp);
+      font-size: 0.88rem;
+      letter-spacing: 0.12em;
+      border-radius: 2px;
+      transition: border-color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); }
+
+    /* ---- FOOTER ---- */
+    .site-footer {
+      background: var(--bg);
+      border-top: 1px solid var(--line);
+      padding: 32px 28px;
+      text-align: center;
+    }
+
+    .footer-logo img {
+      height: 26px;
+      opacity: 0.4;
+      filter: brightness(2) saturate(0);
+      margin: 0 auto 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 14px;
+    }
+    .footer-links a {
+      font-size: 0.74rem;
+      color: rgba(237,224,196,0.3);
+      letter-spacing: 0.1em;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    .footer-copy {
+      font-family: var(--ff-type);
+      font-size: 0.62rem;
+      color: rgba(237,224,196,0.18);
+      letter-spacing: 0.2em;
+    }
+
+    @media (max-width: 600px) {
+      .site-nav-links { display: none; }
+      .page-main { padding: 40px 16px 56px; }
+      .contact-block { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <a class="site-logo" href="./index.html" aria-label="Yonchome cafe">
+      <img src="./loader-logo.png" alt="Yonchome Cafe" />
+    </a>
+    <nav class="site-nav-links" aria-label="サブナビ">
+      <a href="./yonchome-party.html" aria-current="true">貸し切り</a>
+      <a href="./yonchome-recruit.html">採用</a>
+      <a href="./company.html">企業情報</a>
+    </nav>
+    <nav class="site-nav" aria-label="SNS">
+      <a class="nav-icon" href="https://www.instagram.com/yonchome_cafe/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9a4.5 4.5 0 0 1-4.5 4.5h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3Zm0 1.5A3 3 0 0 0 4.5 7.5v9a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-9a3 3 0 0 0-3-3h-9Zm9.75 1.125a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5Z" fill="currentColor"/>
+        </svg>
+      </a>
+    </nav>
+  </header>
+
+  <main class="page-main">
+
+    <!-- フライヤー -->
+    <div class="flyer-wrap">
+      <img src="./party-flyer-new.png" alt="貸し切りパーティーメニュー表 — Yonchome Cafe" />
+    </div>
+
+    <!-- お問い合わせ -->
+    <div class="contact-block">
+      <p class="contact-title">まずはお気軽にご相談ください</p>
+      <p class="contact-sub">
+        日程・人数・予算をざっくり教えていただければ、すぐにご提案いたします。<br />
+        「相談だけ」も大歓迎です。
+      </p>
+      <div class="contact-btns">
+        <a class="btn-primary" href="https://www.instagram.com/yonchome_cafe/" target="_blank" rel="noopener noreferrer">
+          Instagram DM で相談する
+        </a>
+        <a class="btn-secondary" href="tel:0353771726">
+          03-5377-1726
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-logo">
+      <img src="./loader-logo.png" alt="Yonchome Cafe" />
+    </div>
+    <nav class="footer-links">
+      <a href="./index.html">ホーム</a>
+      <a href="./yonchome-recruit.html">採用情報</a>
+    </nav>
+    <p class="footer-copy">&copy; Yonchome cafe &mdash; Est. 1986</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>会社概要 | 株式会社ビリミリオン</title>
+    <meta name="description" content="株式会社ビリミリオンの会社概要・経営理念。人と場の力で価値を生み続ける。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@500;700;900&display=swap" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+
+      :root {
+        --blue:      #1a4fa0;
+        --blue-mid:  #2563c8;
+        --blue-light:#e8f0fc;
+        --blue-line: #c8d9f5;
+        --text:      #0f1b33;
+        --muted:     #5a6a85;
+        --bg:        #ffffff;
+        --bg-2:      #f4f7fb;
+        --content:   min(92vw, 1160px);
+        --font:      "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+        --font-en:   "Manrope", Arial, sans-serif;
+      }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a { color: inherit; text-decoration: none; }
+      p, h1, h2, h3, ul { margin: 0; }
+      img { display: block; max-width: 100%; }
+
+      /* ── Header ── */
+      .site-header {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 68px;
+        padding: 0 clamp(20px, 4vw, 60px);
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--blue-line);
+      }
+      .header-logo {
+        font-family: var(--font-en);
+        font-size: 1.02rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: var(--blue);
+      }
+      .header-logo span {
+        font-weight: 400;
+        color: var(--muted);
+        font-size: 0.8rem;
+        margin-left: 10px;
+        letter-spacing: 0.02em;
+      }
+      .header-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: var(--font-en);
+        font-size: 0.74rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        color: var(--blue-mid);
+        text-transform: uppercase;
+        transition: opacity 0.2s;
+      }
+      .header-back:hover { opacity: 0.65; }
+
+      /* ── Hero strip ── */
+      .page-hero {
+        padding-top: 68px;
+        background: linear-gradient(135deg, #0d2b6e 0%, #1a4fa0 55%, #2a6dd9 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      .page-hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse at 80% 50%, rgba(255,255,255,0.06), transparent 60%),
+          repeating-linear-gradient(
+            -45deg,
+            rgba(255,255,255,0.015) 0 1px,
+            transparent 1px 24px
+          );
+        pointer-events: none;
+      }
+      .page-hero-inner {
+        position: relative;
+        z-index: 1;
+        width: var(--content);
+        margin: 0 auto;
+        padding: 80px 0 88px;
+      }
+      .page-hero-en {
+        display: block;
+        font-family: var(--font-en);
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.5);
+        margin-bottom: 16px;
+      }
+      .page-hero-title {
+        font-family: var(--font);
+        font-size: clamp(1.9rem, 4vw, 3rem);
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        color: #ffffff;
+        line-height: 1.25;
+      }
+      .page-hero-title span {
+        display: block;
+        margin-top: 10px;
+        font-family: var(--font-en);
+        font-size: clamp(0.78rem, 1.1vw, 0.92rem);
+        font-weight: 400;
+        letter-spacing: 0.22em;
+        color: rgba(255,255,255,0.38);
+        text-transform: uppercase;
+      }
+
+      /* ── Wrapper ── */
+      .main-wrap {
+        width: var(--content);
+        margin: 0 auto;
+        padding: 96px 0 140px;
+      }
+
+      /* ── Section label ── */
+      .sec-label {
+        display: inline-block;
+        font-family: var(--font-en);
+        font-size: 0.64rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--blue-mid);
+        margin-bottom: 20px;
+      }
+
+      /* ── Philosophy lead ── */
+      .philosophy-lead {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+      .philosophy-quote {
+        font-size: clamp(1.2rem, 2.4vw, 1.85rem);
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        color: var(--text);
+        line-height: 1.75;
+      }
+      .philosophy-quote em {
+        font-style: normal;
+        color: var(--blue-mid);
+      }
+
+      /* ── Body text ── */
+      .philosophy-body {
+        max-width: 680px;
+        margin: 0 auto 88px;
+        font-size: clamp(0.95rem, 1.3vw, 1.04rem);
+        font-weight: 500;
+        line-height: 2.3;
+        letter-spacing: 0.04em;
+        color: #3a4a62;
+      }
+      .philosophy-body p + p { margin-top: 1.6em; }
+      .philosophy-body .highlight {
+        display: inline-block;
+        margin: 0.4em 0;
+        font-weight: 900;
+        font-size: 1.05em;
+        color: var(--blue);
+        letter-spacing: 0.06em;
+      }
+
+      /* ── VVM ── */
+      .vvm-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-bottom: 88px;
+      }
+      .vvm-item {
+        padding: 36px 32px 40px;
+        background: var(--bg-2);
+        border-top: 3px solid var(--blue-mid);
+        border-radius: 2px;
+      }
+      .vvm-label {
+        display: block;
+        font-family: var(--font-en);
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--blue-mid);
+        margin-bottom: 14px;
+      }
+      .vvm-text {
+        font-size: clamp(0.98rem, 1.4vw, 1.1rem);
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        color: var(--text);
+        line-height: 1.7;
+      }
+
+      /* ── Value list ── */
+      .value-section { margin-bottom: 88px; }
+      .value-list {
+        list-style: none;
+        padding: 0;
+        border-top: 1px solid var(--blue-line);
+      }
+      .value-item {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        gap: 24px;
+        padding: 26px 0;
+        border-bottom: 1px solid var(--blue-line);
+        align-items: start;
+      }
+      .value-num {
+        font-family: var(--font-en);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--blue-mid);
+        padding-top: 3px;
+      }
+      .value-title {
+        font-size: clamp(0.96rem, 1.3vw, 1.06rem);
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .value-desc {
+        font-size: 0.88rem;
+        font-weight: 500;
+        line-height: 1.85;
+        letter-spacing: 0.03em;
+        color: var(--muted);
+      }
+
+      /* ── President ── */
+      .president-section {
+        display: flex;
+        align-items: baseline;
+        gap: 28px;
+        padding: 48px 52px;
+        background: var(--blue-light);
+        border-left: 4px solid var(--blue-mid);
+      }
+      .president-label {
+        font-family: var(--font-en);
+        font-size: 0.64rem;
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--blue-mid);
+        flex-shrink: 0;
+      }
+      .president-name {
+        font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+        font-weight: 900;
+        letter-spacing: 0.1em;
+        color: var(--text);
+      }
+      .president-name span {
+        display: inline-block;
+        margin-left: 16px;
+        font-family: var(--font-en);
+        font-size: 0.78rem;
+        font-weight: 400;
+        letter-spacing: 0.18em;
+        color: var(--muted);
+      }
+
+      /* ── Footer ── */
+      .site-footer {
+        text-align: center;
+        padding: 32px 20px;
+        border-top: 1px solid var(--blue-line);
+        font-family: var(--font-en);
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+      }
+
+      /* ── Scroll anim ── */
+      .anim-up {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .anim-up.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── Responsive ── */
+      @media (max-width: 860px) {
+        .vvm-grid { grid-template-columns: 1fr; gap: 10px; }
+      }
+      @media (max-width: 640px) {
+        .main-wrap { padding: 64px 0 100px; }
+        .president-section { flex-direction: column; gap: 8px; padding: 32px 28px; }
+        .president-name span { display: block; margin-left: 0; margin-top: 4px; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <header class="site-header">
+      <div class="header-logo">
+        Billimillion
+        <span>株式会社ビリミリオン</span>
+      </div>
+      <a class="header-back" href="./index.html">← Yonchome Cafe</a>
+    </header>
+
+    <div class="page-hero">
+      <div class="page-hero-inner">
+        <span class="page-hero-en">Company</span>
+        <h1 class="page-hero-title">
+          株式会社ビリミリオン
+          <span>Billimillion Inc.</span>
+        </h1>
+      </div>
+    </div>
+
+    <main>
+      <div class="main-wrap">
+
+        <!-- Philosophy lead -->
+        <div class="philosophy-lead anim-up">
+          <span class="sec-label">Philosophy</span>
+          <p class="philosophy-quote">
+            「守るために変わり、<br />
+            <em>人と場の力で価値を生み続ける。</em>」
+          </p>
+        </div>
+
+        <!-- 本文 -->
+        <div class="philosophy-body anim-up">
+          <p>株式会社ビリミリオンは、単に商品やサービスを提供する会社ではありません。</p>
+          <p>人と人が出会い、想いがつながり、新しい価値が生まれる"場"を創り続ける会社です。</p>
+          <p>飲食事業、イベント事業、空間活用、インフラ事業――<br />
+          私たちが行うすべての事業の根底には、<span class="highlight">「人の可能性を広げたい」</span>という想いがあります。</p>
+          <p>時代や環境が変化しても、守るべき想いは変えない。<br />
+          そのために、私たちは変化を恐れず、仕組みを整え、挑戦を続け、<br />
+          関わる人すべてが安心して未来へ進める環境を創ります。</p>
+          <p>単発的な利益ではなく、長く続く価値を。<br />
+          目先の成功ではなく、人と人とのつながりから生まれる未来を。</p>
+          <p>"人が集まることで価値が生まれる"――<br />
+          その信念を軸に、人・空間・コミュニティを通じて、<br />
+          新たな可能性と豊かさを創造し続けます。</p>
+        </div>
+
+        <!-- Vision / Mission / Value -->
+        <div class="vvm-grid anim-up">
+          <div class="vvm-item">
+            <span class="vvm-label">Vision</span>
+            <p class="vvm-text">人が集まり、挑戦し、<br />未来を創れる社会をつくる。</p>
+          </div>
+          <div class="vvm-item">
+            <span class="vvm-label">Mission</span>
+            <p class="vvm-text">人と場を活かし、<br />新たな価値とつながりを生み出す。</p>
+          </div>
+          <div class="vvm-item">
+            <span class="vvm-label">Value</span>
+            <p class="vvm-text">人を大切に、<br />想いを未来へ繋ぐ。</p>
+          </div>
+        </div>
+
+        <!-- Value list -->
+        <div class="value-section anim-up">
+          <span class="sec-label">Value</span>
+          <ul class="value-list">
+            <li class="value-item">
+              <span class="value-num">01</span>
+              <div>
+                <p class="value-title">人を大切にする</p>
+                <p class="value-desc">関わるすべての人への敬意と感謝を忘れない。</p>
+              </div>
+            </li>
+            <li class="value-item">
+              <span class="value-num">02</span>
+              <div>
+                <p class="value-title">想いを未来へ繋ぐ</p>
+                <p class="value-desc">受け継いだ価値を、次の時代へ繋げていく。</p>
+              </div>
+            </li>
+            <li class="value-item">
+              <span class="value-num">03</span>
+              <div>
+                <p class="value-title">挑戦を止めない</p>
+                <p class="value-desc">変化を恐れず、新しい可能性に挑み続ける。</p>
+              </div>
+            </li>
+            <li class="value-item">
+              <span class="value-num">04</span>
+              <div>
+                <p class="value-title">仕組みで支える</p>
+                <p class="value-desc">属人的ではなく、継続できる環境をつくる。</p>
+              </div>
+            </li>
+            <li class="value-item">
+              <span class="value-num">05</span>
+              <div>
+                <p class="value-title">関わる人を豊かにする</p>
+                <p class="value-desc">人・空間・事業を通じて、未来の豊かさを生み出す。</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 代表者 -->
+        <div class="president-section anim-up">
+          <span class="president-label">代表取締役</span>
+          <p class="president-name">
+            石原 徳幸
+            <span>Noriyuki Ishihara</span>
+          </p>
+        </div>
+
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      © Billimillion Inc. — Yonchome Cafe Est. 1986
+    </footer>
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.08, rootMargin: "0px 0px -32px 0px" }
+      );
+      document.querySelectorAll(".anim-up").forEach((el, i) => {
+        el.style.transitionDelay = `${i * 0.08}s`;
+        observer.observe(el);
+      });
+    </script>
+  </body>
+</html>

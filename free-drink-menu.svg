@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 650" role="img" aria-labelledby="title desc">
+  <title id="title">Yonchome Cafe free drink menu</title>
+  <desc id="desc">2時間アルコール、ソフトドリンク飲み放題2000円のメニュー</desc>
+  <rect width="920" height="650" fill="#151818"/>
+  <circle cx="118" cy="138" r="210" fill="#f0a66e"/>
+  <circle cx="176" cy="462" r="148" fill="#f0a66e"/>
+  <circle cx="0" cy="640" r="156" fill="#f0a66e"/>
+  <g fill="#f4eee5" font-family="Arial, sans-serif" letter-spacing="5">
+    <text x="28" y="78" font-size="20">All you can drink</text>
+    <text x="28" y="132" font-size="34" font-weight="700">2時間アルコール</text>
+    <text x="28" y="184" font-size="34" font-weight="700">ソフトドリンク</text>
+    <text x="28" y="236" font-size="34" font-weight="700">飲み放題 ¥2,000</text>
+    <text x="28" y="286" font-size="20" letter-spacing="3">2 hours unlimited drinks</text>
+    <text x="28" y="320" font-size="20" letter-spacing="3">for only 2,000 yen.</text>
+  </g>
+  <g fill="#261711" font-family="Arial, sans-serif" text-anchor="middle">
+    <text x="176" y="404" font-size="23" font-weight="700">サービスサラダ付き</text>
+    <text x="176" y="454" font-size="22">グランドメニューから</text>
+    <text x="176" y="494" font-size="22">2品以上のご注文を</text>
+    <text x="176" y="534" font-size="22">お願いします。</text>
+    <text x="176" y="574" font-size="18">※テーブルチャージ無し※</text>
+  </g>
+  <g font-family="Arial, sans-serif" fill="#f4eee5">
+    <g>
+      <rect x="390" y="64" width="150" height="42" fill="#f0a66e"/>
+      <text x="465" y="92" font-size="20" fill="#261711" text-anchor="middle">Beer</text>
+      <text x="390" y="154" font-size="22">一番搾り 生</text>
+    </g>
+    <g>
+      <rect x="390" y="206" width="150" height="42" fill="#f0a66e"/>
+      <text x="465" y="234" font-size="20" fill="#261711" text-anchor="middle">ハイボール</text>
+      <text x="390" y="296" font-size="19">ハイボール</text>
+      <text x="390" y="326" font-size="19">コークハイ</text>
+      <text x="390" y="356" font-size="19">ジンジャーハイ</text>
+    </g>
+    <g>
+      <rect x="390" y="410" width="150" height="42" fill="#f0a66e"/>
+      <text x="465" y="438" font-size="20" fill="#261711" text-anchor="middle">サワー</text>
+      <text x="390" y="502" font-size="19">レモンサワー</text>
+      <text x="390" y="536" font-size="19">グレープフルーツサワー</text>
+      <text x="390" y="570" font-size="19">巨峰サワー</text>
+      <text x="390" y="604" font-size="19">カルピスサワー</text>
+    </g>
+    <g>
+      <rect x="570" y="64" width="150" height="42" fill="#f0a66e"/>
+      <text x="645" y="92" font-size="20" fill="#261711" text-anchor="middle">カクテル</text>
+      <text x="570" y="154" font-size="18">シャンディーガフ</text>
+      <text x="570" y="184" font-size="18">レッドアイ</text>
+      <text x="570" y="214" font-size="18">ジントニック</text>
+      <text x="570" y="244" font-size="18">ジンソーダ</text>
+      <text x="570" y="274" font-size="18">ウォッカトニック</text>
+      <text x="570" y="304" font-size="18">モスコミュール</text>
+      <text x="570" y="334" font-size="18">スクリュードライバー</text>
+      <text x="570" y="364" font-size="18">ラムコーク</text>
+      <text x="570" y="394" font-size="18">メキシコーク</text>
+      <text x="570" y="424" font-size="18">テキーラサンライズ</text>
+      <text x="570" y="454" font-size="18">カシスオレンジ</text>
+      <text x="570" y="484" font-size="18">カシスグレープフルーツ</text>
+      <text x="570" y="514" font-size="18">ファジーネーブル</text>
+      <text x="570" y="544" font-size="18">ピーチソーダ</text>
+    </g>
+    <g>
+      <rect x="748" y="64" width="150" height="42" fill="#f0a66e"/>
+      <text x="823" y="92" font-size="20" fill="#261711" text-anchor="middle">ワイン</text>
+      <text x="748" y="154" font-size="19">グラス 赤</text>
+      <text x="748" y="184" font-size="19">グラス 白</text>
+    </g>
+    <g>
+      <rect x="748" y="206" width="150" height="42" fill="#f0a66e"/>
+      <text x="823" y="234" font-size="20" fill="#261711" text-anchor="middle">Soft Drink</text>
+      <text x="748" y="296" font-size="18">コーヒー</text>
+      <text x="748" y="326" font-size="18">紅茶</text>
+      <text x="748" y="356" font-size="18">ラテ</text>
+      <text x="748" y="386" font-size="18">コーラ</text>
+      <text x="748" y="416" font-size="18">ジンジャエール</text>
+      <text x="748" y="446" font-size="18">オレンジジュース</text>
+      <text x="748" y="476" font-size="18">グレープフルーツジュース</text>
+      <text x="748" y="506" font-size="18">アップルジュース</text>
+      <text x="748" y="536" font-size="18">ウーロン茶</text>
+    </g>
+  </g>
+  <text x="58" y="628" fill="#151818" font-family="Arial, sans-serif" font-size="48" font-weight="700">Yonchome Cafe</text>
+</svg>
