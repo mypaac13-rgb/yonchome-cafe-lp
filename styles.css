@@ -78,7 +78,7 @@ img {
   display: grid;
   place-items: center;
   background: #f4f1eb;
-  animation: loader-fade 8s ease forwards;
+  animation: loader-fade 11s ease forwards;
 }
 
 .loader-inner {

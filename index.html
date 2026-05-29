@@ -35,11 +35,11 @@
       .hero-copy .hero-copy-inner > * {
         animation: heroFadeUp 1s cubic-bezier(0.22, 1, 0.36, 1) both;
       }
-      .hero-copy .hero-copy-inner > *:nth-child(1) { animation-delay: 8.2s; }
-      .hero-copy .hero-copy-inner > *:nth-child(2) { animation-delay: 8.4s; }
-      .hero-copy .hero-copy-inner > *:nth-child(3) { animation-delay: 8.55s; }
-      .hero-copy .hero-copy-inner > *:nth-child(4) { animation-delay: 8.7s; }
-      .hero-copy .hero-copy-inner > *:nth-child(5) { animation-delay: 8.85s; }
+      .hero-copy .hero-copy-inner > *:nth-child(1) { animation-delay: 11.2s; }
+      .hero-copy .hero-copy-inner > *:nth-child(2) { animation-delay: 11.4s; }
+      .hero-copy .hero-copy-inner > *:nth-child(3) { animation-delay: 11.55s; }
+      .hero-copy .hero-copy-inner > *:nth-child(4) { animation-delay: 11.7s; }
+      .hero-copy .hero-copy-inner > *:nth-child(5) { animation-delay: 11.85s; }
 
       /* ── Scroll animations ── */
       .anim-up {
@@ -764,11 +764,11 @@
 
       .anniv-badge {
         animation: heroFadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
-        animation-delay: 8.2s;
+        animation-delay: 11.2s;
       }
       .anniv-number {
         animation: countUp 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
-        animation-delay: 8.3s;
+        animation-delay: 11.3s;
       }
 
       /* message blocks stagger */
@@ -1436,7 +1436,7 @@
 
       // ── Hero bottom banners slide up on load ──
       document.querySelectorAll(".hero-bottom-banner").forEach((el, i) => {
-        el.style.transitionDelay = `${8.8 + i * 0.15}s`;
+        el.style.transitionDelay = `${11.8 + i * 0.15}s`;
         setTimeout(() => el.classList.add("is-visible"), 0);
       });
 
@@ -1463,7 +1463,7 @@
           }, step);
         };
         // start after loader fades (~3s)
-        setTimeout(startCount, 8200);
+        setTimeout(startCount, 11200);
       }
 
       // ── Parallax on hero image ──
