@@ -1099,7 +1099,7 @@
           <button type="button" data-modal-key="smoke" data-info-title="Smoking" data-info-body="" data-info-poster="./smoking-info.png" data-info-image-only="true" data-i18n="infoBtnSmoke">
             【喫煙情報】18:00までは喫煙ブース / 18:00以降はお席にて可
           </button>
-          <button type="button" data-modal-key="party" data-info-title="Private Party / Shooting" data-info-body="貸切パーティー、歓送迎会、二次会、ロケ・写真撮影など、用途に合わせてお気軽にお問い合わせください。人数や時間、内容に合わせてご相談可能です。お電話または店頭にて承っております。" data-info-phone="0353771726" data-info-cover="./about-interior.jpg" data-i18n="infoBtnParty">
+          <button type="button" data-modal-key="party" data-info-title="Private Party / Shooting" data-info-body="貸切パーティー、歓送迎会、二次会、ロケ・写真撮影など、用途に合わせてお気軽にお問い合わせください。人数や時間、内容に合わせてご相談可能です。お電話または店頭にて承っております。" data-info-credits="CRISIS 公安機動捜査隊特捜班||テセウスの船||ツレがうつになりまして||L'Arc〜en〜Ciel「The Fourth Avenue Cafe」（題材となった楽曲）" data-info-phone="0353771726" data-info-cover="./about-interior.jpg" data-i18n="infoBtnParty">
             【貸切・撮影のご相談】お気軽にお問い合わせください
           </button>
         </nav>
@@ -1264,6 +1264,7 @@
           <img class="info-modal-poster" src="" alt="" hidden />
           <span class="info-modal-kicker" id="info-modal-title"></span>
           <p id="info-modal-body"></p>
+          <div id="info-modal-credits" hidden style="margin-top:20px;border-top:1px solid rgba(240,216,190,0.15);padding-top:18px;"><p style="font-family:var(--font-body);font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(244,217,188,0.6);margin-bottom:12px;">撮影実績</p><ul id="info-modal-credits-list" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;"></ul></div>
           <a class="info-modal-phone" href="tel:0353771726" hidden>03-5377-1726</a>
           <div class="info-modal-controls">
             <button class="info-modal-scroll info-modal-scroll-prev" type="button" data-i18n="modalPrev">前へ</button>
@@ -1317,6 +1318,24 @@
             infoPhone.href = `tel:${button.dataset.infoPhone}`;
             infoPhone.textContent = button.dataset.infoPhone;
             infoPhone.hidden = false;
+          }
+          const creditsWrap = document.getElementById('info-modal-credits');
+          const creditsList = document.getElementById('info-modal-credits-list');
+          if (button.dataset.infoCredits) {
+            creditsList.innerHTML = '';
+            button.dataset.infoCredits.split('||').forEach(item => {
+              const li = document.createElement('li');
+              li.style.cssText = 'font-family:var(--font-display);font-size:0.92rem;color:rgba(240,226,210,0.88);letter-spacing:0.03em;padding-left:16px;position:relative;';
+              const dash = document.createElement('span');
+              dash.textContent = '— ';
+              dash.style.cssText = 'position:absolute;left:0;color:var(--accent);';
+              li.appendChild(dash);
+              li.appendChild(document.createTextNode(item.trim()));
+              creditsList.appendChild(li);
+            });
+            creditsWrap.hidden = false;
+          } else {
+            creditsWrap.hidden = true;
           }
           if (button.dataset.infoGallery) {
             button.dataset.infoGallery.split("||").forEach((item) => {
