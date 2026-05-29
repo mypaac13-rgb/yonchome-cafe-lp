@@ -71,16 +71,19 @@
       .header-back {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        font-family: var(--font-en);
-        font-size: 0.74rem;
-        font-weight: 500;
-        letter-spacing: 0.1em;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border: 1px solid var(--blue-line);
+        border-radius: 50%;
+        background: transparent;
         color: var(--blue-mid);
-        text-transform: uppercase;
-        transition: opacity 0.2s;
+        font-size: 1.2rem;
+        line-height: 1;
+        cursor: pointer;
+        transition: background 0.2s, border-color 0.2s;
       }
-      .header-back:hover { opacity: 0.65; }
+      .header-back:hover { background: var(--blue-light); border-color: var(--blue-mid); }
 
       /* ── Hero strip ── */
       .page-hero {
@@ -338,7 +341,7 @@
         Billimillion
         <span>株式会社ビリミリオン</span>
       </div>
-      <a class="header-back" href="./index.html">← Yonchome Cafe</a>
+      <button class="header-back" onclick="history.back()" aria-label="前のページに戻る">&times;</button>
     </header>
 
     <div class="page-hero">

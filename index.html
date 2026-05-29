@@ -1454,6 +1454,24 @@
         setTimeout(() => el.classList.add("is-visible"), 0);
       });
 
+      // ── Loader skip if already seen ──
+      if (sessionStorage.getItem('loaderSeen')) {
+        const loader = document.querySelector('.page-loader');
+        if (loader) { loader.style.display = 'none'; }
+        document.querySelectorAll('.hero-copy .hero-copy-inner > *').forEach(el => {
+          el.style.animationDelay = '0s';
+          el.style.animationDuration = '0.01s';
+        });
+        document.querySelectorAll('.hero-bottom-banner').forEach(el => {
+          el.style.transitionDelay = '0s';
+          el.classList.add('is-visible');
+        });
+        const an = document.querySelector('.anniv-number');
+        if (an) { an.textContent = '40'; an.style.opacity = '1'; }
+      } else {
+        sessionStorage.setItem('loaderSeen', '1');
+      }
+
       // ── Loader character animation ──
       document.querySelectorAll(".loader-concept .loader-line span").forEach((el, i) => {
         el.style.animationDelay = `${0.3 + i * 0.22}s`;
