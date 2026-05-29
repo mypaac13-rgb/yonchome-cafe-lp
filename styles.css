@@ -96,7 +96,7 @@ img {
   height: auto;
   filter: contrast(1.05);
   opacity: 0;
-  animation: logoSoft 2s cubic-bezier(0.16, 1, 0.3, 1) 2.65s forwards;
+  animation: logoSoft 3.2s cubic-bezier(0.16, 1, 0.3, 1) 2.65s forwards;
 }
 
 @keyframes logoSoft {
@@ -133,7 +133,7 @@ img {
   opacity: 0;
   transform: translateY(-6px);
   display: inline;
-  animation: charDrop 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: charDrop 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes charDrop {
