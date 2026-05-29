@@ -1255,7 +1255,7 @@
     </div>
 
 <!-- Info Modal -->
-    <div class="info-modal" aria-hidden="true">
+    <div class="info-modal" id="info-modal" aria-hidden="true">
       <button class="info-modal-backdrop" type="button" aria-label="閉じる"></button>
       <div class="info-modal-frame">
         <button class="info-modal-close" type="button" aria-label="閉じる">×</button>
@@ -1278,7 +1278,7 @@
 
     <script>
       // Info modal
-      const infoModal = document.querySelector(".info-modal");
+      const infoModal = document.getElementById("info-modal");
       const infoTitle = document.querySelector("#info-modal-title");
       const infoBody = document.querySelector("#info-modal-body");
       const infoGallery = document.querySelector(".info-modal-gallery");
@@ -1344,12 +1344,12 @@
         });
       });
 
-      document.querySelector(".info-modal-close").addEventListener("click", closeInfoModal);
-      document.querySelector(".info-modal-backdrop").addEventListener("click", closeInfoModal);
-      document.querySelector(".info-modal-scroll-prev").addEventListener("click", () => {
+      infoModal.querySelector(".info-modal-close").addEventListener("click", closeInfoModal);
+      infoModal.querySelector(".info-modal-backdrop").addEventListener("click", closeInfoModal);
+      infoModal.querySelector(".info-modal-scroll-prev").addEventListener("click", () => {
         infoGallery.scrollBy({ left: -320, behavior: "smooth" });
       });
-      document.querySelector(".info-modal-scroll-next").addEventListener("click", () => {
+      infoModal.querySelector(".info-modal-scroll-next").addEventListener("click", () => {
         infoGallery.scrollBy({ left: 320, behavior: "smooth" });
       });
       infoGallery.addEventListener("wheel", (e) => {
