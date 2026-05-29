@@ -323,6 +323,80 @@
         transform: translateY(0);
       }
 
+
+      /* ── Business sections ── */
+      .business-section { margin-bottom: 88px; }
+      .business-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 28px;
+      }
+      .business-card {
+        padding: 32px 28px 36px;
+        background: var(--bg-2);
+        border-top: 3px solid var(--blue-mid);
+      }
+      .business-card-en {
+        display: block;
+        font-family: var(--font-en);
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--blue-mid);
+        margin-bottom: 10px;
+      }
+      .business-card-title {
+        font-size: 1rem;
+        font-weight: 900;
+        letter-spacing: 0.04em;
+        color: var(--text);
+        margin-bottom: 12px;
+      }
+      .business-card-desc {
+        font-size: 0.86rem;
+        font-weight: 500;
+        line-height: 1.85;
+        color: var(--muted);
+      }
+
+      /* ── Company overview table ── */
+      .overview-section { margin-bottom: 88px; }
+      .overview-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 28px;
+      }
+      .overview-table tr {
+        border-bottom: 1px solid var(--blue-line);
+      }
+      .overview-table th {
+        width: 180px;
+        padding: 18px 0;
+        font-family: var(--font-en);
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--blue-mid);
+        text-align: left;
+        vertical-align: top;
+      }
+      .overview-table td {
+        padding: 18px 0 18px 24px;
+        font-size: 0.96rem;
+        font-weight: 500;
+        line-height: 1.8;
+        color: var(--text);
+      }
+      @media (max-width: 860px) {
+        .business-grid { grid-template-columns: 1fr; gap: 10px; }
+      }
+      @media (max-width: 640px) {
+        .overview-table th { width: 100px; font-size: 0.62rem; }
+        .overview-table td { padding-left: 16px; font-size: 0.88rem; }
+      }
       /* ── Responsive ── */
       @media (max-width: 860px) {
         .vvm-grid { grid-template-columns: 1fr; gap: 10px; }
@@ -438,6 +512,60 @@
               </div>
             </li>
           </ul>
+        </div>
+
+
+        <!-- 事業内容 -->
+        <div class="business-section anim-up">
+          <span class="sec-label">Business</span>
+          <div class="business-grid">
+            <div class="business-card">
+              <span class="business-card-en">Food &amp; Beverage</span>
+              <p class="business-card-title">飲食事業</p>
+              <p class="business-card-desc">高円寺駅南口徒歩1分。40年以上続く「yonchome cafe」を運営。ランチ・ディナー営業のほか、貸切パーティー、撮影利用など多様なニーズに対応しています。</p>
+            </div>
+            <div class="business-card">
+              <span class="business-card-en">Event Setup</span>
+              <p class="business-card-title">イベント会場設営・撤去事業</p>
+              <p class="business-card-desc">展示会・イベント・催事などの会場設営・撤去業務を担当。安全性と効率性を重視し、円滑なイベント運営を支えるパートナーとして実績を積み重ねています。</p>
+            </div>
+            <div class="business-card">
+              <span class="business-card-en">Infrastructure</span>
+              <p class="business-card-title">インフラ支援事業</p>
+              <p class="business-card-desc">通信・生活インフラを中心とした各種サービスをご提案。個人・法人のお客様の課題解決をサポートし、より良い事業環境・生活環境づくりに貢献しています。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 会社概要 -->
+        <div class="overview-section anim-up">
+          <span class="sec-label">Overview</span>
+          <table class="overview-table">
+            <tr>
+              <th>Company</th>
+              <td>株式会社ビリミリオン</td>
+            </tr>
+            <tr>
+              <th>Founded</th>
+              <td>2023年9月11日</td>
+            </tr>
+            <tr>
+              <th>CEO</th>
+              <td>石原 徳幸</td>
+            </tr>
+            <tr>
+              <th>Address</th>
+              <td>東京都杉並区高円寺南4-28-10 リリエンハイム2F</td>
+            </tr>
+            <tr>
+              <th>Business</th>
+              <td>飲食事業 / 会場設営・撤去事業 / インフラ支援事業</td>
+            </tr>
+            <tr>
+              <th>Store</th>
+              <td>カフェ&amp;ダイニングバー yonchome cafe</td>
+            </tr>
+          </table>
         </div>
 
         <!-- 代表者 -->
