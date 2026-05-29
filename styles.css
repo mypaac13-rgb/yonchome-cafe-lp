@@ -197,7 +197,7 @@ img {
   align-items: center;
   justify-content: space-between;
   padding: 14px 32px;
-  background: rgba(18, 10, 5, 0.96);
+  background: #0d0804;
   border-bottom: 1px solid rgba(196, 160, 66, 0.12);
   pointer-events: none;
 }
