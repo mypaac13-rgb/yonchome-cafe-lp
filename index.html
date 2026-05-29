@@ -69,7 +69,7 @@
       .hero-section { padding-top: 0; }
       .photo-panel-hero { min-height: 100svh; }
       .hero-image {
-        object-position: center 40%;
+        object-position: center 65%;
         filter: brightness(0.48) saturate(0.72) sepia(0.12) contrast(1.02);
       }
       .hero-copy {
@@ -606,87 +606,66 @@
       /* ── Info ── */
       .info-section { padding-top: 120px; }
 
-      /* ── Party Modal ── */
-      .party-modal {
-        position: fixed;
-        inset: 0;
-        z-index: 8000;
+      /* ── Lang Switcher ── */
+      .lang-switcher { position: relative; }
+      .lang-switcher-btn {
         display: flex;
         align-items: center;
-        justify-content: center;
-        padding: 24px;
+        gap: 6px;
+        background: transparent;
+        border: 1px solid rgba(196,160,66,0.35);
+        color: var(--accent);
+        font-family: 'Special Elite', monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.2em;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: background 0.2s, border-color 0.2s;
+        white-space: nowrap;
+      }
+      .lang-switcher-btn:hover { background: rgba(196,160,66,0.08); border-color: var(--accent); }
+      .lang-switcher-btn[aria-expanded="true"] { border-color: var(--accent); background: rgba(196,160,66,0.06); }
+      .lang-arrow { display: inline-block; transition: transform 0.2s; font-size: 0.55rem; }
+      .lang-switcher-btn[aria-expanded="true"] .lang-arrow { transform: rotate(180deg); }
+      .lang-dropdown {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        min-width: 164px;
+        background: #160c05;
+        border: 1px solid rgba(196,160,66,0.4);
+        border-radius: 4px;
+        padding: 6px 0;
+        box-shadow: 0 16px 48px rgba(0,0,0,0.6);
         opacity: 0;
         visibility: hidden;
-        transition: opacity 0.3s ease, visibility 0.3s ease;
+        transform: translateY(-6px);
+        transition: opacity 0.18s, visibility 0.18s, transform 0.18s;
+        z-index: 500;
       }
-      .party-modal[aria-hidden="false"] {
+      .lang-switcher-btn[aria-expanded="true"] + .lang-dropdown {
         opacity: 1;
         visibility: visible;
+        transform: translateY(0);
       }
-      .party-modal-backdrop {
-        position: absolute;
-        inset: 0;
-        background: rgba(6, 3, 2, 0.88);
-        border: none;
-        cursor: pointer;
-      }
-      .party-modal-frame {
-        position: relative;
-        z-index: 1;
-        max-height: 92svh;
-        max-width: min(520px, 100%);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        transform: scale(0.94) translateY(12px);
-        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-      }
-      .party-modal[aria-hidden="false"] .party-modal-frame {
-        transform: scale(1) translateY(0);
-      }
-      .party-modal-frame img {
-        width: 100%;
-        height: auto;
-        max-height: 85svh;
-        object-fit: contain;
+      .lang-opt {
         display: block;
-        border-radius: 8px;
-        /* フィルターなし — 鮮明表示 */
-        filter: none;
-        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.6);
-      }
-      .party-modal-close {
-        position: absolute;
-        top: -14px;
-        right: -14px;
-        z-index: 2;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        border: 1px solid rgba(240, 216, 190, 0.3);
-        background: rgba(20, 12, 8, 0.9);
-        color: rgba(239, 226, 210, 0.85);
-        font-size: 1.1rem;
-        line-height: 1;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.2s, border-color 0.2s;
-      }
-      .party-modal-close:hover {
-        background: rgba(40, 24, 16, 0.98);
-        border-color: var(--accent);
-      }
-
-      /* ── banner-item / hero-bottom-banner as button ── */
-      button.banner-item,
-      button.hero-bottom-banner {
-        cursor: pointer;
-        text-align: left;
         width: 100%;
+        padding: 9px 18px;
+        background: transparent;
         border: none;
+        text-align: left;
+        cursor: pointer;
+        font-family: 'Shippori Mincho', serif;
+        font-size: 0.88rem;
+        color: rgba(237,224,196,0.45);
+        letter-spacing: 0.04em;
+        transition: color 0.15s, background 0.15s;
       }
+      .lang-opt:hover { color: var(--text); background: rgba(196,160,66,0.07); }
+      .lang-opt.is-active { color: var(--text); font-weight: 600; }
+
 
       /* ── Hero bottom banners ── */
       .hero-bottom-banners {
@@ -703,7 +682,7 @@
         display: flex;
         align-items: center;
         gap: 20px;
-        padding: 22px clamp(20px, 3vw, 48px);
+        padding: 13px clamp(16px, 3vw, 48px);
         background: rgba(10, 6, 4, 0.92);
         border-top: 1px solid rgba(240, 216, 190, 0.13);
         text-decoration: none;
@@ -969,13 +948,13 @@
       </a>
       <div class="header-right">
         <nav class="site-nav-links" aria-label="Page links">
-          <a href="./yonchome-party.html">貸し切り</a>
-          <a href="./yonchome-recruit.html">採用</a>
-          <a href="./company.html">企業情報</a>
+          <a href="./yonchome-party.html" data-i18n="navParty">貸し切り</a>
+          <a href="./yonchome-recruit.html" data-i18n="navRecruit">採用</a>
+          <a href="./company.html" data-i18n="navCompany">企業情報</a>
         </nav>
         <div class="header-divider"></div>
         <nav class="site-nav" aria-label="Main navigation">
-          <a class="nav-reserve" href="tel:0353771726">電話予約</a>
+          <a class="nav-reserve" href="tel:0353771726" data-i18n="navReserve">電話予約</a>
           <a class="nav-icon" href="https://x.com/yonchomecafe" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" fill="currentColor" />
@@ -987,6 +966,18 @@
             </svg>
           </a>
         </nav>
+        <div class="lang-switcher" id="lang-switcher">
+          <button class="lang-switcher-btn" type="button" aria-expanded="false" aria-haspopup="listbox">
+            Language <span class="lang-arrow">&#8963;</span>
+          </button>
+          <div class="lang-dropdown" role="listbox">
+            <button class="lang-opt is-active" data-lang="ja" role="option" type="button">日本語</button>
+            <button class="lang-opt" data-lang="en" role="option" type="button">English</button>
+            <button class="lang-opt" data-lang="zhcn" role="option" type="button">中文（簡体字）</button>
+            <button class="lang-opt" data-lang="zhtw" role="option" type="button">中文（繁体字）</button>
+            <button class="lang-opt" data-lang="ko" role="option" type="button">한국어</button>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -1002,16 +993,16 @@
           <a class="hero-bottom-banner" href="./yonchome-party.html">
             <span class="hero-bottom-banner-kicker">Private Party</span>
             <span class="hero-bottom-banner-title">
-              貸し切りパーティー
-              <span class="hero-bottom-banner-sub">20名〜 ／ 3プランからご選択</span>
+              <span data-i18n="heroBannerPartyTitle">貸し切りパーティー</span>
+              <span class="hero-bottom-banner-sub" data-i18n="heroBannerPartySub">20名〜 ／ 3プランからご選択</span>
             </span>
             <span class="hero-bottom-banner-arrow">→</span>
           </a>
           <button class="hero-bottom-banner" type="button" id="shooting-banner-btn">
             <span class="hero-bottom-banner-kicker">Shooting</span>
             <span class="hero-bottom-banner-title">
-              撮影利用の案内
-              <span class="hero-bottom-banner-sub">ロケ・写真撮影 ／ お気軽にご相談ください</span>
+              <span data-i18n="heroBannerShootTitle">撮影利用の案内</span>
+              <span class="hero-bottom-banner-sub" data-i18n="heroBannerShootSub">ロケ・写真撮影 ／ お気軽にご相談ください</span>
             </span>
             <span class="hero-bottom-banner-arrow">→</span>
           </button>
@@ -1026,7 +1017,7 @@
               <span style="color:rgba(239,226,210,0.3);">—</span>
               <span>2026</span>
             </div>
-            <h1>
+            <h1 data-i18n="heroH1">
               おかげさまで、創業40年。
               <br />
               <span class="hero-line-small">高円寺二階のカフェ＆ダイニング</span>
@@ -1043,8 +1034,8 @@
         <div class="message-layout">
           <div class="message-body">
             <div class="message-block">
-              <p class="message-pull">おかげさまで、創業40年。</p>
-              <p class="message-text">この場所を選び、足を運んでくださったお客さまのおかげで、ここまで続けてこられました。</p>
+              <p class="message-pull" data-i18n="msgPull1">おかげさまで、創業40年。</p>
+              <p class="message-text" data-i18n="msgText1">この場所を選び、足を運んでくださったお客さまのおかげで、ここまで続けてこられました。</p>
             </div>
             <div class="message-photo-wide">
               <div class="message-photo-wide-item">
@@ -1055,9 +1046,9 @@
               </div>
             </div>
             <div class="message-block">
-              <p class="message-pull">「ここに来ると落ち着く」<br>「変わらなくてホッとする」</p>
-              <p class="message-text">流行が移り変わり、街の景色も、人の暮らし方も変わっていく中で、そんな声に何度も救われてきました。</p>
-              <p class="message-text">長年愛されてきた味、空気、会話の距離感──それらは、この40年で自然と育ってきた、何より大切なものです。</p>
+              <p class="message-pull" data-i18n="msgPull2">「ここに来ると落ち着く」<br>「変わらなくてホッとする」</p>
+              <p class="message-text" data-i18n="msgText2">流行が移り変わり、街の景色も、人の暮らし方も変わっていく中で、そんな声に何度も救われてきました。</p>
+              <p class="message-text" data-i18n="msgText3">長年愛されてきた味、空気、会話の距離感──それらは、この40年で自然と育ってきた、何より大切なものです。</p>
             </div>
           </div>
         </div>
@@ -1099,16 +1090,16 @@
           <h2>Yonchome Cafe Information</h2>
         </div>
         <nav class="info-link-list" aria-label="メニュー・サービス情報">
-          <button type="button" data-info-title="Lunch" data-info-body="平日オープンから15:00までのランチ。パスタ2種、ボウル、プレート、オムレツをご用意しています。価格は1,350円。ミニサラダ、コーヒーまたは紅茶付きです。+150円でその他ドリンクに変更できます。パスタ・ライスは大盛り無料。ランチデザートは400円です。" data-info-cover="./lunch-pasta.png">
+          <button type="button" data-modal-key="lunch" data-info-title="Lunch" data-info-body="平日オープンから15:00までのランチ。パスタ2種、ボウル、プレート、オムレツをご用意しています。価格は1,350円。ミニサラダ、コーヒーまたは紅茶付きです。+150円でその他ドリンクに変更できます。パスタ・ライスは大盛り無料。ランチデザートは400円です。" data-info-cover="./lunch-pasta.png" data-i18n="infoBtnLunch">
             【ランチ】平日オープンから15:00まで
           </button>
-          <button type="button" data-info-title="Happy Hour" data-info-body="ハッピーアワーは平日の15:00から18:00まで。夕方前の一杯を気軽に楽しめます。">
+          <button type="button" data-modal-key="happy" data-info-title="Happy Hour" data-info-body="ハッピーアワーは平日の15:00から18:00まで。夕方前の一杯を気軽に楽しめます。" data-i18n="infoBtnHappy">
             【ハッピーアワー】平日15:00から18:00まで
           </button>
-          <button type="button" data-info-title="Smoking" data-info-body="" data-info-poster="./smoking-info.png" data-info-image-only="true">
+          <button type="button" data-modal-key="smoke" data-info-title="Smoking" data-info-body="" data-info-poster="./smoking-info.png" data-info-image-only="true" data-i18n="infoBtnSmoke">
             【喫煙情報】18:00までは喫煙ブース / 18:00以降はお席にて可
           </button>
-          <button type="button" data-info-title="Private Party / Shooting" data-info-body="貸切パーティー、歓送迎会、二次会、ロケ・写真撮影など、用途に合わせてお気軽にお問い合わせください。人数や時間、内容に合わせてご相談可能です。お電話または店頭にて承っております。" data-info-phone="0353771726" data-info-cover="./about-interior.jpg">
+          <button type="button" data-modal-key="party" data-info-title="Private Party / Shooting" data-info-body="貸切パーティー、歓送迎会、二次会、ロケ・写真撮影など、用途に合わせてお気軽にお問い合わせください。人数や時間、内容に合わせてご相談可能です。お電話または店頭にて承っております。" data-info-phone="0353771726" data-info-cover="./about-interior.jpg" data-i18n="infoBtnParty">
             【貸切・撮影のご相談】お気軽にお問い合わせください
           </button>
         </nav>
@@ -1117,34 +1108,34 @@
       <!-- BANNERS：採用・貸し切りを大きく目立たせる -->
       <section class="banner-section section-shell" id="banners">
         <div class="banner-grid">
-          <button class="banner-item" type="button" id="party-banner-btn">
+          <a class="banner-item" href="./yonchome-party.html">
             <div class="banner-bg">
               <img src="./about-interior.jpg" alt="" />
             </div>
             <div class="banner-body">
               <span class="banner-kicker">Private Party</span>
-              <h3 class="banner-title">貸し切りパーティー</h3>
-              <p class="banner-desc">
+              <h3 class="banner-title" data-i18n="bannerPartyTitle">貸し切りパーティー</h3>
+              <p class="banner-desc" data-i18n="bannerPartyDesc">
                 歓送迎会・誕生日会・二次会・撮影など、<br />
                 理想のパーティーをこの空間でカスタマイズ。<br />
                 20名〜受付、3つのプランをご用意しています。
               </p>
-              <span class="banner-cta">プランを見る →</span>
+              <span class="banner-cta" data-i18n="bannerPartyCta">プランを見る →</span>
             </div>
-          </button>
+          </a>
           <a class="banner-item" href="./yonchome-recruit.html">
             <div class="banner-bg">
               <img src="./interior-stainedglass.jpg" alt="" />
             </div>
             <div class="banner-body">
               <span class="banner-kicker">Recruit</span>
-              <h3 class="banner-title">スタッフ募集</h3>
-              <p class="banner-desc">
+              <h3 class="banner-title" data-i18n="bannerRecruitTitle">スタッフ募集</h3>
+              <p class="banner-desc" data-i18n="bannerRecruitDesc">
                 創業40年の店で、一緒に働きませんか。<br />
                 人と関わるのが好きな人、誰かのために<br />
                 自然に動ける人を歓迎します。経験不問。
               </p>
-              <span class="banner-cta">採用情報を見る →</span>
+              <span class="banner-cta" data-i18n="bannerRecruitCta">採用情報を見る →</span>
             </div>
           </a>
         </div>
@@ -1156,7 +1147,7 @@
         <div class="section-head wide">
           <h2>News</h2>
           <div class="lead-block">
-            <p class="lead-ja">Yonchome Cafeからの新着情報。</p>
+            <p class="lead-ja" data-i18n="newsLead">Yonchome Cafeからの新着情報。</p>
             <p class="lead-en">Latest updates from Yonchome Cafe.</p>
           </div>
         </div>
@@ -1168,10 +1159,10 @@
             </div>
             <div class="news-meta">
               <time class="news-date" datetime="2026-05-29">2026.05.29</time>
-              <span class="news-tag">お知らせ</span>
+              <span class="news-tag" data-i18n="newsTag1">お知らせ</span>
             </div>
-            <p class="news-title">ウェブサイトをリニューアルしました</p>
-            <p class="news-body">創業40周年を記念して、ウェブサイトをリニューアルいたしました。今後もYonchome Cafeをよろしくお願いいたします。</p>
+            <p class="news-title" data-i18n="newsTitle1">ウェブサイトをリニューアルしました</p>
+            <p class="news-body" data-i18n="newsBody1">創業40周年を記念して、ウェブサイトをリニューアルいたしました。今後もYonchome Cafeをよろしくお願いいたします。</p>
           </li>
           <!-- ▲ ここに新着記事を追加してください ▲ -->
         </ul>
@@ -1186,16 +1177,16 @@
         <!-- 会社情報ナビ -->
         <nav class="company-nav anim-up" aria-label="会社情報">
           <div class="company-nav-links">
-            <a class="company-nav-link" href="./company.html">会社概要</a>
+            <a class="company-nav-link" href="./company.html" data-i18n="companyAbout">会社概要</a>
             <button class="company-nav-link company-nav-link--contact" type="button" id="contact-toggle" aria-expanded="false">
-              お問い合わせ
+              <span data-i18n="companyContact">お問い合わせ</span>
               <span class="contact-popup" id="contact-popup" aria-hidden="true">
                 <span class="contact-popup-label">TEL</span>
                 <a class="contact-popup-tel" href="tel:0353771726">03-5377-1726</a>
               </span>
             </button>
-            <a class="company-nav-link" href="./legal.html">特定商取引に基づく表示</a>
-            <a class="company-nav-link" href="./privacy.html">個人情報保護方針</a>
+            <a class="company-nav-link" href="./legal.html" data-i18n="companyLegal">特定商取引に基づく表示</a>
+            <a class="company-nav-link" href="./privacy.html" data-i18n="companyPrivacy">個人情報保護方針</a>
           </div>
           <div class="company-nav-sns">
             <a class="company-nav-sns-icon" href="https://www.instagram.com/yonchome_cafe/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -1219,16 +1210,16 @@
           </div>
           <div>
             <span>Address</span>
-            <p>〒166-0003<br />東京都杉並区高円寺南4丁目28-10<br />高円寺リリエンハイム 2F</p>
+            <p data-i18n="infoAddress">〒166-0003<br />東京都杉並区高円寺南4丁目28-10<br />高円寺リリエンハイム 2F</p>
             <a class="info-button" href="https://www.google.com/maps/search/?api=1&query=%E3%80%92166-0003%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%9D%89%E4%B8%A6%E5%8C%BA%E9%AB%98%E5%86%86%E5%AF%BA%E5%8D%97%EF%BC%94%E4%B8%81%E7%9B%AE%EF%BC%92%EF%BC%98%E2%88%92%EF%BC%91%EF%BC%90%20%E9%AB%98%E5%86%86%E5%AF%BA%E3%83%AA%E3%83%AA%E3%82%A8%E3%83%B3%E3%83%8F%E3%82%A4%E3%83%A0%202F" target="_blank" rel="noreferrer">Google Maps</a>
           </div>
           <div>
             <span>Open</span>
-            <p>平日 10:30 - 23:00<br />土日祝 11:30 - 23:00</p>
+            <p data-i18n="infoOpen">平日 10:30 - 23:00<br />土日祝 11:30 - 23:00</p>
           </div>
           <div>
             <span>Reserve</span>
-            <p>予約・お問い合わせ</p>
+            <p data-i18n="infoReserveLabel">予約・お問い合わせ</p>
             <div class="info-button-row">
               <a class="info-button" href="tel:0353771726">TEL 03-5377-1726</a>
               <a class="info-button" href="https://www.instagram.com/yonchome_cafe/" target="_blank" rel="noreferrer">Instagram</a>
@@ -1236,7 +1227,7 @@
           </div>
           <div>
             <span>Payment</span>
-            <p>現金 / 電子決済 / 楽天ペイ / PayPay / 交通系ICカード / au PAY<br />クレジットカード / VISA / Mastercard / JCB / American Express</p>
+            <p data-i18n="infoPayment">現金 / 電子決済 / 楽天ペイ / PayPay / 交通系ICカード / au PAY<br />クレジットカード / VISA / Mastercard / JCB / American Express</p>
           </div>
         </div>
       </section>
@@ -1248,16 +1239,8 @@
       <p>© Yonchome cafe — Est. 1986</p>
     </footer>
 
-    <!-- Party Modal -->
-    <div class="party-modal" id="party-modal" aria-hidden="true" role="dialog" aria-label="貸し切りパーティーメニュー">
-      <button class="party-modal-backdrop" type="button" aria-label="閉じる"></button>
-      <div class="party-modal-frame">
-        <button class="party-modal-close" type="button" aria-label="閉じる">×</button>
-        <img src="./party-photo.jpg" alt="貸し切りパーティーメニュー表" />
-      </div>
-    </div>
 
-    <!-- Info Modal -->
+<!-- Info Modal -->
     <div class="info-modal" aria-hidden="true">
       <button class="info-modal-backdrop" type="button" aria-label="閉じる"></button>
       <div class="info-modal-frame">
@@ -1269,15 +1252,15 @@
           <p id="info-modal-body"></p>
           <a class="info-modal-phone" href="tel:0353771726" hidden>03-5377-1726</a>
           <div class="info-modal-controls">
-            <button class="info-modal-scroll info-modal-scroll-prev" type="button">前へ</button>
-            <button class="info-modal-scroll info-modal-scroll-next" type="button">次へ</button>
+            <button class="info-modal-scroll info-modal-scroll-prev" type="button" data-i18n="modalPrev">前へ</button>
+            <button class="info-modal-scroll info-modal-scroll-next" type="button" data-i18n="modalNext">次へ</button>
           </div>
           <div class="info-modal-gallery" aria-label="メニュー画像"></div>
         </div>
       </div>
     </div>
 
-    <a class="float-reserve" href="tel:0353771726" aria-label="電話で予約する">電話で予約する</a>
+    <a class="float-reserve" href="tel:0353771726" aria-label="電話で予約する" data-i18n="floatReserve">電話で予約する</a>
 
     <script>
       // Info modal
@@ -1367,16 +1350,7 @@
         if (shootingBtn) shootingBtn.click();
       });
 
-      // Party modal
-      const partyModal = document.getElementById("party-modal");
-      const partyOpen  = () => { partyModal.setAttribute("aria-hidden", "false"); document.body.style.overflow = "hidden"; };
-      const partyClose = () => { partyModal.setAttribute("aria-hidden", "true");  document.body.style.overflow = ""; };
-      document.getElementById("party-banner-btn")?.addEventListener("click", partyOpen);
-      partyModal.querySelector(".party-modal-backdrop").addEventListener("click", partyClose);
-      partyModal.querySelector(".party-modal-close").addEventListener("click", partyClose);
-      document.addEventListener("keydown", (e) => { if (e.key === "Escape") partyClose(); });
-
-      // Contact popup toggle
+// Contact popup toggle
       const contactToggle = document.getElementById("contact-toggle");
       if (contactToggle) {
         contactToggle.addEventListener("click", (e) => {
@@ -1500,6 +1474,201 @@
           heroImg.style.transform = `translateY(${scrollY * 0.28}px)`;
         }, { passive: true });
       }
+
+      // ── Language Switcher ──
+      const T = {
+        ja: {
+          navParty: '貸し切り', navRecruit: '採用', navCompany: '企業情報', navReserve: '電話予約',
+          heroBannerPartyTitle: '貸し切りパーティー', heroBannerPartySub: '20名〜 ／ 3プランからご選択',
+          heroBannerShootTitle: '撮影利用の案内', heroBannerShootSub: 'ロケ・写真撮影 ／ お気軽にご相談ください',
+          heroH1: 'おかげさまで、創業40年。<br /><span class="hero-line-small">高円寺二階のカフェ＆ダイニング</span>',
+          msgPull1: 'おかげさまで、創業40年。', msgText1: 'この場所を選び、足を運んでくださったお客さまのおかげで、ここまで続けてこられました。',
+          msgPull2: '「ここに来ると落ち着く」<br>「変わらなくてホッとする」',
+          msgText2: '流行が移り変わり、街の景色も、人の暮らし方も変わっていく中で、そんな声に何度も救われてきました。',
+          msgText3: '長年愛されてきた味、空気、会話の距離感──それらは、この40年で自然と育ってきた、何より大切なものです。',
+          infoBtnLunch: '【ランチ】平日オープンから15:00まで', infoBtnHappy: '【ハッピーアワー】平日15:00から18:00まで',
+          infoBtnSmoke: '【喫煙情報】18:00までは喫煙ブース / 18:00以降はお席にて可',
+          infoBtnParty: '【貸切・撮影のご相談】お気軽にお問い合わせください',
+          modalBodyLunch: '平日オープンから15:00までのランチ。パスタ2種、ボウル、プレート、オムレツをご用意しています。価格は1,350円。ミニサラダ、コーヒーまたは紅茶付きです。+150円でその他ドリンクに変更できます。パスタ・ライスは大盛り無料。ランチデザートは400円です。',
+          modalBodyHappy: 'ハッピーアワーは平日の15:00から18:00まで。夕方前の一杯を気軽に楽しめます。',
+          modalBodyParty: '貸切パーティー、歓送迎会、二次会、ロケ・写真撮影など、用途に合わせてお気軽にお問い合わせください。人数や時間、内容に合わせてご相談可能です。お電話または店頭にて承っております。',
+          bannerPartyTitle: '貸し切りパーティー', bannerPartyCta: 'プランを見る →',
+          bannerPartyDesc: '歓送迎会・誕生日会・二次会・撮影など、<br />理想のパーティーをこの空間でカスタマイズ。<br />20名〜受付、3つのプランをご用意しています。',
+          bannerRecruitTitle: 'スタッフ募集', bannerRecruitCta: '採用情報を見る →',
+          bannerRecruitDesc: '創業40年の店で、一緒に働きませんか。<br />人と関わるのが好きな人、誰かのために<br />自然に動ける人を歓迎します。経験不問。',
+          newsLead: 'Yonchome Cafeからの新着情報。', newsTag1: 'お知らせ',
+          newsTitle1: 'ウェブサイトをリニューアルしました',
+          newsBody1: '創業40周年を記念して、ウェブサイトをリニューアルいたしました。今後もYonchome Cafeをよろしくお願いいたします。',
+          companyAbout: '会社概要', companyContact: 'お問い合わせ', companyLegal: '特定商取引に基づく表示', companyPrivacy: '個人情報保護方針',
+          infoOpen: '平日 10:30 - 23:00<br />土日祝 11:30 - 23:00', infoReserveLabel: '予約・お問い合わせ',
+          infoPayment: '現金 / 電子決済 / 楽天ペイ / PayPay / 交通系ICカード / au PAY<br />クレジットカード / VISA / Mastercard / JCB / American Express',
+          infoAddress: '〒166-0003<br />東京都杉並区高円寺南4丁目28-10<br />高円寺リリエンハイム 2F',
+          modalPrev: '前へ', modalNext: '次へ', floatReserve: '電話で予約する',
+        },
+        en: {
+          navParty: 'Private Party', navRecruit: 'Recruit', navCompany: 'About', navReserve: 'Call',
+          heroBannerPartyTitle: 'Private Party', heroBannerPartySub: 'From 20 guests / 3 plans',
+          heroBannerShootTitle: 'Photography & Filming', heroBannerShootSub: 'Location & photo shoots / Inquiries welcome',
+          heroH1: 'Forty years of warmth.<br /><span class="hero-line-small">A second-floor café in Koenji.</span>',
+          msgPull1: 'Thanks to you, 40 years.', msgText1: 'It is thanks to every guest who chose this place and walked through our doors that we have been able to keep going.',
+          msgPull2: '"It calms me down to come here."<br>"It\'s reassuring that nothing has changed."',
+          msgText2: 'As trends shift and the city changes around us, those words have saved us again and again.',
+          msgText3: 'The flavors, the atmosphere, the warmth of conversation — these things grew naturally over 40 years and mean everything to us.',
+          infoBtnLunch: '[Lunch] Weekdays until 3:00 PM', infoBtnHappy: '[Happy Hour] Weekdays 3:00 – 6:00 PM',
+          infoBtnSmoke: '[Smoking] Booth until 6 PM / Table smoking after 6 PM',
+          infoBtnParty: '[Private Party & Filming] Inquiries welcome',
+          modalBodyLunch: 'Weekday lunch until 3:00 PM. Choose from 2 pasta dishes, bowl, plate, or omelette. ¥1,350 including mini salad and coffee or tea. Add ¥150 for other drinks. Pasta and rice large size free. Lunch dessert ¥400.',
+          modalBodyHappy: 'Happy Hour runs weekdays from 3:00 PM to 6:00 PM. Enjoy a relaxed drink before the evening.',
+          modalBodyParty: 'Private parties, welcome/farewell gatherings, after-parties, location & photo shoots — feel free to contact us for any occasion. We can accommodate various group sizes, times and formats. Contact us by phone or in person.',
+          bannerPartyTitle: 'Private Party', bannerPartyCta: 'View Plans →',
+          bannerPartyDesc: 'Welcome parties, birthdays, after-parties, photo shoots —<br />customize your ideal event in this space.<br />From 20 guests, 3 plans available.',
+          bannerRecruitTitle: 'Now Hiring', bannerRecruitCta: 'View Jobs →',
+          bannerRecruitDesc: 'Join us at a 40-year-old café in Koenji.<br />We welcome anyone who loves connecting with people<br />and naturally goes the extra mile. No experience needed.',
+          newsLead: 'Latest updates from Yonchome Cafe.', newsTag1: 'News',
+          newsTitle1: 'Website Relaunched',
+          newsBody1: 'We have renewed our website to celebrate our 40th anniversary. Thank you for your continued support of Yonchome Cafe.',
+          companyAbout: 'About', companyContact: 'Contact', companyLegal: 'Legal Notice', companyPrivacy: 'Privacy Policy',
+          infoOpen: 'Weekdays 10:30 – 23:00<br />Weekends & Holidays 11:30 – 23:00', infoReserveLabel: 'Reservations & Inquiries',
+          infoPayment: 'Cash / e-payment / Rakuten Pay / PayPay / IC Card / au PAY<br />Credit Card / VISA / Mastercard / JCB / American Express',
+          infoAddress: '〒166-0003<br />28-10 Koenji-Minami 4-chome, Suginami-ku, Tokyo<br />Koenji Lilienheim 2F',
+          modalPrev: 'Prev', modalNext: 'Next', floatReserve: 'Call to Reserve',
+        },
+        zhcn: {
+          navParty: '包场', navRecruit: '招聘', navCompany: '关于我们', navReserve: '电话预约',
+          heroBannerPartyTitle: '包场派对', heroBannerPartySub: '20人起 / 3种套餐',
+          heroBannerShootTitle: '拍摄场地租借', heroBannerShootSub: '外景・摄影拍摄 / 欢迎咨询',
+          heroH1: '感谢您的支持，创业40年。<br /><span class="hero-line-small">高円寺二楼的咖啡厅＆餐厅</span>',
+          msgPull1: '感谢您的支持，创业40年。', msgText1: '正是因为每一位选择来到这里的顾客，我们才能坚持到今天。',
+          msgPull2: '「来这里就会平静下来」<br>「一成不变让人安心」',
+          msgText2: '时代变迁，街景和生活方式都在改变，这些话语多次给了我们前行的力量。',
+          msgText3: '多年来深受喜爱的味道、氛围、恰到好处的交流距离——这些在40年间自然形成，是我们最珍视的东西。',
+          infoBtnLunch: '【午餐】工作日营业开始至15:00', infoBtnHappy: '【欢乐时光】工作日15:00至18:00',
+          infoBtnSmoke: '【吸烟信息】18:00前吸烟区 / 18:00后可在座位吸烟',
+          infoBtnParty: '【包场・拍摄咨询】欢迎随时询问',
+          modalBodyLunch: '工作日午餐至15:00。提供2种意面、碗饭、套餐、蛋包饭。价格1,350日元，含迷你沙拉及咖啡或红茶。加150日元可换其他饮品。意面和米饭可免费加量。午餐甜点400日元。',
+          modalBodyHappy: '欢乐时光为工作日15:00至18:00。轻松享用傍晚前的一杯。',
+          modalBodyParty: '包场派对、欢送会、二次会、外景・摄影拍摄等，欢迎根据需求联系我们。可根据人数、时间和内容进行协商。请致电或到店咨询。',
+          bannerPartyTitle: '包场派对', bannerPartyCta: '查看套餐 →',
+          bannerPartyDesc: '欢送会・生日派对・二次会・拍摄等，<br />在这个空间定制您理想的派对。<br />20人起受理，提供3种套餐。',
+          bannerRecruitTitle: '招募员工', bannerRecruitCta: '查看招聘信息 →',
+          bannerRecruitDesc: '在创业40年的店里，一起工作吧。<br />欢迎喜欢与人交流、<br />能自然为他人付出的人。无需经验。',
+          newsLead: 'Yonchome Cafe的最新资讯。', newsTag1: '通知',
+          newsTitle1: '网站已更新',
+          newsBody1: '为纪念创业40周年，我们对网站进行了更新。今后也请继续支持Yonchome Cafe。',
+          companyAbout: '公司简介', companyContact: '联系我们', companyLegal: '依据特定商交法的表示', companyPrivacy: '个人信息保护方针',
+          infoOpen: '工作日 10:30 - 23:00<br />周末・节假日 11:30 - 23:00', infoReserveLabel: '预约・咨询',
+          infoPayment: '现金 / 电子支付 / 乐天支付 / PayPay / 交通IC卡 / au PAY<br />信用卡 / VISA / Mastercard / JCB / American Express',
+          infoAddress: '〒166-0003<br />东京都杉并区高円寺南4丁目28-10<br />高円寺Lilienheim 2F',
+          modalPrev: '上一张', modalNext: '下一张', floatReserve: '电话预约',
+        },
+        zhtw: {
+          navParty: '包場', navRecruit: '招募', navCompany: '關於我們', navReserve: '電話預約',
+          heroBannerPartyTitle: '包場派對', heroBannerPartySub: '20人起 / 3種方案',
+          heroBannerShootTitle: '拍攝場地租借', heroBannerShootSub: '外景・攝影拍攝 / 歡迎諮詢',
+          heroH1: '感謝您的支持，創業40年。<br /><span class="hero-line-small">高圓寺二樓的咖啡廳＆餐廳</span>',
+          msgPull1: '感謝您的支持，創業40年。', msgText1: '正是因為每一位選擇來到這裡的顧客，我們才能堅持到今天。',
+          msgPull2: '「來這裡就會平靜下來」<br>「一成不變讓人安心」',
+          msgText2: '時代變遷，街景和生活方式都在改變，這些話語多次給了我們前行的力量。',
+          msgText3: '多年來深受喜愛的味道、氛圍、恰到好處的交流距離——這些在40年間自然形成，是我們最珍視的東西。',
+          infoBtnLunch: '【午餐】工作日營業開始至15:00', infoBtnHappy: '【歡樂時光】工作日15:00至18:00',
+          infoBtnSmoke: '【吸菸資訊】18:00前吸菸區 / 18:00後可在座位吸菸',
+          infoBtnParty: '【包場・拍攝諮詢】歡迎隨時詢問',
+          modalBodyLunch: '工作日午餐至15:00。提供2種義大利麵、碗飯、套餐、蛋包飯。價格1,350日圓，含迷你沙拉及咖啡或紅茶。加150日圓可換其他飲品。義大利麵和米飯可免費加量。午餐甜點400日圓。',
+          modalBodyHappy: '歡樂時光為工作日15:00至18:00。輕鬆享用傍晚前的一杯。',
+          modalBodyParty: '包場派對、歡送會、二次會、外景・攝影拍攝等，歡迎根據需求聯繫我們。可根據人數、時間和內容進行協商。請致電或到店諮詢。',
+          bannerPartyTitle: '包場派對', bannerPartyCta: '查看方案 →',
+          bannerPartyDesc: '歡送會・生日派對・二次會・拍攝等，<br />在這個空間定製您理想的派對。<br />20人起受理，提供3種方案。',
+          bannerRecruitTitle: '招募員工', bannerRecruitCta: '查看招募資訊 →',
+          bannerRecruitDesc: '在創業40年的店裡，一起工作吧。<br />歡迎喜歡與人交流、<br />能自然為他人付出的人。無需經驗。',
+          newsLead: 'Yonchome Cafe的最新資訊。', newsTag1: '通知',
+          newsTitle1: '網站已更新',
+          newsBody1: '為紀念創業40週年，我們對網站進行了更新。今後也請繼續支持Yonchome Cafe。',
+          companyAbout: '公司簡介', companyContact: '聯絡我們', companyLegal: '依據特定商交法的表示', companyPrivacy: '個人資訊保護方針',
+          infoOpen: '工作日 10:30 - 23:00<br />週末・假日 11:30 - 23:00', infoReserveLabel: '預約・諮詢',
+          infoPayment: '現金 / 電子支付 / 樂天支付 / PayPay / 交通IC卡 / au PAY<br />信用卡 / VISA / Mastercard / JCB / American Express',
+          infoAddress: '〒166-0003<br />東京都杉並區高圓寺南4丁目28-10<br />高圓寺Lilienheim 2F',
+          modalPrev: '上一張', modalNext: '下一張', floatReserve: '電話預約',
+        },
+        ko: {
+          navParty: '전세', navRecruit: '채용', navCompany: '회사 정보', navReserve: '전화 예약',
+          heroBannerPartyTitle: '전세 파티', heroBannerPartySub: '20명~ / 3가지 플랜',
+          heroBannerShootTitle: '촬영 이용 안내', heroBannerShootSub: '로케이션・사진 촬영 / 문의 환영',
+          heroH1: '덕분에 창업 40년。<br /><span class="hero-line-small">고엔지 2층의 카페 &amp; 다이닝</span>',
+          msgPull1: '덕분에 창업 40년.', msgText1: '이 곳을 선택하여 발걸음을 해주신 손님들 덕분에 여기까지 이어올 수 있었습니다.',
+          msgPull2: '「여기 오면 마음이 편안해져」<br>「변하지 않아서 안심이 돼」',
+          msgText2: '유행이 바뀌고, 거리 풍경도, 사람들의 생활방식도 변해가는 가운데, 그런 말씀들이 몇 번이나 저희를 구해주었습니다.',
+          msgText3: '오랫동안 사랑받아온 맛, 공기, 대화의 거리감—이것들은 40년 동안 자연스럽게 자라난, 무엇보다 소중한 것들입니다.',
+          infoBtnLunch: '【런치】평일 오픈부터 15:00까지', infoBtnHappy: '【해피아워】평일 15:00~18:00',
+          infoBtnSmoke: '【흡연 정보】18:00까지 흡연 부스 / 18:00 이후 자리에서 가능',
+          infoBtnParty: '【전세・촬영 상담】편하게 문의해 주세요',
+          modalBodyLunch: '평일 오픈부터 15:00까지 런치. 파스타 2종, 볼, 플레이트, 오믈렛 등. 가격 1,350엔. 미니 샐러드, 커피 또는 홍차 포함. +150엔으로 다른 음료로 변경 가능. 파스타・밥 대식 무료. 런치 디저트 400엔.',
+          modalBodyHappy: '해피아워는 평일 15:00~18:00. 저녁 전 한 잔을 가볍게 즐기세요.',
+          modalBodyParty: '전세 파티, 환송영회, 2차, 로케이션・사진 촬영 등 용도에 맞게 편하게 문의해 주세요. 인원수, 시간, 내용에 맞춰 상담 가능합니다. 전화 또는 방문 시 접수합니다.',
+          bannerPartyTitle: '전세 파티', bannerPartyCta: '플랜 보기 →',
+          bannerPartyDesc: '환송영회・생일 파티・2차・촬영 등,<br />이 공간에서 이상적인 파티를 커스터마이즈。<br />20명~부터 접수, 3가지 플랜 준비.',
+          bannerRecruitTitle: '스태프 모집', bannerRecruitCta: '채용 정보 보기 →',
+          bannerRecruitDesc: '창업 40년의 가게에서 함께 일해보지 않으실래요。<br />사람과 관계 맺는 것을 좋아하는 분,<br />자연스럽게 움직일 수 있는 분 환영. 경험 불문.',
+          newsLead: 'Yonchome Cafe의 새로운 소식.', newsTag1: '공지',
+          newsTitle1: '웹사이트를 새단장했습니다',
+          newsBody1: '창업 40주년을 기념하여 웹사이트를 새단장하였습니다. 앞으로도 Yonchome Cafe를 잘 부탁드립니다.',
+          companyAbout: '회사 개요', companyContact: '문의하기', companyLegal: '특정상거래법에 근거한 표시', companyPrivacy: '개인정보 보호방침',
+          infoOpen: '평일 10:30 - 23:00<br />주말・공휴일 11:30 - 23:00', infoReserveLabel: '예약・문의',
+          infoPayment: '현금 / 전자결제 / 라쿠텐페이 / PayPay / 교통 IC카드 / au PAY<br />신용카드 / VISA / Mastercard / JCB / American Express',
+          infoAddress: '〒166-0003<br />도쿄도 스기나미구 고엔지미나미 4-28-10<br />고엔지 릴리엔하임 2F',
+          modalPrev: '이전', modalNext: '다음', floatReserve: '전화로 예약하기',
+        }
+      };
+
+      let currentLang = 'ja';
+
+      function applyLang(lang) {
+        const dict = T[lang];
+        if (!dict) return;
+        currentLang = lang;
+
+        // Update all data-i18n elements
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.dataset.i18n;
+          if (dict[key] !== undefined) el.innerHTML = dict[key];
+        });
+
+        // Update info modal button data-info-body per language
+        const modalBodyMap = { lunch: 'modalBodyLunch', happy: 'modalBodyHappy', party: 'modalBodyParty' };
+        document.querySelectorAll('[data-modal-key]').forEach(btn => {
+          const k = btn.dataset.modalKey;
+          if (modalBodyMap[k] && dict[modalBodyMap[k]] !== undefined) {
+            btn.dataset.infoBody = dict[modalBodyMap[k]];
+          }
+        });
+
+        // Update active state
+        document.querySelectorAll('.lang-opt').forEach(opt => {
+          opt.classList.toggle('is-active', opt.dataset.lang === lang);
+        });
+
+        // Update html lang attribute
+        const langMap = { ja: 'ja', en: 'en', zhcn: 'zh-Hans', zhtw: 'zh-Hant', ko: 'ko' };
+        document.documentElement.lang = langMap[lang] || lang;
+      }
+
+      // Lang switcher toggle
+      const langSwitcher = document.getElementById('lang-switcher');
+      const langBtn = langSwitcher.querySelector('.lang-switcher-btn');
+      langBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = langBtn.getAttribute('aria-expanded') === 'true';
+        langBtn.setAttribute('aria-expanded', String(!isOpen));
+      });
+      document.addEventListener('click', () => langBtn.setAttribute('aria-expanded', 'false'));
+      langSwitcher.querySelector('.lang-dropdown').addEventListener('click', (e) => e.stopPropagation());
+
+      // Lang option click
+      langSwitcher.querySelectorAll('.lang-opt').forEach(opt => {
+        opt.addEventListener('click', () => {
+          applyLang(opt.dataset.lang);
+          langBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
     </script>
   </body>
 </html>
