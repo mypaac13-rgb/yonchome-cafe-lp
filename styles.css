@@ -96,13 +96,11 @@ img {
   height: auto;
   filter: contrast(1.05);
   opacity: 0;
-  animation: logoBang 0.75s cubic-bezier(0.22, 1, 0.36, 1) 2.85s forwards;
+  animation: logoSoft 2s cubic-bezier(0.16, 1, 0.3, 1) 2.65s forwards;
 }
 
-@keyframes logoBang {
-  0%   { opacity: 0; transform: translate(-50%, -50%) scale(1.22); }
-  55%  { opacity: 1; transform: translate(-50%, -50%) scale(0.96); }
-  75%  { transform: translate(-50%, -50%) scale(1.04); }
+@keyframes logoSoft {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(1.06); }
   100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 
@@ -133,9 +131,9 @@ img {
 
 .loader-concept .loader-line span {
   opacity: 0;
-  transform: translateY(-10px);
+  transform: translateY(-6px);
   display: inline;
-  animation: charDrop 0.45s ease forwards;
+  animation: charDrop 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes charDrop {
