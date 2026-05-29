@@ -86,6 +86,32 @@
     .nav-icon:hover { color: var(--accent); }
     .nav-icon svg { width: 18px; height: 18px; }
 
+    /* ---- BACK BUTTON ---- */
+    .back-btn {
+      position: fixed;
+      top: 18px;
+      right: 24px;
+      z-index: 200;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(237,224,196,0.28);
+      background: rgba(13,8,4,0.88);
+      color: rgba(237,224,196,0.85);
+      font-size: 1.2rem;
+      line-height: 1;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      text-decoration: none;
+    }
+    .back-btn:hover {
+      border-color: var(--accent);
+      background: rgba(30,18,8,0.96);
+    }
+
     /* ---- MAIN ---- */
     .page-main {
       padding: 56px 20px 72px;
@@ -215,6 +241,8 @@
 </head>
 <body>
 
+  <button class="back-btn" onclick="history.back()" aria-label="前のページに戻る">&times;</button>
+
   <!-- HEADER -->
   <header class="site-header">
     <a class="site-logo" href="./index.html" aria-label="Yonchome cafe">
@@ -243,14 +271,9 @@
 
     <!-- お問い合わせ -->
     <div class="contact-block">
-      <p class="contact-title">まずはお気軽にご相談ください</p>
-      <p class="contact-sub">
-        日程・人数・予算をざっくり教えていただければ、すぐにご提案いたします。<br />
-        「相談だけ」も大歓迎です。
-      </p>
       <div class="contact-btns">
         <a class="btn-primary" href="https://www.instagram.com/yonchome_cafe/" target="_blank" rel="noopener noreferrer">
-          Instagram DM で相談する
+          Instagram DM で問い合わせる
         </a>
         <a class="btn-secondary" href="tel:0353771726">
           03-5377-1726
