@@ -1240,6 +1240,20 @@
     </footer>
 
 
+<!-- News Modal -->
+    <div class="info-modal" id="news-modal" aria-hidden="true">
+      <button class="info-modal-backdrop" type="button" aria-label="閉じる"></button>
+      <div class="info-modal-frame">
+        <button class="info-modal-close" type="button" aria-label="閉じる">&times;</button>
+        <div class="info-modal-card" role="dialog" aria-modal="true" aria-labelledby="news-modal-title">
+          <img id="news-modal-img" src="" alt="" style="width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:22px;border:1px solid rgba(240,216,190,0.14);filter:saturate(0.74) sepia(0.08) brightness(0.78) contrast(1.06);" />
+          <span id="news-modal-meta" style="display:inline-block;color:rgba(244,217,188,0.72);font-family:var(--font-body);font-size:0.74rem;letter-spacing:0.16em;margin-bottom:14px;"></span>
+          <h2 id="news-modal-title" style="color:var(--text);font-family:var(--font-display);font-size:clamp(1.2rem,2.4vw,1.8rem);font-weight:700;letter-spacing:0.04em;line-height:1.6;margin-bottom:16px;"></h2>
+          <p id="news-modal-body" style="color:rgba(240,226,210,0.88);font-size:0.98rem;line-height:2;"></p>
+        </div>
+      </div>
+    </div>
+
 <!-- Info Modal -->
     <div class="info-modal" aria-hidden="true">
       <button class="info-modal-backdrop" type="button" aria-label="閉じる"></button>
@@ -1474,6 +1488,31 @@
           heroImg.style.transform = `translateY(${scrollY * 0.28}px)`;
         }, { passive: true });
       }
+
+
+      // ── News Modal ──
+      const newsModal = document.getElementById('news-modal');
+      const closeNewsModal = () => { newsModal.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; };
+      newsModal.querySelector('.info-modal-backdrop').addEventListener('click', closeNewsModal);
+      newsModal.querySelector('.info-modal-close').addEventListener('click', closeNewsModal);
+
+      document.querySelectorAll('.news-item').forEach(item => {
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', () => {
+          const img = item.querySelector('img');
+          const date = item.querySelector('.news-date')?.textContent || '';
+          const tag = item.querySelector('.news-tag')?.textContent || '';
+          const title = item.querySelector('.news-title')?.textContent || '';
+          const body = item.querySelector('.news-body')?.textContent || '';
+          document.getElementById('news-modal-img').src = img ? img.src : '';
+          document.getElementById('news-modal-img').alt = title;
+          document.getElementById('news-modal-meta').textContent = date + (tag ? '  ' + tag : '');
+          document.getElementById('news-modal-title').textContent = title;
+          document.getElementById('news-modal-body').textContent = body;
+          newsModal.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        });
+      });
 
       // ── Language Switcher ──
       const T = {
