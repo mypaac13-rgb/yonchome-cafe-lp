@@ -12,7 +12,7 @@
     <meta property="og:image" content="https://mypaac13-rgb.github.io/yonchome-cafe-lp/hero-main-upscaled.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Klee+One:wght@400;600&family=Caveat:wght@400;500;600;700&family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Yusei+Magic&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Klee+One:wght@400;600&family=Caveat:wght@400;500;600;700&family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Yusei+Magic&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
     <style>
       /* ── Grain texture overlay ── */
@@ -72,6 +72,77 @@
         object-position: center 65%;
         filter: brightness(0.48) saturate(0.72) sepia(0.12) contrast(1.02);
       }
+
+      /* ── Hero Letter ── */
+      .hero-letter {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding-top: 20vh;
+        padding-right: 6vw;
+        z-index: 2;
+        pointer-events: none;
+      }
+      .hero-letter-inner {
+        width: min(45vw, 560px);
+        text-align: left;
+      }
+      .hero-letter-line {
+        font-family: 'Klee One', serif;
+        font-size: clamp(1.05rem, 2vw, 1.75rem);
+        font-weight: 600;
+        color: rgba(245, 232, 210, 0.93);
+        line-height: 2;
+        letter-spacing: 0.14em;
+        margin: 0;
+        opacity: 0;
+        animation: letterFadeUp 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      .hero-letter-gap { margin-top: 1em; }
+      .hero-letter-access {
+        font-family: 'Klee One', serif;
+        font-size: clamp(0.9rem, 1.4vw, 1.15rem);
+        color: rgba(245, 232, 210, 0.85);
+        margin-top: 1.6em;
+        letter-spacing: 0.2em;
+        text-align: center;
+        opacity: 0;
+        animation: letterFadeUp 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      .hero-letter-logo {
+        display: block;
+        width: min(52vw, 320px);
+        margin: 2.4em auto 0;
+        opacity: 0;
+        animation: letterFadeUp 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-delay: 15.0s;
+        filter: invert(1) sepia(0.22) brightness(0.97);
+        opacity: 0.93;
+      }
+      @keyframes letterFadeUp {
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .hero-letter-line:nth-child(1) { animation-delay: 11.5s; text-align: center; }
+      .hero-letter-line:nth-child(2) { animation-delay: 12s; }
+      .hero-letter-line:nth-child(3) { animation-delay: 12.5s; }
+      .hero-letter-line:nth-child(4) { animation-delay: 13s; }
+      .hero-letter-access             { animation-delay: 13.6s; }
+
+      /* ── Hero crossfade ── */
+      .hero-image-from {
+        z-index: 1;
+        animation: heroCrossfade 7s ease-in-out 13s forwards;
+      }
+      .hero-image-to {
+        z-index: 0;
+      }
+      @keyframes heroCrossfade {
+        0%   { opacity: 1; }
+        100% { opacity: 0; }
+      }
       .hero-copy {
         width: min(72vw, 800px);
         transform: translate(-50%, -48%);
@@ -114,10 +185,26 @@
       .anniv-hero-year span { color: var(--accent); }
 
       /* ── Message ── */
-      .message-section { padding-top: 148px; position: relative; }
+      .message-section { padding-top: 120px; padding-bottom: 80px; position: relative; overflow: hidden; }
+      .message-section::before {
+        content: '';
+        position: absolute;
+        top: -160px;
+        left: -160px;
+        width: 420px;
+        height: 420px;
+        background: #6b3a1f;
+        border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+        opacity: 0.55;
+        pointer-events: none;
+        z-index: 0;
+      }
       .message-layout {
-        display: block;
-        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        position: relative;
+        z-index: 1;
       }
       .message-anchor { position: sticky; top: 120px; }
       .message-anchor-year {
@@ -153,8 +240,41 @@
         margin: 20px 0;
         background: rgba(196, 160, 66, 0.5);
       }
-      .message-body { padding-top: 8px; }
+      .message-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 20px 0 8vw;
+      }
+      .message-side-photo {
+        flex: 0 0 50%;
+        position: relative;
+        overflow: hidden;
+        height: 540px;
+        border-radius: 16px;
+      }
+      .message-side-photo img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        display: block;
+        filter: brightness(0.78) saturate(0.88) sepia(0.2) contrast(1.06);
+      }
       .message-block { margin-bottom: 52px; }
+      .message-kicker {
+        display: block;
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.36em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 16px;
+      }
       .message-pull {
         font-family: 'Klee One', var(--font-display);
         font-size: clamp(1.28rem, 2.4vw, 1.82rem);
@@ -177,11 +297,51 @@
         overflow-wrap: break-word;
       }
       .message-text + .message-text { margin-top: 22px; }
+
+      /* ── Message animations ── */
+      @keyframes msgFadeUp {
+        from { opacity: 0; transform: translateY(28px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes msgSlideIn {
+        from { opacity: 0; transform: translateX(40px); }
+        to   { opacity: 1; transform: translateX(0); }
+      }
+      .message-section.is-visible .message-kicker {
+        animation: msgFadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.1s both;
+      }
+      .message-section.is-visible .message-pull {
+        animation: msgFadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.25s both;
+      }
+      .message-section.is-visible .message-text:nth-of-type(1) {
+        animation: msgFadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.4s both;
+      }
+      .message-section.is-visible .message-text:nth-of-type(2) {
+        animation: msgFadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.55s both;
+      }
+      .message-section.is-visible .message-text:nth-of-type(3) {
+        animation: msgFadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.7s both;
+      }
+      .message-section.is-visible .message-side-photo {
+        animation: msgSlideIn 1s cubic-bezier(0.22,1,0.36,1) 0.2s both;
+      }
+      /* 初期非表示 */
+      .message-kicker,
+      .message-pull,
+      .message-text,
+      .message-side-photo {
+        opacity: 0;
+      }
+      .message-section.is-visible .message-kicker,
+      .message-section.is-visible .message-pull,
+      .message-section.is-visible .message-text,
+      .message-section.is-visible .message-side-photo {
+        opacity: 1;
+      }
       .message-image-wrap {
         margin: 48px 0;
         position: relative;
         overflow: hidden;
-        border: 1px solid rgba(255, 233, 212, 0.07);
       }
       .message-image-wrap img {
         width: 100%;
@@ -299,8 +459,8 @@
       }
       .gallery-scroll-track {
         display: flex;
-        gap: 12px;
-        padding: 0 clamp(20px, 4vw, 64px);
+        gap: 0;
+        padding: 0;
         will-change: transform;
         flex-shrink: 0;
       }
@@ -319,7 +479,7 @@
       .gallery-scroll-item img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
         display: block;
         filter: brightness(0.88) saturate(0.92) contrast(1.02);
         transition: filter 0.6s ease;
@@ -473,7 +633,6 @@
         align-items: flex-end;
         min-height: 520px;
         overflow: hidden;
-        border: 1px solid rgba(255, 233, 212, 0.08);
         text-decoration: none;
         color: inherit;
       }
@@ -561,6 +720,64 @@
         border-color: var(--accent);
       }
 
+      /* ── Banner detail panel ── */
+      .banner-detail {
+        background: #0f0703;
+        padding: 52px 56px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 28px;
+      }
+      .bd-lead {
+        font-family: var(--font-display);
+        font-size: clamp(0.92rem, 1.3vw, 1.05rem);
+        font-weight: 500;
+        line-height: 2;
+        letter-spacing: 0.05em;
+        color: rgba(239,226,210,0.78);
+      }
+      .bd-meta {
+        font-family: var(--font-display);
+        font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+        line-height: 2.2;
+        letter-spacing: 0.04em;
+        color: rgba(239,226,210,0.55);
+        padding-left: 0;
+      }
+      .bd-meta strong {
+        color: rgba(239,226,210,0.85);
+        font-weight: 600;
+      }
+      .bd-cases-text {
+        font-family: var(--font-display);
+        font-size: clamp(0.82rem, 1vw, 0.9rem);
+        line-height: 2;
+        letter-spacing: 0.04em;
+        color: rgba(239,226,210,0.45);
+      }
+      .bd-contact {
+        margin-top: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .bd-contact-label {
+        font-family: var(--font-body);
+        font-size: 0.68rem;
+        letter-spacing: 0.2em;
+        color: rgba(239,226,210,0.4);
+      }
+      .bd-contact-tel {
+        font-family: var(--font-body);
+        font-size: clamp(1.2rem, 2vw, 1.6rem);
+        letter-spacing: 0.1em;
+        color: var(--accent);
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+      .bd-contact-tel:hover { opacity: 0.75; }
+
       /* ── CTA ── */
       .cta-section { padding-top: 120px; }
       .cta-inner {
@@ -570,7 +787,7 @@
         gap: 32px;
         padding: 48px 52px;
         border: 1px solid rgba(240, 216, 190, 0.12);
-        background: rgba(34, 22, 18, 0.5);
+        background: var(--bg);
       }
       .cta-text h3 {
         font-family: var(--font-display);
@@ -601,6 +818,313 @@
         letter-spacing: 0.14em;
         text-transform: uppercase;
         white-space: nowrap;
+      }
+
+      /* ── Reserve & Contact ── */
+      .reserve-section { padding-top: 100px; padding-bottom: 100px; }
+      .reserve-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        margin-top: 56px;
+        border-top: 1px solid rgba(240, 216, 190, 0.12);
+      }
+      .reserve-block {
+        padding: 48px 40px;
+        border-right: 1px solid rgba(240, 216, 190, 0.12);
+      }
+      .reserve-block:last-child { border-right: none; }
+      .reserve-label {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 1.1rem;
+        letter-spacing: 0.18em;
+        color: var(--accent);
+        margin: 0 0 28px;
+      }
+      .reserve-links { display: flex; flex-direction: column; gap: 20px; }
+      .reserve-link {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        text-decoration: none;
+        color: inherit;
+      }
+      .reserve-link-type {
+        font-family: var(--font-body);
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        color: rgba(245, 232, 210, 0.4);
+        text-transform: uppercase;
+      }
+      .reserve-link-value {
+        font-family: 'Shippori Mincho', serif;
+        font-size: clamp(1rem, 1.8vw, 1.25rem);
+        color: rgba(245, 232, 210, 0.88);
+        letter-spacing: 0.06em;
+      }
+      a.reserve-link:hover .reserve-link-value { color: var(--accent); }
+      @media (max-width: 640px) {
+        .reserve-grid { grid-template-columns: 1fr; }
+        .reserve-block { border-right: none; border-bottom: 1px solid rgba(240,216,190,0.12); padding: 36px 0; }
+        .reserve-block:last-child { border-bottom: none; }
+      }
+
+      /* ── Owner Message ── */
+      .owner-msg-section { padding-top: 120px; padding-bottom: 120px; }
+      .owner-msg-inner { max-width: 720px; margin: 0 auto; text-align: center; padding: 0 24px; }
+      .owner-msg-theme {
+        font-family: 'Zen Old Mincho', serif;
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 400;
+        color: #c9a96e;
+        letter-spacing: 0.15em;
+        margin: 0 0 52px;
+      }
+      .owner-msg-body {
+        font-family: 'Klee One', serif;
+        font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+        color: rgba(245, 232, 210, 0.82);
+        line-height: 2.4;
+        letter-spacing: 0.06em;
+        margin: 0 0 44px;
+      }
+      .owner-msg-sig {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        font-family: 'Shippori Mincho', serif;
+        font-size: 0.95rem;
+        color: rgba(245, 232, 210, 0.5);
+        letter-spacing: 0.14em;
+        margin: 0;
+      }
+      .owner-msg-avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center top;
+        opacity: 0.85;
+        flex-shrink: 0;
+      }
+
+      /* ── Filming Locations ── */
+      .filming-section { padding-top: 140px; padding-bottom: 80px; position: relative; background: #e8dfc8; width: 100vw; margin-left: calc(50% - 50vw); box-sizing: border-box; padding-left: 4%; padding-right: 4%; }
+      .filming-kicker {
+        display: block;
+        font-family: var(--font-body);
+        font-size: 0.62rem;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 14px;
+      }
+      .filming-section .section-head.wide h2 {
+        font-size: clamp(2rem, 4vw, 3.2rem);
+      }
+      .filming-lead {
+        margin-top: 14px;
+        color: rgba(42, 26, 10, 0.65);
+        font-family: var(--font-display);
+        font-size: clamp(0.88rem, 1.2vw, 0.98rem);
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        line-height: 1.8;
+      }
+      .filming-list {
+        list-style: none;
+        padding: 0;
+        margin: 52px 0 0;
+        border-top: 1px solid rgba(42, 26, 10, 0.15);
+      }
+      .filming-item {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        padding: 26px 0;
+        border-bottom: 1px solid rgba(42, 26, 10, 0.15);
+        transition: background 0.3s;
+      }
+      .filming-item:hover {
+        background: rgba(196, 160, 66, 0.04);
+        padding-left: 12px;
+        padding-right: 12px;
+        margin-left: -12px;
+        margin-right: -12px;
+      }
+      .filming-num {
+        flex-shrink: 0;
+        width: 36px;
+        font-family: var(--font-body);
+        font-size: 0.62rem;
+        letter-spacing: 0.12em;
+        color: rgba(130, 90, 20, 0.6);
+      }
+      .filming-body {
+        flex: 1;
+        min-width: 0;
+      }
+      .filming-title {
+        margin: 0 0 4px;
+        font-family: var(--font-display);
+        font-size: clamp(1rem, 1.6vw, 1.18rem);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: #2a1a0a;
+        line-height: 1.5;
+      }
+      .filming-meta {
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        color: rgba(42, 26, 10, 0.5);
+      }
+      .filming-cat {
+        flex-shrink: 0;
+        font-family: var(--font-body);
+        font-size: 0.58rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent);
+        border: 1px solid rgba(196, 160, 66, 0.3);
+        padding: 4px 10px;
+        white-space: nowrap;
+      }
+      .location-card-works {
+        list-style: none;
+        padding: 14px 0 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .location-card-works li {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 0.88rem;
+        color: rgba(42, 26, 10, 0.7);
+        letter-spacing: 0.06em;
+        padding-left: 1em;
+        position: relative;
+      }
+      .location-card-works li::before {
+        content: '·';
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+      }
+
+      .filming-list-sub {
+        list-style: none;
+        padding: 0;
+        margin: 40px 0 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 32px;
+        border-top: 1px solid rgba(42, 26, 10, 0.15);
+        padding-top: 32px;
+      }
+      .filming-list-sub li {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 0.95rem;
+        color: rgba(42, 26, 10, 0.6);
+        letter-spacing: 0.08em;
+      }
+
+      .filming-cta {
+        margin-top: 44px;
+        padding-top: 36px;
+        border-top: 1px solid rgba(42, 26, 10, 0.15);
+        text-align: center;
+        color: rgba(42, 26, 10, 0.55);
+        font-family: var(--font-display);
+        font-size: clamp(0.88rem, 1.2vw, 0.98rem);
+        font-weight: 500;
+        letter-spacing: 0.04em;
+      }
+      .filming-cta a {
+        color: var(--accent);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      @media (max-width: 720px) {
+        .filming-item { gap: 16px; }
+        .filming-cat { display: none; }
+      }
+
+      /* ── L'Arc~en~Ciel ── */
+      .larc-section {
+        padding: 80px 0;
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        background: linear-gradient(115deg, #252019 0%, #3b2e22 35%, #7a5a3a 65%, #b87d4a 85%, #c98f55 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .larc-inner {
+        display: flex;
+        align-items: center;
+        gap: 72px;
+        width: min(92vw, 1100px);
+      }
+      .larc-photo {
+        flex: 0 0 36%;
+      }
+      .larc-photo img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .larc-text { flex: 1; }
+      .larc-kicker {
+        font-family: 'Klee One', serif;
+        font-size: 0.9rem;
+        color: rgba(237, 224, 196, 0.75);
+        letter-spacing: 0.14em;
+        margin: 0 0 10px;
+      }
+      .larc-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+        font-weight: 600;
+        font-style: italic;
+        color: var(--text);
+        letter-spacing: 0.06em;
+        line-height: 1.3;
+        margin: 0 0 28px;
+      }
+      .larc-body {
+        font-family: var(--font-display);
+        font-size: clamp(0.82rem, 1.1vw, 0.92rem);
+        line-height: 2.2;
+        letter-spacing: 0.05em;
+        color: rgba(237, 224, 196, 0.78);
+        margin: 0;
+      }
+      @media (max-width: 760px) {
+        .larc-inner { flex-direction: column; gap: 40px; }
+        .larc-photo { flex: none; width: 72%; margin: 0 auto; }
+        .larc-text { text-align: center; }
+      }
+
+      /* ── Access ── */
+      .access-section { padding-top: 80px; padding-bottom: 80px; }
+      .access-map-wrap {
+        width: 100%;
+        overflow: hidden;
+        border: 1px solid rgba(196,160,66,0.25);
+        outline: 4px solid rgba(196,160,66,0.08);
+        margin-bottom: 24px;
+        background: #160e06;
+        filter: sepia(18%) brightness(0.92) contrast(1.04);
+      }
+      .access-map-wrap iframe { display: block; }
+      .access-address {
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        color: rgba(237,218,168,0.55);
+        border-left: 2px solid rgba(196,160,66,0.4);
+        padding-left: 12px;
       }
 
       /* ── Info ── */
@@ -879,7 +1403,9 @@
 
       /* ── Responsive ── */
       @media (max-width: 1080px) {
-        .message-layout { grid-template-columns: 1fr; gap: 48px; }
+        .message-layout { flex-direction: column; gap: 40px; }
+        .message-body { flex: none; padding: 0 32px; }
+        .message-side-photo { flex: none; width: 100%; height: 320px; }
         .message-anchor { position: static; }
         .gallery-grid {
           grid-template-columns: 1fr 1fr;
@@ -902,8 +1428,6 @@
         }
         .banner-body { padding: 32px 28px 40px; }
         .cta-inner { padding: 32px 24px; }
-        .company-nav { flex-direction: column; align-items: flex-start; gap: 16px; }
-        .company-nav-links { flex-wrap: wrap; gap: 16px 24px; }
         .company-nav-logo img { max-width: 180px; }
 
         /* ── Gallery mobile ── */
@@ -932,6 +1456,635 @@
           font-size: 0.62rem;
         }
       }
+
+      /* ══ History visual — 上段：写真＋タイトル／下段：本文 ══ */
+      .hv-wrap {
+        display: flex;
+        flex-direction: column;
+        background: #e8dfc8;
+        overflow: hidden;
+      }
+
+      /* 上段：写真＋タイトル横並び */
+      .hv-upper {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        min-height: 56vh;
+        padding: 5% 6% 0 6%;
+        gap: 0;
+      }
+
+      /* 左：写真 */
+      .hv-photo {
+        flex: 0 0 50%;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateX(-24px);
+        transition: opacity 1s cubic-bezier(0.22,1,0.36,1), transform 1s cubic-bezier(0.22,1,0.36,1);
+      }
+      .hv-photo.is-visible { opacity: 1; transform: translateX(0); }
+      .hv-photo img {
+        width: 100%; height: 100%; display: block;
+        object-fit: cover;
+        filter: sepia(0.25) contrast(1.05) brightness(0.88) saturate(0.85);
+      }
+
+      /* 右：タイトルエリア */
+      .hv-title-area {
+        flex: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 5% 5% 4% 4%;
+        gap: 1.4em;
+      }
+
+      /* HISTORY + 縦線グループ */
+      .hv-label-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.6em;
+        flex-shrink: 0;
+      }
+      .hv-vline {
+        width: 1px;
+        height: 2.2em;
+        background: #b8893a;
+        display: block;
+        flex-shrink: 0;
+      }
+
+      /* HISTORY ラベル */
+      .hv-label {
+        writing-mode: vertical-rl;
+        font-family: 'Manrope', Arial, sans-serif;
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.35em;
+        color: #b8893a;
+        text-transform: uppercase;
+      }
+
+      /* 見出し列 */
+      .hv-head-col {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 1s cubic-bezier(0.22,1,0.36,1) 0.3s, transform 1s cubic-bezier(0.22,1,0.36,1) 0.3s;
+      }
+      .hv-head-col.is-visible { opacity: 1; transform: translateY(0); }
+
+      .hv-dash {
+        font-family: 'Zen Old Mincho', serif;
+        font-size: 0.9rem;
+        color: rgba(23, 11, 3, 0.6);
+        display: block;
+        margin-bottom: 0.3em;
+      }
+      .hv-heading {
+        writing-mode: vertical-rl;
+        font-family: 'Zen Old Mincho', serif;
+        font-size: clamp(2.4rem, 5.5vh, 4.8rem);
+        font-weight: 400;
+        line-height: 1.4;
+        letter-spacing: 0.08em;
+        color: #170b03;
+        margin: 0;
+        height: 9.8em;
+        overflow: visible;
+      }
+      .hv-head-col {
+        overflow: visible;
+      }
+      .hv-stroke {
+        width: clamp(120px, 22vw, 260px);
+        height: auto;
+        display: block;
+        margin-top: 1.8em;
+        align-self: flex-end;
+        overflow: visible;
+      }
+
+      /* 下段：縦書き本文（全幅） */
+      .hv-body {
+        display: flex;
+        flex-direction: row-reverse;
+        padding: 5% 9% 7% 9%;
+        gap: 3em;
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 1s cubic-bezier(0.22,1,0.36,1) 0.5s, transform 1s cubic-bezier(0.22,1,0.36,1) 0.5s;
+      }
+      .hv-body.is-visible { opacity: 1; transform: translateY(0); }
+      .hv-body p {
+        writing-mode: vertical-rl;
+        font-family: 'Klee One', serif;
+        font-size: clamp(0.92rem, 1.8vh, 1.05rem);
+        font-weight: 400;
+        line-height: 2;
+        letter-spacing: 0.06em;
+        color: rgba(23, 11, 3, 0.96);
+        margin: 0;
+        flex-shrink: 0;
+        height: 15em;
+        overflow: visible;
+      }
+
+      /* ══════════════════════════════════════
+         History Story Section
+      ══════════════════════════════════════ */
+      .history-section {
+        padding: 0;
+        overflow: hidden;
+        background: #e8dfc8;
+        position: relative;
+      }
+      .history-section > * { position: relative; z-index: 1; }
+
+      /* ── History header area (full width) ── */
+      .history-header-area {
+        padding: 56px 8vw 40px;
+      }
+      /* ── History L-shape layout ── */
+      .history-l-layout { display: flex; flex-direction: column; }
+
+      .history-top-row {
+        display: flex;
+        align-items: stretch;
+        padding-top: 64px;
+      }
+      .history-top-photo {
+        flex: 0 0 62%;
+        height: 44vh;
+        overflow: hidden;
+      }
+      .history-top-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: grayscale(0.65) sepia(0.22) contrast(1.08) brightness(0.88);
+      }
+      .history-hero-right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 28px;
+        writing-mode: vertical-rl;
+        gap: 32px;
+      }
+      .history-vertical-label {
+        font-family: var(--font-body);
+        font-size: 0.6rem;
+        letter-spacing: 0.45em;
+        color: rgba(58, 38, 12, 0.42);
+      }
+      .history-vertical-heading {
+        font-family: 'Zen Old Mincho', serif;
+        font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+        font-weight: 400;
+        line-height: 1.55;
+        color: rgba(20, 10, 4, 0.88);
+        letter-spacing: 0.1em;
+        margin: 0;
+      }
+
+      .history-bottom-row {
+        display: flex;
+        align-items: stretch;
+      }
+      .history-bottom-photo {
+        flex: 0 0 28%;
+        min-height: 38vh;
+        overflow: hidden;
+      }
+      .history-bottom-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: grayscale(0.65) sepia(0.22) contrast(1.08) brightness(0.88);
+      }
+
+      /* ── History body: vertical text columns ── */
+      .history-body-vert {
+        flex: 1;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+        padding: 48px 6vw;
+        gap: 3em;
+      }
+      .history-body-vert p {
+        writing-mode: vertical-rl;
+        font-family: 'Klee One', serif;
+        font-size: clamp(0.88rem, 1.05vw, 1rem);
+        font-weight: 400;
+        line-height: 2.3;
+        letter-spacing: 0.06em;
+        color: rgba(28, 14, 4, 0.82);
+        margin: 0;
+      }
+
+      /* ── Auto-scroll gallery ── */
+      @keyframes hgScroll {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+      }
+      .history-gallery-outer {
+        overflow: hidden;
+        width: 100%;
+        height: 520px;
+        cursor: pointer;
+        background: transparent;
+      }
+      .history-gallery-outer:hover .history-gallery-track {
+        animation-play-state: paused;
+      }
+      .history-gallery-track {
+        display: flex;
+        align-items: flex-end;
+        gap: 0;
+        width: max-content;
+        animation: hgScroll 52s linear infinite;
+      }
+      .hg-item {
+        position: relative;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+      .hg-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.92) saturate(0.95) contrast(1.02);
+        transition: filter 0.4s ease, transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .hg-item:hover img {
+        filter: brightness(0.32) saturate(0.55) sepia(0.22) contrast(1.06);
+        transform: scale(1.04);
+      }
+      .hg-caption {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        padding: 24px;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+        background: rgba(13, 8, 4, 0.6);
+        pointer-events: none;
+        z-index: 2;
+      }
+      .hg-item:hover .hg-caption { opacity: 1; }
+      .hg-caption-title {
+        font-family: 'Klee One', serif;
+        font-size: clamp(0.76rem, 1vw, 0.9rem);
+        font-weight: 400;
+        color: rgba(237, 224, 196, 0.95);
+        line-height: 1.9;
+        letter-spacing: 0.04em;
+      }
+      .hg-caption-sub {
+        font-family: var(--font-body);
+        font-size: 0.56rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(196, 160, 66, 0.85);
+      }
+
+      /* 締め */
+      /* ── Cinematic Closing ── */
+      @keyframes closingFade {
+        from { opacity: 0; transform: translateY(14px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+      .history-closing-scene {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 88vh;
+        padding: 80px 24px;
+        background: #0a0603;
+        position: relative;
+        overflow: hidden;
+      }
+      .history-closing-scene::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 70% 55% at 50% 50%, rgba(60, 35, 18, 0.18) 0%, transparent 70%);
+        pointer-events: none;
+      }
+      .history-closing-inner {
+        text-align: center;
+        max-width: 720px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+      .history-closing-lead {
+        font-family: 'Klee One', serif;
+        font-size: clamp(0.82rem, 1.1vw, 0.96rem);
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        color: rgba(220, 200, 175, 0.5);
+        line-height: 2;
+        margin: 0 0 36px;
+        opacity: 0;
+        animation: closingFade 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+      }
+      .history-closing-rule {
+        width: 32px;
+        height: 1px;
+        background: rgba(196, 160, 66, 0.3);
+        margin: 0 auto 36px;
+        opacity: 0;
+        animation: closingFade 1s ease 0.9s forwards;
+      }
+      .history-closing-main {
+        font-family: 'Zen Old Mincho', serif;
+        font-size: clamp(1.9rem, 3.5vw, 3rem);
+        font-weight: 400;
+        line-height: 1.85;
+        letter-spacing: 0.04em;
+        color: rgba(237, 224, 196, 0.92);
+        margin: 0 0 40px;
+        word-break: keep-all;
+        opacity: 0;
+        animation: closingFade 1.6s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
+      }
+      .history-closing-en {
+        font-family: var(--font-body);
+        font-size: 0.58rem;
+        letter-spacing: 0.32em;
+        color: rgba(196, 160, 66, 0.4);
+        text-transform: uppercase;
+        opacity: 0;
+        animation: closingFade 1.2s ease 2s forwards;
+      }
+
+      /* Responsive */
+      @media (max-width: 860px) {
+        .history-gallery-outer { height: 360px; }
+        .history-header { padding: 0 28px 48px; }
+        .history-closing-inner { gap: 32px; }
+      }
+      @media (max-width: 560px) {
+        .history-section { padding: 80px 0 0; }
+        .history-gallery-outer { height: 280px; }
+        .history-closing-main { font-size: 1.4rem; }
+        .history-closing-scene { padding: 70px 20px; min-height: 70vh; }
+      }
+      .store-section { padding-top: 120px; }
+
+      /* ── Location card grid ── */
+      .location-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 64px 6vw;
+        margin-top: 52px;
+        padding: 0 2vw;
+      }
+      .location-card { display: flex; flex-direction: column; }
+      .location-card-photo {
+        overflow: hidden;
+        aspect-ratio: 4 / 3;
+        margin-bottom: 32px;
+      }
+      .location-card-photo--empty {
+        background: rgba(255,255,255,0.05);
+        border: 1px dashed rgba(240,216,190,0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .location-card-photo--empty::after {
+        content: 'COMING SOON';
+        font-family: var(--font-body);
+        font-size: 0.65rem;
+        letter-spacing: 0.28em;
+        color: rgba(80, 60, 40, 0.5);
+      }
+      .location-card-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.82) saturate(0.78) sepia(0.14) contrast(1.06);
+        transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s ease;
+      }
+      .location-card:hover .location-card-photo img {
+        transform: scale(1.04);
+        filter: brightness(0.9) saturate(0.88) sepia(0.08) contrast(1.04);
+      }
+      .location-card-spot {
+        display: block;
+        font-family: var(--font-body);
+        font-size: 0.58rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: rgba(196, 160, 66, 0.55);
+        margin-bottom: 10px;
+      }
+      .location-card-title {
+        font-family: 'Zen Old Mincho', serif;
+        font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+        font-weight: 400;
+        line-height: 1.55;
+        letter-spacing: 0.04em;
+        color: var(--text);
+        margin: 0 0 14px;
+      }
+      .location-card-text {
+        font-family: var(--font-display);
+        font-size: clamp(0.86rem, 1.1vw, 0.94rem);
+        font-weight: 500;
+        line-height: 1.9;
+        letter-spacing: 0.03em;
+        color: rgba(239, 226, 210, 0.62);
+        margin: 0 0 24px;
+        flex: 1;
+      }
+      .location-card-detail {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        letter-spacing: 0.18em;
+        color: rgba(196, 160, 66, 0.7);
+        text-transform: uppercase;
+        transition: color 0.25s, gap 0.25s;
+      }
+      .location-card-detail::before {
+        content: '';
+        display: block;
+        width: 28px;
+        height: 1px;
+        background: currentColor;
+        transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .location-card:hover .location-card-detail { color: var(--accent); gap: 14px; }
+      .location-card:hover .location-card-detail::before { width: 40px; }
+      @media (max-width: 768px) {
+        .location-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+      }
+      @media (max-width: 480px) {
+        .location-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      }
+      /* ── Popular Menu ── */
+      .popular-menu-section { padding-top: 120px; }
+      .popular-menu-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 32px;
+        row-gap: 48px;
+        margin-top: 48px;
+      }
+      .popular-menu-img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        background: var(--panel);
+        overflow: hidden;
+        border: 1px solid var(--line);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .popular-menu-img:not(:has(img))::after {
+        content: 'COMING SOON';
+        font-family: var(--font-body);
+        font-size: 0.65rem;
+        letter-spacing: 0.28em;
+        color: rgba(237, 224, 196, 0.3);
+      }
+      .popular-menu-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.9) saturate(0.92);
+        transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s ease;
+      }
+      .popular-menu-item:hover .popular-menu-img img {
+        transform: scale(1.04);
+        filter: brightness(0.96) saturate(0.96);
+      }
+      .popular-menu-name {
+        margin-top: 14px;
+        font-family: 'Shippori Mincho', serif;
+        font-size: 0.9rem;
+        color: var(--muted);
+        letter-spacing: 0.06em;
+        line-height: 1.7;
+      }
+      @media (max-width: 860px) {
+        .popular-menu-grid { grid-template-columns: repeat(2, 1fr); column-gap: 20px; row-gap: 36px; }
+      }
+      @media (max-width: 520px) {
+        .popular-menu-grid { grid-template-columns: 1fr; }
+      }
+
+      /* ── Menu Lightbox ── */
+      .menu-lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.28s ease, visibility 0.28s ease;
+      }
+      .menu-lightbox[aria-hidden="true"] {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      .menu-lightbox-backdrop {
+        position: absolute;
+        inset: 0;
+        border: 0;
+        background: rgba(0, 0, 0, 0.9);
+        cursor: pointer;
+      }
+      .menu-lightbox-inner {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: min(88vw, 860px);
+      }
+      .menu-lightbox-img {
+        display: block;
+        max-width: 100%;
+        max-height: 72vh;
+        object-fit: contain;
+      }
+      .menu-lightbox-name {
+        margin: 16px 0 0;
+        font-family: 'Shippori Mincho', serif;
+        font-size: 0.95rem;
+        color: var(--text);
+        letter-spacing: 0.08em;
+        text-align: center;
+      }
+      .menu-lightbox-close {
+        position: fixed;
+        top: 28px;
+        right: 36px;
+        background: transparent;
+        border: none;
+        color: var(--text);
+        font-size: 2rem;
+        line-height: 1;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+        z-index: 2;
+      }
+      .menu-lightbox-close:hover { opacity: 1; }
+      .menu-lightbox-prev,
+      .menu-lightbox-next {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        color: var(--text);
+        font-size: 1rem;
+        letter-spacing: 0.14em;
+        font-family: var(--font-body);
+        cursor: pointer;
+        padding: 20px 28px;
+        opacity: 0.55;
+        transition: opacity 0.2s;
+        z-index: 2;
+      }
+      .menu-lightbox-prev { left: 16px; }
+      .menu-lightbox-next { right: 16px; }
+      .menu-lightbox-prev:hover,
+      .menu-lightbox-next:hover { opacity: 1; }
+      .popular-menu-img { cursor: pointer; }
     </style>
   </head>
   <body>
@@ -947,14 +2100,21 @@
         <img src="./loader-logo.png" alt="" />
       </a>
       <div class="header-right">
-        <nav class="site-nav-links" aria-label="Page links">
-          <a href="./yonchome-party.html" data-i18n="navParty">貸し切り</a>
-          <a href="./yonchome-recruit.html" data-i18n="navRecruit">採用</a>
-          <a href="./company.html" data-i18n="navCompany">企業情報</a>
-        </nav>
         <div class="header-divider"></div>
         <nav class="site-nav" aria-label="Main navigation">
-          <a class="nav-reserve" href="tel:0353771726" data-i18n="navReserve">電話予約</a>
+          <button class="nav-reserve" type="button" id="nav-reserve-toggle" aria-expanded="false">
+            <span data-i18n="navReserve">予約</span>
+            <span class="nav-reserve-popup" id="nav-reserve-popup" aria-hidden="true">
+              <a class="nav-reserve-popup-link" href="tel:0353771726">
+                <span class="nav-reserve-popup-label">TEL</span>
+                <span class="nav-reserve-popup-value">03-5377-1726</span>
+              </a>
+              <a class="nav-reserve-popup-link" href="https://www.instagram.com/yonchome_cafe/" target="_blank" rel="noopener noreferrer">
+                <span class="nav-reserve-popup-label">Instagram DM</span>
+                <span class="nav-reserve-popup-value">@yonchome_cafe</span>
+              </a>
+            </span>
+          </button>
           <a class="nav-icon" href="https://x.com/yonchomecafe" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" fill="currentColor" />
@@ -985,112 +2145,290 @@
 
       <!-- HERO -->
       <section class="hero-section">
-        <div class="hero-media photo-panel photo-panel-hero">
-          <img class="hero-image" src="./hero-main-upscaled.jpg" alt="高円寺Yonchome Cafeの店内" />
+        <div class="hero-overlay-logo">
+          <img src="./loader-logo.png" alt="Yonchome Cafe" />
         </div>
-        <!-- Hero bottom banners -->
-        <div class="hero-bottom-banners">
-          <a class="hero-bottom-banner" href="./yonchome-party.html">
-            <span class="hero-bottom-banner-kicker">Private Party</span>
-            <span class="hero-bottom-banner-title">
-              <span data-i18n="heroBannerPartyTitle">貸し切りパーティー</span>
-              <span class="hero-bottom-banner-sub" data-i18n="heroBannerPartySub">20名〜 ／ 3プランからご選択</span>
-            </span>
-            <span class="hero-bottom-banner-arrow">→</span>
-          </a>
-          <button class="hero-bottom-banner" type="button" id="shooting-banner-btn">
-            <span class="hero-bottom-banner-kicker">Shooting</span>
-            <span class="hero-bottom-banner-title">
-              <span data-i18n="heroBannerShootTitle">撮影利用の案内</span>
-              <span class="hero-bottom-banner-sub" data-i18n="heroBannerShootSub">ロケ・写真撮影 ／ お気軽にご相談ください</span>
-            </span>
-            <span class="hero-bottom-banner-arrow">→</span>
-          </button>
+        <div class="hero-media photo-panel photo-panel-hero">
+          <img class="hero-image hero-image-to" src="./店内画像.jpg" alt="高円寺Yonchome Cafeの店内" />
+          <img class="hero-image hero-image-from" src="./入り口画像.jpg" alt="高円寺Yonchome Cafeの入り口" />
         </div>
 
-        <div class="hero-copy">
-          <div class="hero-copy-inner">
-            <span class="anniv-badge">40th Anniversary — 1986–2026</span>
-            <span class="anniv-number" aria-hidden="true">40</span>
-            <div class="anniv-hero-year">
-              <span>1986</span>
-              <span style="color:rgba(239,226,210,0.3);">—</span>
-              <span>2026</span>
-            </div>
-            <h1 data-i18n="heroH1">
-              おかげさまで、創業40年。
-              <br />
-              <span class="hero-line-small">高円寺二階のカフェ＆ダイニング</span>
-            </h1>
-            <p class="hero-en">
-              Forty years of warmth, stories, and a second-floor view of Koenji.
-            </p>
+        <div class="hero-letter">
+          <div class="hero-letter-inner">
+            <p class="hero-letter-line" data-i18n="heroLine1">高円寺で40年。</p>
+            <p class="hero-letter-line" data-i18n="heroLine2">変わる時代と、変わらない居場所。</p>
+            <p class="hero-letter-line hero-letter-gap" data-i18n="heroLine3">人が集い、語り、繋がる。</p>
+<p class="hero-letter-access" data-i18n="heroAccess">・高円寺駅徒歩1分<br>・貸切利用対応<br>・撮影利用対応</p>
           </div>
         </div>
       </section>
 
       <!-- MESSAGE -->
-      <section class="message-section section-shell" id="message">
+      <section class="message-section" id="message">
         <div class="message-layout">
           <div class="message-body">
             <div class="message-block">
-              <p class="message-pull" data-i18n="msgPull1">おかげさまで、創業40年。</p>
-              <p class="message-text" data-i18n="msgText1">この場所を選び、足を運んでくださったお客さまのおかげで、ここまで続けてこられました。</p>
+              <span class="message-kicker">Our Concept</span>
+              <p class="message-pull" data-i18n="msgPull">「人が集まり、心がほどける場所」</p>
+              <p class="message-text" data-i18n="msgText1">yonchome cafeは、ただ食事をするだけの場所ではありません。</p>
+              <p class="message-text" data-i18n="msgText2">人と人が出会い、語り合い、自然とつながりが生まれる――そんな"空気"を大切にしている場所です。</p>
+              <p class="message-text" data-i18n="msgText3">40年以上続いてきたこの場所に込められた想いを受け継ぎながら、時代に合わせて変化し、今の時代に必要とされる空間へ。</p>
             </div>
-            <div class="message-photo-wide">
-              <div class="message-photo-wide-item">
-                <img src="./lunch-food.jpg" alt="Yonchome Cafeのランチ" />
-              </div>
-              <div class="message-photo-wide-item">
-                <img src="./drink-photo.jpg" alt="Yonchome Cafeのドリンク" />
-              </div>
-            </div>
-            <div class="message-block">
-              <p class="message-pull" data-i18n="msgPull2">「ここに来ると落ち着く」<br>「変わらなくてホッとする」</p>
-              <p class="message-text" data-i18n="msgText2">流行が移り変わり、街の景色も、人の暮らし方も変わっていく中で、そんな声に何度も救われてきました。</p>
-              <p class="message-text" data-i18n="msgText3">長年愛されてきた味、空気、会話の距離感──それらは、この40年で自然と育ってきた、何より大切なものです。</p>
-            </div>
+          </div>
+          <div class="message-side-photo">
+            <img src="./LINE_ALBUM_Yonchome Cafe website_260618_2.jpg" alt="Yonchome Cafeの店内" loading="lazy" />
           </div>
         </div>
       </section>
 
-      <!-- GALLERY -->
-      <div class="gallery-scroll-outer" id="gallery">
-        <div class="gallery-scroll-sticky">
-          <div class="gallery-scroll-header section-shell">
-            <h2 class="anim-up">Gallery</h2>
-            <p class="gallery-scroll-sub anim-up">The spaces and moments that make up forty years.</p>
+      <!-- HISTORY STORY -->
+      <section class="history-section" id="history" aria-label="創業ストーリー">
+        <!-- History visual — HTML rebuild with animation -->
+        <div class="hv-wrap">
+          <!-- 上段：写真＋タイトル -->
+          <div class="hv-upper">
+            <div class="hv-photo">
+              <img src="./歩く.jpg" alt="Yonchome Cafe 店内" loading="lazy" />
+            </div>
+            <div class="hv-title-area">
+              <div class="hv-head-col">
+                <h2 class="hv-heading" data-i18n="historyHeading">四〇年の時を超え、受け継がれる物語。</h2>
+              </div>
+              <div class="hv-label-group">
+                <span class="hv-vline"></span>
+                <span class="hv-label">HISTORY</span>
+              </div>
+            </div>
           </div>
-          <div class="gallery-scroll-track" id="galleryTrack">
-            <div class="gallery-scroll-item">
-              <img src="./interior-mosaic.jpg" alt="高円寺駅を望むモザイク装飾" loading="lazy" />
-              <span class="gallery-scroll-caption">mosaic</span>
-            </div>
-            <div class="gallery-scroll-item">
-              <img src="./interior-clock.jpg" alt="ロンドンの駅で使用されていた時計" loading="lazy" />
-              <span class="gallery-scroll-caption">1986 —</span>
-            </div>
-            <div class="gallery-scroll-item">
-              <img src="./interior-stainedglass-2.jpg" alt="フランスの教会のステンドグラス" loading="lazy" />
-              <span class="gallery-scroll-caption">stained glass</span>
-            </div>
-            <div class="gallery-scroll-item">
-              <img src="./interior-soda.jpg" alt="Sodaのステンドグラス" loading="lazy" />
-              <span class="gallery-scroll-caption">soda</span>
-            </div>
+          <!-- 下段：縦書き本文（全幅） -->
+          <div class="hv-body">
+            <p data-i18n="historyP1">かつて、この場所には「Chaya」という喫茶店があった。時代の空気を映しながら多くの人が集い、語り、高円寺の日常を見守ってきた場所。</p>
+            <p data-i18n="historyP2">そしてある日、創業者の藤村誠はニューヨークで見た景色を忘れられなくなる。マンハッタンの街角にあった、ダイナーやカフェ、人々が自由に過ごす空気。</p>
+            <p data-i18n="historyP3">「あんな場所を、高円寺につくりたい。」その想いは次第に大きくなり、周囲の反対さえも越えていった。</p>
+            <p data-i18n="historyP4">ニューヨークで集めたアンティーク家具や照明、ステンドグラスを運び込み、店は一から生まれ変わる。</p>
+            <p data-i18n="historyP5">そうして誕生したのが、「YonchoMe Cafe」。</p>
+            <p data-i18n="historyP6">好きなものを信じ続けた時間が、今もこの空間の隅々に息づいている。</p>
           </div>
         </div>
-      </div>
 
+        <!-- Auto-scroll gallery (scattered layout) -->
+        <div class="history-gallery-outer">
+          <div class="history-gallery-track">
+
+            <!-- Set 1 -->
+            <div class="hg-item" style="width:300px;height:460px;margin-top:60px;">
+              <img src="./SODA.jpg" alt="Sodaのステンドグラス" loading="lazy" />
+              <div class="hg-caption">
+                <span class="hg-caption-title">「Soda」のステンドグラス。<br>創業当時から変わらず<br>店の顔として輝いている。</span>
+                <span class="hg-caption-sub">Stained Glass — Soda</span>
+              </div>
+            </div>
+            <div class="hg-item" style="width:260px;height:380px;margin-top:120px;">
+              <img src="./時計.jpg" alt="アンティーク時計" loading="lazy" />
+              <div class="hg-caption">
+                <span class="hg-caption-title">実際にロンドンの駅で<br>使用されていた時計を輸入。</span>
+                <span class="hg-caption-sub">Antique Clock — London</span>
+              </div>
+            </div>
+            <div class="hg-item" style="width:360px;height:500px;margin-top:20px;">
+              <img src="./天井.jpg" alt="ニューヨーク製の天井装飾" loading="lazy" />
+              <div class="hg-caption">
+                <span class="hg-caption-title">アメリカから輸入した<br>チョコレートのような天井。<br>職人さんが手作業で貼り付けた。</span>
+                <span class="hg-caption-sub">Ceiling — New York</span>
+              </div>
+            </div>
+            <div class="hg-item" style="width:280px;height:420px;margin-top:80px;">
+              <img src="./ステンド.jpg" alt="モザイクステンドグラス" loading="lazy" />
+              <div class="hg-caption">
+                <span class="hg-caption-title">当時のスタッフによる<br>手作りのモザイクアート。</span>
+                <span class="hg-caption-sub">Mosaic Stained Glass</span>
+              </div>
+            </div>
+            <div class="hg-item" style="width:240px;height:360px;margin-top:140px;">
+              <img src="./LINE_ALBUM_Yonchome Cafe website_260618_4.jpg" alt="モザイクアート" loading="lazy" />
+              <div class="hg-caption">
+                <span class="hg-caption-title">店内のモザイクアート。</span>
+                <span class="hg-caption-sub">Mosaic Art</span>
+              </div>
+            </div>
+            <div class="hg-item" style="width:320px;height:480px;margin-top:40px;">
+              <img src="./LINE_ALBUM_Yonchome Cafe website_260618_10.jpg" alt="アンティークランプ" loading="lazy" />
+              <div class="hg-caption">
+                <span class="hg-caption-title">NYのアンティークショップで<br>出会った100年以上前の照明。</span>
+                <span class="hg-caption-sub">Antique Lamp — New York</span>
+              </div>
+            </div>
+
+            <!-- Set 2 (seamless loop duplicate) -->
+            <div class="hg-item" style="width:300px;height:460px;margin-top:60px;">
+              <img src="./SODA.jpg" alt="Sodaのステンドグラス" loading="lazy" />
+              <div class="hg-caption">
+                <span class="hg-caption-title">「Soda」のステンドグラス。<br>創業当時から変わらず<br>店の顔として輝いている。</span>
+                <span class="hg-caption-sub">Stained Glass — Soda</span>
+              </div>
+            </div>
+            <div class="hg-item" style="width:260px;height:380px;margin-top:120px;">
+              <img src="./時計.jpg" alt="アンティーク時計" loading="lazy" />
+              <div class="hg-caption">
+                <span class="hg-caption-title">実際にロンドンの駅で<br>使用されていた時計を輸入。</span>
+                <span class="hg-caption-sub">Antique Clock — London</span>
+              </div>
+            </div>
+            <div class="hg-item" style="width:360px;height:500px;margin-top:20px;">
+              <img src="./天井.jpg" alt="ニューヨーク製の天井装飾" loading="lazy" />
+              <div class="hg-caption">
+                <span class="hg-caption-title">アメリカから輸入した<br>チョコレートのような天井。<br>職人さんが手作業で貼り付けた。</span>
+                <span class="hg-caption-sub">Ceiling — New York</span>
+              </div>
+            </div>
+            <div class="hg-item" style="width:280px;height:420px;margin-top:80px;">
+              <img src="./ステンド.jpg" alt="モザイクステンドグラス" loading="lazy" />
+              <div class="hg-caption">
+                <span class="hg-caption-title">当時のスタッフによる<br>手作りのモザイクアート。</span>
+                <span class="hg-caption-sub">Mosaic Stained Glass</span>
+              </div>
+            </div>
+            <div class="hg-item" style="width:240px;height:360px;margin-top:140px;">
+              <img src="./LINE_ALBUM_Yonchome Cafe website_260618_4.jpg" alt="モザイクアート" loading="lazy" />
+              <div class="hg-caption">
+                <span class="hg-caption-title">店内のモザイクアート。</span>
+                <span class="hg-caption-sub">Mosaic Art</span>
+              </div>
+            </div>
+            <div class="hg-item" style="width:320px;height:480px;margin-top:40px;">
+              <img src="./LINE_ALBUM_Yonchome Cafe website_260618_10.jpg" alt="アンティークランプ" loading="lazy" />
+              <div class="hg-caption">
+                <span class="hg-caption-title">NYのアンティークショップで<br>出会った100年以上前の照明。</span>
+                <span class="hg-caption-sub">Antique Lamp — New York</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+      </section>
+
+      <!-- OWNER MESSAGE -->
+      <section class="owner-msg-section section-shell" id="owner-message">
+<div class="owner-msg-inner anim-up">
+          <p class="owner-msg-theme" data-i18n="ownerTheme">「守るために変わる」</p>
+          <p class="owner-msg-body" data-i18n="ownerBody">この場所が、長年皆さんに愛されてきたように、<br>これからも変わらない"温かさ"を大切にしながら<br>新しい価値や喜びを届けていきたいと思っております。</p>
+          <p class="owner-msg-sig" data-i18n="ownerSig">代表　石原徳幸</p>
+        </div>
+      </section>
+
+      <!-- FILMING LOCATIONS -->
+      <section class="filming-section section-shell" id="filming">
+        <div class="section-head wide anim-up">
+          <span class="filming-kicker" data-i18n="filmingKicker">Filming Locations</span>
+        </div>
+
+        <div class="location-grid">
+
+          <article class="location-card anim-up">
+            <div class="location-card-photo location-card-photo--empty"></div>
+            <ul class="location-card-works">
+              <li>正直不動産</li>
+              <li>CRISIS 公安機動捜査隊特捜班</li>
+              <li>降り積もれ孤独な死よ</li>
+              <li>ツレがうつになりまして</li>
+            </ul>
+          </article>
+
+          <article class="location-card anim-up" style="transition-delay: 0.1s;">
+            <div class="location-card-photo location-card-photo--empty"></div>
+            <ul class="location-card-works">
+              <li>テセウスの船</li>
+            </ul>
+          </article>
+
+          <article class="location-card anim-up" style="transition-delay: 0.2s;">
+            <div class="location-card-photo location-card-photo--empty"></div>
+            <ul class="location-card-works">
+              <li>LIGHT HOUSE</li>
+              <li>人事の人見</li>
+              <li>モンスター</li>
+            </ul>
+          </article>
+
+          <article class="location-card anim-up" style="transition-delay: 0.3s;">
+            <div class="location-card-photo location-card-photo--empty"></div>
+            <ul class="location-card-works">
+              <li>笑うマトリョーシカ</li>
+              <li>罠の戦争</li>
+            </ul>
+          </article>
+
+        </div>
+
+        <ul class="filming-list-sub anim-up">
+          <li>つぐみ</li>
+          <li>３番テーブルの客</li>
+          <li>緊急取調室</li>
+          <li>歪んだ波紋</li>
+          <li>泳げニシキゴイ</li>
+          <li>有吉ゼミ</li>
+          <li>ごみ物語</li>
+          <li>etc.</li>
+        </ul>
+
+        <div class="filming-cta anim-up">
+          <p data-i18n="filmingCta">撮影・ロケのご相談は<a href="tel:0353771726">お電話</a>または店頭にて承っております。</p>
+        </div>
+      </section>
+
+      <!-- LARC EN CIEL -->
+      <section class="larc-section">
+        <div class="larc-inner">
+          <div class="larc-photo anim-up">
+            <img src="./スクリーンショット 2026-07-01 4.21.47.png" alt="The Fourth Avenue Cafe / L'Arc〜en〜Ciel" />
+          </div>
+          <div class="larc-text anim-up" style="transition-delay:0.15s;">
+            <p class="larc-kicker" data-i18n="larcKicker">－ YonchoMe Cafeが題材の楽曲 －</p>
+            <h2 class="larc-title">「The Fourth Avenue Cafe」</h2>
+            <p class="larc-body" data-i18n="larcBody">L'Arc〜en〜Ciel の「The Fourth Avenue Cafe」は<br>HYDEさんが、当店を思い浮かべながら<br>歌詞を書いたとされている曲です。<br>テレビアニメ『るろうに剣心 -明治剣客浪漫譚-』<br>のエンディングテーマに起用されました。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- POPULAR MENU -->
+      <section class="popular-menu-section section-shell" id="popular-menu">
+        <div class="anim-up" style="margin-bottom:34px;">
+          <h2 style="font-family:var(--font-body);font-size:clamp(1rem,1.6vw,1.4rem);font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--text);margin:0;">MENU</h2>
+        </div>
+        <div class="popular-menu-grid">
+          <div class="popular-menu-item anim-up">
+            <div class="popular-menu-img"><img src="./IMG_9802.PNG" alt="デラックスワッフルセット" loading="lazy" /></div>
+            <p class="popular-menu-name" data-i18n="menuName1">デラックスワッフルセット</p>
+          </div>
+          <div class="popular-menu-item anim-up">
+            <div class="popular-menu-img"><!-- 写真 --></div>
+            <p class="popular-menu-name" data-i18n="menuName2">クラシックバーガー</p>
+          </div>
+          <div class="popular-menu-item anim-up">
+            <div class="popular-menu-img"><!-- 写真 --></div>
+            <p class="popular-menu-name" data-i18n="menuName3">自家製ニューヨークチーズケーキ</p>
+          </div>
+          <div class="popular-menu-item anim-up">
+            <div class="popular-menu-img"><!-- 写真 --></div>
+            <p class="popular-menu-name" data-i18n="menuName4">クリームソーダ</p>
+          </div>
+          <div class="popular-menu-item anim-up">
+            <div class="popular-menu-img"><!-- 写真 --></div>
+            <p class="popular-menu-name" data-i18n="menuName5">レモネード</p>
+          </div>
+          <div class="popular-menu-item anim-up">
+            <div class="popular-menu-img"><!-- 写真 --></div>
+            <p class="popular-menu-name" data-i18n="menuName6">オリジナルブレンドコーヒー</p>
+          </div>
+        </div>
       </section>
 
       <!-- MENU INFO -->
       <section class="store-section section-shell" id="menu">
-        <div class="store-heading">
-          <h2>Yonchome Cafe Information</h2>
-        </div>
         <nav class="info-link-list" aria-label="メニュー・サービス情報">
-          <button type="button" data-modal-key="lunch" data-info-title="Lunch" data-info-body="平日オープンから15:00までのランチ。パスタ2種、ボウル、プレート、オムレツをご用意しています。価格は1,350円。ミニサラダ、コーヒーまたは紅茶付きです。+150円でその他ドリンクに変更できます。パスタ・ライスは大盛り無料。ランチデザートは400円です。" data-info-cover="./lunch-pasta.png" data-i18n="infoBtnLunch">
+          <button type="button" data-modal-key="lunch" data-info-title="Lunch" data-info-body="パスタ２種・プレート・サンドからお選びいただけます。ミニサラダ＆ドリンク付き。税込1,350円。＋400円でデザートもお楽しみいただけます。" data-i18n="infoBtnLunch">
             【ランチ】平日オープンから15:00まで
           </button>
           <button type="button" data-modal-key="happy" data-info-title="Happy Hour" data-info-body="ハッピーアワーは平日の15:00から18:00まで。夕方前の一杯を気軽に楽しめます。" data-i18n="infoBtnHappy">
@@ -1099,94 +2437,74 @@
           <button type="button" data-modal-key="smoke" data-info-title="Smoking" data-info-body="" data-info-poster="./smoking-info.png" data-info-image-only="true" data-i18n="infoBtnSmoke">
             【喫煙情報】18:00までは喫煙ブース / 18:00以降はお席にて可
           </button>
-          <button type="button" data-modal-key="party" data-info-title="Private Party / Shooting" data-info-body="貸切パーティー、歓送迎会、二次会、ロケ・写真撮影など、用途に合わせてお気軽にお問い合わせください。人数や時間、内容に合わせてご相談可能です。お電話または店頭にて承っております。" data-info-credits="CRISIS 公安機動捜査隊特捜班 第5話||テセウスの船（TBSテレビ日曜劇場）||ツレがうつになりまして||LIGHTHOUSE（Netflix）エピソード1||L'Arc〜en〜Ciel「The Fourth Avenue Cafe」（題材となった楽曲）" data-info-phone="0353771726" data-info-cover="./about-interior.jpg" data-i18n="infoBtnParty">
-            【貸切・撮影のご相談】お気軽にお問い合わせください
-          </button>
         </nav>
       </section>
 
       <!-- BANNERS：採用・貸し切りを大きく目立たせる -->
       <section class="banner-section section-shell" id="banners">
         <div class="banner-grid">
-          <a class="banner-item" href="./yonchome-party.html">
+          <div class="banner-item">
             <div class="banner-bg">
-              <img src="./about-interior.jpg" alt="" />
+              <img src="./店内画像.jpg" alt="" />
             </div>
             <div class="banner-body">
               <span class="banner-kicker">Private Party</span>
               <h3 class="banner-title" data-i18n="bannerPartyTitle">貸し切りパーティー</h3>
-              <p class="banner-desc" data-i18n="bannerPartyDesc">
-                歓送迎会・誕生日会・二次会・撮影など、<br />
-                理想のパーティーをこの空間でカスタマイズ。<br />
-                20名〜受付、3つのプランをご用意しています。
-              </p>
-              <span class="banner-cta" data-i18n="bannerPartyCta">プランを見る →</span>
             </div>
-          </a>
-          <a class="banner-item" href="./yonchome-recruit.html">
-            <div class="banner-bg">
-              <img src="./interior-stainedglass.jpg" alt="" />
+          </div>
+
+          <!-- 貸し切り詳細パネル -->
+          <div class="banner-detail">
+            <p class="bd-lead" data-i18n="bdLead">結婚式二次会、卒業・卒園のお祝い、誕生日会、歓送迎会など、<br>大切な日の場所として、ご利用いただいています。</p>
+            <p class="bd-meta" data-i18n="bdMeta"><strong>30名〜</strong> 受付 &ensp;／&ensp; お一人様 <strong>¥5,000〜</strong><br>小学生　半額 &ensp;／&ensp; 未就学児　¥500<br>プロジェクター＋スクリーン　¥5,000<br>マイク＋スピーカー　¥3,000</p>
+            <p class="bd-cases-text" data-i18n="bdCasesText">人数・ご予算・ご要望は、お気軽にご相談ください。<br>一緒に、その日だけの空間をつくります。</p>
+            <div class="bd-contact">
+              <span class="bd-contact-label" data-i18n="bdContactLabel">ご相談はこちら</span>
+              <a class="bd-contact-tel" href="tel:0353771726">03-5377-1726</a>
             </div>
-            <div class="banner-body">
-              <span class="banner-kicker">Recruit</span>
-              <h3 class="banner-title" data-i18n="bannerRecruitTitle">スタッフ募集</h3>
-              <p class="banner-desc" data-i18n="bannerRecruitDesc">
-                創業40年の店で、一緒に働きませんか。<br />
-                人と関わるのが好きな人、誰かのために<br />
-                自然に動ける人を歓迎します。経験不問。
-              </p>
-              <span class="banner-cta" data-i18n="bannerRecruitCta">採用情報を見る →</span>
-            </div>
-          </a>
+          </div>
+
         </div>
       </section>
 
-
-      <!-- NEWS -->
-      <section class="news-section section-shell" id="news">
+      <!-- ACCESS MAP -->
+      <section class="access-section section-shell">
         <div class="section-head wide">
-          <h2>News</h2>
-          <div class="lead-block">
-            <p class="lead-ja" data-i18n="newsLead">Yonchome Cafeからの新着情報。</p>
-            <p class="lead-en">Latest updates from Yonchome Cafe.</p>
-          </div>
+          <h2>Access</h2>
         </div>
-        <ul class="news-list">
-          <!-- ▼ ここに新着記事を追加してください ▼ -->
-          <li class="news-item">
-            <div class="news-thumb">
-              <img src="./about-interior.jpg" alt="ウェブサイトをリニューアルしました" loading="lazy" />
-            </div>
-            <div class="news-meta">
-              <time class="news-date" datetime="2026-05-29">2026.05.29</time>
-              <span class="news-tag" data-i18n="newsTag1">お知らせ</span>
-            </div>
-            <p class="news-title" data-i18n="newsTitle1">ウェブサイトをリニューアルしました</p>
-            <p class="news-body" data-i18n="newsBody1">ウェブサイトをリニューアルいたしました。今後もYonchome Cafeをよろしくお願いいたします。</p>
-          </li>
-          <!-- ▲ ここに新着記事を追加してください ▲ -->
-        </ul>
+        <div class="access-map-wrap anim-up">
+          <iframe
+            src="https://www.google.com/maps?q=東京都杉並区高円寺南4丁目28-10&output=embed"
+            width="100%"
+            height="420"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Yonchome Cafe アクセスマップ"
+          ></iframe>
+        </div>
+        <p class="access-address anim-up">〒166-0003 東京都杉並区高円寺南4丁目28-10 高円寺リリエンハイム 2F</p>
       </section>
 
       <!-- INFORMATION -->
       <section class="info-section section-shell" id="info">
-        <div class="section-head wide">
-          <h2>Information</h2>
-        </div>
+        <div class="info-layout">
 
         <!-- 会社情報ナビ -->
         <nav class="company-nav anim-up" aria-label="会社情報">
           <div class="company-nav-links">
             <a class="company-nav-link" href="./company.html" data-i18n="companyAbout">会社概要</a>
+            <a class="company-nav-link" href="./yonchome-recruit.html">採用情報</a>
             <button class="company-nav-link company-nav-link--contact" type="button" id="contact-toggle" aria-expanded="false">
               <span data-i18n="companyContact">お問い合わせ</span>
               <span class="contact-popup" id="contact-popup" aria-hidden="true">
                 <span class="contact-popup-label">TEL</span>
                 <a class="contact-popup-tel" href="tel:0353771726">03-5377-1726</a>
+                <span class="contact-popup-label">MAIL</span>
+                <span class="contact-popup-tel">yonchome@gmail.com</span>
               </span>
             </button>
-            <a class="company-nav-link" href="./legal.html" data-i18n="companyLegal">特定商取引に基づく表示</a>
-            <a class="company-nav-link" href="./privacy.html" data-i18n="companyPrivacy">個人情報保護方針</a>
           </div>
           <div class="company-nav-sns">
             <a class="company-nav-sns-icon" href="https://www.instagram.com/yonchome_cafe/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
@@ -1201,8 +2519,6 @@
             </a>
           </div>
         </nav>
-        <div class="company-nav-divider"></div>
-
         <div class="info-grid">
           <div>
             <span>Shop name</span>
@@ -1218,18 +2534,11 @@
             <p data-i18n="infoOpen">平日 10:30 - 23:00<br />土日祝 11:30 - 23:00</p>
           </div>
           <div>
-            <span>Reserve</span>
-            <p data-i18n="infoReserveLabel">予約・お問い合わせ</p>
-            <div class="info-button-row">
-              <a class="info-button" href="tel:0353771726">TEL 03-5377-1726</a>
-              <a class="info-button" href="https://www.instagram.com/yonchome_cafe/" target="_blank" rel="noreferrer">Instagram</a>
-            </div>
-          </div>
-          <div>
             <span>Payment</span>
-            <p data-i18n="infoPayment">現金 / 電子決済 / 楽天ペイ / PayPay / 交通系ICカード / au PAY<br />クレジットカード / VISA / Mastercard / JCB / American Express</p>
+            <p data-i18n="infoPayment">現金 / 電子決済 / 楽天ペイ<br />PayPay / 交通系ICカード / au PAY<br />クレジットカード / VISA<br />Mastercard / JCB<br />American Express</p>
           </div>
         </div>
+        </div><!-- /.info-layout -->
       </section>
 
     </main>
@@ -1239,6 +2548,18 @@
       <p>© Yonchome cafe — Est. 1986</p>
     </footer>
 
+
+<!-- Menu Lightbox -->
+    <div class="menu-lightbox" id="menu-lightbox" aria-hidden="true">
+      <button class="menu-lightbox-backdrop" type="button" aria-label="閉じる"></button>
+      <button class="menu-lightbox-close" type="button" aria-label="閉じる">&times;</button>
+      <button class="menu-lightbox-prev" type="button" aria-label="前へ">&#8592;&#8202;&#8202;&#8212;</button>
+      <button class="menu-lightbox-next" type="button" aria-label="次へ">&#8212;&#8202;&#8202;&#8594;</button>
+      <div class="menu-lightbox-inner" role="dialog" aria-modal="true" aria-label="メニュー画像">
+        <img class="menu-lightbox-img" src="" alt="" />
+        <p class="menu-lightbox-name"></p>
+      </div>
+    </div>
 
 <!-- News Modal -->
     <div class="info-modal" id="news-modal" aria-hidden="true">
@@ -1275,7 +2596,6 @@
       </div>
     </div>
 
-    <a class="float-reserve" href="tel:0353771726" aria-label="電話で予約する" data-i18n="floatReserve">電話で予約する</a>
 
     <script>
       // Info modal
@@ -1399,11 +2719,32 @@
         });
       }
 
-      // Float reserve
+      // Nav reserve popup toggle
+      const navReserveToggle = document.getElementById("nav-reserve-toggle");
+      if (navReserveToggle) {
+        navReserveToggle.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const isOpen = navReserveToggle.getAttribute("aria-expanded") === "true";
+          navReserveToggle.setAttribute("aria-expanded", String(!isOpen));
+        });
+        document.addEventListener("click", () => {
+          navReserveToggle.setAttribute("aria-expanded", "false");
+        });
+        document.getElementById("nav-reserve-popup")?.addEventListener("click", (e) => {
+          e.stopPropagation();
+        });
+      }
+
+      // Header show on scroll past hero
+      const siteHeader = document.querySelector(".site-header");
       const floatReserve = document.querySelector(".float-reserve");
       const heroSection = document.querySelector(".hero-section");
       new IntersectionObserver(
-        ([entry]) => floatReserve.classList.toggle("is-visible", !entry.isIntersecting),
+        ([entry]) => {
+          const pastHero = !entry.isIntersecting;
+          siteHeader.classList.toggle("is-scrolled", pastHero);
+          if (floatReserve) floatReserve.classList.toggle("is-visible", pastHero);
+        },
         { threshold: 0.2 }
       ).observe(heroSection);
 
@@ -1443,11 +2784,26 @@
 
       document.querySelectorAll(".anim-up").forEach((el) => scrollObserver.observe(el));
 
+      // ── History section elements ──
+      document.querySelectorAll(".hv-photo, .hv-head-col, .hv-body").forEach((el) => scrollObserver.observe(el));
+
       // ── Message blocks ──
       document.querySelectorAll(".message-block, .message-image-wrap, .message-closing").forEach((el, i) => {
         scrollObserver.observe(el);
         el.style.transitionDelay = `${i * 0.06}s`;
       });
+
+      // ── Message section entrance ──
+      const msgSection = document.querySelector(".message-section");
+      if (msgSection) {
+        new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("is-visible");
+            }
+          });
+        }, { threshold: 0.15 }).observe(msgSection);
+      }
 
       // ── Full-width photos ──
       document.querySelectorAll(".message-photo-wide-item").forEach((el) => {
@@ -1477,7 +2833,7 @@
       if (sessionStorage.getItem('loaderSeen')) {
         const loader = document.querySelector('.page-loader');
         if (loader) { loader.style.display = 'none'; }
-        document.querySelectorAll('.hero-copy .hero-copy-inner > *').forEach(el => {
+        document.querySelectorAll('.hero-copy .hero-copy-inner > *, .hero-letter-line, .hero-letter-access, .hero-letter-logo').forEach(el => {
           el.style.animationDelay = '0s';
           el.style.animationDuration = '0.01s';
         });
@@ -1554,18 +2910,39 @@
       // ── Language Switcher ──
       const T = {
         ja: {
-          navParty: '貸し切り', navRecruit: '採用', navCompany: '企業情報', navReserve: '電話予約',
+          navParty: '貸し切り', navRecruit: '採用', navCompany: '企業情報', navReserve: '予約',
           heroBannerPartyTitle: '貸し切りパーティー', heroBannerPartySub: '20名〜 ／ 3プランからご選択',
           heroBannerShootTitle: '撮影利用の案内', heroBannerShootSub: 'ロケ・写真撮影 ／ お気軽にご相談ください',
-          heroH1: 'おかげさまで、創業40年。<br /><span class="hero-line-small">高円寺二階のカフェ＆ダイニング</span>',
-          msgPull1: 'おかげさまで、創業40年。', msgText1: 'この場所を選び、足を運んでくださったお客さまのおかげで、ここまで続けてこられました。',
-          msgPull2: '「ここに来ると落ち着く」<br>「変わらなくてホッとする」',
-          msgText2: '流行が移り変わり、街の景色も、人の暮らし方も変わっていく中で、そんな声に何度も救われてきました。',
-          msgText3: '長年愛されてきた味、空気、会話の距離感──それらは、この40年で自然と育ってきた、何より大切なものです。',
+          heroLine1: '高円寺で40年。', heroLine2: '変わる時代と、変わらない居場所。', heroLine3: '人が集い、語り、繋がる。',
+          heroAccess: '・高円寺駅徒歩1分<br>・貸切利用対応<br>・撮影利用対応',
+          msgPull: '「人が集まり、心がほどける場所」',
+          msgText1: 'yonchome cafeは、ただ食事をするだけの場所ではありません。',
+          msgText2: '人と人が出会い、語り合い、自然とつながりが生まれる――そんな"空気"を大切にしている場所です。',
+          msgText3: '40年以上続いてきたこの場所に込められた想いを受け継ぎながら、時代に合わせて変化し、今の時代に必要とされる空間へ。',
+          historyHeading: '四〇年の時を超え、受け継がれる物語。',
+          historyP1: 'かつて、この場所には「Chaya」という喫茶店があった。時代の空気を映しながら多くの人が集い、語り、高円寺の日常を見守ってきた場所。',
+          historyP2: 'そしてある日、創業者の藤村誠はニューヨークで見た景色を忘れられなくなる。マンハッタンの街角にあった、ダイナーやカフェ、人々が自由に過ごす空気。',
+          historyP3: '「あんな場所を、高円寺につくりたい。」その想いは次第に大きくなり、周囲の反対さえも越えていった。',
+          historyP4: 'ニューヨークで集めたアンティーク家具や照明、ステンドグラスを運び込み、店は一から生まれ変わる。',
+          historyP5: 'そうして誕生したのが、「YonchoMe Cafe」。',
+          historyP6: '好きなものを信じ続けた時間が、今もこの空間の隅々に息づいている。',
+          ownerTheme: '「守るために変わる」',
+          ownerBody: 'この場所が、長年皆さんに愛されてきたように、<br>これからも変わらない\u201c温かさ\u201dを大切にしながら<br>新しい価値や喜びを届けていきたいと思っております。',
+          ownerSig: '代表\u3000石原徳幸',
+          filmingCta: '撮影・ロケのご相談は<a href="tel:0353771726">お電話</a>または店頭にて承っております。',
+          larcKicker: '－ YonchoMe Cafeが題材の楽曲 －',
+          larcBody: 'L\'Arc〜en〜Ciel の「The Fourth Avenue Cafe」は<br>HYDEさんが、当店を思い浮かべながら<br>歌詞を書いたとされている曲です。<br>テレビアニメ『るろうに剣心 -明治剣客浪漫譚-』<br>のエンディングテーマに起用されました。',
+          bdLead: '結婚式二次会、卒業・卒園のお祝い、誕生日会、歓送迎会など、<br>大切な日の場所として、ご利用いただいています。',
+          bdMeta: '<strong>30名〜</strong> 受付 &ensp;／&ensp; お一人様 <strong>¥5,000〜</strong><br>小学生\u3000半額 &ensp;／&ensp; 未就学児\u3000¥500<br>プロジェクター＋スクリーン\u3000¥5,000<br>マイク＋スピーカー\u3000¥3,000',
+          bdCasesText: '人数・ご予算・ご要望は、お気軽にご相談ください。<br>一緒に、その日だけの空間をつくります。',
+          bdContactLabel: 'ご相談はこちら',
+          filmingKicker: 'Filming Locations',
+          menuName1: 'デラックスワッフルセット', menuName2: 'クラシックバーガー', menuName3: '自家製ニューヨークチーズケーキ',
+          menuName4: 'クリームソーダ', menuName5: 'レモネード', menuName6: 'オリジナルブレンドコーヒー',
           infoBtnLunch: '【ランチ】平日オープンから15:00まで', infoBtnHappy: '【ハッピーアワー】平日15:00から18:00まで',
           infoBtnSmoke: '【喫煙情報】18:00までは喫煙ブース / 18:00以降はお席にて可',
           infoBtnParty: '【貸切・撮影のご相談】お気軽にお問い合わせください',
-          modalBodyLunch: '平日オープンから15:00までのランチ。パスタ2種、ボウル、プレート、オムレツをご用意しています。価格は1,350円。ミニサラダ、コーヒーまたは紅茶付きです。+150円でその他ドリンクに変更できます。パスタ・ライスは大盛り無料。ランチデザートは400円です。',
+          modalBodyLunch: 'パスタ２種・プレート・サンドからお選びいただけます。ミニサラダ＆ドリンク付き。税込1,350円。＋400円でデザートもお楽しみいただけます。平日オープンから15:00まで。',
           modalBodyHappy: 'ハッピーアワーは平日の15:00から18:00まで。夕方前の一杯を気軽に楽しめます。',
           modalBodyParty: '貸切パーティー、歓送迎会、二次会、ロケ・写真撮影など、用途に合わせてお気軽にお問い合わせください。人数や時間、内容に合わせてご相談可能です。お電話または店頭にて承っております。',
           bannerPartyTitle: '貸し切りパーティー', bannerPartyCta: 'プランを見る →',
@@ -1577,19 +2954,40 @@
           newsBody1: 'ウェブサイトをリニューアルいたしました。今後もYonchome Cafeをよろしくお願いいたします。',
           companyAbout: '会社概要', companyContact: 'お問い合わせ', companyLegal: '特定商取引に基づく表示', companyPrivacy: '個人情報保護方針',
           infoOpen: '平日 10:30 - 23:00<br />土日祝 11:30 - 23:00', infoReserveLabel: '予約・お問い合わせ',
-          infoPayment: '現金 / 電子決済 / 楽天ペイ / PayPay / 交通系ICカード / au PAY<br />クレジットカード / VISA / Mastercard / JCB / American Express',
+          infoPayment: '現金 / 電子決済 / 楽天ペイ<br />PayPay / 交通系ICカード / au PAY<br />クレジットカード / VISA<br />Mastercard / JCB<br />American Express',
           infoAddress: '〒166-0003<br />東京都杉並区高円寺南4丁目28-10<br />高円寺リリエンハイム 2F',
           modalPrev: '前へ', modalNext: '次へ', floatReserve: '電話で予約する',
         },
         en: {
-          navParty: 'Private Party', navRecruit: 'Recruit', navCompany: 'About', navReserve: 'Call',
+          navParty: 'Private Party', navRecruit: 'Recruit', navCompany: 'About', navReserve: 'Reserve',
           heroBannerPartyTitle: 'Private Party', heroBannerPartySub: 'From 20 guests / 3 plans',
           heroBannerShootTitle: 'Photography & Filming', heroBannerShootSub: 'Location & photo shoots / Inquiries welcome',
-          heroH1: 'Forty years of warmth.<br /><span class="hero-line-small">A second-floor café in Koenji.</span>',
-          msgPull1: 'Thanks to you, 40 years.', msgText1: 'It is thanks to every guest who chose this place and walked through our doors that we have been able to keep going.',
-          msgPull2: '"It calms me down to come here."<br>"It\'s reassuring that nothing has changed."',
-          msgText2: 'As trends shift and the city changes around us, those words have saved us again and again.',
-          msgText3: 'The flavors, the atmosphere, the warmth of conversation — these things grew naturally over 40 years and mean everything to us.',
+          heroLine1: '40 Years in Koenji.', heroLine2: 'Times change. This place doesn\'t.', heroLine3: 'Gather, talk, connect.',
+          heroAccess: '· 1 min walk from Koenji Station<br>· Private hire available<br>· Film shoots welcome',
+          msgPull: '"A place where people gather and hearts unwind."',
+          msgText1: 'Yonchome cafe is more than just a place to eat.',
+          msgText2: 'It\'s a space where people meet, talk, and naturally connect — where that kind of atmosphere is cherished.',
+          msgText3: 'Carrying forward the spirit built over 40 years, we continue to evolve — into a space that speaks to today.',
+          historyHeading: 'A Story Passed Down Across Forty Years.',
+          historyP1: 'Once, there was a café called "Chaya" here. A place that mirrored the spirit of its era, where many people gathered, talked, and watched over the everyday life of Koenji.',
+          historyP2: 'Then one day, founder Makoto Fujimura found himself unable to forget a scene in New York — the diners and cafés on Manhattan\'s street corners, the free and easy atmosphere of people living their lives.',
+          historyP3: '"I want to create a place like that in Koenji." That wish grew until it overcame even the objections of those around him.',
+          historyP4: 'Antique furniture, lighting, and stained glass collected in New York were brought in, and the shop was reborn from scratch.',
+          historyP5: 'And so, "YonchoMe Cafe" was born.',
+          historyP6: 'The time spent believing in what he loved lives on today in every corner of this space.',
+          ownerTheme: '"Change to preserve."',
+          ownerBody: 'Just as this place has long been loved by so many,<br>we will continue to cherish that unchanging warmth<br>while bringing new value and joy to all who visit.',
+          ownerSig: 'Owner: Noriyuki Ishihara',
+          filmingCta: 'For filming and location inquiries, please contact us by <a href="tel:0353771726">phone</a> or in person.',
+          larcKicker: '— A song inspired by YonchoMe Cafe —',
+          larcBody: '"The Fourth Avenue Cafe" by L\'Arc〜en〜Ciel<br>is said to be a song whose lyrics were written<br>by HYDE with our café in mind.<br>It was chosen as the ending theme<br>for the TV anime "Rurouni Kenshin."',
+          bdLead: 'Wedding after-parties, graduation celebrations, birthday parties, farewell gatherings —<br>we welcome you for the moments that matter.',
+          bdMeta: '<strong>30+</strong> guests min &ensp;/&ensp; from <strong>¥5,000</strong> per person<br>Elementary school children: half price &ensp;/&ensp; Preschoolers: ¥500<br>Projector + Screen: ¥5,000<br>Mic + Speaker: ¥3,000',
+          bdCasesText: 'Please feel free to consult us on group size, budget, and any requests.<br>Together, we\'ll create a space just for that day.',
+          bdContactLabel: 'Inquire here',
+          filmingKicker: 'Filming Locations',
+          menuName1: 'Deluxe Waffle Set', menuName2: 'Classic Burger', menuName3: 'Homemade NY Cheesecake',
+          menuName4: 'Cream Soda', menuName5: 'Lemonade', menuName6: 'Original Blend Coffee',
           infoBtnLunch: '[Lunch] Weekdays until 3:00 PM', infoBtnHappy: '[Happy Hour] Weekdays 3:00 – 6:00 PM',
           infoBtnSmoke: '[Smoking] Booth until 6 PM / Table smoking after 6 PM',
           infoBtnParty: '[Private Party & Filming] Inquiries welcome',
@@ -1613,11 +3011,32 @@
           navParty: '包场', navRecruit: '招聘', navCompany: '关于我们', navReserve: '电话预约',
           heroBannerPartyTitle: '包场派对', heroBannerPartySub: '20人起 / 3种套餐',
           heroBannerShootTitle: '拍摄场地租借', heroBannerShootSub: '外景・摄影拍摄 / 欢迎咨询',
-          heroH1: '感谢您的支持，创业40年。<br /><span class="hero-line-small">高円寺二楼的咖啡厅＆餐厅</span>',
-          msgPull1: '感谢您的支持，创业40年。', msgText1: '正是因为每一位选择来到这里的顾客，我们才能坚持到今天。',
-          msgPull2: '「来这里就会平静下来」<br>「一成不变让人安心」',
-          msgText2: '时代变迁，街景和生活方式都在改变，这些话语多次给了我们前行的力量。',
-          msgText3: '多年来深受喜爱的味道、氛围、恰到好处的交流距离——这些在40年间自然形成，是我们最珍视的东西。',
+          heroLine1: '在高圆寺的40年。', heroLine2: '时代在变，这里不变。', heroLine3: '相聚、交流、连接。',
+          heroAccess: '・距高圆寺站步行1分钟<br>・可整场包场<br>・欢迎拍摄取景',
+          msgPull: '「让人聚集、心灵舒展的地方」',
+          msgText1: 'Yonchome cafe不仅仅是一个用餐的地方。',
+          msgText2: '这里是一个人与人相遇、交流，自然而然产生联结的空间——我们珍视这种"氛围"。',
+          msgText3: '继承这个延续了40年以上的地方所承载的情怀，与时俱进，成为这个时代所需要的空间。',
+          historyHeading: '跨越四十年，代代相传的故事。',
+          historyP1: '曾经，这里有一家名为「Chaya」的咖啡店。映照着时代气息，许多人在这里相聚、交谈，守望着高圆寺的日常。',
+          historyP2: '某天，创始人藤村诚在纽约看到的景色让他久久无法忘怀。曼哈顿街角的餐厅与咖啡馆，人们自由惬意的生活气息。',
+          historyP3: '「我想在高圆寺创造这样的地方。」这个心愿逐渐壮大，最终超越了周围人的反对。',
+          historyP4: '从纽约带回的古董家具、灯具和彩色玻璃被一一运入，店铺从头焕然一新。',
+          historyP5: '就这样，「YonchoMe Cafe」诞生了。',
+          historyP6: '那段坚信所爱之物的时光，至今仍在这个空间的每一个角落中呼吸。',
+          ownerTheme: '「为了守护而改变」',
+          ownerBody: '就像这个地方长久以来被大家所喜爱一样，<br>我们将继续珍视那份不变的"温暖"，<br>同时为大家带来新的价值与喜悦。',
+          ownerSig: '代表　石原德幸',
+          filmingCta: '拍摄取景咨询请<a href="tel:0353771726">致电</a>或到店咨询。',
+          larcKicker: '— 以YonchoMe Cafe为题材的歌曲 —',
+          larcBody: 'L\'Arc〜en〜Ciel的「The Fourth Avenue Cafe」<br>据说是HYDE以本店为灵感创作歌词的一首歌。<br>被选为TV动画《浪客剑心 -明治剑客浪漫谭-》<br>的片尾曲。',
+          bdLead: '婚礼二次会、毕业庆典、生日派对、欢送会等，<br>欢迎在重要日子里使用我们的场地。',
+          bdMeta: '<strong>30人起</strong>受理 &ensp;/&ensp; 每人 <strong>¥5,000起</strong><br>小学生半价 &ensp;/&ensp; 学龄前儿童¥500<br>投影仪+屏幕 ¥5,000<br>麦克风+音箱 ¥3,000',
+          bdCasesText: '人数、预算、需求，请随时与我们商量。<br>我们将一起为您打造专属那一天的空间。',
+          bdContactLabel: '点击咨询',
+          filmingKicker: '拍摄取景地',
+          menuName1: '豪华华夫饼套餐', menuName2: '经典汉堡', menuName3: '自制纽约芝士蛋糕',
+          menuName4: '奶油苏打', menuName5: '柠檬水', menuName6: '原创混合咖啡',
           infoBtnLunch: '【午餐】工作日营业开始至15:00', infoBtnHappy: '【欢乐时光】工作日15:00至18:00',
           infoBtnSmoke: '【吸烟信息】18:00前吸烟区 / 18:00后可在座位吸烟',
           infoBtnParty: '【包场・拍摄咨询】欢迎随时询问',
@@ -1641,11 +3060,32 @@
           navParty: '包場', navRecruit: '招募', navCompany: '關於我們', navReserve: '電話預約',
           heroBannerPartyTitle: '包場派對', heroBannerPartySub: '20人起 / 3種方案',
           heroBannerShootTitle: '拍攝場地租借', heroBannerShootSub: '外景・攝影拍攝 / 歡迎諮詢',
-          heroH1: '感謝您的支持，創業40年。<br /><span class="hero-line-small">高圓寺二樓的咖啡廳＆餐廳</span>',
-          msgPull1: '感謝您的支持，創業40年。', msgText1: '正是因為每一位選擇來到這裡的顧客，我們才能堅持到今天。',
-          msgPull2: '「來這裡就會平靜下來」<br>「一成不變讓人安心」',
-          msgText2: '時代變遷，街景和生活方式都在改變，這些話語多次給了我們前行的力量。',
-          msgText3: '多年來深受喜愛的味道、氛圍、恰到好處的交流距離——這些在40年間自然形成，是我們最珍視的東西。',
+          heroLine1: '在高圓寺的40年。', heroLine2: '時代在變，這裡不變。', heroLine3: '相聚、交流、連結。',
+          heroAccess: '・距高圓寺站步行1分鐘<br>・可整場包場<br>・歡迎拍攝取景',
+          msgPull: '「讓人聚集、心靈舒展的地方」',
+          msgText1: 'Yonchome cafe不僅僅是一個用餐的地方。',
+          msgText2: '這裡是一個人與人相遇、交流，自然而然產生連結的空間——我們珍視這種「氛圍」。',
+          msgText3: '繼承這個延續了40年以上的地方所承載的情懷，與時俱進，成為這個時代所需要的空間。',
+          historyHeading: '跨越四十年，代代相傳的故事。',
+          historyP1: '曾經，這裡有一家名為「Chaya」的咖啡店。映照著時代氣息，許多人在這裡相聚、交談，守望著高圓寺的日常。',
+          historyP2: '某天，創始人藤村誠在紐約看到的景色讓他久久無法忘懷。曼哈頓街角的餐廳與咖啡館，人們自由惬意的生活氣息。',
+          historyP3: '「我想在高圓寺創造這樣的地方。」這個心願逐漸壯大，最終超越了周圍人的反對。',
+          historyP4: '從紐約帶回的古董家具、燈具和彩色玻璃被一一運入，店鋪從頭煥然一新。',
+          historyP5: '就這樣，「YonchoMe Cafe」誕生了。',
+          historyP6: '那段堅信所愛之物的時光，至今仍在這個空間的每一個角落中呼吸。',
+          ownerTheme: '「為了守護而改變」',
+          ownerBody: '就像這個地方長久以來被大家所喜愛一樣，<br>我們將繼續珍視那份不變的「溫暖」，<br>同時為大家帶來新的價值與喜悅。',
+          ownerSig: '代表　石原德幸',
+          filmingCta: '拍攝取景諮詢請<a href="tel:0353771726">致電</a>或到店諮詢。',
+          larcKicker: '— 以YonchoMe Cafe為題材的歌曲 —',
+          larcBody: 'L\'Arc〜en〜Ciel的「The Fourth Avenue Cafe」<br>據說是HYDE以本店為靈感創作歌詞的一首歌。<br>被選為TV動畫《浪客劍心 -明治劍客浪漫譚-》<br>的片尾曲。',
+          bdLead: '婚禮二次會、畢業慶典、生日派對、歡送會等，<br>歡迎在重要日子裡使用我們的場地。',
+          bdMeta: '<strong>30人起</strong>受理 &ensp;/&ensp; 每人 <strong>¥5,000起</strong><br>小學生半價 &ensp;/&ensp; 學齡前兒童¥500<br>投影機+螢幕 ¥5,000<br>麥克風+音箱 ¥3,000',
+          bdCasesText: '人數、預算、需求，請隨時與我們商量。<br>我們將一起為您打造專屬那一天的空間。',
+          bdContactLabel: '點擊諮詢',
+          filmingKicker: '拍攝取景地',
+          menuName1: '豪華鬆餅套餐', menuName2: '經典漢堡', menuName3: '自製紐約芝士蛋糕',
+          menuName4: '奶油蘇打', menuName5: '檸檬水', menuName6: '原創混合咖啡',
           infoBtnLunch: '【午餐】工作日營業開始至15:00', infoBtnHappy: '【歡樂時光】工作日15:00至18:00',
           infoBtnSmoke: '【吸菸資訊】18:00前吸菸區 / 18:00後可在座位吸菸',
           infoBtnParty: '【包場・拍攝諮詢】歡迎隨時詢問',
@@ -1669,11 +3109,32 @@
           navParty: '전세', navRecruit: '채용', navCompany: '회사 정보', navReserve: '전화 예약',
           heroBannerPartyTitle: '전세 파티', heroBannerPartySub: '20명~ / 3가지 플랜',
           heroBannerShootTitle: '촬영 이용 안내', heroBannerShootSub: '로케이션・사진 촬영 / 문의 환영',
-          heroH1: '덕분에 창업 40년。<br /><span class="hero-line-small">고엔지 2층의 카페 &amp; 다이닝</span>',
-          msgPull1: '덕분에 창업 40년.', msgText1: '이 곳을 선택하여 발걸음을 해주신 손님들 덕분에 여기까지 이어올 수 있었습니다.',
-          msgPull2: '「여기 오면 마음이 편안해져」<br>「변하지 않아서 안심이 돼」',
-          msgText2: '유행이 바뀌고, 거리 풍경도, 사람들의 생활방식도 변해가는 가운데, 그런 말씀들이 몇 번이나 저희를 구해주었습니다.',
-          msgText3: '오랫동안 사랑받아온 맛, 공기, 대화의 거리감—이것들은 40년 동안 자연스럽게 자라난, 무엇보다 소중한 것들입니다.',
+          heroLine1: '고엔지에서 40년。', heroLine2: '시대는 변해도, 이 곳은 변하지 않습니다。', heroLine3: '모이고, 이야기하고, 연결되다。',
+          heroAccess: '・고엔지역 도보 1분<br>・단체 대관 가능<br>・촬영 이용 가능',
+          msgPull: '「사람이 모이고, 마음이 풀어지는 곳」',
+          msgText1: 'Yonchome cafe는 단순히 식사를 하는 곳이 아닙니다。',
+          msgText2: '사람과 사람이 만나고, 대화하고, 자연스럽게 연결되는 — 그런 \'분위기\'를 소중히 여기는 공간입니다。',
+          msgText3: '40년 이상 이어온 이 장소에 담긴 마음을 이어받으며, 시대에 맞게 변화하고, 지금 이 시대에 필요한 공간으로。',
+          historyHeading: '사십 년을 넘어, 이어져 내려오는 이야기。',
+          historyP1: '예전에 이 자리에는 「Chaya」라는 찻집이 있었습니다。시대의 공기를 담으며 많은 사람들이 모이고, 이야기하며, 고엔지의 일상을 지켜온 곳。',
+          historyP2: '어느 날, 창업자 후지무라 마코토는 뉴욕에서 본 풍경을 잊을 수 없게 됩니다。맨해튼 골목의 다이너와 카페, 사람들이 자유롭게 시간을 보내는 분위기。',
+          historyP3: '「그런 곳을 고엔지에 만들고 싶다.」그 꿈은 점점 커져, 주변의 반대도 뛰어넘었습니다。',
+          historyP4: '뉴욕에서 모은 앤틱 가구와 조명, 스테인드글라스를 들여와, 가게는 처음부터 새로 태어났습니다。',
+          historyP5: '이렇게 해서 탄생한 것이 「YonchoMe Cafe」。',
+          historyP6: '좋아하는 것을 믿고 걸어온 시간이, 지금도 이 공간 곳곳에 살아 숨쉬고 있습니다。',
+          ownerTheme: '「지키기 위해 변한다」',
+          ownerBody: '이 장소가 오랫동안 여러분에게 사랑받아온 것처럼,<br>앞으로도 변하지 않는 \'따뜻함\'을 소중히 하면서<br>새로운 가치와 기쁨을 전달하고 싶습니다。',
+          ownerSig: '대표　이시하라 노리유키',
+          filmingCta: '촬영・로케이션 상담은 <a href="tel:0353771726">전화</a> 또는 방문으로 받고 있습니다。',
+          larcKicker: '— YonchoMe Cafe를 소재로 한 곡 —',
+          larcBody: 'L\'Arc〜en〜Ciel의 「The Fourth Avenue Cafe」는<br>HYDE가 이 가게를 떠올리며 가사를 썼다고<br>알려진 곡입니다。<br>TV 애니메이션 《루로니 겐신》의<br>엔딩 테마로 사용되었습니다。',
+          bdLead: '결혼식 2차, 졸업 축하, 생일 파티, 환송영회 등,<br>소중한 날의 장소로 이용해 주세요。',
+          bdMeta: '<strong>30명~</strong> 접수 &ensp;/&ensp; 1인당 <strong>¥5,000~</strong><br>초등학생 반값 &ensp;/&ensp; 미취학 아동 ¥500<br>프로젝터+스크린 ¥5,000<br>마이크+스피커 ¥3,000',
+          bdCasesText: '인원, 예산, 요청사항은 편하게 상담해 주세요。<br>함께, 그날만을 위한 공간을 만들겠습니다。',
+          bdContactLabel: '상담하기',
+          filmingKicker: '촬영 로케이션',
+          menuName1: '디럭스 와플 세트', menuName2: '클래식 버거', menuName3: '홈메이드 뉴욕 치즈케이크',
+          menuName4: '크림 소다', menuName5: '레모네이드', menuName6: '오리지널 블렌드 커피',
           infoBtnLunch: '【런치】평일 오픈부터 15:00까지', infoBtnHappy: '【해피아워】평일 15:00~18:00',
           infoBtnSmoke: '【흡연 정보】18:00까지 흡연 부스 / 18:00 이후 자리에서 가능',
           infoBtnParty: '【전세・촬영 상담】편하게 문의해 주세요',
@@ -1739,12 +3200,55 @@
       langSwitcher.querySelector('.lang-dropdown').addEventListener('click', (e) => e.stopPropagation());
 
       // Lang option click
+      const langLabels = { ja: '日本語', en: 'English', zhcn: '中文（簡体字）', zhtw: '中文（繁体字）', ko: '한국어' };
       langSwitcher.querySelectorAll('.lang-opt').forEach(opt => {
         opt.addEventListener('click', () => {
           applyLang(opt.dataset.lang);
+          langBtn.childNodes[0].textContent = (langLabels[opt.dataset.lang] || 'Language') + ' ';
           langBtn.setAttribute('aria-expanded', 'false');
         });
       });
+      // ── Menu Lightbox ──
+      (function () {
+        const lightbox = document.getElementById('menu-lightbox');
+        const lbImg    = lightbox.querySelector('.menu-lightbox-img');
+        const lbName   = lightbox.querySelector('.menu-lightbox-name');
+        const items    = Array.from(document.querySelectorAll('.popular-menu-item'));
+        let current    = 0;
+
+        function show(index) {
+          current = (index + items.length) % items.length;
+          const item = items[current];
+          const img  = item.querySelector('.popular-menu-img img');
+          if (!img) return;
+          lbImg.src     = img.src;
+          lbImg.alt     = img.alt;
+          lbName.textContent = item.querySelector('.popular-menu-name').textContent.trim();
+          lightbox.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function close() {
+          lightbox.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
+
+        items.forEach((item, i) => {
+          item.querySelector('.popular-menu-img').addEventListener('click', () => show(i));
+        });
+
+        lightbox.querySelector('.menu-lightbox-backdrop').addEventListener('click', close);
+        lightbox.querySelector('.menu-lightbox-close').addEventListener('click', close);
+        lightbox.querySelector('.menu-lightbox-prev').addEventListener('click', () => show(current - 1));
+        lightbox.querySelector('.menu-lightbox-next').addEventListener('click', () => show(current + 1));
+
+        document.addEventListener('keydown', (e) => {
+          if (lightbox.getAttribute('aria-hidden') === 'true') return;
+          if (e.key === 'Escape')      close();
+          if (e.key === 'ArrowLeft')   show(current - 1);
+          if (e.key === 'ArrowRight')  show(current + 1);
+        });
+      })();
     </script>
   </body>
 </html>
