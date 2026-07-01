@@ -2355,9 +2355,27 @@
           max-height: 320px;
         }
         .hv-title-area {
-          padding: 7% 6% 5% 6%;
-          flex-direction: row;
+          padding: 6% 6% 5% 6%;
+          flex-direction: column;
+          align-items: flex-start;
           justify-content: flex-start;
+          gap: 0.6em;
+        }
+        /* 縦書きHISTORYラベルを非表示 */
+        .hv-label-group {
+          display: none;
+        }
+        /* 見出し上に横書きで HISTORY を表示 */
+        .hv-head-col::before {
+          content: 'HISTORY';
+          display: block;
+          font-family: 'Manrope', Arial, sans-serif;
+          font-size: 0.62rem;
+          font-weight: 700;
+          letter-spacing: 0.35em;
+          color: #b8893a;
+          text-transform: uppercase;
+          margin-bottom: 0.5em;
         }
         .hv-heading {
           writing-mode: horizontal-tb;
