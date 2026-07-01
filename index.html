@@ -2010,6 +2010,26 @@
         line-height: 1.9;
         margin-top: 10px;
       }
+      .popular-menu-name-row {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .popular-menu-name-row .popular-menu-name {
+        margin-top: 0;
+        flex: 1;
+      }
+      .popular-menu-price {
+        font-family: var(--font-body);
+        font-size: 0.82rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
       @media (max-width: 860px) {
         .popular-menu-grid { grid-template-columns: repeat(2, 1fr); column-gap: 20px; row-gap: 36px; }
       }
@@ -2749,32 +2769,46 @@
         <div class="popular-menu-grid">
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><img src="./IMG_9802.PNG" alt="デラックスワッフルセット" loading="lazy" /></div>
-            <p class="popular-menu-name" data-i18n="menuName1">デラックスワッフルセット</p>
+            <div class="popular-menu-name-row">
+              <p class="popular-menu-name" data-i18n="menuName1">デラックスワッフルセット</p>
+            </div>
             <p class="popular-menu-desc">外は香ばしく、中はふんわり焼き上げた手作りワッフルに、ジューシーなソーセージ、ベーコン、目玉焼きを添えたアメリカでは定番のワッフルセット。</p>
           </div>
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><!-- 写真 --></div>
-            <p class="popular-menu-name" data-i18n="menuName2">クラシックバーガー</p>
+            <div class="popular-menu-name-row">
+              <p class="popular-menu-name" data-i18n="menuName2">クラシックバーガー</p>
+            </div>
             <p class="popular-menu-desc">香ばしく焼き上げた牛肉100％のジューシーなパティの旨みが広がるクラシックバーガー。素材の美味しさが引き立つ定番のバーガーです。</p>
           </div>
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><!-- 写真 --></div>
-            <p class="popular-menu-name" data-i18n="menuName3">自家製ニューヨークチーズケーキ</p>
+            <div class="popular-menu-name-row">
+              <p class="popular-menu-name" data-i18n="menuName3">自家製ニューヨークチーズケーキ</p>
+              <span class="popular-menu-price">¥950</span>
+            </div>
             <p class="popular-menu-desc">クリームチーズを贅沢に使用し、しっとりとなめらかな口溶けに焼き上げました。当店のスタッフがレシピを考案した自家製NYチーズケーキ。ぜひご賞味ください。</p>
           </div>
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><!-- 写真 --></div>
-            <p class="popular-menu-name" data-i18n="menuName4">クリームソーダ</p>
+            <div class="popular-menu-name-row">
+              <p class="popular-menu-name" data-i18n="menuName4">クリームソーダ</p>
+            </div>
             <p class="popular-menu-desc">色とりどりのソーダにバニラアイスとチェリーを添えた、どこか懐かしいクリームソーダ。</p>
           </div>
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><!-- 写真 --></div>
-            <p class="popular-menu-name" data-i18n="menuName5">レモネード</p>
-            <p class="popular-menu-desc">レモンの皮を一つひとつ丁寧にすりおろし、果汁とともに仕込んだ自家製レモネード。レモン本来の豊かな香りとはちみつのやさしい甘さが楽しめる一杯です。</p>
+            <div class="popular-menu-name-row">
+              <p class="popular-menu-name" data-i18n="menuName5">アメリカンサンデー</p>
+              <span class="popular-menu-price">¥780</span>
+            </div>
+            <p class="popular-menu-desc">心ときめく王道のアメリカンサンデー。シリアルのザクザク感とミルキーなアイス。チョコレートソースとふんわり生クリーム、仕上げはカラフルなチョコスプレーとチェリー。</p>
           </div>
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><!-- 写真 --></div>
-            <p class="popular-menu-name" data-i18n="menuName6">オリジナルブレンドコーヒー</p>
+            <div class="popular-menu-name-row">
+              <p class="popular-menu-name" data-i18n="menuName6">オリジナルブレンドコーヒー</p>
+            </div>
             <p class="popular-menu-desc">豊かな香りと深みのあるコク。ゆっくりと流れる時間とともにお楽しみください。</p>
           </div>
         </div>
@@ -3345,7 +3379,7 @@
           bdContactLabel: 'ご相談はこちら',
           filmingKicker: 'Filming Locations',
           menuName1: 'デラックスワッフルセット', menuName2: 'クラシックバーガー', menuName3: '自家製ニューヨークチーズケーキ',
-          menuName4: 'クリームソーダ', menuName5: 'レモネード', menuName6: 'オリジナルブレンドコーヒー',
+          menuName4: 'クリームソーダ', menuName5: 'アメリカンサンデー', menuName6: 'オリジナルブレンドコーヒー',
           infoBtnLunch: '【ランチ】平日オープンから15:00まで', infoBtnHappy: '【ハッピーアワー】平日15:00から18:00まで',
           infoBtnSmoke: '【喫煙情報】18:00までは喫煙ブース / 18:00以降はお席にて可',
           infoBtnParty: '【貸切・撮影のご相談】お気軽にお問い合わせください',
@@ -3394,7 +3428,7 @@
           bdContactLabel: 'Inquire here',
           filmingKicker: 'Filming Locations',
           menuName1: 'Deluxe Waffle Set', menuName2: 'Classic Burger', menuName3: 'Homemade NY Cheesecake',
-          menuName4: 'Cream Soda', menuName5: 'Lemonade', menuName6: 'Original Blend Coffee',
+          menuName4: 'Cream Soda', menuName5: 'American Sundae', menuName6: 'Original Blend Coffee',
           infoBtnLunch: '[Lunch] Weekdays until 3:00 PM', infoBtnHappy: '[Happy Hour] Weekdays 3:00 – 6:00 PM',
           infoBtnSmoke: '[Smoking] Booth until 6 PM / Table smoking after 6 PM',
           infoBtnParty: '[Private Party & Filming] Inquiries welcome',
@@ -3443,7 +3477,7 @@
           bdContactLabel: '点击咨询',
           filmingKicker: '拍摄取景地',
           menuName1: '豪华华夫饼套餐', menuName2: '经典汉堡', menuName3: '自制纽约芝士蛋糕',
-          menuName4: '奶油苏打', menuName5: '柠檬水', menuName6: '原创混合咖啡',
+          menuName4: '奶油苏打', menuName5: '美式圣代', menuName6: '原创混合咖啡',
           infoBtnLunch: '【午餐】工作日营业开始至15:00', infoBtnHappy: '【欢乐时光】工作日15:00至18:00',
           infoBtnSmoke: '【吸烟信息】18:00前吸烟区 / 18:00后可在座位吸烟',
           infoBtnParty: '【包场・拍摄咨询】欢迎随时询问',
@@ -3492,7 +3526,7 @@
           bdContactLabel: '點擊諮詢',
           filmingKicker: '拍攝取景地',
           menuName1: '豪華鬆餅套餐', menuName2: '經典漢堡', menuName3: '自製紐約芝士蛋糕',
-          menuName4: '奶油蘇打', menuName5: '檸檬水', menuName6: '原創混合咖啡',
+          menuName4: '奶油蘇打', menuName5: '美式聖代', menuName6: '原創混合咖啡',
           infoBtnLunch: '【午餐】工作日營業開始至15:00', infoBtnHappy: '【歡樂時光】工作日15:00至18:00',
           infoBtnSmoke: '【吸菸資訊】18:00前吸菸區 / 18:00後可在座位吸菸',
           infoBtnParty: '【包場・拍攝諮詢】歡迎隨時詢問',
@@ -3541,7 +3575,7 @@
           bdContactLabel: '상담하기',
           filmingKicker: '촬영 로케이션',
           menuName1: '디럭스 와플 세트', menuName2: '클래식 버거', menuName3: '홈메이드 뉴욕 치즈케이크',
-          menuName4: '크림 소다', menuName5: '레모네이드', menuName6: '오리지널 블렌드 커피',
+          menuName4: '크림 소다', menuName5: '아메리칸 선데', menuName6: '오리지널 블렌드 커피',
           infoBtnLunch: '【런치】평일 오픈부터 15:00까지', infoBtnHappy: '【해피아워】평일 15:00~18:00',
           infoBtnSmoke: '【흡연 정보】18:00까지 흡연 부스 / 18:00 이후 자리에서 가능',
           infoBtnParty: '【전세・촬영 상담】편하게 문의해 주세요',
