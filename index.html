@@ -2030,6 +2030,25 @@
         white-space: nowrap;
         flex-shrink: 0;
       }
+      .popular-menu-variants {
+        list-style: none;
+        padding: 0;
+        margin: 8px 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .popular-menu-variants li {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+      }
+      .popular-menu-variant-name {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 0.82rem;
+        color: rgba(237, 224, 196, 0.55);
+        letter-spacing: 0.06em;
+      }
       @media (max-width: 860px) {
         .popular-menu-grid { grid-template-columns: repeat(2, 1fr); column-gap: 20px; row-gap: 36px; }
       }
@@ -2771,6 +2790,7 @@
             <div class="popular-menu-img"><img src="./IMG_9802.PNG" alt="デラックスワッフルセット" loading="lazy" /></div>
             <div class="popular-menu-name-row">
               <p class="popular-menu-name" data-i18n="menuName1">デラックスワッフルセット</p>
+              <span class="popular-menu-price">¥1,550</span>
             </div>
             <p class="popular-menu-desc">外は香ばしく、中はふんわり焼き上げた手作りワッフルに、ジューシーなソーセージ、ベーコン、目玉焼きを添えたアメリカでは定番のワッフルセット。</p>
           </div>
@@ -2778,6 +2798,7 @@
             <div class="popular-menu-img"><!-- 写真 --></div>
             <div class="popular-menu-name-row">
               <p class="popular-menu-name" data-i18n="menuName2">クラシックバーガー</p>
+              <span class="popular-menu-price">¥1,350</span>
             </div>
             <p class="popular-menu-desc">香ばしく焼き上げた牛肉100％のジューシーなパティの旨みが広がるクラシックバーガー。素材の美味しさが引き立つ定番のバーガーです。</p>
           </div>
@@ -2795,6 +2816,11 @@
               <p class="popular-menu-name" data-i18n="menuName4">クリームソーダ</p>
             </div>
             <p class="popular-menu-desc">色とりどりのソーダにバニラアイスとチェリーを添えた、どこか懐かしいクリームソーダ。</p>
+            <ul class="popular-menu-variants">
+              <li><span class="popular-menu-variant-name">エメラルド</span><span class="popular-menu-price">¥750</span></li>
+              <li><span class="popular-menu-variant-name">サファイア</span><span class="popular-menu-price">¥850</span></li>
+              <li><span class="popular-menu-variant-name">トパーズ</span><span class="popular-menu-price">¥850</span></li>
+            </ul>
           </div>
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><!-- 写真 --></div>
@@ -2808,6 +2834,7 @@
             <div class="popular-menu-img"><!-- 写真 --></div>
             <div class="popular-menu-name-row">
               <p class="popular-menu-name" data-i18n="menuName6">オリジナルブレンドコーヒー</p>
+              <span class="popular-menu-price">¥600</span>
             </div>
             <p class="popular-menu-desc">豊かな香りと深みのあるコク。ゆっくりと流れる時間とともにお楽しみください。</p>
           </div>
