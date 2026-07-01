@@ -1973,6 +1973,26 @@ img {
     gap: 14px;
   }
 
+  /* Contact popup: align to right edge on mobile */
+  .contact-popup {
+    left: auto;
+    right: 0;
+    transform: translateY(-6px);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    white-space: normal;
+    min-width: 220px;
+  }
+  .contact-popup::before {
+    left: auto;
+    right: 16px;
+    transform: none;
+  }
+  .company-nav-link--contact[aria-expanded="true"] .contact-popup {
+    transform: translateY(0);
+  }
+
   .site-logo {
     width: 140px;
   }
