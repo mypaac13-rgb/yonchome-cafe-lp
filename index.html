@@ -1548,7 +1548,7 @@
       }
       .hv-heading {
         writing-mode: vertical-rl;
-        font-family: 'Zen Old Mincho', serif;
+        font-family: 'Shippori Mincho', serif;
         font-size: clamp(2.4rem, 5.5vh, 4.8rem);
         font-weight: 400;
         line-height: 1.4;
@@ -2184,6 +2184,30 @@
         .popular-menu-section { padding-top: 72px; }
         .history-section    { padding-top: 72px; }
 
+        /* Owner message */
+        .owner-msg-theme {
+          font-size: clamp(1.4rem, 6.5vw, 1.9rem);
+          letter-spacing: 0.05em;
+          white-space: nowrap;
+          margin: 0 0 32px;
+        }
+        .owner-msg-body {
+          line-height: 2.0;
+          letter-spacing: 0.03em;
+          text-align: left;
+        }
+        .owner-msg-inner {
+          padding: 0 20px;
+        }
+
+        /* Message section text fix */
+        .message-body {
+          padding: 0 4px;
+        }
+        .message-text {
+          word-break: break-all;
+        }
+
         /* Menu lightbox arrows */
         .menu-lightbox-prev { left: 4px; padding: 16px 12px; }
         .menu-lightbox-next { right: 4px; padding: 16px 12px; }
@@ -2499,7 +2523,7 @@
       <section class="popular-menu-section section-shell" id="popular-menu">
         <div class="anim-up" style="margin-bottom:34px;display:flex;align-items:baseline;gap:1.2em;">
           <h2 style="font-family:var(--font-body);font-size:clamp(1rem,1.6vw,1.4rem);font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--text);margin:0;">MENU</h2>
-          <span style="font-family:'Yomogi',cursive;font-size:clamp(0.95rem,1.4vw,1.2rem);color:var(--text);opacity:0.7;letter-spacing:0.05em;font-weight:400;">当店の人気メニュー</span>
+          <span style="font-family:'Shippori Mincho',serif;font-size:clamp(0.95rem,1.4vw,1.2rem);color:var(--text);opacity:0.7;letter-spacing:0.05em;font-weight:400;">当店の人気メニュー</span>
         </div>
         <div class="popular-menu-grid">
           <div class="popular-menu-item anim-up">
@@ -2525,12 +2549,12 @@
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><!-- 写真 --></div>
             <p class="popular-menu-name" data-i18n="menuName5">レモネード</p>
-            <p class="popular-menu-desc"></p>
+            <p class="popular-menu-desc">レモンの皮を一つひとつ丁寧にすりおろし、果汁とともに仕込んだ自家製レモネード。レモン本来の豊かな香りとはちみつのやさしい甘さが楽しめる一杯です。</p>
           </div>
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><!-- 写真 --></div>
             <p class="popular-menu-name" data-i18n="menuName6">オリジナルブレンドコーヒー</p>
-            <p class="popular-menu-desc"></p>
+            <p class="popular-menu-desc">豊かな香りと深みのあるコク。ゆっくりと流れる時間とともにお楽しみください。</p>
           </div>
         </div>
       </section>
