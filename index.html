@@ -3032,8 +3032,8 @@
         setTimeout(() => el.classList.add("is-visible"), 0);
       });
 
-      // ── Loader skip if already seen ──
-      if (sessionStorage.getItem('loaderSeen')) {
+      // ── Loader skip if already seen or returning from subpage ──
+      if (sessionStorage.getItem('loaderSeen') || new URLSearchParams(location.search).get('skip')) {
         const loader = document.querySelector('.page-loader');
         if (loader) { loader.style.display = 'none'; }
         document.querySelectorAll('.hero-copy .hero-copy-inner > *, .hero-letter-line, .hero-letter-access, .hero-letter-logo').forEach(el => {
