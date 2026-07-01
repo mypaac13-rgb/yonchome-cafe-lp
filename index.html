@@ -1847,9 +1847,15 @@
       }
       @media (max-width: 560px) {
         .history-section { padding: 80px 0 0; }
-        .history-gallery-outer { height: 280px; }
+        .history-gallery-outer { height: 220px; }
         .history-closing-main { font-size: 1.4rem; }
         .history-closing-scene { padding: 70px 20px; min-height: 70vh; }
+        /* hg-itemのインラインstyleをoverrideしてモバイルで収まるサイズに */
+        .hg-item {
+          width: 140px !important;
+          height: 190px !important;
+          margin-top: 15px !important;
+        }
       }
       .store-section { padding-top: 120px; }
 
