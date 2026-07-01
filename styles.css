@@ -1843,17 +1843,20 @@ img {
     display: none;
   }
 
-  .section-shell,
-  .hero-media {
+  .section-shell {
     width: min(100vw - 24px, 1320px);
   }
 
+  .hero-media {
+    width: 100%;
+  }
+
   .hero-section {
-    padding-top: 86px;
+    padding-top: 0;
   }
 
   .photo-panel-hero {
-    min-height: 100svh;
+    min-height: 65svh;
   }
 
   .hero-copy {
