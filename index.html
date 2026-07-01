@@ -1997,20 +1997,11 @@
         cursor: pointer;
       }
       .popular-menu-desc {
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
         font-family: 'Shippori Mincho', serif;
         font-size: 0.82rem;
         color: var(--muted);
         letter-spacing: 0.04em;
         line-height: 1.9;
-        margin: 0;
-        transition: max-height 0.4s ease, opacity 0.4s ease, margin 0.4s ease;
-      }
-      .popular-menu-item.is-open .popular-menu-desc {
-        max-height: 200px;
-        opacity: 1;
         margin-top: 10px;
       }
       @media (max-width: 860px) {
@@ -2519,12 +2510,12 @@
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><!-- 写真 --></div>
             <p class="popular-menu-name" data-i18n="menuName2">クラシックバーガー</p>
-            <p class="popular-menu-desc"></p>
+            <p class="popular-menu-desc">香ばしく焼き上げた牛肉100％のジューシーなパティの旨みが広がるクラシックバーガー。素材の美味しさが引き立つ定番のバーガーです。</p>
           </div>
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><!-- 写真 --></div>
             <p class="popular-menu-name" data-i18n="menuName3">自家製ニューヨークチーズケーキ</p>
-            <p class="popular-menu-desc"></p>
+            <p class="popular-menu-desc">クリームチーズを贅沢に使用し、しっとりとなめらかな口溶けに焼き上げました。当店のスタッフがレシピを考案した自家製NYチーズケーキ。ぜひご賞味ください。</p>
           </div>
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><!-- 写真 --></div>
@@ -3353,19 +3344,7 @@
         }
 
         items.forEach((item, i) => {
-          item.querySelector('.popular-menu-img').addEventListener('click', () => {
-            const desc = item.querySelector('.popular-menu-desc');
-            if (desc && desc.textContent.trim()) {
-              item.classList.toggle('is-open');
-            } else {
-              show(i);
-            }
-          });
-          const nameEl = item.querySelector('.popular-menu-name');
-          if (nameEl) nameEl.addEventListener('click', () => {
-            const desc = item.querySelector('.popular-menu-desc');
-            if (desc && desc.textContent.trim()) item.classList.toggle('is-open');
-          });
+          item.querySelector('.popular-menu-img').addEventListener('click', () => show(i));
         });
 
         lightbox.querySelector('.menu-lightbox-backdrop').addEventListener('click', close);
