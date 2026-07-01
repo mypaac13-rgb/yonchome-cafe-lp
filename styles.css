@@ -1546,8 +1546,8 @@ img {
 .contact-popup {
   position: absolute;
   top: calc(100% + 10px);
-  left: 50%;
-  transform: translateX(-50%) translateY(-6px);
+  right: 0;
+  transform: translateY(-6px);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1574,7 +1574,7 @@ img {
 
 .company-nav-link--contact[aria-expanded="true"] .contact-popup {
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  transform: translateY(0);
   pointer-events: auto;
 }
 
