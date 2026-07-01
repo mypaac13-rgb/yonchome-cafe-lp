@@ -1967,4 +1967,32 @@ img {
     flex-wrap: wrap;
     gap: 14px;
   }
+
+  .site-logo {
+    width: 140px;
+  }
+
+  .lang-switcher-btn {
+    font-size: 0.68rem;
+    padding: 6px 10px;
+  }
+
+  .info-layout {
+    flex-direction: column;
+  }
+
+  .info-layout .info-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-accent,
+  .btn-outline {
+    width: 100%;
+    justify-content: center;
+  }
 }

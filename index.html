@@ -12,7 +12,7 @@
     <meta property="og:image" content="https://mypaac13-rgb.github.io/yonchome-cafe-lp/hero-main-upscaled.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Klee+One:wght@400;600&family=Caveat:wght@400;500;600;700&family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Yusei+Magic&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Klee+One:wght@400;600&family=Caveat:wght@400;500;600;700&family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Yusei+Magic&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Yomogi&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
     <style>
       /* ── Grain texture overlay ── */
@@ -1994,6 +1994,24 @@
         color: var(--muted);
         letter-spacing: 0.06em;
         line-height: 1.7;
+        cursor: pointer;
+      }
+      .popular-menu-desc {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        font-family: 'Shippori Mincho', serif;
+        font-size: 0.82rem;
+        color: var(--muted);
+        letter-spacing: 0.04em;
+        line-height: 1.9;
+        margin: 0;
+        transition: max-height 0.4s ease, opacity 0.4s ease, margin 0.4s ease;
+      }
+      .popular-menu-item.is-open .popular-menu-desc {
+        max-height: 200px;
+        opacity: 1;
+        margin-top: 10px;
       }
       @media (max-width: 860px) {
         .popular-menu-grid { grid-template-columns: repeat(2, 1fr); column-gap: 20px; row-gap: 36px; }
@@ -2085,6 +2103,100 @@
       .menu-lightbox-prev:hover,
       .menu-lightbox-next:hover { opacity: 1; }
       .popular-menu-img { cursor: pointer; }
+
+      /* ── Mobile responsive (max 720px) ── */
+      @media (max-width: 720px) {
+        /* Hero letter */
+        .hero-letter {
+          justify-content: center;
+          padding-right: 0;
+          padding-top: 10vh;
+          align-items: flex-end;
+          padding-bottom: 6vh;
+        }
+        .hero-letter-inner {
+          width: min(88vw, 540px);
+          text-align: center;
+        }
+        .hero-letter-line {
+          font-size: clamp(1rem, 4.5vw, 1.4rem);
+          text-align: center !important;
+        }
+        .hero-letter-access {
+          font-size: clamp(0.78rem, 3.2vw, 1rem);
+        }
+        .hero-letter-logo {
+          width: min(70vw, 280px);
+        }
+
+        /* History section */
+        .hv-upper {
+          flex-direction: column;
+          min-height: auto;
+          padding: 0;
+          gap: 0;
+        }
+        .hv-photo {
+          flex: none;
+          width: 100%;
+          height: 56vw;
+          max-height: 320px;
+        }
+        .hv-title-area {
+          padding: 7% 6% 5% 6%;
+          flex-direction: row;
+          justify-content: flex-start;
+        }
+        .hv-heading {
+          writing-mode: horizontal-tb;
+          font-size: clamp(1.6rem, 6vw, 2.4rem);
+          height: auto;
+          line-height: 1.5;
+          letter-spacing: 0.1em;
+        }
+        .hv-body {
+          flex-direction: column;
+          padding: 5% 6% 8% 6%;
+          gap: 1.4em;
+        }
+        .hv-body p {
+          writing-mode: horizontal-tb;
+          height: auto;
+          font-size: clamp(0.88rem, 3.8vw, 1rem);
+          line-height: 1.9;
+        }
+        .hv-stroke {
+          width: clamp(80px, 28vw, 160px);
+          align-self: auto;
+        }
+
+        /* Banner detail (filming/reserve) */
+        .banner-detail {
+          padding: 40px 22px;
+          gap: 20px;
+        }
+
+        /* Filming location cards: stack to 1 col on very small screens */
+        .location-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+
+        /* Section vertical padding */
+        .message-section    { padding-top: 72px; padding-bottom: 52px; }
+        .gallery-section    { padding-top: 80px; }
+        .banner-section     { padding-top: 80px; }
+        .cta-section        { padding-top: 72px; }
+        .reserve-section    { padding-top: 64px; padding-bottom: 64px; }
+        .owner-msg-section  { padding-top: 72px; padding-bottom: 72px; }
+        .filming-section    { padding-top: 80px; padding-bottom: 56px; }
+        .popular-menu-section { padding-top: 72px; }
+        .history-section    { padding-top: 72px; }
+
+        /* Menu lightbox arrows */
+        .menu-lightbox-prev { left: 4px; padding: 16px 12px; }
+        .menu-lightbox-next { right: 4px; padding: 16px 12px; }
+      }
     </style>
   </head>
   <body>
@@ -2394,33 +2506,40 @@
 
       <!-- POPULAR MENU -->
       <section class="popular-menu-section section-shell" id="popular-menu">
-        <div class="anim-up" style="margin-bottom:34px;">
+        <div class="anim-up" style="margin-bottom:34px;display:flex;align-items:baseline;gap:1.2em;">
           <h2 style="font-family:var(--font-body);font-size:clamp(1rem,1.6vw,1.4rem);font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--text);margin:0;">MENU</h2>
+          <span style="font-family:'Yomogi',cursive;font-size:clamp(0.95rem,1.4vw,1.2rem);color:var(--text);opacity:0.7;letter-spacing:0.05em;font-weight:400;">当店の人気メニュー</span>
         </div>
         <div class="popular-menu-grid">
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><img src="./IMG_9802.PNG" alt="デラックスワッフルセット" loading="lazy" /></div>
             <p class="popular-menu-name" data-i18n="menuName1">デラックスワッフルセット</p>
+            <p class="popular-menu-desc">外は香ばしく、中はふんわり焼き上げた手作りワッフルに、ジューシーなソーセージ、ベーコン、目玉焼きを添えたアメリカでは定番のワッフルセット。</p>
           </div>
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><!-- 写真 --></div>
             <p class="popular-menu-name" data-i18n="menuName2">クラシックバーガー</p>
+            <p class="popular-menu-desc"></p>
           </div>
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><!-- 写真 --></div>
             <p class="popular-menu-name" data-i18n="menuName3">自家製ニューヨークチーズケーキ</p>
+            <p class="popular-menu-desc"></p>
           </div>
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><!-- 写真 --></div>
             <p class="popular-menu-name" data-i18n="menuName4">クリームソーダ</p>
+            <p class="popular-menu-desc"></p>
           </div>
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><!-- 写真 --></div>
             <p class="popular-menu-name" data-i18n="menuName5">レモネード</p>
+            <p class="popular-menu-desc"></p>
           </div>
           <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><!-- 写真 --></div>
             <p class="popular-menu-name" data-i18n="menuName6">オリジナルブレンドコーヒー</p>
+            <p class="popular-menu-desc"></p>
           </div>
         </div>
       </section>
@@ -3234,7 +3353,19 @@
         }
 
         items.forEach((item, i) => {
-          item.querySelector('.popular-menu-img').addEventListener('click', () => show(i));
+          item.querySelector('.popular-menu-img').addEventListener('click', () => {
+            const desc = item.querySelector('.popular-menu-desc');
+            if (desc && desc.textContent.trim()) {
+              item.classList.toggle('is-open');
+            } else {
+              show(i);
+            }
+          });
+          const nameEl = item.querySelector('.popular-menu-name');
+          if (nameEl) nameEl.addEventListener('click', () => {
+            const desc = item.querySelector('.popular-menu-desc');
+            if (desc && desc.textContent.trim()) item.classList.toggle('is-open');
+          });
         });
 
         lightbox.querySelector('.menu-lightbox-backdrop').addEventListener('click', close);
