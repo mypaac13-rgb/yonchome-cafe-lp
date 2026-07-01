@@ -2101,6 +2101,49 @@
       .menu-lightbox-next:hover { opacity: 1; }
       .popular-menu-img { cursor: pointer; }
 
+      /* ── Mobile reserve buttons (hidden on desktop) ── */
+      .mobile-reserve-btns {
+        display: none;
+      }
+      @media (max-width: 720px) {
+        .mobile-reserve-btns {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          margin-top: 28px;
+        }
+        .mobile-reserve-btn {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
+          padding: 16px 20px;
+          border: 1px solid rgba(196, 160, 66, 0.35);
+          background: rgba(196, 160, 66, 0.06);
+          text-decoration: none;
+          transition: background 0.2s, border-color 0.2s;
+        }
+        .mobile-reserve-btn:active {
+          background: rgba(196, 160, 66, 0.15);
+          border-color: var(--accent);
+        }
+        .mobile-reserve-btn__label {
+          font-family: var(--font-body);
+          font-size: 0.58rem;
+          letter-spacing: 0.28em;
+          color: var(--accent);
+          text-transform: uppercase;
+        }
+        .mobile-reserve-btn__value {
+          font-family: var(--font-body);
+          font-size: 1.05rem;
+          font-weight: 700;
+          letter-spacing: 0.06em;
+          color: var(--text);
+        }
+      }
+
       /* ── Mobile responsive (max 720px) ── */
       @media (max-width: 720px) {
         /* Hero letter */
@@ -2626,6 +2669,16 @@
           ></iframe>
         </div>
         <p class="access-address anim-up">〒166-0003 東京都杉並区高円寺南4丁目28-10 高円寺リリエンハイム 2F</p>
+        <div class="mobile-reserve-btns">
+          <a class="mobile-reserve-btn mobile-reserve-btn--tel" href="tel:0353771726">
+            <span class="mobile-reserve-btn__label">TEL</span>
+            <span class="mobile-reserve-btn__value">03-5377-1726</span>
+          </a>
+          <a class="mobile-reserve-btn mobile-reserve-btn--dm" href="https://www.instagram.com/yonchome_cafe/" target="_blank" rel="noopener">
+            <span class="mobile-reserve-btn__label">INSTAGRAM DM</span>
+            <span class="mobile-reserve-btn__value">@YONCHOME_CAFE</span>
+          </a>
+        </div>
       </section>
 
       <!-- INFORMATION -->
