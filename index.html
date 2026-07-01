@@ -2101,6 +2101,155 @@
       .menu-lightbox-next:hover { opacity: 1; }
       .popular-menu-img { cursor: pointer; }
 
+      /* ── Mobile hamburger button (hidden on desktop) ── */
+      .mobile-menu-btn {
+        display: none;
+      }
+
+      /* ── Mobile nav drawer ── */
+      .mobile-drawer {
+        display: none;
+      }
+      .mobile-drawer-overlay {
+        display: none;
+      }
+
+      @media (max-width: 720px) {
+        /* Hamburger button */
+        .mobile-menu-btn {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 5px;
+          width: 36px;
+          height: 36px;
+          padding: 6px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          z-index: 1001;
+        }
+        .mobile-menu-bar {
+          display: block;
+          width: 100%;
+          height: 1.5px;
+          background: var(--text);
+          transition: transform 0.25s ease, opacity 0.25s ease;
+          transform-origin: center;
+        }
+        .mobile-menu-btn[aria-expanded="true"] .mobile-menu-bar:nth-child(1) {
+          transform: translateY(6.5px) rotate(45deg);
+        }
+        .mobile-menu-btn[aria-expanded="true"] .mobile-menu-bar:nth-child(2) {
+          opacity: 0;
+        }
+        .mobile-menu-btn[aria-expanded="true"] .mobile-menu-bar:nth-child(3) {
+          transform: translateY(-6.5px) rotate(-45deg);
+        }
+
+        /* Drawer */
+        .mobile-drawer {
+          display: block;
+          position: fixed;
+          top: 0;
+          right: 0;
+          width: min(76vw, 300px);
+          height: 100dvh;
+          background: rgba(14, 8, 5, 0.97);
+          backdrop-filter: blur(12px);
+          z-index: 1000;
+          transform: translateX(100%);
+          transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+          padding-top: 80px;
+          overflow-y: auto;
+        }
+        .mobile-drawer.is-open {
+          transform: translateX(0);
+        }
+        .mobile-drawer-overlay {
+          display: block;
+          position: fixed;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: 999;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.32s ease;
+        }
+        .mobile-drawer-overlay.is-open {
+          opacity: 1;
+          pointer-events: auto;
+        }
+        .mobile-drawer-nav {
+          display: flex;
+          flex-direction: column;
+        }
+        .mobile-drawer-link {
+          display: block;
+          padding: 16px 28px;
+          font-family: var(--font-body);
+          font-size: 0.72rem;
+          font-weight: 700;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: rgba(237, 218, 168, 0.75);
+          text-decoration: none;
+          border-bottom: 1px solid rgba(240, 216, 190, 0.08);
+          background: none;
+          border-left: none;
+          border-right: none;
+          border-top: none;
+          cursor: pointer;
+          text-align: left;
+          width: 100%;
+          transition: color 0.2s, background 0.2s;
+        }
+        .mobile-drawer-link:active,
+        .mobile-drawer-link:hover {
+          color: var(--accent);
+          background: rgba(196, 160, 66, 0.07);
+        }
+        .mobile-drawer-reserve-toggle::after {
+          content: ' ›';
+          transition: transform 0.2s;
+          display: inline-block;
+        }
+        .mobile-drawer-reserve-toggle.is-open::after {
+          transform: rotate(90deg);
+        }
+        .mobile-drawer-reserve {
+          overflow: hidden;
+          max-height: 0;
+          transition: max-height 0.3s ease;
+          background: rgba(196, 160, 66, 0.04);
+        }
+        .mobile-drawer-reserve.is-open {
+          max-height: 200px;
+        }
+        .mobile-drawer-reserve-item {
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          padding: 14px 28px 14px 36px;
+          text-decoration: none;
+          border-bottom: 1px solid rgba(240, 216, 190, 0.06);
+        }
+        .mobile-drawer-reserve-label {
+          font-family: var(--font-body);
+          font-size: 0.55rem;
+          letter-spacing: 0.28em;
+          color: var(--accent);
+          text-transform: uppercase;
+        }
+        .mobile-drawer-reserve-value {
+          font-family: var(--font-body);
+          font-size: 0.9rem;
+          font-weight: 700;
+          letter-spacing: 0.04em;
+          color: var(--text);
+        }
+      }
+
       /* ── Mobile reserve buttons (hidden on desktop) ── */
       .mobile-reserve-btns {
         display: none;
@@ -2312,6 +2461,11 @@
             </svg>
           </a>
         </nav>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" type="button" aria-label="メニューを開く" aria-expanded="false">
+          <span class="mobile-menu-bar"></span>
+          <span class="mobile-menu-bar"></span>
+          <span class="mobile-menu-bar"></span>
+        </button>
         <div class="lang-switcher" id="lang-switcher">
           <button class="lang-switcher-btn" type="button" aria-expanded="false" aria-haspopup="listbox">
             Language <span class="lang-arrow">&#8963;</span>
@@ -2326,6 +2480,30 @@
         </div>
       </div>
     </header>
+
+    <!-- MOBILE NAV DRAWER -->
+    <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+      <nav class="mobile-drawer-nav">
+        <a class="mobile-drawer-link" href="#message" data-drawer-close>ABOUT</a>
+        <a class="mobile-drawer-link" href="#history" data-drawer-close>HISTORY</a>
+        <a class="mobile-drawer-link" href="#filming" data-drawer-close>FILMING LOCATIONS</a>
+        <a class="mobile-drawer-link" href="#popular-menu" data-drawer-close>MENU</a>
+        <a class="mobile-drawer-link" href="#banners" data-drawer-close>PRIVATE PARTY</a>
+        <a class="mobile-drawer-link" href="#access" data-drawer-close>ACCESS</a>
+        <button class="mobile-drawer-link mobile-drawer-reserve-toggle" type="button" id="mobile-drawer-reserve-btn">RESERVE</button>
+        <div class="mobile-drawer-reserve" id="mobile-drawer-reserve" aria-hidden="true">
+          <a class="mobile-drawer-reserve-item" href="tel:0353771726">
+            <span class="mobile-drawer-reserve-label">TEL</span>
+            <span class="mobile-drawer-reserve-value">03-5377-1726</span>
+          </a>
+          <a class="mobile-drawer-reserve-item" href="https://www.instagram.com/yonchome_cafe/" target="_blank" rel="noopener">
+            <span class="mobile-drawer-reserve-label">INSTAGRAM DM</span>
+            <span class="mobile-drawer-reserve-value">@YONCHOME_CAFE</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+    <div class="mobile-drawer-overlay" id="mobile-drawer-overlay"></div>
 
     <main id="top">
 
@@ -2661,7 +2839,7 @@
       </section>
 
       <!-- ACCESS MAP -->
-      <section class="access-section section-shell">
+      <section class="access-section section-shell" id="access">
         <div class="section-head wide">
           <h2>Access</h2>
         </div>
@@ -3049,6 +3227,48 @@
       } else {
         sessionStorage.setItem('loaderSeen', '1');
       }
+
+      // ── Mobile drawer ──
+      (function () {
+        const btn = document.getElementById('mobile-menu-btn');
+        const drawer = document.getElementById('mobile-drawer');
+        const overlay = document.getElementById('mobile-drawer-overlay');
+        if (!btn || !drawer) return;
+
+        function openDrawer() {
+          drawer.classList.add('is-open');
+          overlay.classList.add('is-open');
+          btn.setAttribute('aria-expanded', 'true');
+          drawer.setAttribute('aria-hidden', 'false');
+        }
+        function closeDrawer() {
+          drawer.classList.remove('is-open');
+          overlay.classList.remove('is-open');
+          btn.setAttribute('aria-expanded', 'false');
+          drawer.setAttribute('aria-hidden', 'true');
+        }
+
+        btn.addEventListener('click', () => {
+          btn.getAttribute('aria-expanded') === 'true' ? closeDrawer() : openDrawer();
+        });
+        overlay.addEventListener('click', closeDrawer);
+
+        // Close on nav link click
+        drawer.querySelectorAll('[data-drawer-close]').forEach(el => {
+          el.addEventListener('click', closeDrawer);
+        });
+
+        // Reserve accordion
+        const reserveBtn = document.getElementById('mobile-drawer-reserve-btn');
+        const reservePanel = document.getElementById('mobile-drawer-reserve');
+        if (reserveBtn && reservePanel) {
+          reserveBtn.addEventListener('click', () => {
+            const open = reservePanel.classList.toggle('is-open');
+            reserveBtn.classList.toggle('is-open', open);
+            reservePanel.setAttribute('aria-hidden', String(!open));
+          });
+        }
+      })();
 
       // ── Loader character animation ──
       document.querySelectorAll(".loader-concept .loader-line span").forEach((el, i) => {
