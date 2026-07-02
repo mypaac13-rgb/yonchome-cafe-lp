@@ -3876,7 +3876,7 @@
           return;
         }
 
-        function getLang() { return (typeof currentLang !== 'undefined' ? currentLang : null) || document.documentElement.getAttribute('data-lang') || 'ja'; }
+        function getLang() { return document.documentElement.getAttribute('data-lang') || 'ja'; }
         function lt(val) { if (!val || typeof val === 'string') return val || ''; var l = getLang(); return val[l] || val['ja'] || ''; }
 
         var cards = [];
