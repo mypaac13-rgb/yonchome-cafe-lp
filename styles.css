@@ -301,11 +301,23 @@ img {
   width: 50px;
   min-height: 42px;
   padding: 0;
+  color: rgba(239, 226, 210, 0.7);
+  transition: color 0.22s ease;
+}
+
+.nav-icon:hover {
+  color: var(--accent);
 }
 
 .nav-icon svg {
   width: 21px;
   height: 21px;
+  transition: color 0.22s ease, opacity 0.22s ease;
+}
+
+.nav-icon:hover svg {
+  color: var(--accent);
+  opacity: 1;
 }
 
 .hero-section {
