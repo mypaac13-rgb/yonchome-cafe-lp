@@ -2341,6 +2341,8 @@
           overflow: hidden;
           width: 100vw;
           margin-left: calc(-50vw + 50%);
+          padding-top: 64px; /* clear fixed nav bar */
+          box-sizing: border-box;
         }
 
         .location-grid {
@@ -2364,7 +2366,7 @@
           flex-direction: column !important;
           align-items: flex-start !important;
           justify-content: flex-start !important;
-          padding: 10vh 0 0 7vw !important;
+          padding: 3vh 0 3vh 7vw !important;
           flex: none !important;
           max-width: none !important;
           scroll-snap-align: none !important;
@@ -2393,7 +2395,7 @@
         .location-card-photo {
           width: 100% !important;
           flex: none !important;
-          height: clamp(200px, 54vh, 540px) !important;
+          height: clamp(200px, 62vh, 600px) !important;
           aspect-ratio: unset !important;
           margin-bottom: 22px !important;
         }
