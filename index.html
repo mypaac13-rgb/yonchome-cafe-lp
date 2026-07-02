@@ -1860,6 +1860,159 @@
       }
       .store-section { padding-top: 120px; }
 
+      /* ── Limited Menu ── */
+      .limited-section { padding-top: 100px; padding-bottom: 80px; }
+      .limited-kicker {
+        display: block;
+        font-family: var(--font-body);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.34em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 12px;
+      }
+      .limited-heading {
+        font-family: 'Zen Old Mincho', serif;
+        font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        color: var(--text);
+        margin: 0 0 48px;
+      }
+      .limited-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+        gap: 32px;
+      }
+      .limited-card {
+        cursor: pointer;
+        background: var(--panel, rgba(255,255,255,0.04));
+        border: 1px solid rgba(196,160,66,0.12);
+        overflow: hidden;
+        transition: border-color 0.3s, transform 0.3s;
+      }
+      .limited-card:hover { border-color: rgba(196,160,66,0.35); transform: translateY(-3px); }
+      .limited-card-img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        overflow: hidden;
+        background: rgba(255,255,255,0.04);
+      }
+      .limited-card-img img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        transition: transform 0.7s cubic-bezier(0.22,1,0.36,1);
+      }
+      .limited-card:hover .limited-card-img img { transform: scale(1.04); }
+      .limited-card-body { padding: 20px 22px 24px; }
+      .limited-card-date {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      .limited-card-title {
+        font-family: 'Shippori Mincho', serif;
+        font-size: clamp(1rem, 1.6vw, 1.2rem);
+        font-weight: 500;
+        color: var(--text);
+        margin: 0 0 10px;
+        line-height: 1.6;
+      }
+      .limited-card-desc {
+        font-family: var(--font-display);
+        font-size: 0.82rem;
+        color: rgba(239,226,210,0.6);
+        line-height: 1.8;
+        margin: 0;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      /* Modal */
+      .limited-modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(10,6,3,0.75);
+        z-index: 300;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.35s ease;
+      }
+      .limited-modal-overlay.is-open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .limited-modal {
+        position: relative;
+        width: min(660px, 100%);
+        max-height: 88vh;
+        overflow-y: auto;
+        background: #1a110a;
+        border-top: 1px solid rgba(196,160,66,0.25);
+        padding: 48px 36px 56px;
+        transform: translateY(40px);
+        transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+        box-sizing: border-box;
+      }
+      .limited-modal-overlay.is-open .limited-modal { transform: translateY(0); }
+      .limited-modal-close {
+        position: absolute;
+        top: 20px; right: 20px;
+        background: none; border: none;
+        color: rgba(239,226,210,0.5);
+        font-size: 1.4rem;
+        cursor: pointer;
+        line-height: 1;
+        padding: 4px 8px;
+        transition: color 0.2s;
+      }
+      .limited-modal-close:hover { color: var(--text); }
+      .limited-modal-date {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        color: var(--accent);
+        margin-bottom: 14px;
+      }
+      .limited-modal-title {
+        font-family: 'Shippori Mincho', serif;
+        font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+        font-weight: 500;
+        color: var(--text);
+        margin: 0 0 24px;
+        line-height: 1.5;
+      }
+      .limited-modal-img {
+        width: 100%;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+        margin-bottom: 28px;
+      }
+      .limited-modal-img img {
+        width: 100%; height: 100%; object-fit: cover;
+      }
+      .limited-modal-body {
+        font-family: var(--font-display);
+        font-size: clamp(0.88rem, 1.2vw, 0.95rem);
+        color: rgba(239,226,210,0.78);
+        line-height: 2;
+        white-space: pre-line;
+      }
+      .limited-empty {
+        font-family: var(--font-display);
+        font-size: 0.9rem;
+        color: rgba(239,226,210,0.35);
+        letter-spacing: 0.06em;
+        padding: 40px 0;
+      }
+
       /* ── Location card grid ── */
       .location-grid {
         display: flex;
@@ -3053,6 +3206,23 @@
         </div>
       </section>
 
+      <!-- LIMITED MENU -->
+      <section class="limited-section section-shell" id="limited-menu">
+        <div>
+          <span class="limited-kicker">Limited Menu</span>
+          <h2 class="limited-heading">期間限定メニュー</h2>
+        </div>
+        <div class="limited-grid" id="limited-grid"></div>
+      </section>
+
+      <!-- Limited Menu Modal -->
+      <div class="limited-modal-overlay" id="limited-modal-overlay" aria-hidden="true" role="dialog">
+        <div class="limited-modal" id="limited-modal">
+          <button class="limited-modal-close" id="limited-modal-close" aria-label="閉じる">×</button>
+          <div id="limited-modal-content"></div>
+        </div>
+      </div>
+
       <!-- MENU INFO -->
       <section class="store-section section-shell" id="menu">
         <nav class="info-link-list" aria-label="メニュー・サービス情報">
@@ -3586,6 +3756,73 @@
           document.body.style.overflow = 'hidden';
         });
       });
+
+      // ────────────────────────────────────────────
+      // ★ 期間限定メニュー：新しいメニューをここに追加 ★
+      // image には画像ファイルのパスを入力（例: './summer-pasta.jpg'）
+      // 不要な項目は削除、追加は同じ形式でコピーしてください
+      // ────────────────────────────────────────────
+      const LIMITED_MENUS = [
+        // {
+        //   date: '2026.07.01 〜 2026.07.31',
+        //   label: '期間限定',
+        //   title: 'メニュー名',
+        //   image: './menu-image.jpg',
+        //   body: 'メニューの説明文をここに入力します。\n\n¥1,200（税込）'
+        // },
+      ];
+      // ────────────────────────────────────────────
+
+      (function() {
+        const grid = document.getElementById('limited-grid');
+        const overlay = document.getElementById('limited-modal-overlay');
+        const modalContent = document.getElementById('limited-modal-content');
+        const closeBtn = document.getElementById('limited-modal-close');
+        const section = document.getElementById('limited-menu');
+        if (!grid || !overlay) return;
+
+        if (!LIMITED_MENUS.length) {
+          section.style.display = 'none';
+          return;
+        }
+
+        LIMITED_MENUS.forEach(function(item, i) {
+          const card = document.createElement('article');
+          card.className = 'limited-card';
+          card.innerHTML =
+            '<div class="limited-card-img">' +
+              (item.image ? '<img src="' + item.image + '" alt="' + item.title + '" loading="lazy">' : '') +
+            '</div>' +
+            '<div class="limited-card-body">' +
+              '<p class="limited-card-date">' + item.date + '</p>' +
+              '<h3 class="limited-card-title">' + item.title + '</h3>' +
+              (item.body ? '<p class="limited-card-desc">' + item.body.replace(/\n/g,' ') + '</p>' : '') +
+            '</div>';
+          card.addEventListener('click', function() { openModal(item); });
+          grid.appendChild(card);
+        });
+
+        function openModal(item) {
+          modalContent.innerHTML =
+            '<p class="limited-modal-date">' + item.label + '　' + item.date + '</p>' +
+            '<h2 class="limited-modal-title">' + item.title + '</h2>' +
+            (item.image ? '<div class="limited-modal-img"><img src="' + item.image + '" alt="' + item.title + '"></div>' : '') +
+            '<p class="limited-modal-body">' + (item.body || '') + '</p>';
+          overlay.setAttribute('aria-hidden', 'false');
+          overlay.classList.add('is-open');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+          overlay.classList.remove('is-open');
+          overlay.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+        overlay.addEventListener('click', function(e) { if (e.target === overlay) closeModal(); });
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+      })();
 
       // ── Language Switcher ──
       const T = {
