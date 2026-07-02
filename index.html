@@ -2229,6 +2229,14 @@
         .popular-menu-img { width: calc(100% - 32px); margin: 0 auto; }
       }
       .popular-menu-mobile-nav { display: none; }
+      @media (min-width: 721px) {
+        .popular-menu-item:nth-child(1) { order: 4; }
+        .popular-menu-item:nth-child(2) { order: 5; }
+        .popular-menu-item:nth-child(3) { order: 6; }
+        .popular-menu-item:nth-child(4) { order: 1; }
+        .popular-menu-item:nth-child(5) { order: 2; }
+        .popular-menu-item:nth-child(6) { order: 3; }
+      }
       @media (max-width: 720px) {
         .popular-menu-grid { display: block; }
         .popular-menu-item { display: none; }
@@ -3190,30 +3198,6 @@
         </div>
         <div class="popular-menu-grid">
           <div class="popular-menu-item anim-up">
-            <div class="popular-menu-img"><img src="./waffle.webp" alt="デラックスワッフルセット" loading="lazy" /></div>
-            <div class="popular-menu-name-row">
-              <p class="popular-menu-name" data-i18n="menuName1">デラックスワッフルセット</p>
-              <span class="popular-menu-price">¥1,550</span>
-            </div>
-            <p class="popular-menu-desc">外は香ばしく、中はふんわり焼き上げた手作りワッフルに、ジューシーなソーセージ、ベーコン、目玉焼きを添えたアメリカでは定番のワッフルセット。</p>
-          </div>
-          <div class="popular-menu-item anim-up">
-            <div class="popular-menu-img"><img src="./burger.webp" alt="クラシックバーガー" loading="lazy" /></div>
-            <div class="popular-menu-name-row">
-              <p class="popular-menu-name" data-i18n="menuName2">クラシックバーガー</p>
-              <span class="popular-menu-price">¥1,350</span>
-            </div>
-            <p class="popular-menu-desc">香ばしく焼き上げた牛肉100％のジューシーなパティの旨みが広がるクラシックバーガー。素材の美味しさが引き立つ定番のバーガーです。</p>
-          </div>
-          <div class="popular-menu-item anim-up">
-            <div class="popular-menu-img"><img src="./cheesecake.webp" alt="自家製ニューヨークチーズケーキ" loading="lazy" /></div>
-            <div class="popular-menu-name-row">
-              <p class="popular-menu-name" data-i18n="menuName3">自家製ニューヨークチーズケーキ</p>
-              <span class="popular-menu-price">¥950</span>
-            </div>
-            <p class="popular-menu-desc">クリームチーズを贅沢に使用し、しっとりとなめらかな口溶けに焼き上げました。当店のスタッフがレシピを考案した自家製NYチーズケーキ。ぜひご賞味ください。</p>
-          </div>
-          <div class="popular-menu-item anim-up">
             <div class="popular-menu-img"><img src="./american-sundae.webp" alt="アメリカンサンデー" loading="lazy" style="object-fit:cover;object-position:center 55%;" /></div>
             <div class="popular-menu-name-row">
               <p class="popular-menu-name" data-i18n="menuName5">アメリカンサンデー</p>
@@ -3240,6 +3224,30 @@
               <li><span class="popular-menu-variant-name">サファイア</span><span class="popular-menu-price">¥850</span></li>
               <li><span class="popular-menu-variant-name">トパーズ</span><span class="popular-menu-price">¥850</span></li>
             </ul>
+          </div>
+          <div class="popular-menu-item anim-up">
+            <div class="popular-menu-img"><img src="./waffle.webp" alt="デラックスワッフルセット" loading="lazy" /></div>
+            <div class="popular-menu-name-row">
+              <p class="popular-menu-name" data-i18n="menuName1">デラックスワッフルセット</p>
+              <span class="popular-menu-price">¥1,550</span>
+            </div>
+            <p class="popular-menu-desc">外は香ばしく、中はふんわり焼き上げた手作りワッフルに、ジューシーなソーセージ、ベーコン、目玉焼きを添えたアメリカでは定番のワッフルセット。</p>
+          </div>
+          <div class="popular-menu-item anim-up">
+            <div class="popular-menu-img"><img src="./burger.webp" alt="クラシックバーガー" loading="lazy" /></div>
+            <div class="popular-menu-name-row">
+              <p class="popular-menu-name" data-i18n="menuName2">クラシックバーガー</p>
+              <span class="popular-menu-price">¥1,350</span>
+            </div>
+            <p class="popular-menu-desc">香ばしく焼き上げた牛肉100％のジューシーなパティの旨みが広がるクラシックバーガー。素材の美味しさが引き立つ定番のバーガーです。</p>
+          </div>
+          <div class="popular-menu-item anim-up">
+            <div class="popular-menu-img"><img src="./cheesecake.webp" alt="自家製ニューヨークチーズケーキ" loading="lazy" /></div>
+            <div class="popular-menu-name-row">
+              <p class="popular-menu-name" data-i18n="menuName3">自家製ニューヨークチーズケーキ</p>
+              <span class="popular-menu-price">¥950</span>
+            </div>
+            <p class="popular-menu-desc">クリームチーズを贅沢に使用し、しっとりとなめらかな口溶けに焼き上げました。当店のスタッフがレシピを考案した自家製NYチーズケーキ。ぜひご賞味ください。</p>
           </div>
         </div>
         <!-- Mobile arrow navigation -->
