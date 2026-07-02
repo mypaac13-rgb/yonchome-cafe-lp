@@ -2330,26 +2330,102 @@
         }
       }
 
-      /* ── Desktop: horizontal scroll for filming spots ── */
+      /* ── Desktop: sticky card-by-card reveal for filming spots ── */
       @media (min-width: 721px) {
+        /* Root: gets height set by JS to create scroll room */
+        .location-scroll-root { position: relative; }
+
+        /* Pin sticks at top of viewport */
+        .location-scroll-pin {
+          position: sticky;
+          top: 0;
+          height: 100vh;
+          overflow: hidden;
+          /* break out of section-shell padding to fill viewport width */
+          width: 100vw;
+          margin-left: calc(-50vw + 50%);
+        }
+
+        /* Grid: stacking context for absolute cards */
         .location-grid {
+          position: relative !important;
+          display: block !important;
+          width: 100% !important;
+          height: 100vh !important;
+          overflow: hidden !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        /* Each card fills the pin, hidden by default */
+        .location-card {
+          position: absolute !important;
+          inset: 0 !important;
           display: flex !important;
           flex-direction: row !important;
-          overflow-x: auto !important;
-          overflow-y: hidden !important;
-          scroll-snap-type: x mandatory !important;
-          scrollbar-width: none !important;
-          margin-left: -4% !important;
-          margin-right: -4% !important;
-          padding: 0 5vw 24px !important;
-          gap: 32px !important;
-        }
-        .location-grid::-webkit-scrollbar { display: none !important; }
-        .location-card {
-          flex: 0 0 min(72vw, 680px) !important;
+          align-items: center !important;
+          justify-content: center !important;
+          gap: 5vw !important;
+          padding: 0 8vw !important;
+          flex: none !important;
+          width: 100% !important;
           max-width: none !important;
-          width: auto !important;
-          scroll-snap-align: start !important;
+          scroll-snap-align: none !important;
+          opacity: 0;
+          transform: translateY(50px);
+          transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+          pointer-events: none;
+          z-index: 1;
+        }
+
+        /* Active: float up into view */
+        .location-card.is-active {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+          z-index: 2;
+        }
+
+        /* Past: float up and out */
+        .location-card.is-past {
+          opacity: 0;
+          transform: translateY(-40px);
+          transition: opacity 0.45s ease, transform 0.45s ease;
+          z-index: 1;
+        }
+
+        /* Photo: left side, larger */
+        .location-card-photo {
+          flex: 0 0 46% !important;
+          aspect-ratio: 4 / 3 !important;
+          margin-bottom: 0 !important;
+        }
+
+        /* Works list: right side */
+        .location-card-works {
+          flex: 1;
+          padding-top: 0 !important;
+        }
+
+        /* Counter dots */
+        .location-counter {
+          position: absolute;
+          bottom: 32px;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          gap: 8px;
+          z-index: 10;
+        }
+        .location-counter-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: rgba(80,60,40,0.25);
+          transition: background 0.3s ease;
+        }
+        .location-counter-dot.is-active {
+          background: rgba(80,60,40,0.75);
         }
       }
 
@@ -2780,6 +2856,8 @@
           <p class="filming-lead">映画・ドラマの舞台となった席。ぜひこの席からの景色を。</p>
         </div>
 
+        <div class="location-scroll-root">
+        <div class="location-scroll-pin">
         <div class="location-grid">
 
           <article class="location-card">
@@ -2817,6 +2895,8 @@
           </article>
 
         </div><!-- /.location-grid -->
+        </div><!-- /.location-scroll-pin -->
+        </div><!-- /.location-scroll-root -->
 
         <ul class="filming-list-sub anim-up">
           <li>つぐみ</li>
@@ -3787,42 +3867,46 @@
         });
       })();
 
-      // ── Filming location: wheel → horizontal scroll (desktop only) ──
+      // ── Filming location: scroll-driven card reveal (desktop only) ──
       (function() {
         if (window.innerWidth <= 720) return;
+        const root = document.querySelector('.location-scroll-root');
         const grid = document.querySelector('.location-grid');
-        if (!grid) return;
+        if (!root || !grid) return;
+        const cards = Array.from(grid.querySelectorAll('.location-card'));
+        if (!cards.length) return;
 
-        let target = 0;
-        let rafId = null;
+        // Add progress dots
+        const counter = document.createElement('div');
+        counter.className = 'location-counter';
+        cards.forEach(function(_, i) {
+          const dot = document.createElement('div');
+          dot.className = 'location-counter-dot' + (i === 0 ? ' is-active' : '');
+          counter.appendChild(dot);
+        });
+        root.querySelector('.location-scroll-pin').appendChild(counter);
+        const dots = counter.querySelectorAll('.location-counter-dot');
 
-        function animateScroll() {
-          const maxScroll = grid.scrollWidth - grid.clientWidth;
-          target = Math.max(0, Math.min(maxScroll, target));
-          const diff = target - grid.scrollLeft;
-          if (Math.abs(diff) < 0.5) { grid.scrollLeft = target; rafId = null; return; }
-          grid.scrollLeft += diff * 0.12;
-          rafId = requestAnimationFrame(animateScroll);
+        // Root height: one viewport height per card
+        root.style.height = (cards.length * 100) + 'vh';
+
+        function update() {
+          const scrolled = -root.getBoundingClientRect().top;
+          const stepH = window.innerHeight;
+          // Current card index (clamp so first card shows before sticky activates)
+          const idx = Math.max(0, Math.min(cards.length - 1, Math.floor(Math.max(0, scrolled) / stepH)));
+          cards.forEach(function(card, i) {
+            card.classList.remove('is-active', 'is-past');
+            if (i === idx) card.classList.add('is-active');
+            else if (i < idx) card.classList.add('is-past');
+          });
+          dots.forEach(function(dot, i) {
+            dot.classList.toggle('is-active', i === idx);
+          });
         }
 
-        document.addEventListener('wheel', function(e) {
-          if (window.innerWidth <= 720) return;
-          const rect = grid.getBoundingClientRect();
-          // Only intercept when grid is visible on screen
-          if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-          const maxScroll = grid.scrollWidth - grid.clientWidth;
-          const goRight = e.deltaY > 0 && target < maxScroll - 2;
-          const goLeft  = e.deltaY < 0 && target > 2;
-          if (goRight || goLeft) {
-            e.preventDefault();
-            target += e.deltaY * 1.5;
-            target = Math.max(0, Math.min(maxScroll, target));
-            if (!rafId) rafId = requestAnimationFrame(animateScroll);
-          }
-        }, { passive: false });
-
-        // Keep target in sync if user touches/drags the grid directly
-        grid.addEventListener('scroll', function() { target = grid.scrollLeft; });
+        window.addEventListener('scroll', update, { passive: true });
+        update();
       })();
     </script>
   </body>
