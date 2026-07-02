@@ -3887,8 +3887,8 @@
         root.querySelector('.location-scroll-pin').appendChild(counter);
         const dots = counter.querySelectorAll('.location-counter-dot');
 
-        // Root height: one viewport height per card
-        root.style.height = (cards.length * 100) + 'vh';
+        // Root height: one viewport height per card + one extra so last card has full display time
+        root.style.height = ((cards.length + 1) * 100) + 'vh';
 
         function update() {
           const scrolled = -root.getBoundingClientRect().top;
