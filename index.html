@@ -1497,7 +1497,7 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
         padding: 5% 5% 4% 4%;
         gap: 1.4em;
       }
@@ -1505,14 +1505,15 @@
       /* HISTORY + 縦線グループ */
       .hv-label-group {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
         gap: 0.6em;
         flex-shrink: 0;
+        align-self: flex-start;
       }
       .hv-vline {
-        width: 1px;
-        height: 2.2em;
+        width: 2.2em;
+        height: 1px;
         background: #b8893a;
         display: block;
         flex-shrink: 0;
@@ -1520,7 +1521,7 @@
 
       /* HISTORY ラベル */
       .hv-label {
-        writing-mode: vertical-rl;
+        writing-mode: horizontal-tb;
         font-family: 'Manrope', Arial, sans-serif;
         font-size: 0.68rem;
         font-weight: 700;
