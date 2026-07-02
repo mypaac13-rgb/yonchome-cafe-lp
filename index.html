@@ -1594,6 +1594,15 @@
         height: 15em;
         overflow: visible;
       }
+      html:not([data-lang="ja"]) .hv-body {
+        flex-direction: column;
+        gap: 1.2em;
+      }
+      html:not([data-lang="ja"]) .hv-body p {
+        writing-mode: horizontal-tb;
+        height: auto;
+        flex-shrink: 1;
+      }
 
       /* ══════════════════════════════════════
          History Story Section
@@ -4168,6 +4177,7 @@
         const dict = T[lang];
         if (!dict) return;
         currentLang = lang;
+        document.documentElement.setAttribute('data-lang', lang);
 
         // Update all data-i18n elements
         document.querySelectorAll('[data-i18n]').forEach(el => {
