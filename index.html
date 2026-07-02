@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Klee+One:wght@400;600&family=Caveat:wght@400;500;600;700&family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Yusei+Magic&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Yomogi&display=swap" rel="stylesheet" />
+    <link rel="preload" href="./店内画像.webp" as="image" />
     <link rel="stylesheet" href="./styles.css" />
     <style>
       /* ── Grain texture overlay ── */
@@ -3124,7 +3125,7 @@
       <section class="filming-section section-shell" id="filming">
         <div class="section-head wide anim-up">
           <span class="filming-kicker" data-i18n="filmingKicker">Filming Locations</span>
-          <p class="filming-lead">数々の映画・ドラマの舞台となった席。ぜひこの席からの景色を。</p>
+          <p class="filming-lead" data-i18n="filmingLead">数々の映画・ドラマの舞台となった席。ぜひこの席からの景色を。</p>
         </div>
 
         <div class="location-scroll-root">
@@ -3214,7 +3215,7 @@
       <section class="popular-menu-section section-shell" id="popular-menu">
         <div class="anim-up" style="margin-bottom:34px;display:flex;align-items:baseline;gap:1.2em;">
           <h2 style="font-family:var(--font-body);font-size:clamp(1rem,1.6vw,1.4rem);font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--text);margin:0;">MENU</h2>
-          <span style="font-family:'Shippori Mincho',serif;font-size:clamp(0.95rem,1.4vw,1.2rem);color:var(--text);opacity:0.7;letter-spacing:0.05em;font-weight:400;">当店の人気メニュー</span>
+          <span style="font-family:'Shippori Mincho',serif;font-size:clamp(0.95rem,1.4vw,1.2rem);color:var(--text);opacity:0.7;letter-spacing:0.05em;font-weight:400;" data-i18n="menuSubtitle">当店の人気メニュー</span>
         </div>
         <div class="popular-menu-grid">
           <div class="popular-menu-item anim-up">
@@ -3932,6 +3933,8 @@
           bdCasesText: '人数・ご予算・ご要望は、お気軽にご相談ください。<br>一緒に、その日だけの空間をつくります。',
           bdContactLabel: 'ご相談はこちら',
           filmingKicker: 'Filming Locations',
+          filmingLead: '数々の映画・ドラマの舞台となった席。ぜひこの席からの景色を。',
+          menuSubtitle: '当店の人気メニュー',
           menuName1: 'デラックスワッフルセット', menuName2: 'クラシックバーガー', menuName3: '自家製ニューヨークチーズケーキ',
           menuName4: 'クリームソーダ', menuName5: 'アメリカンサンデー', menuName6: 'オリジナルブレンドコーヒー',
           infoBtnLunch: '【ランチ】平日オープンから15:00まで', infoBtnHappy: '【ハッピーアワー】平日15:00から18:00まで',
@@ -3981,6 +3984,8 @@
           bdCasesText: 'Please feel free to consult us on group size, budget, and any requests.<br>Together, we\'ll create a space just for that day.',
           bdContactLabel: 'Inquire here',
           filmingKicker: 'Filming Locations',
+          filmingLead: 'The seat that has appeared in countless films and dramas. Come and enjoy the view from here.',
+          menuSubtitle: 'Our popular menu',
           menuName1: 'Deluxe Waffle Set', menuName2: 'Classic Burger', menuName3: 'Homemade NY Cheesecake',
           menuName4: 'Cream Soda', menuName5: 'American Sundae', menuName6: 'Original Blend Coffee',
           infoBtnLunch: '[Lunch] Weekdays until 3:00 PM', infoBtnHappy: '[Happy Hour] Weekdays 3:00 – 6:00 PM',
@@ -4030,6 +4035,8 @@
           bdCasesText: '人数、预算、需求，请随时与我们商量。<br>我们将一起为您打造专属那一天的空间。',
           bdContactLabel: '点击咨询',
           filmingKicker: '拍摄取景地',
+          filmingLead: '这里是众多电影・电视剧的取景地。欢迎来此感受窗外的风景。',
+          menuSubtitle: '本店人气菜单',
           menuName1: '豪华华夫饼套餐', menuName2: '经典汉堡', menuName3: '自制纽约芝士蛋糕',
           menuName4: '奶油苏打', menuName5: '美式圣代', menuName6: '原创混合咖啡',
           infoBtnLunch: '【午餐】工作日营业开始至15:00', infoBtnHappy: '【欢乐时光】工作日15:00至18:00',
@@ -4079,6 +4086,8 @@
           bdCasesText: '人數、預算、需求，請隨時與我們商量。<br>我們將一起為您打造專屬那一天的空間。',
           bdContactLabel: '點擊諮詢',
           filmingKicker: '拍攝取景地',
+          filmingLead: '這裡是眾多電影・電視劇的取景地。歡迎來此感受窗外的風景。',
+          menuSubtitle: '本店人氣菜單',
           menuName1: '豪華鬆餅套餐', menuName2: '經典漢堡', menuName3: '自製紐約芝士蛋糕',
           menuName4: '奶油蘇打', menuName5: '美式聖代', menuName6: '原創混合咖啡',
           infoBtnLunch: '【午餐】工作日營業開始至15:00', infoBtnHappy: '【歡樂時光】工作日15:00至18:00',
@@ -4128,6 +4137,8 @@
           bdCasesText: '인원, 예산, 요청사항은 편하게 상담해 주세요。<br>함께, 그날만을 위한 공간을 만들겠습니다。',
           bdContactLabel: '상담하기',
           filmingKicker: '촬영 로케이션',
+          filmingLead: '수많은 영화・드라마의 무대가 된 자리입니다. 이 자리에서의 풍경을 꼭 즐겨보세요.',
+          menuSubtitle: '인기 메뉴',
           menuName1: '디럭스 와플 세트', menuName2: '클래식 버거', menuName3: '홈메이드 뉴욕 치즈케이크',
           menuName4: '크림 소다', menuName5: '아메리칸 선데', menuName6: '오리지널 블렌드 커피',
           infoBtnLunch: '【런치】평일 오픈부터 15:00까지', infoBtnHappy: '【해피아워】평일 15:00~18:00',
