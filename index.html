@@ -2330,39 +2330,26 @@
         }
       }
 
-      /* ── Desktop: sticky horizontal scroll for filming spots ── */
+      /* ── Desktop: horizontal scroll for filming spots ── */
       @media (min-width: 721px) {
-        .location-scroll-root { /* height set by JS */ }
-        .location-scroll-pin {
-          position: sticky;
-          top: 0;
-          height: 100vh;
-          overflow: hidden;
-          display: flex;
-          align-items: center;
-          width: 100vw;
-          margin-left: -4vw;
-          background: #e8dfc8;
-          z-index: 1;
-        }
         .location-grid {
           display: flex !important;
           flex-direction: row !important;
-          overflow-x: scroll !important;
+          overflow-x: auto !important;
           overflow-y: hidden !important;
-          scroll-snap-type: none !important;
-          margin: 0 !important;
-          padding: 0 5vw !important;
-          gap: 32px !important;
+          scroll-snap-type: x mandatory !important;
           scrollbar-width: none !important;
-          pointer-events: none;
+          margin-left: -4% !important;
+          margin-right: -4% !important;
+          padding: 0 5vw 24px !important;
+          gap: 32px !important;
         }
         .location-grid::-webkit-scrollbar { display: none !important; }
         .location-card {
           flex: 0 0 min(72vw, 680px) !important;
           max-width: none !important;
           width: auto !important;
-          scroll-snap-align: none;
+          scroll-snap-align: start !important;
         }
       }
 
@@ -2793,8 +2780,6 @@
           <p class="filming-lead">映画・ドラマの舞台となった席。ぜひこの席からの景色を。</p>
         </div>
 
-        <div class="location-scroll-root">
-        <div class="location-scroll-pin">
         <div class="location-grid">
 
           <article class="location-card">
@@ -2832,8 +2817,6 @@
           </article>
 
         </div><!-- /.location-grid -->
-        </div><!-- /.location-scroll-pin -->
-        </div><!-- /.location-scroll-root -->
 
         <ul class="filming-list-sub anim-up">
           <li>つぐみ</li>
@@ -3804,28 +3787,42 @@
         });
       })();
 
-      // ── Filming location: sticky horizontal scroll (desktop only) ──
+      // ── Filming location: wheel → horizontal scroll (desktop only) ──
       (function() {
         if (window.innerWidth <= 720) return;
-        const root = document.querySelector('.location-scroll-root');
         const grid = document.querySelector('.location-grid');
-        if (!root || !grid) return;
-        const cards = grid.querySelectorAll('.location-card');
-        // Set root height so page has enough scroll room for all cards
-        root.style.height = (cards.length * window.innerHeight) + 'px';
+        if (!grid) return;
 
-        function update() {
-          const rootTop = root.getBoundingClientRect().top;
-          const scrolled = -rootTop;
-          if (scrolled < 0 || scrolled > root.offsetHeight - window.innerHeight) return;
+        let target = 0;
+        let rafId = null;
+
+        function animateScroll() {
           const maxScroll = grid.scrollWidth - grid.clientWidth;
-          const totalScroll = root.offsetHeight - window.innerHeight;
-          grid.scrollLeft = (scrolled / totalScroll) * maxScroll;
+          target = Math.max(0, Math.min(maxScroll, target));
+          const diff = target - grid.scrollLeft;
+          if (Math.abs(diff) < 0.5) { grid.scrollLeft = target; rafId = null; return; }
+          grid.scrollLeft += diff * 0.12;
+          rafId = requestAnimationFrame(animateScroll);
         }
-        window.addEventListener('scroll', update, { passive: true });
-        // Recalculate after images load
-        window.addEventListener('load', update);
-        update();
+
+        document.addEventListener('wheel', function(e) {
+          if (window.innerWidth <= 720) return;
+          const rect = grid.getBoundingClientRect();
+          // Only intercept when grid is visible on screen
+          if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+          const maxScroll = grid.scrollWidth - grid.clientWidth;
+          const goRight = e.deltaY > 0 && target < maxScroll - 2;
+          const goLeft  = e.deltaY < 0 && target > 2;
+          if (goRight || goLeft) {
+            e.preventDefault();
+            target += e.deltaY * 1.5;
+            target = Math.max(0, Math.min(maxScroll, target));
+            if (!rafId) rafId = requestAnimationFrame(animateScroll);
+          }
+        }, { passive: false });
+
+        // Keep target in sync if user touches/drags the grid directly
+        grid.addEventListener('scroll', function() { target = grid.scrollLeft; });
       })();
     </script>
   </body>
