@@ -3746,6 +3746,49 @@
           if (e.key === 'ArrowRight')  show(current + 1);
         });
       })();
+
+      // ── Filming location: vertical → horizontal scroll (desktop only) ──
+      (function() {
+        const grid = document.querySelector('.location-grid');
+        if (!grid) return;
+
+        let target = 0;
+        let rafId  = null;
+
+        function animate() {
+          const maxScroll = grid.scrollWidth - grid.clientWidth;
+          target = Math.max(0, Math.min(maxScroll, target));
+          const diff = target - grid.scrollLeft;
+          if (Math.abs(diff) < 0.5) {
+            grid.scrollLeft = target;
+            rafId = null;
+            return;
+          }
+          grid.scrollLeft += diff * 0.14;
+          rafId = requestAnimationFrame(animate);
+        }
+
+        document.addEventListener('wheel', function(e) {
+          if (window.innerWidth <= 720) return;
+
+          const rect = grid.getBoundingClientRect();
+          const active = rect.top <= window.innerHeight * 0.45 && rect.bottom > window.innerHeight * 0.3;
+          if (!active) return;
+
+          const maxScroll = grid.scrollWidth - grid.clientWidth;
+          const goingRight = e.deltaY > 0 && target < maxScroll - 1;
+          const goingLeft  = e.deltaY < 0 && target > 1;
+
+          if (goingRight || goingLeft) {
+            e.preventDefault();
+            target = Math.max(0, Math.min(maxScroll, target + e.deltaY * 2));
+            if (!rafId) rafId = requestAnimationFrame(animate);
+          }
+        }, { passive: false });
+
+        // sync target when touch/trackpad scrolls horizontally
+        grid.addEventListener('scroll', function() { target = grid.scrollLeft; });
+      })();
     </script>
   </body>
 </html>
