@@ -4318,7 +4318,6 @@
         }
 
         show(0);
-        window.addEventListener('scroll', updateNavPosition, { passive: true });
         if (prevBtn) prevBtn.addEventListener('click', function() { if (idx > 0) show(idx - 1); });
         if (nextBtn) nextBtn.addEventListener('click', function() { if (idx < cards.length - 1) show(idx + 1); });
 
