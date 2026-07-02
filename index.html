@@ -2348,13 +2348,16 @@
         .location-grid {
           display: flex !important;
           flex-direction: row !important;
-          overflow: visible !important;
+          overflow-x: scroll !important;
+          overflow-y: hidden !important;
           scroll-snap-type: none !important;
           margin: 0 !important;
           padding: 0 5vw !important;
           gap: 32px !important;
-          will-change: transform;
+          scrollbar-width: none !important;
+          pointer-events: none;
         }
+        .location-grid::-webkit-scrollbar { display: none !important; }
         .location-card {
           flex: 0 0 min(72vw, 680px) !important;
           max-width: none !important;
@@ -3809,18 +3812,19 @@
         if (!root || !grid) return;
         const cards = grid.querySelectorAll('.location-card');
         // Set root height so page has enough scroll room for all cards
-        const totalHeight = (cards.length) * window.innerHeight;
-        root.style.height = totalHeight + 'px';
+        root.style.height = (cards.length * window.innerHeight) + 'px';
 
         function update() {
           const rootTop = root.getBoundingClientRect().top;
           const scrolled = -rootTop;
           if (scrolled < 0 || scrolled > root.offsetHeight - window.innerHeight) return;
-          const totalSlide = grid.scrollWidth - grid.clientWidth;
+          const maxScroll = grid.scrollWidth - grid.clientWidth;
           const totalScroll = root.offsetHeight - window.innerHeight;
-          grid.style.transform = 'translateX(-' + (scrolled / totalScroll) * totalSlide + 'px)';
+          grid.scrollLeft = (scrolled / totalScroll) * maxScroll;
         }
         window.addEventListener('scroll', update, { passive: true });
+        // Recalculate after images load
+        window.addEventListener('load', update);
         update();
       })();
     </script>
