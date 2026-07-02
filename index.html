@@ -2758,10 +2758,11 @@
           align-items: center;
           justify-content: center;
           gap: 20px;
-          position: sticky;
-          bottom: 16px;
-          z-index: 10;
-          margin: 20px 0 4px;
+          position: fixed;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 100;
           pointer-events: auto;
         }
         .location-mobile-btn {
@@ -4252,6 +4253,8 @@
         const prevBtn = document.querySelector('.location-mobile-prev');
         const nextBtn = document.querySelector('.location-mobile-next');
         const countEl = document.querySelector('.location-mobile-count');
+        const nav = document.querySelector('.location-mobile-nav');
+        const section = document.querySelector('#filming');
         if (!cards.length) return;
         let idx = 0;
 
@@ -4266,6 +4269,18 @@
         show(0);
         if (prevBtn) prevBtn.addEventListener('click', function() { if (idx > 0) show(idx - 1); });
         if (nextBtn) nextBtn.addEventListener('click', function() { if (idx < cards.length - 1) show(idx + 1); });
+
+        // Show nav only when filming section is in view
+        if (nav && section && 'IntersectionObserver' in window) {
+          nav.style.opacity = '0';
+          nav.style.pointerEvents = 'none';
+          var obs = new IntersectionObserver(function(entries) {
+            var visible = entries[0].isIntersecting;
+            nav.style.opacity = visible ? '1' : '0';
+            nav.style.pointerEvents = visible ? 'auto' : 'none';
+          }, { threshold: 0.1 });
+          obs.observe(section);
+        }
       })();
 
       // ── Filming location: scroll-driven card reveal (desktop only) ──
