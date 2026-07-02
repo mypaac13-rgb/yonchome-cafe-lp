@@ -2260,6 +2260,10 @@
         .popular-menu-img { width: calc(100% - 32px); margin: 0 auto; }
       }
       .popular-menu-mobile-nav { display: none; }
+      @media (min-width: 721px) {
+        .popular-menu-grid { display: grid !important; grid-template-columns: repeat(3, 1fr); }
+        .popular-menu-item { display: block !important; }
+      }
       @media (max-width: 720px) {
         .popular-menu-grid { display: block; }
         .popular-menu-item { display: none; }
