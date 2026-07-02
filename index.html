@@ -1546,7 +1546,7 @@
       .hv-heading {
         writing-mode: horizontal-tb;
         font-family: 'Klee One', serif;
-        font-size: clamp(2.2rem, 3.2vw, 4rem);
+        font-size: clamp(1.6rem, 3.2vw, 4rem);
         font-weight: 400;
         line-height: 1.5;
         letter-spacing: 0.08em;
@@ -1556,7 +1556,7 @@
         overflow: visible;
         padding-left: 22px;
         border-left: 2px solid #b8893a;
-        white-space: nowrap;
+        white-space: normal;
       }
       .hv-head-col {
         overflow: visible;
@@ -3386,7 +3386,7 @@
         <nav class="company-nav anim-up" aria-label="会社情報">
           <div class="company-nav-links">
             <a class="company-nav-link" href="./company.html" data-i18n="companyAbout">会社概要</a>
-            <a class="company-nav-link" href="./yonchome-recruit.html">採用情報</a>
+            <a class="company-nav-link" href="./yonchome-recruit.html" data-i18n="navRecruit2">採用情報</a>
             <button class="company-nav-link company-nav-link--contact" type="button" id="contact-toggle" aria-expanded="false">
               <span data-i18n="companyContact">お問い合わせ</span>
               <span class="contact-popup" id="contact-popup" aria-hidden="true">
@@ -3848,11 +3848,17 @@
       const LIMITED_MENUS = [
         {
           date: '2026.07.01 〜',
-          label: '期間限定',
-          title: 'トロピカルパフェ',
+          label: { ja: '期間限定', en: 'Limited', zhcn: '限时', zhtw: '限時', ko: '기간 한정' },
+          title: { ja: 'トロピカルパフェ', en: 'Tropical Parfait', zhcn: '热带芭菲', zhtw: '熱帶芭菲', ko: '트로피컬 파르페' },
           image: './tropical-parfait-card.webp',
           modalImage: './tropical-parfait.webp',
-          body: '鮮やかなブルーが夏気分を盛り上げる、見た目も爽やかなトロピカルパフェ。ブルーゼリー・ブルーシャーベット・パイナップル・キウイ・粒ラムネを使用した夏だけのスペシャルパフェです。\n\n¥1,800（税込）'
+          body: {
+            ja: '鮮やかなブルーが夏気分を盛り上げる、見た目も爽やかなトロピカルパフェ。ブルーゼリー・ブルーシャーベット・パイナップル・キウイ・粒ラムネを使用した夏だけのスペシャルパフェです。\n\n¥1,800（税込）',
+            en: 'A refreshing tropical parfait with vibrant blue that lifts your summer mood. Made with blue jelly, blue sherbet, pineapple, kiwi, and ramune candy — a summer-only special.\n\n¥1,800 (tax incl.)',
+            zhcn: '鲜艳的蓝色让夏日气氛高涨，清爽的热带芭菲。使用蓝色果冻、蓝色雪芭、菠萝、猕猴桃和汽水糖，是仅限夏季的特别甜品。\n\n¥1,800（含税）',
+            zhtw: '鮮艷的藍色讓夏日氣氛高漲，清爽的熱帶芭菲。使用藍色果凍、藍色雪酪、鳳梨、奇異果和汽水糖，是僅限夏季的特別甜點。\n\n¥1,800（含稅）',
+            ko: '선명한 블루가 여름 분위기를 한껏 높여주는 트로피컬 파르페。블루 젤리・블루 샤베트・파인애플・키위・탄산 캔디를 사용한 여름만의 스페셜 파르페입니다。\n\n¥1,800（세금 포함）',
+          }
         },
       ];
       // ────────────────────────────────────────────
@@ -3870,33 +3876,47 @@
           return;
         }
 
+        function getLang() { return (typeof currentLang !== 'undefined' ? currentLang : null) || document.documentElement.getAttribute('data-lang') || 'ja'; }
+        function lt(val) { if (!val || typeof val === 'string') return val || ''; var l = getLang(); return val[l] || val['ja'] || ''; }
+
+        var cards = [];
         LIMITED_MENUS.forEach(function(item, i) {
-          const card = document.createElement('article');
+          var card = document.createElement('article');
           card.className = 'limited-card';
-          card.innerHTML =
-            '<div class="limited-card-img">' +
-              (item.image ? '<img src="' + item.image + '" alt="' + item.title + '" loading="lazy">' : '') +
-              '<span class="limited-badge">LIMITED</span>' +
-            '</div>' +
-            '<div class="limited-card-body">' +
-              '<p class="limited-card-date">' + item.date + '</p>' +
-              '<h3 class="limited-card-title">' + item.title + '</h3>' +
-              (item.body ? '<p class="limited-card-desc">' + item.body.replace(/\n/g,' ') + '</p>' : '') +
-            '</div>';
+          cards.push({ card: card, item: item });
           card.addEventListener('click', function() { openModal(item); });
           grid.appendChild(card);
         });
 
+        function renderCards() {
+          cards.forEach(function(c) {
+            var item = c.item;
+            c.card.innerHTML =
+              '<div class="limited-card-img">' +
+                (item.image ? '<img src="' + item.image + '" alt="' + lt(item.title) + '" loading="lazy">' : '') +
+                '<span class="limited-badge">LIMITED</span>' +
+              '</div>' +
+              '<div class="limited-card-body">' +
+                '<p class="limited-card-date">' + item.date + '</p>' +
+                '<h3 class="limited-card-title">' + lt(item.title) + '</h3>' +
+                (item.body ? '<p class="limited-card-desc">' + lt(item.body).replace(/\n/g,' ') + '</p>' : '') +
+              '</div>';
+          });
+        }
+        renderCards();
+
         function openModal(item) {
           modalContent.innerHTML =
-            '<p class="limited-modal-date">' + item.label + '　' + item.date + '</p>' +
-            '<h2 class="limited-modal-title">' + item.title + '</h2>' +
-            ((item.modalImage || item.image) ? '<div class="limited-modal-img"><img src="' + (item.modalImage || item.image) + '" alt="' + item.title + '"></div>' : '') +
-            '<p class="limited-modal-body">' + (item.body || '') + '</p>';
+            '<p class="limited-modal-date">' + lt(item.label) + '　' + item.date + '</p>' +
+            '<h2 class="limited-modal-title">' + lt(item.title) + '</h2>' +
+            ((item.modalImage || item.image) ? '<div class="limited-modal-img"><img src="' + (item.modalImage || item.image) + '" alt="' + lt(item.title) + '"></div>' : '') +
+            '<p class="limited-modal-body">' + (lt(item.body) || '') + '</p>';
           overlay.setAttribute('aria-hidden', 'false');
           overlay.classList.add('is-open');
           document.body.style.overflow = 'hidden';
         }
+
+        window._renderLimitedCards = renderCards;
 
         function closeModal() {
           overlay.classList.remove('is-open');
@@ -3912,7 +3932,7 @@
       // ── Language Switcher ──
       const T = {
         ja: {
-          navParty: '貸し切り', navRecruit: '採用', navCompany: '企業情報', navReserve: 'ご予約',
+          navParty: '貸し切り', navRecruit: '採用', navRecruit2: '採用情報', navCompany: '企業情報', navReserve: 'ご予約',
           heroBannerPartyTitle: '貸し切りパーティー', heroBannerPartySub: '20名〜 ／ 3プランからご選択',
           heroBannerShootTitle: '撮影利用の案内', heroBannerShootSub: 'ロケ・写真撮影 ／ お気軽にご相談ください',
           heroLine1: '高円寺で40年。', heroLine2: '変わる時代と、変わらない居場所。', heroLine3: '人が集い、語り、繋がる。',
@@ -3978,7 +3998,7 @@
           modalPrev: '前へ', modalNext: '次へ', floatReserve: '電話で予約する',
         },
         en: {
-          navParty: 'Private Party', navRecruit: 'Recruit', navCompany: 'About', navReserve: 'Reserve',
+          navParty: 'Private Party', navRecruit: 'Recruit', navRecruit2: 'Recruit', navCompany: 'About', navReserve: 'Reserve',
           heroBannerPartyTitle: 'Private Party', heroBannerPartySub: 'From 20 guests / 3 plans',
           heroBannerShootTitle: 'Photography & Filming', heroBannerShootSub: 'Location & photo shoots / Inquiries welcome',
           heroLine1: '40 Years in Koenji.', heroLine2: 'Times change. This place doesn\'t.', heroLine3: 'Gather, talk, connect.',
@@ -4044,7 +4064,7 @@
           modalPrev: 'Prev', modalNext: 'Next', floatReserve: 'Call to Reserve',
         },
         zhcn: {
-          navParty: '包场', navRecruit: '招聘', navCompany: '关于我们', navReserve: '电话预约',
+          navParty: '包场', navRecruit: '招聘', navRecruit2: '招聘信息', navCompany: '关于我们', navReserve: '电话预约',
           heroBannerPartyTitle: '包场派对', heroBannerPartySub: '20人起 / 3种套餐',
           heroBannerShootTitle: '拍摄场地租借', heroBannerShootSub: '外景・摄影拍摄 / 欢迎咨询',
           heroLine1: '在高圆寺的40年。', heroLine2: '时代在变，这里不变。', heroLine3: '相聚、交流、连接。',
@@ -4110,7 +4130,7 @@
           modalPrev: '上一张', modalNext: '下一张', floatReserve: '电话预约',
         },
         zhtw: {
-          navParty: '包場', navRecruit: '招募', navCompany: '關於我們', navReserve: '電話預約',
+          navParty: '包場', navRecruit: '招募', navRecruit2: '招募資訊', navCompany: '關於我們', navReserve: '電話預約',
           heroBannerPartyTitle: '包場派對', heroBannerPartySub: '20人起 / 3種方案',
           heroBannerShootTitle: '拍攝場地租借', heroBannerShootSub: '外景・攝影拍攝 / 歡迎諮詢',
           heroLine1: '在高圓寺的40年。', heroLine2: '時代在變，這裡不變。', heroLine3: '相聚、交流、連結。',
@@ -4176,7 +4196,7 @@
           modalPrev: '上一張', modalNext: '下一張', floatReserve: '電話預約',
         },
         ko: {
-          navParty: '전세', navRecruit: '채용', navCompany: '회사 정보', navReserve: '전화 예약',
+          navParty: '전세', navRecruit: '채용', navRecruit2: '채용 정보', navCompany: '회사 정보', navReserve: '전화 예약',
           heroBannerPartyTitle: '전세 파티', heroBannerPartySub: '20명~ / 3가지 플랜',
           heroBannerShootTitle: '촬영 이용 안내', heroBannerShootSub: '로케이션・사진 촬영 / 문의 환영',
           heroLine1: '고엔지에서 40년。', heroLine2: '시대는 변해도, 이 곳은 변하지 않습니다。', heroLine3: '모이고, 이야기하고, 연결되다。',
@@ -4274,6 +4294,9 @@
         // Update html lang attribute
         const langMap = { ja: 'ja', en: 'en', zhcn: 'zh-Hans', zhtw: 'zh-Hant', ko: 'ko' };
         document.documentElement.lang = langMap[lang] || lang;
+
+        // Re-render limited menu cards
+        if (window._renderLimitedCards) window._renderLimitedCards();
       }
 
       // Lang switcher toggle
