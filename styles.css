@@ -1829,6 +1829,8 @@ img {
 }
 
 @media (max-width: 720px) {
+  .hero-overlay-logo { display: none; }
+
   .site-header {
     top: 0;
     left: 0;
