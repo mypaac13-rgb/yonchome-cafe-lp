@@ -2329,8 +2329,48 @@
         }
       }
 
+      /* ── Desktop: sticky horizontal scroll for filming spots ── */
+      @media (min-width: 721px) {
+        .location-scroll-root { /* height set by JS */ }
+        .location-scroll-pin {
+          position: sticky;
+          top: 0;
+          height: 100vh;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          width: 100vw;
+          margin-left: -4vw;
+          background: #e8dfc8;
+          z-index: 1;
+        }
+        .location-grid {
+          display: flex !important;
+          flex-direction: row !important;
+          overflow: visible !important;
+          scroll-snap-type: none !important;
+          margin: 0 !important;
+          padding: 0 5vw !important;
+          gap: 32px !important;
+          will-change: transform;
+        }
+        .location-card {
+          flex: 0 0 min(72vw, 680px) !important;
+          max-width: none !important;
+          width: auto !important;
+          scroll-snap-align: none;
+        }
+      }
+
       /* ── Mobile responsive (max 720px) ── */
       @media (max-width: 720px) {
+        /* Disable scroll animations on mobile */
+        .anim-up {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+
         /* Hero letter */
         .hero-letter {
           justify-content: center;
@@ -2749,9 +2789,11 @@
           <p class="filming-lead">映画・ドラマの舞台となった席。ぜひこの席からの景色を。</p>
         </div>
 
+        <div class="location-scroll-root">
+        <div class="location-scroll-pin">
         <div class="location-grid">
 
-          <article class="location-card anim-up">
+          <article class="location-card">
             <div class="location-card-photo"><img src="./spot-1.jpg" alt="撮影スポット" loading="lazy" /></div>
             <ul class="location-card-works">
               <li>正直不動産２</li>
@@ -2761,14 +2803,14 @@
             </ul>
           </article>
 
-          <article class="location-card anim-up" style="transition-delay: 0.1s;">
+          <article class="location-card">
             <div class="location-card-photo"><img src="./spot-2.jpg" alt="撮影スポット" loading="lazy" /></div>
             <ul class="location-card-works">
               <li>テセウスの船<br><span style="font-size:0.82em;opacity:0.75;">TBS日曜劇場　第４話</span></li>
             </ul>
           </article>
 
-          <article class="location-card anim-up" style="transition-delay: 0.2s;">
+          <article class="location-card">
             <div class="location-card-photo"><img src="./spot-3.jpg" alt="撮影スポット" loading="lazy" /></div>
             <ul class="location-card-works">
               <li>LIGHT HOUSE<br><span style="font-size:0.82em;opacity:0.75;">Netflix</span></li>
@@ -2777,7 +2819,7 @@
             </ul>
           </article>
 
-          <article class="location-card anim-up" style="transition-delay: 0.3s;">
+          <article class="location-card">
             <div class="location-card-photo"><img src="./spot-4.jpg" alt="撮影スポット" loading="lazy" /></div>
             <ul class="location-card-works">
               <li>笑うマトリョーシカ<br><span style="font-size:0.82em;opacity:0.75;">TBSテレビ</span></li>
@@ -2785,7 +2827,9 @@
             </ul>
           </article>
 
-        </div>
+        </div><!-- /.location-grid -->
+        </div><!-- /.location-scroll-pin -->
+        </div><!-- /.location-scroll-root -->
 
         <ul class="filming-list-sub anim-up">
           <li>つぐみ</li>
@@ -3293,8 +3337,8 @@
         setTimeout(() => el.classList.add("is-visible"), 0);
       });
 
-      // ── Loader skip if already seen or returning from subpage ──
-      if (sessionStorage.getItem('loaderSeen') || new URLSearchParams(location.search).get('skip')) {
+      // ── Loader skip if already seen, returning from subpage, or on mobile ──
+      if (sessionStorage.getItem('loaderSeen') || new URLSearchParams(location.search).get('skip') || window.innerWidth <= 720) {
         const loader = document.querySelector('.page-loader');
         if (loader) { loader.style.display = 'none'; }
         document.querySelectorAll('.hero-copy .hero-copy-inner > *, .hero-letter-line, .hero-letter-access, .hero-letter-logo').forEach(el => {
@@ -3756,43 +3800,27 @@
         });
       })();
 
-      // ── Filming location: vertical → horizontal scroll (desktop only) ──
+      // ── Filming location: sticky horizontal scroll (desktop only) ──
       (function() {
+        if (window.innerWidth <= 720) return;
+        const root = document.querySelector('.location-scroll-root');
         const grid = document.querySelector('.location-grid');
-        if (!grid) return;
+        if (!root || !grid) return;
+        const cards = grid.querySelectorAll('.location-card');
+        // Set root height so page has enough scroll room for all cards
+        const totalHeight = (cards.length) * window.innerHeight;
+        root.style.height = totalHeight + 'px';
 
-        let target = 0;
-        let capturing = false;
-        let rafId = null;
-
-        function animate() {
-          const maxScroll = grid.scrollWidth - grid.clientWidth;
-          target = Math.max(0, Math.min(maxScroll, target));
-          const diff = target - grid.scrollLeft;
-          if (Math.abs(diff) < 0.5) { grid.scrollLeft = target; rafId = null; return; }
-          grid.scrollLeft += diff * 0.14;
-          rafId = requestAnimationFrame(animate);
+        function update() {
+          const rootTop = root.getBoundingClientRect().top;
+          const scrolled = -rootTop;
+          if (scrolled < 0 || scrolled > root.offsetHeight - window.innerHeight) return;
+          const totalSlide = grid.scrollWidth - grid.clientWidth;
+          const totalScroll = root.offsetHeight - window.innerHeight;
+          grid.style.transform = 'translateX(-' + (scrolled / totalScroll) * totalSlide + 'px)';
         }
-
-        // IntersectionObserver: capture wheel when grid is ≥20% visible
-        const io = new IntersectionObserver(function(entries) {
-          capturing = entries[0].isIntersecting && window.innerWidth > 720;
-        }, { threshold: 0.2 });
-        io.observe(grid);
-
-        document.addEventListener('wheel', function(e) {
-          if (!capturing || window.innerWidth <= 720) return;
-          const maxScroll = grid.scrollWidth - grid.clientWidth;
-          const goRight = e.deltaY > 0 && target < maxScroll - 1;
-          const goLeft  = e.deltaY < 0 && target > 1;
-          if (goRight || goLeft) {
-            e.preventDefault();
-            target = Math.max(0, Math.min(maxScroll, target + e.deltaY * 2));
-            if (!rafId) rafId = requestAnimationFrame(animate);
-          }
-        }, { passive: false });
-
-        grid.addEventListener('scroll', function() { target = grid.scrollLeft; });
+        window.addEventListener('scroll', update, { passive: true });
+        update();
       })();
     </script>
   </body>
