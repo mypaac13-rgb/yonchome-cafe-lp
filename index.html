@@ -2330,87 +2330,85 @@
         }
       }
 
-      /* ── Desktop: sticky card-by-card reveal for filming spots ── */
+      /* ── Desktop: sticky horizontal-slide card reveal ── */
       @media (min-width: 721px) {
-        /* Root: gets height set by JS to create scroll room */
         .location-scroll-root { position: relative; }
 
-        /* Pin sticks at top of viewport */
         .location-scroll-pin {
           position: sticky;
           top: 0;
           height: 100vh;
           overflow: hidden;
-          /* break out of section-shell padding to fill viewport width */
           width: 100vw;
           margin-left: calc(-50vw + 50%);
         }
 
-        /* Grid: stacking context for absolute cards */
         .location-grid {
           position: relative !important;
           display: block !important;
           width: 100% !important;
-          height: 100vh !important;
+          height: 100% !important;
           overflow: hidden !important;
           margin: 0 !important;
           padding: 0 !important;
         }
 
-        /* Each card fills the pin, hidden by default */
+        /* Cards: narrower than viewport to allow peek of next card */
         .location-card {
           position: absolute !important;
-          inset: 0 !important;
+          top: 0 !important;
+          left: 0 !important;
+          width: 80vw !important;
+          height: 100% !important;
           display: flex !important;
-          flex-direction: row !important;
-          align-items: center !important;
-          justify-content: center !important;
-          gap: 5vw !important;
-          padding: 0 8vw !important;
+          flex-direction: column !important;
+          align-items: flex-start !important;
+          justify-content: flex-start !important;
+          padding: 10vh 0 0 7vw !important;
           flex: none !important;
-          width: 100% !important;
           max-width: none !important;
           scroll-snap-align: none !important;
-          opacity: 0;
-          transform: translateY(50px);
-          transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+          /* Upcoming: off to the right, peek visible */
+          transform: translateX(90vw) !important;
+          transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) !important;
           pointer-events: none;
           z-index: 1;
         }
 
-        /* Active: float up into view */
+        /* Slide in from right */
         .location-card.is-active {
-          opacity: 1;
-          transform: translateY(0);
+          transform: translateX(6vw) !important;
           pointer-events: auto;
-          z-index: 2;
+          z-index: 3;
         }
 
-        /* Past: float up and out */
+        /* Exit to left */
         .location-card.is-past {
-          opacity: 0;
-          transform: translateY(-40px);
-          transition: opacity 0.45s ease, transform 0.45s ease;
+          transform: translateX(-84vw) !important;
+          transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
           z-index: 1;
         }
 
-        /* Photo: left side, larger */
+        /* Photo: full card width, fixed height */
         .location-card-photo {
-          flex: 0 0 46% !important;
-          aspect-ratio: 4 / 3 !important;
-          margin-bottom: 0 !important;
+          width: 100% !important;
+          flex: none !important;
+          height: clamp(200px, 54vh, 540px) !important;
+          aspect-ratio: unset !important;
+          margin-bottom: 22px !important;
         }
 
-        /* Works list: right side */
+        /* Works list: below photo */
         .location-card-works {
-          flex: 1;
           padding-top: 0 !important;
+          flex: none !important;
+          font-size: clamp(0.85rem, 1vw, 0.96rem);
         }
 
-        /* Counter dots */
+        /* Progress dots */
         .location-counter {
           position: absolute;
-          bottom: 32px;
+          bottom: 28px;
           left: 50%;
           transform: translateX(-50%);
           display: flex;
@@ -2421,11 +2419,11 @@
           width: 6px;
           height: 6px;
           border-radius: 50%;
-          background: rgba(80,60,40,0.25);
+          background: rgba(80,60,40,0.22);
           transition: background 0.3s ease;
         }
         .location-counter-dot.is-active {
-          background: rgba(80,60,40,0.75);
+          background: rgba(80,60,40,0.7);
         }
       }
 
