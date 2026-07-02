@@ -2777,18 +2777,17 @@
 
         /* Mobile arrow nav */
         .location-mobile-nav {
-          position: fixed;
+          position: absolute;
           top: 50%;
           left: 0;
           right: 0;
           transform: translateY(-50%);
-          z-index: 100;
+          z-index: 10;
           pointer-events: none;
           display: flex;
           justify-content: space-between;
           align-items: center;
           padding: 0;
-          transition: top 0.3s ease;
         }
         .location-mobile-btn {
           width: 44px;
@@ -4299,13 +4298,14 @@
         let idx = 0;
 
         function updateNavPosition() {
-          if (!nav) return;
+          if (!nav || !section) return;
           var activeCard = document.querySelector('.location-card.is-mobile-active');
           if (!activeCard) return;
           var photo = activeCard.querySelector('.location-card-photo');
           if (!photo) return;
-          var rect = photo.getBoundingClientRect();
-          var centerY = rect.top + rect.height / 2;
+          var sectionTop = section.getBoundingClientRect().top + window.scrollY;
+          var photoTop = photo.getBoundingClientRect().top + window.scrollY;
+          var centerY = photoTop - sectionTop + photo.offsetHeight / 2;
           nav.style.top = centerY + 'px';
           nav.style.transform = 'translateY(-50%)';
         }
