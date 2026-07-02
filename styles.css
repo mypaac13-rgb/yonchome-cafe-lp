@@ -337,7 +337,6 @@ img {
     linear-gradient(180deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0.58)),
     radial-gradient(circle at 22% 24%, rgba(108, 66, 44, 0.18), transparent 18%),
     linear-gradient(135deg, #38241d 0%, #201512 44%, #120b09 100%);
-  box-shadow: var(--shadow);
 }
 
 .hero-image {
