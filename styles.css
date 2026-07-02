@@ -757,6 +757,24 @@ img {
   color: #fff3e4;
 }
 
+.info-link-item-plain {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 72px;
+  padding: 18px 44px 18px 0;
+  border-bottom: 1px solid rgba(240, 216, 190, 0.13);
+  color: rgba(242, 231, 218, 0.9);
+  font-family: var(--font-display);
+  font-size: clamp(0.98rem, 1.4vw, 1.16rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  cursor: default;
+  pointer-events: none;
+}
+
 .news-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
