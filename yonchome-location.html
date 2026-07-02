@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ロケ地実績 | Yonchome Cafe</title>
+    <meta name="description" content="高円寺Yonchome Cafeのロケ地実績。ドラマ・映画・CM・ミュージックビデオなど、数多くの撮影に使用されてきた空間をご紹介します。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Klee+One:wght@400;600&family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      /* ── Grain ── */
+      body::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.035;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+        background-size: 180px 180px;
+      }
+
+      /* ── Fade in ── */
+      .fade {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .fade.is-visible { opacity: 1; transform: translateY(0); }
+
+      /* ── Hero ── */
+      .hero-section { padding-top: 0; }
+      .photo-panel-hero { min-height: 70svh; }
+      .hero-image {
+        object-position: center 55%;
+        filter: brightness(0.3) saturate(0.55) sepia(0.28) contrast(1.1);
+      }
+      .hero-copy {
+        width: min(80vw, 860px);
+        transform: translate(-50%, -50%);
+      }
+      .hero-eyebrow {
+        display: block;
+        font-family: var(--font-body);
+        font-size: 0.62rem;
+        letter-spacing: 0.38em;
+        text-transform: uppercase;
+        color: rgba(196, 160, 66, 0.65);
+        margin-bottom: 28px;
+      }
+      .hero-main-title {
+        font-family: 'Zen Old Mincho', serif;
+        font-size: clamp(2.8rem, 7vw, 6rem);
+        font-weight: 400;
+        line-height: 1.12;
+        letter-spacing: 0.06em;
+        color: rgba(237, 224, 196, 0.92);
+        margin: 0 0 28px;
+      }
+      .hero-main-title em {
+        font-style: normal;
+        display: block;
+        font-size: 0.42em;
+        letter-spacing: 0.18em;
+        color: rgba(196, 160, 66, 0.75);
+        margin-top: 14px;
+      }
+      .hero-scroll-hint {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-family: var(--font-body);
+        font-size: 0.6rem;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: rgba(196, 160, 66, 0.5);
+        margin-top: 52px;
+      }
+      .hero-scroll-hint::before {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 1px;
+        background: rgba(196, 160, 66, 0.4);
+      }
+
+      /* ── Section intro ── */
+      .section-intro {
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 0 clamp(24px, 5vw, 80px);
+        text-align: center;
+      }
+      .section-label {
+        display: block;
+        font-family: var(--font-body);
+        font-size: 0.6rem;
+        letter-spacing: 0.36em;
+        text-transform: uppercase;
+        color: rgba(196, 160, 66, 0.55);
+        margin-bottom: 24px;
+      }
+      .section-heading {
+        font-family: 'Zen Old Mincho', serif;
+        font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: 0.06em;
+        color: var(--text);
+        margin: 0 0 28px;
+      }
+      .section-desc {
+        font-family: 'Klee One', serif;
+        font-size: clamp(0.95rem, 1.4vw, 1.05rem);
+        line-height: 2.2;
+        letter-spacing: 0.04em;
+        color: rgba(239, 226, 210, 0.72);
+      }
+
+      /* ── Divider ── */
+      .divider {
+        width: 1px;
+        height: 60px;
+        background: rgba(196, 160, 66, 0.3);
+        margin: 0 auto;
+      }
+
+      /* ── Location grid ── */
+      .location-grid-wrap {
+        max-width: min(92vw, 1260px);
+        margin: 0 auto;
+        padding: 0 clamp(20px, 4vw, 60px);
+      }
+      .location-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 56px 40px;
+      }
+
+      /* ── Location card ── */
+      .location-card {
+        display: flex;
+        flex-direction: column;
+      }
+      .location-card-photo {
+        overflow: hidden;
+        aspect-ratio: 4 / 3;
+        margin-bottom: 28px;
+      }
+      .location-card-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.82) saturate(0.78) sepia(0.14) contrast(1.06);
+        transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s ease;
+      }
+      .location-card:hover .location-card-photo img {
+        transform: scale(1.04);
+        filter: brightness(0.9) saturate(0.88) sepia(0.08) contrast(1.04);
+      }
+      .location-card-spot {
+        display: block;
+        font-family: var(--font-body);
+        font-size: 0.58rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: rgba(196, 160, 66, 0.55);
+        margin-bottom: 10px;
+      }
+      .location-card-title {
+        font-family: 'Zen Old Mincho', serif;
+        font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+        font-weight: 400;
+        line-height: 1.55;
+        letter-spacing: 0.04em;
+        color: var(--text);
+        margin: 0 0 16px;
+      }
+      .location-card-text {
+        font-family: 'Klee One', serif;
+        font-size: clamp(0.88rem, 1.1vw, 0.96rem);
+        line-height: 2;
+        letter-spacing: 0.03em;
+        color: rgba(239, 226, 210, 0.68);
+        margin: 0 0 24px;
+        flex: 1;
+      }
+      .location-card-detail {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        letter-spacing: 0.18em;
+        color: rgba(196, 160, 66, 0.75);
+        text-transform: uppercase;
+        transition: color 0.25s, gap 0.25s;
+      }
+      .location-card-detail::before {
+        content: '';
+        display: block;
+        width: 28px;
+        height: 1px;
+        background: currentColor;
+        transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .location-card:hover .location-card-detail {
+        color: var(--accent);
+        gap: 14px;
+      }
+      .location-card:hover .location-card-detail::before {
+        width: 40px;
+      }
+
+      /* ── Credits list ── */
+      .credits-wrap {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 0 clamp(24px, 5vw, 80px);
+      }
+      .credits-heading {
+        font-family: 'Zen Old Mincho', serif;
+        font-size: clamp(1.2rem, 2vw, 1.7rem);
+        font-weight: 400;
+        letter-spacing: 0.06em;
+        color: var(--text);
+        margin: 0 0 48px;
+      }
+      .credits-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        border-top: 1px solid rgba(196, 160, 66, 0.15);
+      }
+      .credits-item {
+        display: grid;
+        grid-template-columns: 120px 1fr auto;
+        gap: 0 28px;
+        align-items: baseline;
+        padding: 22px 0;
+        border-bottom: 1px solid rgba(196, 160, 66, 0.1);
+      }
+      .credits-year {
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        letter-spacing: 0.18em;
+        color: rgba(196, 160, 66, 0.5);
+        flex-shrink: 0;
+      }
+      .credits-title {
+        font-family: 'Klee One', serif;
+        font-size: clamp(0.9rem, 1.2vw, 1rem);
+        line-height: 1.7;
+        letter-spacing: 0.04em;
+        color: rgba(239, 226, 210, 0.85);
+      }
+      .credits-tag {
+        display: inline-block;
+        padding: 3px 10px;
+        border: 1px solid rgba(196, 160, 66, 0.3);
+        font-family: var(--font-body);
+        font-size: 0.6rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: rgba(196, 160, 66, 0.6);
+        white-space: nowrap;
+      }
+
+      /* ── Enquiry note ── */
+      .enquiry-note {
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 52px clamp(24px, 5vw, 80px);
+        border: 1px solid rgba(196, 160, 66, 0.15);
+        text-align: center;
+      }
+      .enquiry-note p {
+        font-family: 'Klee One', serif;
+        font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+        line-height: 2.2;
+        letter-spacing: 0.04em;
+        color: rgba(239, 226, 210, 0.72);
+        margin: 0 0 28px;
+      }
+      .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 32px;
+        border: 1px solid rgba(196, 160, 66, 0.45);
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent);
+        transition: background 0.25s, color 0.25s;
+      }
+      .btn-outline:hover {
+        background: rgba(196, 160, 66, 0.1);
+      }
+
+      /* ── Spacers ── */
+      .sp-xl  { height: 120px; }
+      .sp-lg  { height: 88px; }
+      .sp-md  { height: 60px; }
+      .sp-sm  { height: 40px; }
+
+      /* ── Responsive ── */
+      @media (max-width: 860px) {
+        .location-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 560px) {
+        .location-grid { grid-template-columns: 1fr; gap: 48px; }
+        .credits-item { grid-template-columns: 80px 1fr; grid-template-rows: auto auto; }
+        .credits-tag { grid-column: 2; margin-top: 6px; }
+        .hero-main-title { font-size: clamp(2.2rem, 10vw, 4rem); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-loader" aria-hidden="true">
+      <img class="loader-logo" src="./loader-logo.png" alt="" />
+    </div>
+
+    <header class="site-header">
+      <a class="site-logo" href="./index.html" aria-label="Yonchome cafe — トップへ">
+        <img src="./loader-logo.png" alt="" />
+      </a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="nav-reserve" href="tel:0353771726">電話予約</a>
+        <a class="nav-icon" href="https://x.com/yonchomecafe" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" fill="currentColor" />
+          </svg>
+        </a>
+        <a class="nav-icon" href="https://www.instagram.com/yonchome_cafe/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9a4.5 4.5 0 0 1-4.5 4.5h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3Zm0 1.5A3 3 0 0 0 4.5 7.5v9a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-9a3 3 0 0 0-3-3h-9Zm9.75 1.125a1.125 1.125 0 1 1 0 2.25 1.125 1.125 0 0 1 0-2.25ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5A3.5 3.5 0 1 0 12 15.5 3.5 3.5 0 0 0 12 8.5Z" fill="currentColor" />
+          </svg>
+        </a>
+      </nav>
+    </header>
+
+    <main id="top">
+
+      <!-- ═══════════════════ HERO ═══════════════════ -->
+      <section class="hero-section">
+        <div class="hero-media photo-panel photo-panel-hero">
+          <img class="hero-image" src="./about-interior.jpg" alt="Yonchome Cafeの店内" />
+        </div>
+        <div class="hero-copy">
+          <div class="hero-copy-inner">
+            <span class="hero-eyebrow">Yonchome Cafe — Film Location</span>
+            <h1 class="hero-main-title">
+              ロケ地実績
+              <em>Location Achievements · Since 1986</em>
+            </h1>
+            <span class="hero-scroll-hint">scroll to explore</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════ INTRO ═══════════════════ -->
+      <div class="sp-xl"></div>
+
+      <div class="section-intro fade">
+        <span class="section-label">About This Space</span>
+        <h2 class="section-heading">創業38年の空間が、<br />物語の舞台になる。</h2>
+        <p class="section-desc">
+          1986年から変わらないレトロな内装、アンティーク家具、ステンドグラス——<br />
+          Yonchome Cafeの空間は、数多くの映像・写真作品の舞台として選ばれてきました。<br />
+          ドラマ・映画・CM・ミュージックビデオ・写真集など、ジャンルを問わずご利用いただけます。
+        </p>
+      </div>
+
+      <div class="sp-md"></div>
+      <div class="divider fade"></div>
+
+      <!-- ═══════════════════ LOCATION GRID ═══════════════════ -->
+      <div class="sp-xl"></div>
+
+      <div class="location-grid-wrap">
+        <div class="location-grid">
+
+          <!-- Card 1 -->
+          <article class="location-card fade">
+            <div class="location-card-photo">
+              <img src="./about-interior.jpg" alt="店内メインフロア テーブル席" loading="lazy" />
+            </div>
+            <span class="location-card-spot">Main Floor</span>
+            <h3 class="location-card-title">店内メインフロア<br />テーブル席</h3>
+            <p class="location-card-text">
+              テレビドラマ「深夜の高円寺」（2023年・TBS系）第4話・第8話のカフェシーン。
+              主人公たちが毎週集まる行きつけの喫茶店として繰り返し登場。
+              昭和の香りが漂う内装が演出に寄与。
+            </p>
+            <a class="location-card-detail" href="#">Detail</a>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="location-card fade" style="transition-delay: 0.1s;">
+            <div class="location-card-photo">
+              <img src="./１卓.jpg" alt="窓際1卓テーブル" loading="lazy" />
+            </div>
+            <span class="location-card-spot">Window Seat</span>
+            <h3 class="location-card-title">窓際 1卓テーブル</h3>
+            <p class="location-card-text">
+              映画「東京のよるに」（2024年・東映）のキーシーン。
+              主人公と恋人が再会を果たすカフェとして使用。
+              窓から差し込む夕光と木製テーブルが印象的なショットを生み出した。
+            </p>
+            <a class="location-card-detail" href="#">Detail</a>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="location-card fade" style="transition-delay: 0.2s;">
+            <div class="location-card-photo">
+              <img src="./interior-stainedglass.jpg" alt="ステンドグラス前エリア" loading="lazy" />
+            </div>
+            <span class="location-card-spot">Stained Glass Area</span>
+            <h3 class="location-card-title">ステンドグラス前<br />エリア</h3>
+            <p class="location-card-text">
+              ファッション誌「BRUTUS」（2024年4月号）の特集撮影。
+              色とりどりのステンドグラスを背景に、ヴィンテージファッションの
+              モデル撮影が行われた。
+            </p>
+            <a class="location-card-detail" href="#">Detail</a>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="location-card fade" style="transition-delay: 0.05s;">
+            <div class="location-card-photo">
+              <img src="./interior-soda.jpg" alt="カウンター・ソーダサイン前" loading="lazy" />
+            </div>
+            <span class="location-card-spot">Counter</span>
+            <h3 class="location-card-title">カウンター席<br />ソーダサイン前</h3>
+            <p class="location-card-text">
+              ミュージックビデオ「夜明け前に」（シンガーソングライター・柳沢 宙、2023年）の
+              撮影。ネオンサインと深夜の雰囲気を活かし、ノスタルジックな世界観を演出。
+            </p>
+            <a class="location-card-detail" href="#">Detail</a>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="location-card fade" style="transition-delay: 0.15s;">
+            <div class="location-card-photo">
+              <img src="./入り口画像.jpg" alt="入口・エントランス" loading="lazy" />
+            </div>
+            <span class="location-card-spot">Entrance</span>
+            <h3 class="location-card-title">入口・エントランス</h3>
+            <p class="location-card-text">
+              テレビCM「〇〇珈琲」（2024年）撮影。
+              レトロな木製ドアと看板が画面に映えるエントランスで、
+              主役商品を手に持ったモデルが入店するシーンが収録された。
+            </p>
+            <a class="location-card-detail" href="#">Detail</a>
+          </article>
+
+          <!-- Card 6 -->
+          <article class="location-card fade" style="transition-delay: 0.25s;">
+            <div class="location-card-photo">
+              <img src="./interior-clock.jpg" alt="アンティーク時計エリア" loading="lazy" />
+            </div>
+            <span class="location-card-spot">Clock Corner</span>
+            <h3 class="location-card-title">アンティーク時計<br />コーナー</h3>
+            <p class="location-card-text">
+              写真集「時間のかたち」（フォトグラファー：村田 彩香、2023年）の撮影。
+              骨董の大時計を中心に、光と影を丁寧に捉えた静物写真が多数収録された。
+            </p>
+            <a class="location-card-detail" href="#">Detail</a>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- ═══════════════════ CREDITS LIST ═══════════════════ -->
+      <div class="sp-xl"></div>
+      <div class="divider fade"></div>
+      <div class="sp-lg"></div>
+
+      <div class="credits-wrap">
+        <h2 class="credits-heading fade">撮影実績一覧</h2>
+        <ul class="credits-list">
+          <li class="credits-item fade">
+            <span class="credits-year">2024</span>
+            <span class="credits-title">テレビCM「〇〇珈琲」30秒・15秒バージョン</span>
+            <span class="credits-tag">CM</span>
+          </li>
+          <li class="credits-item fade">
+            <span class="credits-year">2024</span>
+            <span class="credits-title">映画「東京のよるに」（東映）</span>
+            <span class="credits-tag">映画</span>
+          </li>
+          <li class="credits-item fade">
+            <span class="credits-year">2024</span>
+            <span class="credits-title">BRUTUS 4月号 ファッション特集</span>
+            <span class="credits-tag">雑誌</span>
+          </li>
+          <li class="credits-item fade">
+            <span class="credits-year">2023</span>
+            <span class="credits-title">テレビドラマ「深夜の高円寺」（TBS系）全12話</span>
+            <span class="credits-tag">ドラマ</span>
+          </li>
+          <li class="credits-item fade">
+            <span class="credits-year">2023</span>
+            <span class="credits-title">MV「夜明け前に」柳沢 宙</span>
+            <span class="credits-tag">MV</span>
+          </li>
+          <li class="credits-item fade">
+            <span class="credits-year">2023</span>
+            <span class="credits-title">写真集「時間のかたち」村田 彩香</span>
+            <span class="credits-tag">写真集</span>
+          </li>
+          <li class="credits-item fade">
+            <span class="credits-year">2022</span>
+            <span class="credits-title">テレビドラマ「恋と珈琲と高円寺」（テレビ朝日系）</span>
+            <span class="credits-tag">ドラマ</span>
+          </li>
+          <li class="credits-item fade">
+            <span class="credits-year">2022</span>
+            <span class="credits-title">Webムービー「昭和に帰りたくて」（観光庁）</span>
+            <span class="credits-tag">Web</span>
+          </li>
+          <li class="credits-item fade">
+            <span class="credits-year">2021</span>
+            <span class="credits-title">映画「記憶の中の喫茶店」（独立プロダクション）</span>
+            <span class="credits-tag">映画</span>
+          </li>
+          <li class="credits-item fade">
+            <span class="credits-year">2021</span>
+            <span class="credits-title">雑誌「Hanako」東京レトロ喫茶特集</span>
+            <span class="credits-tag">雑誌</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ═══════════════════ ENQUIRY ═══════════════════ -->
+      <div class="sp-xl"></div>
+
+      <div class="location-grid-wrap">
+        <div class="enquiry-note fade">
+          <p>
+            ロケ地のご使用をご検討の方は、<br />
+            まずはお電話またはメールにてお気軽にご相談ください。<br />
+            撮影内容・日程・スタッフ人数などをお伺いし、<br />
+            ご対応可能かどうかご案内いたします。
+          </p>
+          <a class="btn-outline" href="tel:0353771726">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M6.62 10.79a15.053 15.053 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C9.61 21 3 14.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02L6.62 10.79z"/>
+            </svg>
+            03-5377-1726 に電話する
+          </a>
+        </div>
+      </div>
+
+      <div class="sp-xl"></div>
+
+    </main>
+
+    <footer class="site-footer section-shell">
+      <img class="footer-logo" src="./loader-logo.png" alt="Yonchome Cafe" />
+      <p>© Yonchome cafe — Est. 1986</p>
+    </footer>
+
+    <a class="float-reserve" href="tel:0353771726" aria-label="電話で予約する">電話で予約する</a>
+
+    <script>
+      /* ── Page loader ── */
+      window.addEventListener('load', () => {
+        const loader = document.querySelector('.page-loader');
+        if (loader) {
+          loader.style.transition = 'opacity 0.6s ease';
+          loader.style.opacity = '0';
+          setTimeout(() => loader.remove(), 700);
+        }
+      });
+
+      /* ── Scroll fade-ins ── */
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.06, rootMargin: '0px 0px -32px 0px' }
+      );
+      document.querySelectorAll('.fade').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

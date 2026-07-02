@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>源泉サワー POP</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@900&family=Noto+Sans+JP:wght@400;700;900&family=Montserrat:wght@900&display=swap');
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 0 50px;
+}
+
+/* =====================================================
+   B2比率キャンバス
+===================================================== */
+.pop {
+  width: 820px;
+  height: 1160px;
+  position: relative;
+  overflow: hidden;
+  background: #04060e;
+}
+
+/* =====================================================
+   背景 — 夜の草津・濃密グラデーション
+===================================================== */
+.bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 75% 55% at 50% 50%,
+      rgba(10,40,20,0.85) 0%,
+      rgba(4,12,8,0.5) 50%,
+      transparent 75%),
+    radial-gradient(ellipse 100% 40% at 50% 0%,
+      rgba(0,20,40,0.9) 0%,
+      transparent 60%),
+    radial-gradient(ellipse 100% 40% at 50% 100%,
+      rgba(162,197,32,0.25) 0%,
+      transparent 60%),
+    linear-gradient(160deg, #02040c 0%, #06100a 40%, #030810 70%, #010306 100%);
+}
+
+/* 斜めのダイナミックストライプ */
+.stripe {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent 0px,
+    transparent 28px,
+    rgba(162,197,32,0.03) 28px,
+    rgba(162,197,32,0.03) 30px
+  );
+}
+
+/* 湯けむりSVG層 */
+.svg-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+}
+
+/* =====================================================
+   湯けむり (CSS)
+===================================================== */
+.steam {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+.sw {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(200,240,180,0.07) 0%, transparent 70%);
+  filter: blur(14px);
+  animation: srise ease-out infinite;
+}
+.sw:nth-child(1){left:5%;   bottom:0; width:120px; height:350px; animation-duration:5s;   animation-delay:0s;}
+.sw:nth-child(2){left:20%;  bottom:0; width:80px;  height:260px; animation-duration:6.5s; animation-delay:1s;}
+.sw:nth-child(3){left:36%;  bottom:0; width:140px; height:400px; animation-duration:4.5s; animation-delay:2s;}
+.sw:nth-child(4){left:55%;  bottom:0; width:90px;  height:290px; animation-duration:5.5s; animation-delay:0.5s;}
+.sw:nth-child(5){left:70%;  bottom:0; width:110px; height:340px; animation-duration:4s;   animation-delay:1.5s;}
+.sw:nth-child(6){left:85%;  bottom:0; width:70px;  height:230px; animation-duration:7s;   animation-delay:3s;}
+.sw:nth-child(7){left:48%;  bottom:0; width:60px;  height:200px; animation-duration:5s;   animation-delay:2.5s;}
+.sw:nth-child(8){left:12%;  bottom:0; width:50px;  height:180px; animation-duration:6s;   animation-delay:3.5s;}
+@keyframes srise {
+  0%   { transform:translateY(0) scaleX(1);   opacity:0;   }
+  12%  { opacity:1; }
+  55%  { transform:translateY(-420px) scaleX(1.7); opacity:0.65; }
+  100% { transform:translateY(-900px) scaleX(0.3); opacity:0;   }
+}
+
+/* 炭酸の泡 */
+.bbl {
+  position: absolute;
+  border-radius: 50%;
+  animation: brise linear infinite;
+  z-index: 5;
+}
+@keyframes brise {
+  0%   { opacity:0; transform:translateY(0) scale(1); }
+  10%  { opacity:1; }
+  85%  { opacity:0.7; }
+  100% { opacity:0; transform:translateY(-800px) scale(0.3); }
+}
+
+/* =====================================================
+   外枠
+===================================================== */
+.border-outer {
+  position: absolute;
+  inset: 12px;
+  border: 3px solid rgba(162,197,32,0.55);
+  pointer-events: none;
+  z-index: 40;
+  box-shadow:
+    inset 0 0 60px rgba(162,197,32,0.06),
+    0 0 40px rgba(162,197,32,0.08);
+}
+.border-inner {
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(162,197,32,0.18);
+  pointer-events: none;
+  z-index: 40;
+}
+
+/* 角の大きな飾り */
+.ck {
+  position: absolute;
+  width: 50px; height: 50px;
+  z-index: 41;
+}
+.ck::before,.ck::after { content:''; position:absolute; background:#a2c520; }
+.ck::before { width:50px; height:3px; top:0; left:0; }
+.ck::after  { width:3px; height:50px; top:0; left:0; }
+.ck.tl { top:15px;    left:15px; }
+.ck.tr { top:15px;    right:15px; transform:scaleX(-1); }
+.ck.bl { bottom:15px; left:15px;  transform:scaleY(-1); }
+.ck.br { bottom:15px; right:15px; transform:scale(-1); }
+
+/* =====================================================
+   上部帯 — 限定バッジ + ヘッダー
+===================================================== */
+.top-band {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 82px;
+  background: linear-gradient(180deg,
+    rgba(162,197,32,0.18) 0%,
+    rgba(162,197,32,0.06) 70%,
+    transparent 100%);
+  border-bottom: 2px solid rgba(162,197,32,0.35);
+  z-index: 35;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+}
+
+.kusatsu-tag {
+  background: #a2c520;
+  color: #02040c;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 13px; font-weight: 900;
+  letter-spacing: 0.15em;
+  padding: 8px 20px;
+  clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+}
+
+.new-tag {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px; font-weight: 900;
+  letter-spacing: 0.3em;
+  color: rgba(162,197,32,0.8);
+  border: 2px solid rgba(162,197,32,0.5);
+  padding: 6px 16px;
+}
+
+.top-center-txt {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 12px; font-weight: 900;
+  letter-spacing: 0.25em;
+  color: rgba(255,255,255,0.55);
+}
+
+/* =====================================================
+   ★ メインビジュアル — 「源泉サワー」巨大文字
+===================================================== */
+.hero-text-wrap {
+  position: absolute;
+  top: 62px;
+  left: -20px; right: -20px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* "源泉" */
+.hero-gensen {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 260px;
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.03em;
+  display: block;
+  position: relative;
+  /* 白×ゴールドのグラデーション */
+  background: linear-gradient(170deg,
+    #ffffff 0%,
+    #f5eecc 15%,
+    #e8cc60 35%,
+    #c09020 55%,
+    #e8d070 70%,
+    #ffffff 85%,
+    #c8a030 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* 輝くドロップシャドウ */
+  filter:
+    drop-shadow(0 0 30px rgba(162,197,32,0.6))
+    drop-shadow(0 0 60px rgba(162,197,32,0.3))
+    drop-shadow(6px 10px 0px rgba(0,0,0,0.95));
+  transform: rotate(-3deg);
+  transform-origin: center;
+  -webkit-text-stroke: 2px rgba(162,197,32,0.3);
+}
+
+/* "サワー" */
+.hero-sawa {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 210px;
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.02em;
+  display: block;
+  position: relative;
+  background: linear-gradient(160deg,
+    #a2c520 0%,
+    #d4f050 20%,
+    #88aa10 45%,
+    #c0e030 60%,
+    #a2c520 80%,
+    #ddf060 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter:
+    drop-shadow(0 0 40px rgba(162,197,32,0.9))
+    drop-shadow(0 0 80px rgba(162,197,32,0.5))
+    drop-shadow(6px 10px 0px rgba(0,0,0,0.95))
+    drop-shadow(-2px -2px 0px rgba(200,255,100,0.3));
+  transform: rotate(-3deg);
+  transform-origin: center;
+  margin-top: -20px;
+  -webkit-text-stroke: 2px rgba(80,120,0,0.5);
+}
+
+/* 文字背後の発光エフェクト */
+.hero-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 860px; height: 700px;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 50%,
+      rgba(162,197,32,0.28) 0%,
+      rgba(80,120,10,0.10) 45%,
+      transparent 70%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* =====================================================
+   キャッチコピー帯（斜め）
+===================================================== */
+.catch-band {
+  position: absolute;
+  top: 680px;
+  left: -30px; right: -30px;
+  height: 90px;
+  background: linear-gradient(90deg,
+    rgba(162,197,32,0.0) 0%,
+    rgba(162,197,32,0.15) 15%,
+    rgba(162,197,32,0.22) 50%,
+    rgba(162,197,32,0.15) 85%,
+    rgba(162,197,32,0.0) 100%);
+  border-top: 2px solid rgba(162,197,32,0.5);
+  border-bottom: 2px solid rgba(162,197,32,0.5);
+  transform: rotate(-2deg);
+  z-index: 22;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.catch-text {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 52px; font-weight: 900;
+  letter-spacing: 0.15em;
+  color: #fff;
+  text-shadow:
+    0 0 40px rgba(162,197,32,0.9),
+    0 0 20px rgba(162,197,32,0.7),
+    0 4px 8px rgba(0,0,0,1),
+    3px 3px 0 rgba(0,0,0,0.8);
+  transform: rotate(2deg);
+}
+
+/* =====================================================
+   左上：GUTEN缶 + コラボ表示
+===================================================== */
+.can-block {
+  position: absolute;
+  top: 90px;
+  left: 28px;
+  width: 175px;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.can-img {
+  width: 140px;
+  height: auto;
+  filter:
+    drop-shadow(0 0 20px rgba(162,197,32,0.7))
+    drop-shadow(0 0 40px rgba(162,197,32,0.4))
+    drop-shadow(4px 8px 16px rgba(0,0,0,0.9));
+  transform: rotate(-8deg);
+  animation: can-bob 3s ease-in-out infinite;
+}
+@keyframes can-bob {
+  0%,100% { transform:rotate(-8deg) translateY(0); }
+  50%      { transform:rotate(-8deg) translateY(-8px); }
+}
+
+.collab-badge {
+  background: rgba(2,4,12,0.85);
+  border: 1.5px solid rgba(162,197,32,0.6);
+  padding: 8px 14px;
+  text-align: center;
+  width: 100%;
+}
+.cb-top {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px; font-weight: 900;
+  letter-spacing: 0.1em;
+  color: #a2c520;
+  text-shadow: 0 0 12px rgba(162,197,32,0.7);
+  display: block;
+}
+.cb-x {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px; font-weight: 300;
+  color: rgba(255,255,255,0.4);
+  display: block;
+  margin: 2px 0;
+}
+.cb-bot {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.7);
+  display: block;
+}
+
+/* =====================================================
+   右上：コールアウト（POINT）
+===================================================== */
+.callout-block {
+  position: absolute;
+  top: 92px;
+  right: 28px;
+  width: 170px;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.point-item {
+  background: rgba(2,4,12,0.85);
+  border: 1.5px solid rgba(162,197,32,0.4);
+  border-left: 4px solid #a2c520;
+  padding: 9px 12px;
+}
+.pi-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8px; font-weight: 900;
+  letter-spacing: 0.3em;
+  color: #a2c520;
+  display: block;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.pi-val {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 13px; font-weight: 900;
+  color: #fff;
+  display: block;
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+}
+.pi-note {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 9px; font-weight: 400;
+  color: rgba(255,255,255,0.4);
+  display: block;
+  margin-top: 2px;
+}
+
+/* =====================================================
+   中段：サブキャッチ + 特徴アイコン行
+===================================================== */
+.mid-row {
+  position: absolute;
+  top: 790px;
+  left: 0; right: 0;
+  padding: 0 30px;
+  z-index: 25;
+}
+
+.sub-catch {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 18px; font-weight: 900;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  display: block;
+  margin-bottom: 14px;
+  text-shadow: 0 0 20px rgba(162,197,32,0.4);
+}
+
+.feature-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.feat {
+  background: rgba(2,4,10,0.8);
+  border: 1.5px solid rgba(162,197,32,0.45);
+  padding: 10px 16px;
+  text-align: center;
+  min-width: 100px;
+  position: relative;
+  overflow: hidden;
+}
+.feat::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: #a2c520;
+}
+.feat-val {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 20px; font-weight: 900;
+  color: #a2c520;
+  display: block;
+  line-height: 1;
+  text-shadow: 0 0 12px rgba(162,197,32,0.6);
+}
+.feat-unit {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px; font-weight: 900;
+  color: rgba(162,197,32,0.7);
+}
+.feat-label {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 9px; font-weight: 400;
+  color: rgba(255,255,255,0.4);
+  display: block;
+  margin-top: 3px;
+  letter-spacing: 0.1em;
+}
+
+/* =====================================================
+   温泉水面ライン
+===================================================== */
+.water-line {
+  position: absolute;
+  bottom: 165px;
+  left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(162,197,32,0.7) 10%,
+    rgba(255,255,220,0.6) 35%,
+    rgba(162,197,32,0.9) 50%,
+    rgba(255,255,220,0.6) 65%,
+    rgba(162,197,32,0.7) 90%,
+    transparent 100%);
+  box-shadow: 0 0 16px rgba(162,197,32,0.5);
+  z-index: 22;
+}
+.water-glow {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 300px;
+  background: radial-gradient(ellipse 85% 50% at 50% 100%,
+    rgba(162,197,32,0.25) 0%,
+    rgba(80,120,10,0.08) 50%,
+    transparent 70%);
+  z-index: 6;
+}
+
+/* さざ波SVG */
+.ripple-svg {
+  position: absolute;
+  bottom: 120px; left: 0; right: 0;
+  height: 60px;
+  z-index: 8;
+}
+
+/* =====================================================
+   下部フッター
+===================================================== */
+.footer {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 164px;
+  z-index: 30;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(2,4,10,0.95) 20%,
+    rgba(1,2,6,1) 100%);
+  display: flex;
+  align-items: center;
+  padding: 0 30px;
+}
+
+/* 左：場所情報 */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.fl-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8px; font-weight: 300;
+  letter-spacing: 0.4em;
+  color: rgba(255,255,255,0.2);
+  text-transform: uppercase;
+}
+.fl-val {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 13px; font-weight: 900;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.5);
+}
+.fl-guten {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px; font-weight: 900;
+  letter-spacing: 0.15em;
+  color: #a2c520;
+  text-shadow: 0 0 14px rgba(162,197,32,0.6);
+  margin-top: 4px;
+}
+
+/* 中央：英語表記 */
+.footer-center {
+  flex: 1;
+  text-align: center;
+}
+.fc-main {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px; font-weight: 300;
+  letter-spacing: 0.35em;
+  color: rgba(255,255,255,0.28);
+  display: block;
+}
+
+/* === 価格ボックス（右下・書き込み用空欄）=== */
+.price-box {
+  width: 180px;
+  height: 116px;
+  border: 3px solid rgba(162,197,32,0.65);
+  background: rgba(1,2,8,0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  box-shadow:
+    0 0 24px rgba(162,197,32,0.2),
+    inset 0 0 24px rgba(162,197,32,0.05);
+}
+.price-box::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #a2c520, rgba(162,197,32,0.4));
+}
+.pb-label {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 12px; font-weight: 900;
+  letter-spacing: 0.2em;
+  color: #a2c520;
+  margin-bottom: 10px;
+}
+.pb-blank {
+  width: 138px; height: 48px;
+  border-bottom: 2.5px solid rgba(162,197,32,0.6);
+}
+.pb-tax {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 10px; font-weight: 400;
+  color: rgba(255,255,255,0.3);
+  margin-top: 8px;
+  letter-spacing: 0.1em;
+}
+</style>
+</head>
+<body>
+
+<div class="pop">
+
+  <!-- 背景 -->
+  <div class="bg"></div>
+  <div class="stripe"></div>
+
+  <!-- 湯けむり -->
+  <div class="steam">
+    <div class="sw"></div><div class="sw"></div><div class="sw"></div>
+    <div class="sw"></div><div class="sw"></div><div class="sw"></div>
+    <div class="sw"></div><div class="sw"></div>
+  </div>
+
+  <!-- 炭酸の泡 -->
+  <div class="bbl" style="width:5px;height:5px;left:20%;bottom:10%;background:rgba(162,197,32,0.6);animation-duration:3s;animation-delay:0s;"></div>
+  <div class="bbl" style="width:3px;height:3px;left:35%;bottom:15%;background:rgba(162,197,32,0.5);animation-duration:4s;animation-delay:0.8s;"></div>
+  <div class="bbl" style="width:6px;height:6px;left:50%;bottom:8%; background:rgba(180,220,60,0.5);animation-duration:3.5s;animation-delay:1.6s;"></div>
+  <div class="bbl" style="width:4px;height:4px;left:65%;bottom:12%;background:rgba(162,197,32,0.55);animation-duration:2.8s;animation-delay:0.4s;"></div>
+  <div class="bbl" style="width:3px;height:3px;left:78%;bottom:18%;background:rgba(162,197,32,0.45);animation-duration:4.2s;animation-delay:2s;"></div>
+  <div class="bbl" style="width:5px;height:5px;left:10%;bottom:20%;background:rgba(200,240,80,0.4);animation-duration:3.8s;animation-delay:1.2s;"></div>
+  <div class="bbl" style="width:4px;height:4px;left:88%;bottom:8%; background:rgba(162,197,32,0.5);animation-duration:3.2s;animation-delay:2.8s;"></div>
+  <div class="bbl" style="width:3px;height:3px;left:42%;bottom:22%;background:rgba(162,197,32,0.4);animation-duration:5s;animation-delay:1s;"></div>
+
+  <!-- SVGデコ -->
+  <svg class="svg-layer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 1160">
+    <defs>
+      <!-- 放射状グロー -->
+      <radialGradient id="rg" cx="50%" cy="48%" r="50%">
+        <stop offset="0%"   stop-color="rgba(162,197,32,0.22)"/>
+        <stop offset="40%"  stop-color="rgba(162,197,32,0.08)"/>
+        <stop offset="100%" stop-color="rgba(162,197,32,0)"/>
+      </radialGradient>
+    </defs>
+
+    <!-- 背後の巨大グロー -->
+    <ellipse cx="410" cy="555" rx="450" ry="400" fill="url(#rg)"/>
+
+    <!-- スピードライン（放射） 中心:410,555 -->
+    <g opacity="1">
+      <line x1="410" y1="555" x2="0"   y2="50"   stroke="rgba(162,197,32,0.09)" stroke-width="1"/>
+      <line x1="410" y1="555" x2="150" y2="0"    stroke="rgba(162,197,32,0.07)" stroke-width="0.7"/>
+      <line x1="410" y1="555" x2="350" y2="0"    stroke="rgba(162,197,32,0.09)" stroke-width="1"/>
+      <line x1="410" y1="555" x2="550" y2="0"    stroke="rgba(162,197,32,0.07)" stroke-width="0.7"/>
+      <line x1="410" y1="555" x2="750" y2="0"    stroke="rgba(162,197,32,0.09)" stroke-width="1"/>
+      <line x1="410" y1="555" x2="820" y2="80"   stroke="rgba(162,197,32,0.07)" stroke-width="0.7"/>
+      <line x1="410" y1="555" x2="820" y2="300"  stroke="rgba(162,197,32,0.09)" stroke-width="1"/>
+      <line x1="410" y1="555" x2="820" y2="500"  stroke="rgba(162,197,32,0.07)" stroke-width="0.7"/>
+      <line x1="410" y1="555" x2="820" y2="700"  stroke="rgba(162,197,32,0.09)" stroke-width="1"/>
+      <line x1="410" y1="555" x2="820" y2="900"  stroke="rgba(162,197,32,0.07)" stroke-width="0.7"/>
+      <line x1="410" y1="555" x2="820" y2="1100" stroke="rgba(162,197,32,0.09)" stroke-width="1"/>
+      <line x1="410" y1="555" x2="600" y2="1160" stroke="rgba(162,197,32,0.07)" stroke-width="0.7"/>
+      <line x1="410" y1="555" x2="410" y2="1160" stroke="rgba(162,197,32,0.09)" stroke-width="1"/>
+      <line x1="410" y1="555" x2="220" y2="1160" stroke="rgba(162,197,32,0.07)" stroke-width="0.7"/>
+      <line x1="410" y1="555" x2="30"  y2="1160" stroke="rgba(162,197,32,0.09)" stroke-width="1"/>
+      <line x1="410" y1="555" x2="0"   y2="950"  stroke="rgba(162,197,32,0.07)" stroke-width="0.7"/>
+      <line x1="410" y1="555" x2="0"   y2="750"  stroke="rgba(162,197,32,0.09)" stroke-width="1"/>
+      <line x1="410" y1="555" x2="0"   y2="550"  stroke="rgba(162,197,32,0.07)" stroke-width="0.7"/>
+      <line x1="410" y1="555" x2="0"   y2="300"  stroke="rgba(162,197,32,0.09)" stroke-width="1"/>
+      <!-- 細いライン追加 -->
+      <line x1="410" y1="555" x2="50"  y2="0"    stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+      <line x1="410" y1="555" x2="250" y2="0"    stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+      <line x1="410" y1="555" x2="450" y2="0"    stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+      <line x1="410" y1="555" x2="650" y2="0"    stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+      <line x1="410" y1="555" x2="820" y2="180"  stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+      <line x1="410" y1="555" x2="820" y2="400"  stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+      <line x1="410" y1="555" x2="820" y2="600"  stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+      <line x1="410" y1="555" x2="820" y2="800"  stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+      <line x1="410" y1="555" x2="820" y2="1000" stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+      <line x1="410" y1="555" x2="700" y2="1160" stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+      <line x1="410" y1="555" x2="500" y2="1160" stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+      <line x1="410" y1="555" x2="310" y2="1160" stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+      <line x1="410" y1="555" x2="120" y2="1160" stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+      <line x1="410" y1="555" x2="0"   y2="1050" stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+      <line x1="410" y1="555" x2="0"   y2="850"  stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+      <line x1="410" y1="555" x2="0"   y2="650"  stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+      <line x1="410" y1="555" x2="0"   y2="450"  stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+      <line x1="410" y1="555" x2="0"   y2="200"  stroke="rgba(162,197,32,0.05)" stroke-width="0.5"/>
+    </g>
+
+    <!-- 二重リング（爆発感） -->
+    <circle cx="410" cy="555" r="220" fill="none" stroke="rgba(162,197,32,0.14)" stroke-width="2"/>
+    <circle cx="410" cy="555" r="260" fill="none" stroke="rgba(162,197,32,0.08)" stroke-width="1.5"/>
+    <circle cx="410" cy="555" r="310" fill="none" stroke="rgba(162,197,32,0.05)" stroke-width="1"/>
+
+    <!-- 上部 斜めのゴールドライン -->
+    <line x1="0" y1="88" x2="820" y2="88" stroke="rgba(162,197,32,0.35)" stroke-width="2"/>
+    <line x1="0" y1="95" x2="820" y2="95" stroke="rgba(162,197,32,0.12)" stroke-width="1"/>
+
+    <!-- 下部さざ波 -->
+    <g opacity="0.22" stroke="#a2c520" fill="none" stroke-width="0.8">
+      <ellipse cx="410" cy="1045" rx="80"  ry="12"/>
+      <ellipse cx="410" cy="1045" rx="150" ry="22"/>
+      <ellipse cx="410" cy="1045" rx="240" ry="35"/>
+      <ellipse cx="410" cy="1045" rx="340" ry="48"/>
+      <ellipse cx="410" cy="1045" rx="400" ry="56"/>
+    </g>
+
+    <!-- 縦書き 左 -->
+    <text x="34" y="220" font-family="serif" font-size="11"
+      fill="rgba(162,197,32,0.3)" letter-spacing="5" writing-mode="tb">草津温泉</text>
+    <!-- 縦書き 右 -->
+    <text x="786" y="220" font-family="serif" font-size="11"
+      fill="rgba(162,197,32,0.3)" letter-spacing="5" writing-mode="tb">源泉限定</text>
+
+    <!-- キャッチバンド横の和柄ライン -->
+    <line x1="0"   y1="680" x2="820" y2="666" stroke="rgba(162,197,32,0.5)"  stroke-width="2"/>
+    <line x1="0"   y1="772" x2="820" y2="758" stroke="rgba(162,197,32,0.5)"  stroke-width="2"/>
+    <line x1="0"   y1="688" x2="820" y2="674" stroke="rgba(162,197,32,0.14)" stroke-width="1"/>
+    <line x1="0"   y1="764" x2="820" y2="750" stroke="rgba(162,197,32,0.14)" stroke-width="1"/>
+  </svg>
+
+  <!-- 外枠 -->
+  <div class="border-outer"></div>
+  <div class="border-inner"></div>
+  <div class="ck tl"></div>
+  <div class="ck tr"></div>
+  <div class="ck bl"></div>
+  <div class="ck br"></div>
+
+  <!-- 上部帯 -->
+  <div class="top-band">
+    <div class="kusatsu-tag">草津温泉 限定</div>
+    <span class="top-center-txt">居酒屋オリジナルカクテル</span>
+    <div class="new-tag">NEW</div>
+  </div>
+
+  <!-- ★ 巨大メインテキスト -->
+  <div class="hero-text-wrap">
+    <div style="position:relative;">
+      <div class="hero-glow"></div>
+      <span class="hero-gensen">源泉</span>
+      <span class="hero-sawa">サワー</span>
+    </div>
+  </div>
+
+  <!-- キャッチコピー帯（斜め） -->
+  <div class="catch-band">
+    <span class="catch-text">飲む、温泉。</span>
+  </div>
+
+  <!-- 左上：GUTEN缶 -->
+  <div class="can-block">
+    <img class="can-img" src="guten_can.png" alt="GUTEN"/>
+    <div class="collab-badge">
+      <span class="cb-top">GUTEN</span>
+      <span class="cb-x">×</span>
+      <span class="cb-bot">ウォッカ</span>
+    </div>
+  </div>
+
+  <!-- 右上：コールアウト -->
+  <div class="callout-block">
+    <div class="point-item">
+      <span class="pi-label">Protein</span>
+      <span class="pi-val">プロテイン<br>10g 配合</span>
+      <span class="pi-note">スパークリングプロテイン使用</span>
+    </div>
+    <div class="point-item">
+      <span class="pi-label">Feature</span>
+      <span class="pi-val">温泉成分に<br>似た栄養素</span>
+      <span class="pi-note">GUTENの5種アミノ酸</span>
+    </div>
+    <div class="point-item">
+      <span class="pi-label">Taste</span>
+      <span class="pi-val">Low Sugar<br>果汁15%</span>
+      <span class="pi-note">シャルドネ果汁使用</span>
+    </div>
+  </div>
+
+  <!-- 中段：サブキャッチ + 特徴アイコン -->
+  <div class="mid-row">
+    <span class="sub-catch">— 草津の恵みを、そのままひと口に —</span>
+    <div class="feature-row">
+      <div class="feat">
+        <span class="feat-val">10<span class="feat-unit">g</span></span>
+        <span class="feat-label">プロテイン</span>
+      </div>
+      <div class="feat">
+        <span class="feat-val">低<span class="feat-unit">糖</span></span>
+        <span class="feat-label">Low Sugar</span>
+      </div>
+      <div class="feat">
+        <span class="feat-val">炭<span class="feat-unit">酸</span></span>
+        <span class="feat-label">スパークリング</span>
+      </div>
+      <div class="feat">
+        <span class="feat-val">草<span class="feat-unit">津</span></span>
+        <span class="feat-label">限定販売</span>
+      </div>
+      <div class="feat">
+        <span class="feat-val">5<span class="feat-unit">種</span></span>
+        <span class="feat-label">アミノ酸</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 温泉水面・グロー -->
+  <div class="water-line"></div>
+  <div class="water-glow"></div>
+
+  <!-- フッター -->
+  <div class="footer">
+    <div class="footer-left">
+      <span class="fl-label">Location</span>
+      <span class="fl-val">草津温泉街 居酒屋</span>
+      <span class="fl-guten">GUTEN × Vodka</span>
+    </div>
+    <div class="footer-center">
+      <span class="fc-main">GENSEN SAWA — Original Cocktail at Kusatsu Onsen</span>
+    </div>
+    <div class="price-box">
+      <span class="pb-label">お値段</span>
+      <div class="pb-blank"></div>
+      <span class="pb-tax">円（税込）</span>
+    </div>
+  </div>
+
+</div><!-- /pop -->
+
+<div style="text-align:center;color:rgba(255,255,255,0.22);font-family:sans-serif;font-size:11px;margin-top:18px;letter-spacing:0.1em;line-height:2.2;">
+  B2比率プレビュー | guten_can.png と同フォルダに置いてChromeで開く<br>
+  PNG書き出し: F12 → Cmd+Shift+P → "Capture full size screenshot"
+</div>
+
+</body>
+</html>

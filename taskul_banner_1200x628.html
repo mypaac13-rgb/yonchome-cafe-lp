@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html {
+    background: #E8EBF0;
+  }
+  body {
+    font-family: 'Noto Sans JP', 'Hiragino Sans', 'YuGothic', 'Yu Gothic', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px;
+  }
+
+  .banner {
+    width: 1200px;
+    height: 628px;
+    background: #ffffff;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── Left Panel ── */
+  .left {
+    width: 510px;
+    flex-shrink: 0;
+    height: 100%;
+    padding: 60px 52px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #E6FAF1;
+    color: #0DAD64;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    width: fit-content;
+    letter-spacing: 0.04em;
+  }
+
+  .tag::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: #15CF78;
+    border-radius: 50%;
+  }
+
+  .headline {
+    font-size: 56px;
+    font-weight: 900;
+    color: #2C3445;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+
+  .headline .accent {
+    color: #15CF78;
+  }
+
+  .subtext {
+    font-size: 14.5px;
+    color: #5A6478;
+    line-height: 1.8;
+    margin-bottom: 36px;
+    font-weight: 400;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #15CF78;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 15px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    width: fit-content;
+    letter-spacing: 0.03em;
+    box-shadow: 0 8px 24px rgba(21, 207, 120, 0.35);
+  }
+
+  .cta-arrow {
+    font-size: 18px;
+    font-weight: 900;
+  }
+
+  .logo-area {
+    position: absolute;
+    bottom: 40px;
+    left: 52px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+
+  .logo-icon {
+    width: 26px;
+    height: 26px;
+    border: 3px solid #15CF78;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+
+  .logo-name {
+    font-size: 18px;
+    font-weight: 900;
+    color: #2C3445;
+    letter-spacing: 0.08em;
+  }
+
+  .logo-tagline {
+    font-size: 11px;
+    color: #94A3B8;
+    margin-left: 4px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Right Panel ── */
+  .right {
+    flex: 1;
+    height: 100%;
+    padding: 36px 36px 36px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+  }
+
+  .ui-wrap {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  /* Green corner bracket */
+  .ui-wrap::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 52px;
+    height: 52px;
+    border-top: 3px solid #15CF78;
+    border-left: 3px solid #15CF78;
+    border-radius: 4px 0 0 0;
+    z-index: 10;
+  }
+  .ui-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 52px;
+    height: 52px;
+    border-bottom: 3px solid #15CF78;
+    border-right: 3px solid #15CF78;
+    border-radius: 0 0 4px 0;
+    z-index: 10;
+  }
+
+  .ui-mockup {
+    width: 100%;
+    height: 100%;
+    background: #FAFBFF;
+    border-radius: 14px;
+    border: 1.5px solid #E2E8F0;
+    overflow: hidden;
+    box-shadow: 0 16px 48px rgba(44, 52, 69, 0.12), 0 4px 16px rgba(44, 52, 69, 0.08);
+  }
+
+  /* Browser chrome */
+  .chrome {
+    background: #2C3445;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    gap: 7px;
+    flex-shrink: 0;
+  }
+
+  .dot { width: 9px; height: 9px; border-radius: 50%; }
+  .dot-r { background: #FF5F57; }
+  .dot-y { background: #FEBC2E; }
+  .dot-g { background: #28C840; }
+
+  .url-bar {
+    margin-left: 12px;
+    flex: 1;
+    max-width: 200px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.02em;
+  }
+
+  /* App body */
+  .app-body {
+    display: flex;
+    height: calc(100% - 36px);
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 186px;
+    flex-shrink: 0;
+    background: #F0F4F8;
+    border-right: 1px solid #E2E8F0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-header {
+    padding: 12px 13px 10px;
+    border-bottom: 1px solid #E2E8F0;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .s-logo-icon {
+    width: 17px;
+    height: 17px;
+    border: 2.5px solid #15CF78;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .s-logo-text {
+    font-size: 12px;
+    font-weight: 900;
+    color: #2C3445;
+    letter-spacing: 0.06em;
+  }
+
+  .nav-icons {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    gap: 2px;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .project-group {
+    padding: 6px 0;
+  }
+
+  .project-label {
+    padding: 3px 13px;
+    font-size: 10px;
+    color: #94A3B8;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .p-item {
+    padding: 6px 13px;
+    font-size: 11px;
+    color: #64748B;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .p-item.active {
+    background: rgba(21, 207, 120, 0.12);
+    color: #0DAD64;
+    font-weight: 700;
+    border-right: 2px solid #15CF78;
+  }
+
+  .p-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .p-badge {
+    margin-left: auto;
+    background: #15CF78;
+    color: white;
+    font-size: 8.5px;
+    font-weight: 700;
+    padding: 1px 5px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  /* Main area */
+  .main {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 14px 16px;
+    background: #FAFBFF;
+  }
+
+  .main-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #2C3445;
+    margin-bottom: 2px;
+  }
+
+  .main-client {
+    font-size: 10.5px;
+    color: #94A3B8;
+    margin-bottom: 12px;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 2px;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+
+  .tab {
+    font-size: 10.5px;
+    color: #94A3B8;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .tab.on {
+    background: rgba(21, 207, 120, 0.12);
+    color: #0DAD64;
+    font-weight: 700;
+  }
+
+  .task-list { display: flex; flex-direction: column; gap: 0; }
+
+  .task-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6.5px 0;
+    border-bottom: 1px solid #F1F5F9;
+    font-size: 11px;
+    color: #475569;
+  }
+
+  .t-check {
+    width: 13px;
+    height: 13px;
+    border: 1.5px solid #CBD5E1;
+    border-radius: 3px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+  }
+
+  .t-check.done {
+    background: #15CF78;
+    border-color: #15CF78;
+    color: white;
+  }
+
+  .t-name { flex: 1; }
+
+  .t-status {
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+
+  .s-done    { background: #DCFCE7; color: #15803D; }
+  .s-active  { background: #DBEAFE; color: #1D4ED8; }
+  .s-pending { background: #F1F5F9; color: #64748B; }
+  .s-review  { background: #FEF9C3; color: #A16207; }
+
+  /* Divider between left/right */
+  .divider {
+    position: absolute;
+    left: 510px;
+    top: 40px;
+    bottom: 40px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, #E2E8F0 30%, #E2E8F0 70%, transparent);
+  }
+</style>
+</head>
+<body>
+<div class="banner">
+  <div class="divider"></div>
+
+  <!-- LEFT -->
+  <div class="left">
+    <div class="tag">フリーランス専用 AIツール</div>
+
+    <div class="headline">
+      <span class="accent">貼るだけ</span>で、<br>案件が整理される。
+    </div>
+
+    <div class="subtext">
+      チャット・メールをそのまま貼り付けるだけ。<br>
+      タスク・見積・請求書をAIが自動生成します。
+    </div>
+
+    <a class="cta" href="#">
+      無料で試してみる
+      <span class="cta-arrow">→</span>
+    </a>
+
+    <div class="logo-area">
+      <div class="logo-icon"></div>
+      <div class="logo-name">TASKUL</div>
+      <div class="logo-tagline">タスクをシンプルに</div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right">
+    <div class="ui-wrap">
+      <div class="ui-mockup">
+        <div class="chrome">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+          <div class="url-bar">taskul-ai.com</div>
+        </div>
+        <div class="app-body">
+          <!-- Sidebar -->
+          <div class="sidebar">
+            <div class="sidebar-header">
+              <div class="s-logo-icon"></div>
+              <div class="s-logo-text">TASKUL</div>
+            </div>
+            <div class="nav-icons">
+              <div class="project-group">
+                <div class="project-label">プロジェクト</div>
+                <div class="p-item">
+                  <div class="p-dot" style="background:#6366F1"></div>
+                  TONARI DESIGN
+                  <span class="p-badge">3</span>
+                </div>
+                <div class="p-item" style="padding-left:20px; color:#7C8EA8;">ブランディング</div>
+                <div class="p-item active" style="padding-left:20px;">
+                  LP制作
+                  <span class="p-badge" style="background:#0DAD64;">進行</span>
+                </div>
+                <div class="p-item" style="padding-left:20px; color:#7C8EA8;">MEO対策</div>
+              </div>
+              <div class="project-group">
+                <div class="p-item">
+                  <div class="p-dot" style="background:#EC4899"></div>
+                  株式会社シルベ
+                  <span class="p-badge">2</span>
+                </div>
+                <div class="p-item">
+                  <div class="p-dot" style="background:#F59E0B"></div>
+                  株式会社フリカン
+                  <span class="p-badge">6</span>
+                </div>
+                <div class="p-item">
+                  <div class="p-dot" style="background:#14B8A6"></div>
+                  合同会社ノア
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main content -->
+          <div class="main">
+            <div class="main-title">LP制作</div>
+            <div class="main-client">株式会社フリーカンパニー</div>
+
+            <div class="tabs">
+              <div class="tab on">タスク一覧</div>
+              <div class="tab">見積</div>
+              <div class="tab">請求</div>
+              <div class="tab">ノート</div>
+            </div>
+
+            <div class="task-list">
+              <div class="task-row">
+                <div class="t-check done">✓</div>
+                <div class="t-name">構成案作成</div>
+                <div class="t-status s-done">完了</div>
+              </div>
+              <div class="task-row">
+                <div class="t-check done">✓</div>
+                <div class="t-name">コピーライティング</div>
+                <div class="t-status s-done">完了</div>
+              </div>
+              <div class="task-row">
+                <div class="t-check"></div>
+                <div class="t-name">デザイン作成</div>
+                <div class="t-status s-active">進行中</div>
+              </div>
+              <div class="task-row">
+                <div class="t-check"></div>
+                <div class="t-name">デザイン確認・修正</div>
+                <div class="t-status s-pending">未着手</div>
+              </div>
+              <div class="task-row">
+                <div class="t-check"></div>
+                <div class="t-name">コーディング</div>
+                <div class="t-status s-pending">未着手</div>
+              </div>
+              <div class="task-row">
+                <div class="t-check"></div>
+                <div class="t-name">コーディング確認</div>
+                <div class="t-status s-pending">未着手</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
