@@ -1633,8 +1633,8 @@ img {
 }
 
 .nav-reserve:hover {
-  color: var(--text);
-  background: rgba(196, 160, 66, 0.1);
+  color: var(--accent);
+  background: none;
 }
 
 .nav-reserve-popup {
