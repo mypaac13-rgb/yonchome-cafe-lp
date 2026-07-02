@@ -2783,33 +2783,37 @@
 
         /* Mobile arrow nav */
         .location-mobile-nav {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 20px;
           position: fixed;
-          bottom: 20px;
-          left: 50%;
-          transform: translateX(-50%);
+          top: 50%;
+          left: 0;
+          right: 0;
+          transform: translateY(-50%);
           z-index: 100;
-          pointer-events: auto;
+          pointer-events: none;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0;
         }
         .location-mobile-btn {
           width: 44px;
-          height: 44px;
-          border: 1px solid rgba(80,60,40,0.35);
-          border-radius: 50%;
-          background: transparent;
-          color: rgba(80,60,40,0.75);
+          height: 56px;
+          border: none;
+          border-radius: 4px;
+          background: rgba(18,12,8,0.82);
+          color: #fff;
           font-size: 1.1rem;
           cursor: pointer;
           display: flex;
           align-items: center;
           justify-content: center;
+          pointer-events: auto;
           transition: background 0.2s;
           -webkit-tap-highlight-color: transparent;
         }
-        .location-mobile-btn:disabled { opacity: 0.25; pointer-events: none; }
+        .location-mobile-prev { border-radius: 0 4px 4px 0; }
+        .location-mobile-next { border-radius: 4px 0 0 4px; }
+        .location-mobile-btn:disabled { opacity: 0.2; pointer-events: none; }
         .location-mobile-count {
           font-family: var(--font-body);
           font-size: 0.8rem;
@@ -3182,11 +3186,11 @@
         <!-- Mobile arrow navigation -->
         <div class="location-mobile-nav">
           <button class="location-mobile-btn location-mobile-prev" aria-label="前の写真">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
-          <span class="location-mobile-count">1 / 4</span>
+          <span class="location-mobile-count" style="display:none;">1 / 4</span>
           <button class="location-mobile-btn location-mobile-next" aria-label="次の写真">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
         </div>
 
