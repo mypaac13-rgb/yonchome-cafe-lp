@@ -1495,11 +1495,11 @@
       .hv-title-area {
         flex: 1;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: center;
-        align-items: center;
-        padding: 5% 5% 4% 4%;
-        gap: 1.4em;
+        align-items: flex-start;
+        padding: 5% 7% 4% 6%;
+        gap: 0;
       }
 
       /* HISTORY + 縦線グループ */
@@ -1508,24 +1508,18 @@
         flex-direction: row;
         align-items: center;
         gap: 0.6em;
-        flex-shrink: 0;
-        align-self: flex-start;
+        order: -1;
+        margin-bottom: 16px;
       }
-      .hv-vline {
-        width: 2.2em;
-        height: 1px;
-        background: #b8893a;
-        display: block;
-        flex-shrink: 0;
-      }
+      .hv-vline { display: none; }
 
       /* HISTORY ラベル */
       .hv-label {
         writing-mode: horizontal-tb;
         font-family: 'Manrope', Arial, sans-serif;
-        font-size: 0.68rem;
-        font-weight: 700;
-        letter-spacing: 0.35em;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.36em;
         color: #b8893a;
         text-transform: uppercase;
       }
@@ -1559,6 +1553,8 @@
         margin: 0;
         height: auto;
         overflow: visible;
+        padding-left: 22px;
+        border-left: 2px solid #b8893a;
       }
       .hv-head-col {
         overflow: visible;
@@ -1586,7 +1582,7 @@
       .hv-body p {
         writing-mode: vertical-rl;
         font-family: 'Klee One', serif;
-        font-size: clamp(0.92rem, 1.8vh, 1.05rem);
+        font-size: clamp(1.05rem, 2vh, 1.2rem);
         font-weight: 400;
         line-height: 2;
         letter-spacing: 0.06em;
