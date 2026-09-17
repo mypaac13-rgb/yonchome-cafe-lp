@@ -3059,6 +3059,19 @@
         .menu-lightbox-prev { left: 4px; padding: 16px 12px; }
         .menu-lightbox-next { right: 4px; padding: 16px 12px; }
       }
+
+      /* SEO hashtags: present in markup for crawlers, not shown visually */
+      .seo-tags {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
     </style>
   <script type="application/ld+json">
   {
@@ -3094,6 +3107,12 @@
     "servesCuisine": ["American", "Cafe", "Dessert"],
     "priceRange": "¥¥",
     "image": "https://yonchome-cafe.com/hero-main-upscaled.jpg",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 35.7045794,
+      "longitude": 139.6504417
+    },
+    "hasMap": "https://www.google.com/maps?cid=18173101928092009912",
     "amenityFeature": [
       {"@type": "LocationFeatureSpecification", "name": "喫煙可", "value": true},
       {"@type": "LocationFeatureSpecification", "name": "貸切", "value": true},
@@ -3101,7 +3120,8 @@
     ],
     "sameAs": [
       "https://www.instagram.com/yonchome_cafe/",
-      "https://x.com/yonchomecafe"
+      "https://x.com/yonchomecafe",
+      "https://www.google.com/maps?cid=18173101928092009912"
     ]
   }
   </script>
@@ -3199,7 +3219,7 @@
         </div>
         <div class="hero-media photo-panel photo-panel-hero">
           <img class="hero-image hero-image-to" src="./店内画像.webp" alt="高円寺四丁目カフェ YonchoMe Cafe（よんちょめカフェ）の店内" fetchpriority="high" />
-          <img class="hero-image hero-image-from" src="./入り口画像.webp" alt="高円寺四丁目カフェ YonchoMe Cafe（よんちょめカフェ）の入り口" loading="lazy" />
+          <img class="hero-image hero-image-from" src="./入り口画像.webp" alt="高円寺四丁目カフェ YonchoMe Cafe（よんちょめカフェ）の入り口" loading="lazy" decoding="async" />
         </div>
 
         <div class="hero-letter">
@@ -3225,7 +3245,7 @@
             </div>
           </div>
           <div class="message-side-photo">
-            <img src="./LINE_ALBUM_Yonchome Cafe website_260618_2.webp" alt="YonchoMe Cafeの店内" loading="lazy" />
+            <img src="./LINE_ALBUM_Yonchome Cafe website_260618_2.webp" alt="YonchoMe Cafeの店内" loading="lazy" decoding="async" />
           </div>
         </div>
       </section>
@@ -3237,7 +3257,7 @@
           <!-- 上段：写真＋タイトル -->
           <div class="hv-upper">
             <div class="hv-photo">
-              <img src="./歩く.webp" alt="YonchoMe Cafe 店内" loading="lazy" />
+              <img src="./歩く.webp" alt="YonchoMe Cafe 店内" loading="lazy" decoding="async" />
             </div>
             <div class="hv-title-area">
               <div class="hv-head-col">
@@ -3266,42 +3286,42 @@
 
             <!-- Set 1 -->
             <div class="hg-item" style="width:300px;height:460px;margin-top:60px;">
-              <img src="./SODA.webp" alt="Sodaのステンドグラス" loading="lazy" />
+              <img src="./SODA.webp" alt="Sodaのステンドグラス" loading="lazy" decoding="async" />
               <div class="hg-caption">
                 <span class="hg-caption-title" data-i18n="hgCaption1">「Soda」のステンドグラス。<br>創業当時から変わらず<br>店の顔として輝いている。</span>
                 <span class="hg-caption-sub">Stained Glass — Soda</span>
               </div>
             </div>
             <div class="hg-item" style="width:260px;height:380px;margin-top:120px;">
-              <img src="./時計.webp" alt="アンティーク時計" loading="lazy" />
+              <img src="./時計.webp" alt="アンティーク時計" loading="lazy" decoding="async" />
               <div class="hg-caption">
                 <span class="hg-caption-title" data-i18n="hgCaption2">実際にロンドンの駅で<br>使用されていた時計を輸入。</span>
                 <span class="hg-caption-sub">Antique Clock — London</span>
               </div>
             </div>
             <div class="hg-item" style="width:360px;height:500px;margin-top:20px;">
-              <img src="./天井.webp" alt="ニューヨーク製の天井装飾" loading="lazy" />
+              <img src="./天井.webp" alt="ニューヨーク製の天井装飾" loading="lazy" decoding="async" />
               <div class="hg-caption">
                 <span class="hg-caption-title" data-i18n="hgCaption3">アメリカから輸入した<br>チョコレートのような天井。<br>職人さんが手作業で貼り付けた。</span>
                 <span class="hg-caption-sub">Ceiling — New York</span>
               </div>
             </div>
             <div class="hg-item" style="width:280px;height:420px;margin-top:80px;">
-              <img src="./ステンド.webp" alt="モザイクステンドグラス" loading="lazy" />
+              <img src="./ステンド.webp" alt="モザイクステンドグラス" loading="lazy" decoding="async" />
               <div class="hg-caption">
                 <span class="hg-caption-title" data-i18n="hgCaption4">当時のスタッフによる<br>手作りのモザイクアート。</span>
                 <span class="hg-caption-sub">Mosaic Stained Glass</span>
               </div>
             </div>
             <div class="hg-item" style="width:240px;height:360px;margin-top:140px;">
-              <img src="./LINE_ALBUM_Yonchome Cafe website_260618_4.webp" alt="モザイクアート" loading="lazy" />
+              <img src="./LINE_ALBUM_Yonchome Cafe website_260618_4.webp" alt="モザイクアート" loading="lazy" decoding="async" />
               <div class="hg-caption">
                 <span class="hg-caption-title" data-i18n="hgCaption5">店内のモザイクアート。</span>
                 <span class="hg-caption-sub">Mosaic Art</span>
               </div>
             </div>
             <div class="hg-item" style="width:320px;height:480px;margin-top:40px;">
-              <img src="./LINE_ALBUM_Yonchome Cafe website_260618_10.webp" alt="アンティークランプ" loading="lazy" />
+              <img src="./LINE_ALBUM_Yonchome Cafe website_260618_10.webp" alt="アンティークランプ" loading="lazy" decoding="async" />
               <div class="hg-caption">
                 <span class="hg-caption-title" data-i18n="hgCaption6">NYのアンティークショップで<br>出会った100年以上前の照明。</span>
                 <span class="hg-caption-sub">Antique Lamp — New York</span>
@@ -3310,42 +3330,42 @@
 
             <!-- Set 2 (seamless loop duplicate) -->
             <div class="hg-item" style="width:300px;height:460px;margin-top:60px;">
-              <img src="./SODA.webp" alt="Sodaのステンドグラス" loading="lazy" />
+              <img src="./SODA.webp" alt="Sodaのステンドグラス" loading="lazy" decoding="async" />
               <div class="hg-caption">
                 <span class="hg-caption-title" data-i18n="hgCaption1">「Soda」のステンドグラス。<br>創業当時から変わらず<br>店の顔として輝いている。</span>
                 <span class="hg-caption-sub">Stained Glass — Soda</span>
               </div>
             </div>
             <div class="hg-item" style="width:260px;height:380px;margin-top:120px;">
-              <img src="./時計.webp" alt="アンティーク時計" loading="lazy" />
+              <img src="./時計.webp" alt="アンティーク時計" loading="lazy" decoding="async" />
               <div class="hg-caption">
                 <span class="hg-caption-title" data-i18n="hgCaption2">実際にロンドンの駅で<br>使用されていた時計を輸入。</span>
                 <span class="hg-caption-sub">Antique Clock — London</span>
               </div>
             </div>
             <div class="hg-item" style="width:360px;height:500px;margin-top:20px;">
-              <img src="./天井.webp" alt="ニューヨーク製の天井装飾" loading="lazy" />
+              <img src="./天井.webp" alt="ニューヨーク製の天井装飾" loading="lazy" decoding="async" />
               <div class="hg-caption">
                 <span class="hg-caption-title" data-i18n="hgCaption3">アメリカから輸入した<br>チョコレートのような天井。<br>職人さんが手作業で貼り付けた。</span>
                 <span class="hg-caption-sub">Ceiling — New York</span>
               </div>
             </div>
             <div class="hg-item" style="width:280px;height:420px;margin-top:80px;">
-              <img src="./ステンド.webp" alt="モザイクステンドグラス" loading="lazy" />
+              <img src="./ステンド.webp" alt="モザイクステンドグラス" loading="lazy" decoding="async" />
               <div class="hg-caption">
                 <span class="hg-caption-title" data-i18n="hgCaption4">当時のスタッフによる<br>手作りのモザイクアート。</span>
                 <span class="hg-caption-sub">Mosaic Stained Glass</span>
               </div>
             </div>
             <div class="hg-item" style="width:240px;height:360px;margin-top:140px;">
-              <img src="./LINE_ALBUM_Yonchome Cafe website_260618_4.webp" alt="モザイクアート" loading="lazy" />
+              <img src="./LINE_ALBUM_Yonchome Cafe website_260618_4.webp" alt="モザイクアート" loading="lazy" decoding="async" />
               <div class="hg-caption">
                 <span class="hg-caption-title" data-i18n="hgCaption5">店内のモザイクアート。</span>
                 <span class="hg-caption-sub">Mosaic Art</span>
               </div>
             </div>
             <div class="hg-item" style="width:320px;height:480px;margin-top:40px;">
-              <img src="./LINE_ALBUM_Yonchome Cafe website_260618_10.webp" alt="アンティークランプ" loading="lazy" />
+              <img src="./LINE_ALBUM_Yonchome Cafe website_260618_10.webp" alt="アンティークランプ" loading="lazy" decoding="async" />
               <div class="hg-caption">
                 <span class="hg-caption-title" data-i18n="hgCaption6">NYのアンティークショップで<br>出会った100年以上前の照明。</span>
                 <span class="hg-caption-sub">Antique Lamp — New York</span>
@@ -3379,7 +3399,7 @@
         <div class="location-grid">
 
           <article class="location-card">
-            <div class="location-card-photo"><img src="./new5卓.jpg" alt="撮影スポット" loading="lazy" /></div>
+            <div class="location-card-photo"><img src="./new5卓.webp" alt="撮影スポット" loading="lazy" decoding="async" /></div>
             <ul class="location-card-works">
               <li>正直不動産２</li>
               <li>CRISIS 公安機動捜査隊特捜班　第５話</li>
@@ -3389,14 +3409,14 @@
           </article>
 
           <article class="location-card">
-            <div class="location-card-photo"><img src="./NEW6卓.jpg" alt="撮影スポット" loading="lazy" /></div>
+            <div class="location-card-photo"><img src="./NEW6卓.webp" alt="撮影スポット" loading="lazy" decoding="async" /></div>
             <ul class="location-card-works">
               <li>テセウスの船<br><span style="font-size:0.82em;opacity:0.75;">TBS日曜劇場　第４話</span></li>
             </ul>
           </article>
 
           <article class="location-card">
-            <div class="location-card-photo"><img src="./spot-3.webp" alt="撮影スポット" loading="lazy" /></div>
+            <div class="location-card-photo"><img src="./spot-3.webp" alt="撮影スポット" loading="lazy" decoding="async" /></div>
             <ul class="location-card-works">
               <li>LIGHT HOUSE<br><span style="font-size:0.82em;opacity:0.75;">Netflix</span></li>
               <li>人事の人見<br><span style="font-size:0.82em;opacity:0.75;">フジテレビ</span></li>
@@ -3405,7 +3425,7 @@
           </article>
 
           <article class="location-card">
-            <div class="location-card-photo"><img src="./spot-4.webp" alt="撮影スポット" loading="lazy" /></div>
+            <div class="location-card-photo"><img src="./spot-4.webp" alt="撮影スポット" loading="lazy" decoding="async" /></div>
             <ul class="location-card-works">
               <li>笑うマトリョーシカ<br><span style="font-size:0.82em;opacity:0.75;">TBSテレビ</span></li>
               <li>罠の戦争<br><span style="font-size:0.82em;opacity:0.75;">フジテレビ</span></li>
@@ -3447,7 +3467,7 @@
       <section class="larc-section">
         <div class="larc-inner">
           <div class="larc-photo anim-up">
-            <img src="./larc-photo.webp" alt="The Fourth Avenue Cafe / L'Arc〜en〜Ciel" />
+            <img src="./larc-photo.webp" alt="The Fourth Avenue Cafe / L'Arc〜en〜Ciel" loading="lazy" decoding="async" />
           </div>
           <div class="larc-text anim-up" style="transition-delay:0.15s;">
             <p class="larc-kicker" data-i18n="larcKicker">－ YonchoMe Cafeが題材の楽曲 －</p>
@@ -3465,7 +3485,7 @@
         </div>
         <div class="popular-menu-grid">
           <div class="popular-menu-item anim-up">
-            <div class="popular-menu-img"><img src="./waffle.webp" alt="デラックスワッフルセット" loading="lazy" /></div>
+            <div class="popular-menu-img"><img src="./waffle.webp" alt="デラックスワッフルセット" loading="lazy" decoding="async" /></div>
             <div class="popular-menu-name-row">
               <p class="popular-menu-name" data-i18n="menuName1">デラックスワッフルセット</p>
               <span class="popular-menu-price">¥1,550</span>
@@ -3473,7 +3493,7 @@
             <p class="popular-menu-desc" data-i18n="menuDesc1">外は香ばしく、中はふんわり焼き上げた手作りワッフルに、ジューシーなソーセージ、ベーコン、目玉焼きを添えたアメリカでは定番のワッフルセット。</p>
           </div>
           <div class="popular-menu-item anim-up">
-            <div class="popular-menu-img"><img src="./burger.webp" alt="クラシックバーガー" loading="lazy" /></div>
+            <div class="popular-menu-img"><img src="./burger.webp" alt="クラシックバーガー" loading="lazy" decoding="async" /></div>
             <div class="popular-menu-name-row">
               <p class="popular-menu-name" data-i18n="menuName2">クラシックバーガー</p>
               <span class="popular-menu-price">¥1,350</span>
@@ -3481,7 +3501,7 @@
             <p class="popular-menu-desc" data-i18n="menuDesc2">香ばしく焼き上げた牛肉100％のジューシーなパティの旨みが広がるクラシックバーガー。素材の美味しさが引き立つ定番のバーガーです。</p>
           </div>
           <div class="popular-menu-item anim-up">
-            <div class="popular-menu-img"><img src="./cheesecake.webp" alt="自家製ニューヨークチーズケーキ" loading="lazy" /></div>
+            <div class="popular-menu-img"><img src="./cheesecake.webp" alt="自家製ニューヨークチーズケーキ" loading="lazy" decoding="async" /></div>
             <div class="popular-menu-name-row">
               <p class="popular-menu-name" data-i18n="menuName3">自家製ニューヨークチーズケーキ</p>
               <span class="popular-menu-price">¥950</span>
@@ -3489,7 +3509,7 @@
             <p class="popular-menu-desc" data-i18n="menuDesc3">クリームチーズを贅沢に使用し、しっとりとなめらかな口溶けに焼き上げました。当店のスタッフがレシピを考案した自家製NYチーズケーキ。ぜひご賞味ください。</p>
           </div>
           <div class="popular-menu-item anim-up">
-            <div class="popular-menu-img"><img src="./american-sundae.webp" alt="アメリカンサンデー" loading="lazy" style="object-fit:cover;object-position:center 55%;" /></div>
+            <div class="popular-menu-img"><img src="./american-sundae.webp" alt="アメリカンサンデー" loading="lazy" style="object-fit:cover;object-position:center 55%;" decoding="async" /></div>
             <div class="popular-menu-name-row">
               <p class="popular-menu-name" data-i18n="menuName5">アメリカンサンデー</p>
               <span class="popular-menu-price">¥780</span>
@@ -3497,7 +3517,7 @@
             <p class="popular-menu-desc" data-i18n="menuDesc5">心ときめく王道のアメリカンサンデー。シリアルのザクザク感とミルキーなアイス。チョコレートソースとふんわり生クリーム、仕上げはカラフルなチョコスプレーとチェリー。</p>
           </div>
           <div class="popular-menu-item anim-up">
-            <div class="popular-menu-img"><img src="./NEWコーヒー.jpg" alt="オリジナルブレンドコーヒー" loading="lazy" /></div>
+            <div class="popular-menu-img"><img src="./NEWコーヒー.webp" alt="オリジナルブレンドコーヒー" loading="lazy" decoding="async" /></div>
             <div class="popular-menu-name-row">
               <p class="popular-menu-name" data-i18n="menuName6">オリジナルブレンドコーヒー</p>
               <span class="popular-menu-price">¥600</span>
@@ -3505,7 +3525,7 @@
             <p class="popular-menu-desc" data-i18n="menuDesc6">豊かな香りと深みのあるコク。ゆっくりと流れる時間とともにお楽しみください。</p>
           </div>
           <div class="popular-menu-item anim-up">
-            <div class="popular-menu-img"><img src="./cream-soda.webp" alt="クリームソーダ" loading="lazy" /></div>
+            <div class="popular-menu-img"><img src="./cream-soda.webp" alt="クリームソーダ" loading="lazy" decoding="async" /></div>
             <div class="popular-menu-name-row">
               <p class="popular-menu-name" data-i18n="menuName4">クリームソーダ</p>
             </div>
@@ -3605,7 +3625,7 @@
         <div class="banner-grid">
           <div class="banner-item">
             <div class="banner-bg">
-              <img src="./店内画像.webp" alt="" />
+              <img src="./店内画像.webp" alt="" loading="lazy" decoding="async" />
             </div>
             <div class="banner-body">
               <span class="banner-kicker">Private Party</span>
@@ -3634,7 +3654,7 @@
         </div>
         <div class="access-map-wrap anim-up">
           <iframe
-            src="https://www.google.com/maps?q=東京都杉並区高円寺南4丁目28-10&output=embed"
+            src="https://www.google.com/maps?cid=18173101928092009912&output=embed"
             width="100%"
             height="420"
             style="border:0;"
@@ -3697,7 +3717,7 @@
           <div>
             <span>Address</span>
             <p data-i18n="infoAddress">〒166-0003<br />東京都杉並区高円寺南4丁目28-10<br />高円寺リリエンハイム 2F</p>
-            <a class="info-button" href="https://www.google.com/maps/search/?api=1&query=%E3%80%92166-0003%20%E6%9D%B1%E4%BA%AC%E9%83%BD%E6%9D%89%E4%B8%A6%E5%8C%BA%E9%AB%98%E5%86%86%E5%AF%BA%E5%8D%97%EF%BC%94%E4%B8%81%E7%9B%AE%EF%BC%92%EF%BC%98%E2%88%92%EF%BC%91%EF%BC%90%20%E9%AB%98%E5%86%86%E5%AF%BA%E3%83%AA%E3%83%AA%E3%82%A8%E3%83%B3%E3%83%8F%E3%82%A4%E3%83%A0%202F" target="_blank" rel="noreferrer">Google Maps</a>
+            <a class="info-button" href="https://www.google.com/maps?cid=18173101928092009912" target="_blank" rel="noreferrer">Google Maps</a>
           </div>
           <div>
             <span>Open</span>
@@ -3716,6 +3736,10 @@
     <footer class="site-footer section-shell">
       <img class="footer-logo" src="./loader-logo.png" alt="YonchoMe Cafe" />
       <p>© YonchoMe Cafe — Est. 1986</p>
+      <p class="seo-tags" aria-hidden="true">
+        高円寺四丁目カフェ（よんちょめカフェ）YonchoMe Cafeは高円寺駅徒歩1分の老舗カフェ＆ダイニングバー。ランチ・ディナー・喫茶・テイクアウト対応。高円寺のワッフル・ハンバーガー・自家製ニューヨークチーズケーキ・クリームソーダ・オリジナルブレンドコーヒーが人気。喫煙可・貸切パーティー（30名〜）対応。映画・ドラマ・CMロケ地としても知られる高円寺の名所。高円寺 カフェ / 高円寺 喫茶 / 高円寺 ランチ / 高円寺 ディナー / 高円寺 貸切 / 高円寺 デート / 高円寺 女子会 / 高円寺 喫煙可。
+      </p>
+      <p class="seo-tags" aria-hidden="true">#高円寺カフェ #高円寺グルメ #高円寺ランチ #高円寺ディナー #高円寺スイーツ #高円寺喫茶店 #高円寺老舗カフェ #高円寺四丁目カフェ #四丁目カフェ #よんちょめカフェ #ヨンチョームカフェ #YonchoMeCafe #高円寺チーズケーキ #高円寺ワッフル #高円寺貸切 #高円寺パーティー #高円寺女子会 #高円寺デート #高円寺アメリカンカフェ #ラルクアンシエル #TheFourthAvenueCafe #高円寺駅 #杉並区カフェ</p>
     </footer>
 
 
@@ -4306,7 +4330,7 @@
             var item = c.item;
             c.card.innerHTML =
               '<div class="limited-card-img">' +
-                (item.image ? '<img src="' + item.image + '" alt="' + lt(item.title) + '" loading="lazy">' : '') +
+                (item.image ? '<img src="' + item.image + '" alt="' + lt(item.title) + '" loading="lazy" decoding="async">' : '') +
                 '<span class="limited-badge">LUNCH</span>' +
               '</div>' +
               '<div class="limited-card-body">' +
