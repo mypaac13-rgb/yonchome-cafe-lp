@@ -1898,12 +1898,12 @@
       }
       .limited-card {
         cursor: pointer;
-        background: var(--panel, rgba(255,255,255,0.04));
-        border: 1px solid rgba(196,160,66,0.12);
+        background: transparent;
+        border: none;
         overflow: hidden;
-        transition: border-color 0.3s, transform 0.3s;
+        transition: transform 0.3s;
       }
-      .limited-card:hover { border-color: rgba(196,160,66,0.35); transform: translateY(-3px); }
+      .limited-card:hover { transform: translateY(-3px); }
       .limited-card-img {
         width: 100%;
         aspect-ratio: 3/4;
@@ -2005,8 +2005,6 @@
         .limited-grid--single .limited-card {
           display: flex;
           align-items: stretch;
-          border: none;
-          background: transparent;
         }
         .limited-grid--single .limited-card-img {
           width: 42%;
