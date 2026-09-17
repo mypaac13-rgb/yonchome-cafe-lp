@@ -6,7 +6,7 @@
     <title>YonchoMe Cafe</title>
     <link rel="icon" href="./favicon-logo.png" type="image/png" sizes="512x512" />
     <link rel="apple-touch-icon" href="./favicon-logo.png" />
-    <meta name="description" content="高円寺四丁目の老舗カフェ「YonchoMe Cafe（よんちょめカフェ）」。1986年創業のアメリカンカフェ＆ダイニングバー。平日ランチ1,350円〜、ディナー、自家製ニューヨークチーズケーキ・ワッフルなどスイーツも充実。貸切パーティーも対応。高円寺駅南口徒歩3分。" />
+    <meta name="description" content="高円寺四丁目の老舗カフェ「YonchoMe Cafe（よんちょめカフェ）」。1986年創業のアメリカンカフェ＆ダイニングバー。平日ランチ1,500円〜、ディナー、自家製ニューヨークチーズケーキ・ワッフルなどスイーツも充実。貸切パーティーも対応。高円寺駅南口徒歩3分。" />
     <meta name="keywords" content="ヨンチョームカフェ,よんちょめカフェ,四丁目カフェ,四丁目カフェ高円寺,高円寺四丁目カフェ,高円寺4丁目カフェ,4丁目カフェ,四丁目カフェhyde,hyde四丁目カフェ,高円寺カフェ喫煙,高円寺カフェ,高円寺喫茶店,高円寺ランチ,高円寺ディナー,高円寺ケーキ,高円寺スイーツ,高円寺アメリカン,高円寺老舗,YonchoMe Cafe,高円寺貸切,高円寺チーズケーキ" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="YonchoMe Cafe｜高円寺四丁目カフェ（よんちょめカフェ）" />
@@ -1951,8 +1951,32 @@
         font-size: clamp(1rem, 1.6vw, 1.2rem);
         font-weight: 500;
         color: var(--text);
-        margin: 0 0 10px;
+        margin: 0 0 6px;
         line-height: 1.6;
+      }
+      .limited-card-subtitle {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        letter-spacing: 0.02em;
+        color: rgba(239,226,210,0.5);
+        margin: 0 0 14px;
+      }
+      .limited-card-price {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        margin: 0 0 14px;
+      }
+      .limited-card-price .num {
+        font-family: 'Shippori Mincho', serif;
+        font-weight: 600;
+        font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+        color: var(--accent);
+      }
+      .limited-card-price .unit {
+        font-family: var(--font-body);
+        font-size: 0.78rem;
+        color: rgba(239,226,210,0.55);
       }
       .limited-card-desc {
         font-family: var(--font-display);
@@ -1965,6 +1989,137 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
+      .limited-card-notes {
+        list-style: none;
+        margin: 14px 0 0;
+        padding: 0;
+      }
+      .limited-card-notes li {
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        line-height: 1.9;
+        color: rgba(239,226,210,0.45);
+      }
+      @media (min-width: 900px) {
+        .limited-grid--single { grid-template-columns: 1fr; }
+        .limited-grid--single .limited-card {
+          display: flex;
+          align-items: stretch;
+          border: none;
+        }
+        .limited-grid--single .limited-card-img {
+          width: 42%;
+          aspect-ratio: auto;
+          flex-shrink: 0;
+        }
+        .limited-grid--single .limited-card-body {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 40px 56px;
+        }
+        .limited-grid--single .limited-card-title {
+          font-size: clamp(1.5rem, 2.6vw, 2rem);
+          margin-bottom: 10px;
+        }
+        .limited-grid--single .limited-card-subtitle {
+          font-size: 0.85rem;
+          margin-bottom: 22px;
+        }
+        .limited-grid--single .limited-card-price {
+          margin-bottom: 22px;
+        }
+        .limited-grid--single .limited-card-price .num {
+          font-size: clamp(1.8rem, 3.2vw, 2.3rem);
+        }
+        .limited-grid--single .limited-card-price .unit {
+          font-size: 0.9rem;
+        }
+        .limited-grid--single .limited-card-desc {
+          font-size: 0.98rem;
+          line-height: 2;
+          -webkit-line-clamp: unset;
+        }
+        .limited-grid--single .limited-card-notes li {
+          font-size: 0.78rem;
+        }
+      }
+      /* Lunch set teaser cards (Aパスタ/Bパスタ/サンド) */
+      .lunch-set-period {
+        margin: 40px 0 0;
+        font-family: var(--font-body);
+        font-size: 0.76rem;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+      }
+      .lunch-set-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+        gap: 36px;
+        margin-top: 18px;
+      }
+      .lunch-set-card { cursor: pointer; }
+      .lunch-set-card-img {
+        width: 100%;
+        aspect-ratio: 4/3;
+        overflow: hidden;
+        background: rgba(255,255,255,0.04);
+      }
+      .lunch-set-card-img img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .lunch-set-card:hover .lunch-set-card-img img { transform: scale(1.05); }
+      .lunch-set-card-body { padding-top: 18px; }
+      .lunch-set-card-kicker {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        margin: 0 0 8px;
+      }
+      .lunch-set-card-name {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 1.05rem;
+        font-weight: 500;
+        color: var(--text);
+        margin: 0 0 8px;
+        line-height: 1.5;
+      }
+      .lunch-set-card-badge {
+        font-family: var(--font-body);
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        opacity: 0.85;
+      }
+      .lunch-set-card-price {
+        font-family: var(--font-body);
+        font-size: 0.82rem;
+        color: rgba(239,226,210,0.55);
+        margin: 0 0 16px;
+      }
+      .lunch-set-card-more {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: none;
+        border: none;
+        border-bottom: 1px solid rgba(240,216,190,0.3);
+        padding: 0 0 4px;
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        color: var(--text);
+        cursor: pointer;
+      }
+      .lunch-set-card:hover .lunch-set-card-more { color: var(--accent); border-color: var(--accent); }
       /* Modal */
       .limited-modal-overlay {
         position: fixed;
@@ -2019,8 +2174,32 @@
         font-size: clamp(1.3rem, 2.2vw, 1.8rem);
         font-weight: 500;
         color: var(--text);
-        margin: 0 0 24px;
+        margin: 0 0 8px;
         line-height: 1.5;
+      }
+      .limited-modal-subtitle {
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        letter-spacing: 0.02em;
+        color: rgba(239,226,210,0.5);
+        margin: 0 0 18px;
+      }
+      .limited-modal-price {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin: 0 0 24px;
+      }
+      .limited-modal-price .num {
+        font-family: 'Shippori Mincho', serif;
+        font-weight: 600;
+        font-size: clamp(1.6rem, 3vw, 2.1rem);
+        color: var(--accent);
+      }
+      .limited-modal-price .unit {
+        font-family: var(--font-body);
+        font-size: 0.9rem;
+        color: rgba(239,226,210,0.55);
       }
       .limited-modal-img {
         width: 100%;
@@ -2037,6 +2216,18 @@
         color: rgba(239,226,210,0.78);
         line-height: 2;
         white-space: pre-line;
+      }
+      .limited-modal-notes {
+        list-style: none;
+        margin: 20px 0 0;
+        padding: 18px 0 0;
+        border-top: 1px solid rgba(240, 216, 190, 0.13);
+      }
+      .limited-modal-notes li {
+        font-family: var(--font-body);
+        font-size: 0.76rem;
+        line-height: 1.9;
+        color: rgba(239,226,210,0.5);
       }
       .limited-empty {
         font-family: var(--font-display);
@@ -2899,7 +3090,7 @@
         "closes": "23:00"
       }
     ],
-    "description": "高円寺四丁目（高円寺南4丁目）にある1986年創業の老舗カフェ＆ダイニングバー。よんちょめカフェ・ヨンチョームカフェの名で親しまれる高円寺喫茶店。L'Arc〜en〜Cielの楽曲「The Fourth Avenue Cafe」とゆかりのある店。平日ランチ1,350円〜、ハッピーアワー、ディナー、自家製ニューヨークチーズケーキ・ワッフルなどスイーツも充実。喫煙可（時間帯により喫煙ブース・お席にて可）。貸切パーティーにも対応。高円寺駅南口徒歩3分。",
+    "description": "高円寺四丁目（高円寺南4丁目）にある1986年創業の老舗カフェ＆ダイニングバー。よんちょめカフェ・ヨンチョームカフェの名で親しまれる高円寺喫茶店。L'Arc〜en〜Cielの楽曲「The Fourth Avenue Cafe」とゆかりのある店。平日ランチ1,500円〜、ハッピーアワー、ディナー、自家製ニューヨークチーズケーキ・ワッフルなどスイーツも充実。喫煙可（時間帯により喫煙ブース・お席にて可）。貸切パーティーにも対応。高円寺駅南口徒歩3分。",
     "servesCuisine": ["American", "Cafe", "Dessert"],
     "priceRange": "¥¥",
     "image": "https://yonchome-cafe.com/hero-main-upscaled.jpg",
@@ -3341,10 +3532,40 @@
       <!-- LIMITED MENU -->
       <section class="limited-section section-shell" id="limited-menu">
         <div>
-          <span class="limited-kicker">Limited Menu</span>
-          <h2 class="limited-heading" data-i18n="limitedHeading">期間限定メニュー</h2>
+          <span class="limited-kicker">Lunch Menu</span>
+          <h2 class="limited-heading" data-i18n="limitedHeading">ランチメニュー</h2>
         </div>
         <div class="limited-grid" id="limited-grid"></div>
+        <p class="lunch-set-period">9/14（月）〜9/25（金）の週替わりパスタ・サンド</p>
+        <div class="lunch-set-grid">
+          <article class="lunch-set-card" data-open-lunch="pastaA">
+            <div class="lunch-set-card-img"><img src="./lunch-pasta-a.jpg" alt="辛子明太子とアボカドのクリームパスタ" loading="lazy"></div>
+            <div class="lunch-set-card-body">
+              <p class="lunch-set-card-kicker">Aパスタ<span class="lunch-set-card-badge">週替わり</span></p>
+              <p class="lunch-set-card-name">辛子明太子とアボカドのクリームパスタ</p>
+              <p class="lunch-set-card-price">平日ランチ ¥1,500（税込）</p>
+              <button type="button" class="lunch-set-card-more">VIEW MORE <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <article class="lunch-set-card" data-open-lunch="pastaB">
+            <div class="lunch-set-card-img"><img src="./lunch-pasta-b.jpg" alt="海老とキノコのトマトジェノベーゼ" loading="lazy"></div>
+            <div class="lunch-set-card-body">
+              <p class="lunch-set-card-kicker">Bパスタ<span class="lunch-set-card-badge">週替わり</span></p>
+              <p class="lunch-set-card-name">海老とキノコのトマトジェノベーゼ</p>
+              <p class="lunch-set-card-price">平日ランチ ¥1,500（税込）</p>
+              <button type="button" class="lunch-set-card-more">VIEW MORE <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+          <article class="lunch-set-card" data-open-lunch="sand">
+            <div class="lunch-set-card-img"><img src="./lunch-sand.jpg" alt="ポテサラパストラミサンド" loading="lazy"></div>
+            <div class="lunch-set-card-body">
+              <p class="lunch-set-card-kicker">サンド</p>
+              <p class="lunch-set-card-name">ポテサラパストラミサンド</p>
+              <p class="lunch-set-card-price">平日ランチ ¥1,500（税込）</p>
+              <button type="button" class="lunch-set-card-more">VIEW MORE <span aria-hidden="true">→</span></button>
+            </div>
+          </article>
+        </div>
       </section>
 
       <!-- Limited Menu Modal -->
@@ -3358,15 +3579,24 @@
       <!-- MENU INFO -->
       <section class="store-section section-shell" id="menu">
         <nav class="info-link-list" aria-label="メニュー・サービス情報">
-          <button type="button" data-modal-key="lunch" data-info-title="Lunch" data-info-body="パスタ２種・プレート・サンドからお選びいただけます。ミニサラダ＆ドリンク付き。税込1,350円。＋400円でデザートもお楽しみいただけます。" data-i18n="infoBtnLunch">
-            【ランチ】平日オープンから15:00まで
-          </button>
-          <button type="button" data-modal-key="happy" data-info-title="Happy Hour" data-info-body="ハッピーアワーは平日の15:00から18:00まで。夕方前の一杯を気軽に楽しめます。&#10;&#10;キリン一番搾り　¥400&#10;ハイボール　¥350&#10;グラスワイン 赤/白　¥350&#10;テキーラショット　¥350" data-i18n="infoBtnHappy">
-            【ハッピーアワー】平日15:00から18:00まで
-          </button>
-          <button type="button" data-modal-key="smoke" data-info-title="Smoking" data-info-body="オープンから18時まではブースにて喫煙していただけます。18時以降はお席にて喫煙可能です。" data-i18n="infoBtnSmoke">
-            【喫煙情報】18:00までは喫煙ブース / 18:00以降はお席にて可
-          </button>
+          <div class="info-accordion-item">
+            <button type="button" class="info-accordion-toggle" data-modal-key="happyhour">
+              <span class="info-accordion-en">HAPPY HOUR</span>
+              <span class="info-accordion-toggle-right">
+                <span class="info-accordion-jp">ハッピーアワー</span>
+                <span class="info-accordion-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </div>
+          <div class="info-accordion-item">
+            <button type="button" class="info-accordion-toggle" data-modal-key="smoke" data-info-title="Smoking" data-info-body="オープンから18時まではブースにて喫煙していただけます。18時以降はお席にて喫煙可能です。">
+              <span class="info-accordion-en">SMOKING INFORMATION</span>
+              <span class="info-accordion-toggle-right">
+                <span class="info-accordion-jp">喫煙情報</span>
+                <span class="info-accordion-icon" aria-hidden="true"></span>
+              </span>
+            </button>
+          </div>
         </nav>
       </section>
 
@@ -3485,9 +3715,6 @@
 
     <footer class="site-footer section-shell">
       <img class="footer-logo" src="./loader-logo.png" alt="YonchoMe Cafe" />
-      <p style="font-size:0.72rem;color:rgba(240,216,190,0.35);line-height:1.9;max-width:640px;margin:0 auto 1.4em;letter-spacing:0.04em;">
-        高円寺四丁目カフェ（よんちょめカフェ）YonchoMe Cafeは高円寺駅徒歩1分の老舗カフェ＆ダイニングバー。ランチ・ディナー・喫茶・テイクアウト対応。高円寺のワッフル・ハンバーガー・自家製ニューヨークチーズケーキ・クリームソーダ・オリジナルブレンドコーヒーが人気。喫煙可・貸切パーティー（30名〜）対応。映画・ドラマ・CMロケ地としても知られる高円寺の名所。高円寺 カフェ / 高円寺 喫茶 / 高円寺 ランチ / 高円寺 ディナー / 高円寺 貸切 / 高円寺 デート / 高円寺 女子会 / 高円寺 喫煙可。
-      </p>
       <p>© YonchoMe Cafe — Est. 1986</p>
     </footer>
 
@@ -3527,7 +3754,7 @@
           <img class="info-modal-cover" src="" alt="" hidden />
           <img class="info-modal-poster" src="" alt="" hidden />
           <span class="info-modal-kicker" id="info-modal-title"></span>
-          <p id="info-modal-body" style="white-space: pre-line;"></p>
+          <div id="info-modal-body" style="white-space: pre-line;"></div>
           <div id="info-modal-credits" hidden style="margin-top:20px;border-top:1px solid rgba(240,216,190,0.15);padding-top:18px;"><p style="font-family:var(--font-body);font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:rgba(244,217,188,0.6);margin-bottom:12px;">撮影実績</p><ul id="info-modal-credits-list" style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;"></ul></div>
           <a class="info-modal-phone" href="tel:0353771726" hidden>03-5377-1726</a>
           <div class="info-modal-controls">
@@ -3552,10 +3779,48 @@
       const infoPhone = document.querySelector(".info-modal-phone");
       const closeInfoModal = () => infoModal.setAttribute("aria-hidden", "true");
 
-      document.querySelectorAll(".info-link-list button").forEach((button) => {
+      function getLang() { return document.documentElement.getAttribute('data-lang') || 'ja'; }
+      function lp(val, lang) { if (!val) return ''; return typeof val === 'string' ? val : (val[lang] || val.ja || ''); }
+
+      const INFO_PANELS = {
+        happyhour: {
+          kicker: { ja: '平日15:00〜18:00', en: 'Weekdays 3:00 – 6:00 PM', zhcn: '工作日15:00至18:00', zhtw: '工作日15:00至18:00', ko: '평일 15:00~18:00' },
+          title: { ja: 'ハッピーアワー', en: 'Happy Hour', zhcn: '欢乐时光', zhtw: '歡樂時光', ko: '해피아워' },
+          items: [
+            { name: { ja: 'キリン一番搾り', en: 'Kirin Ichiban', zhcn: '麒麟一番榨', zhtw: '麒麟一番搾', ko: '기린 이치방시보리' }, price: '¥400' },
+            { name: { ja: 'ハイボール', en: 'Highball', zhcn: '威士忌苏打', zhtw: '威士忌蘇打', ko: '하이볼' }, price: '¥350' },
+            { name: { ja: 'グラスワイン 赤/白', en: 'Glass Wine (Red/White)', zhcn: '杯装红/白葡萄酒', zhtw: '杯裝紅/白葡萄酒', ko: '글라스 와인 레드/화이트' }, price: '¥350' },
+            { name: { ja: 'テキーラショット', en: 'Tequila Shot', zhcn: '龙舌兰一口烈酒', zhtw: '龍舌蘭一口烈酒', ko: '데킬라 샷' }, price: '¥350' },
+          ],
+        },
+      };
+
+      function buildInfoPanelHTML(key) {
+        const d = INFO_PANELS[key];
+        const lang = getLang();
+        if (key === 'happyhour') {
+          const rows = d.items.map(function(it) {
+            return '<li><span class="info-modal-tag-name">' + lp(it.name, lang) + '</span><span class="info-modal-list-price">' + it.price + '</span></li>';
+          }).join('');
+          return (
+            '<p class="info-modal-time">' + lp(d.kicker, lang) + '</p>' +
+            '<h3 class="info-modal-course-title">' + lp(d.title, lang) + '</h3>' +
+            '<ul class="info-modal-price-grid">' + rows + '</ul>'
+          );
+        }
+        return '';
+      }
+
+      document.querySelectorAll(".info-link-list button[data-modal-key]").forEach((button) => {
         button.addEventListener("click", () => {
-          infoTitle.textContent = button.dataset.infoTitle;
-          infoBody.textContent = button.dataset.infoBody;
+          const panelKey = button.dataset.modalKey;
+          if (INFO_PANELS[panelKey]) {
+            infoTitle.textContent = button.querySelector('.info-accordion-en') ? button.querySelector('.info-accordion-en').textContent : '';
+            infoBody.innerHTML = buildInfoPanelHTML(panelKey);
+          } else {
+            infoTitle.textContent = button.dataset.infoTitle;
+            infoBody.textContent = button.dataset.infoBody;
+          }
           infoGallery.innerHTML = "";
           infoPoster.hidden = true;
           infoPhone.hidden = true;
@@ -3644,6 +3909,85 @@
       document.getElementById("shooting-banner-btn")?.addEventListener("click", () => {
         const shootingBtn = document.querySelector('[data-info-title="Private Party / Shooting"]');
         if (shootingBtn) shootingBtn.click();
+      });
+
+      // Lunch set teaser cards → チキンオーバーライスと同じポップアップ形式で開く
+      const LUNCH_SET_ITEMS = {
+        pastaA: {
+          label: { ja: 'Aパスタ', en: 'Pasta A', zhcn: 'A意面', zhtw: 'A義大利麵', ko: 'A파스타' },
+          title: { ja: '辛子明太子とアボカドのクリームパスタ', en: 'Spicy Mentaiko & Avocado Cream Pasta', zhcn: '辣明太子牛油果奶油意面', zhtw: '辣明太子酪梨奶油義大利麵', ko: '매콤 멘타이코 아보카도 크림 파스타' },
+          subtitle: 'Weekday Lunch',
+          image: './lunch-pasta-a.jpg',
+          modalImage: './lunch-pasta-a.jpg',
+          price: '¥1,500',
+          priceUnit: { ja: '（税込）', en: '(tax incl.)', zhcn: '（含税）', zhtw: '（含稅）', ko: '（세금 포함）' },
+          desc: {
+            ja: '平日ランチでご用意している週替わりパスタです。',
+            en: 'A weekly-changing pasta served as part of the weekday lunch set.',
+            zhcn: '工作日午餐中提供的每周更换的意面。',
+            zhtw: '工作日午餐中提供的每週更換的義大利麵。',
+            ko: '평일 런치에서 제공하는 주간 교체 파스타입니다.',
+          },
+          notes: {
+            ja: ['ミニコブサラダ・ドリンク付き（コーヒー HOT/ICE・紅茶 HOT/ICE・梅昆布茶）', 'コカコーラ・ジンジャーエール・オレンジジュース・グレープフルーツジュース・カフェラテ（HOT/ICE）・カプチーノ（HOT/ICE）への変更は＋200円', 'パスタ／ライスの大盛り無料'],
+            en: ['Comes with a mini cobb salad and a drink (coffee HOT/ICE, tea HOT/ICE, or ume-kombu tea)', 'Upgrade to Coke, ginger ale, orange juice, grapefruit juice, café latte (HOT/ICE), or cappuccino (HOT/ICE) for +¥200', 'Free large size for pasta/rice'],
+            zhcn: ['附迷你科布沙拉及饮品（咖啡 HOT/ICE・红茶 HOT/ICE・梅昆布茶）', '更换为可乐・姜汁汽水・橙汁・西柚汁・拿铁咖啡（HOT/ICE）・卡布奇诺（HOT/ICE）需加200日元', '意面／米饭可免费加量'],
+            zhtw: ['附迷你科布沙拉及飲品（咖啡 HOT/ICE・紅茶 HOT/ICE・梅昆布茶）', '更換為可樂・薑汁汽水・柳橙汁・葡萄柚汁・拿鐵咖啡（HOT/ICE）・卡布奇諾（HOT/ICE）需加200日圓', '義大利麵／米飯可免費加量'],
+            ko: ['미니 콥 샐러드와 음료 포함（커피 HOT/ICE・홍차 HOT/ICE・우메콘부차）', '콜라・진저에일・오렌지주스・자몽주스・카페라떼（HOT/ICE）・카푸치노（HOT/ICE）로 변경 시 +200엔', '파스타/밥 곱빼기 무료'],
+          },
+        },
+        pastaB: {
+          label: { ja: 'Bパスタ', en: 'Pasta B', zhcn: 'B意面', zhtw: 'B義大利麵', ko: 'B파스타' },
+          title: { ja: '海老とキノコのトマトジェノベーゼ', en: 'Shrimp & Mushroom Tomato Genovese', zhcn: '虾仁蘑菇番茄热那亚酱意面', zhtw: '蝦仁蘑菇番茄熱那亞醬義大利麵', ko: '새우 버섯 토마토 제노베제' },
+          subtitle: 'Weekday Lunch',
+          image: './lunch-pasta-b.jpg',
+          modalImage: './lunch-pasta-b.jpg',
+          price: '¥1,500',
+          priceUnit: { ja: '（税込）', en: '(tax incl.)', zhcn: '（含税）', zhtw: '（含稅）', ko: '（세금 포함）' },
+          desc: {
+            ja: '平日ランチでご用意している週替わりパスタです。',
+            en: 'A weekly-changing pasta served as part of the weekday lunch set.',
+            zhcn: '工作日午餐中提供的每周更换的意面。',
+            zhtw: '工作日午餐中提供的每週更換的義大利麵。',
+            ko: '평일 런치에서 제공하는 주간 교체 파스타입니다.',
+          },
+          notes: {
+            ja: ['ミニコブサラダ・ドリンク付き（コーヒー HOT/ICE・紅茶 HOT/ICE・梅昆布茶）', 'コカコーラ・ジンジャーエール・オレンジジュース・グレープフルーツジュース・カフェラテ（HOT/ICE）・カプチーノ（HOT/ICE）への変更は＋200円', 'パスタ／ライスの大盛り無料'],
+            en: ['Comes with a mini cobb salad and a drink (coffee HOT/ICE, tea HOT/ICE, or ume-kombu tea)', 'Upgrade to Coke, ginger ale, orange juice, grapefruit juice, café latte (HOT/ICE), or cappuccino (HOT/ICE) for +¥200', 'Free large size for pasta/rice'],
+            zhcn: ['附迷你科布沙拉及饮品（咖啡 HOT/ICE・红茶 HOT/ICE・梅昆布茶）', '更换为可乐・姜汁汽水・橙汁・西柚汁・拿铁咖啡（HOT/ICE）・卡布奇诺（HOT/ICE）需加200日元', '意面／米饭可免费加量'],
+            zhtw: ['附迷你科布沙拉及飲品（咖啡 HOT/ICE・紅茶 HOT/ICE・梅昆布茶）', '更換為可樂・薑汁汽水・柳橙汁・葡萄柚汁・拿鐵咖啡（HOT/ICE）・卡布奇諾（HOT/ICE）需加200日圓', '義大利麵／米飯可免費加量'],
+            ko: ['미니 콥 샐러드와 음료 포함（커피 HOT/ICE・홍차 HOT/ICE・우메콘부차）', '콜라・진저에일・오렌지주스・자몽주스・카페라떼（HOT/ICE）・카푸치노（HOT/ICE）로 변경 시 +200엔', '파스타/밥 곱빼기 무료'],
+          },
+        },
+        sand: {
+          label: { ja: 'サンド', en: 'Sandwich', zhcn: '三明治', zhtw: '三明治', ko: '샌드위치' },
+          title: { ja: 'ポテサラパストラミサンド', en: 'Potato Salad & Pastrami Sandwich', zhcn: '土豆沙拉烟熏牛肉三明治', zhtw: '馬鈴薯沙拉煙燻牛肉三明治', ko: '감자샐러드 파스트라미 샌드위치' },
+          subtitle: 'Weekday Lunch',
+          image: './lunch-sand.jpg',
+          modalImage: './lunch-sand.jpg',
+          price: '¥1,500',
+          priceUnit: { ja: '（税込）', en: '(tax incl.)', zhcn: '（含税）', zhtw: '（含稅）', ko: '（세금 포함）' },
+          desc: {
+            ja: '平日ランチでご用意しているサンドです。',
+            en: 'A sandwich served as part of the weekday lunch set.',
+            zhcn: '工作日午餐中提供的三明治。',
+            zhtw: '工作日午餐中提供的三明治。',
+            ko: '평일 런치에서 제공하는 샌드위치입니다.',
+          },
+          notes: {
+            ja: ['ミニコブサラダ・ドリンク付き（コーヒー HOT/ICE・紅茶 HOT/ICE・梅昆布茶）', 'コカコーラ・ジンジャーエール・オレンジジュース・グレープフルーツジュース・カフェラテ（HOT/ICE）・カプチーノ（HOT/ICE）への変更は＋200円'],
+            en: ['Comes with a mini cobb salad and a drink (coffee HOT/ICE, tea HOT/ICE, or ume-kombu tea)', 'Upgrade to Coke, ginger ale, orange juice, grapefruit juice, café latte (HOT/ICE), or cappuccino (HOT/ICE) for +¥200'],
+            zhcn: ['附迷你科布沙拉及饮品（咖啡 HOT/ICE・红茶 HOT/ICE・梅昆布茶）', '更换为可乐・姜汁汽水・橙汁・西柚汁・拿铁咖啡（HOT/ICE）・卡布奇诺（HOT/ICE）需加200日元'],
+            zhtw: ['附迷你科布沙拉及飲品（咖啡 HOT/ICE・紅茶 HOT/ICE・梅昆布茶）', '更換為可樂・薑汁汽水・柳橙汁・葡萄柚汁・拿鐵咖啡（HOT/ICE）・卡布奇諾（HOT/ICE）需加200日圓'],
+            ko: ['미니 콥 샐러드와 음료 포함（커피 HOT/ICE・홍차 HOT/ICE・우메콘부차）', '콜라・진저에일・오렌지주스・자몽주스・카페라떼（HOT/ICE）・카푸치노（HOT/ICE）로 변경 시 +200엔'],
+          },
+        },
+      };
+      document.querySelectorAll('[data-open-lunch]').forEach((card) => {
+        card.addEventListener("click", () => {
+          const item = LUNCH_SET_ITEMS[card.dataset.openLunch];
+          if (item && window._openLimitedModal) window._openLimitedModal(item);
+        });
       });
 
 // Contact popup toggle
@@ -3899,18 +4243,27 @@
       // ────────────────────────────────────────────
       const LIMITED_MENUS = [
         {
-          date: '2026.07.01 〜',
-          label: { ja: '期間限定', en: 'Limited', zhcn: '限时', zhtw: '限時', ko: '기간 한정' },
-          title: { ja: 'トロピカルパフェ', en: 'Tropical Parfait', zhcn: '热带芭菲', zhtw: '熱帶芭菲', ko: '트로피컬 파르페' },
-          image: './tropical-parfait-card.webp',
-          modalImage: './tropical-parfait.webp',
-          body: {
-            ja: '鮮やかなブルーが夏気分を盛り上げる、見た目も爽やかなトロピカルパフェ。ブルーゼリー・ブルーシャーベット・パイナップル・キウイ・粒ラムネを使用した夏だけのスペシャルパフェです。\n\n¥1,800（税込）',
-            en: 'A refreshing tropical parfait with vibrant blue that lifts your summer mood. Made with blue jelly, blue sherbet, pineapple, kiwi, and ramune candy — a summer-only special.\n\n¥1,800 (tax incl.)',
-            zhcn: '鲜艳的蓝色让夏日气氛高涨，清爽的热带芭菲。使用蓝色果冻、蓝色雪芭、菠萝、猕猴桃和汽水糖，是仅限夏季的特别甜品。\n\n¥1,800（含税）',
-            zhtw: '鮮艷的藍色讓夏日氣氛高漲，清爽的熱帶芭菲。使用藍色果凍、藍色雪酪、鳳梨、奇異果和汽水糖，是僅限夏季的特別甜點。\n\n¥1,800（含稅）',
-            ko: '선명한 블루가 여름 분위기를 한껏 높여주는 트로피컬 파르페。블루 젤리・블루 샤베트・파인애플・키위・탄산 캔디를 사용한 여름만의 스페셜 파르페입니다。\n\n¥1,800（세금 포함）',
-          }
+          label: { ja: 'ランチ', en: 'Lunch', zhcn: '午餐', zhtw: '午餐', ko: '런치' },
+          title: { ja: 'チキンオーバーライス', en: 'Chicken Over Rice', zhcn: '鸡肉盖饭', zhtw: '雞肉蓋飯', ko: '치킨 오버 라이스' },
+          subtitle: 'Grilled Chicken + Rice + Salad + Drink',
+          image: './chicken-over-rice.jpg',
+          modalImage: './chicken-over-rice.jpg',
+          price: '¥1,800',
+          priceUnit: { ja: '（税込）', en: '(tax incl.)', zhcn: '（含税）', zhtw: '（含稅）', ko: '（세금 포함）' },
+          desc: {
+            ja: 'スパイスで香ばしく焼き上げたチキンを、ライス＆フレッシュサラダと一緒に。ボリューム満点の一皿です。',
+            en: 'Spice-grilled chicken served over rice with a fresh salad. A hearty plate.',
+            zhcn: '用香料烤制的喷香鸡肉，搭配米饭与新鲜沙拉，分量十足。',
+            zhtw: '用香料烤製的噴香雞肉，搭配米飯與新鮮沙拉，份量十足。',
+            ko: '향신료로 향긋하게 구운 치킨을 라이스, 신선한 샐러드와 함께. 푸짐한 한 접시입니다.',
+          },
+          notes: {
+            ja: ['ドリンク付き（コーヒー HOT/ICE・紅茶 HOT/ICE・梅昆布茶）', 'コカコーラ・ジンジャーエール・オレンジジュース・グレープフルーツジュース・カフェラテ（HOT/ICE）・カプチーノ（HOT/ICE）への変更は＋200円'],
+            en: ['Comes with a drink (coffee HOT/ICE, tea HOT/ICE, or ume-kombu tea)', 'Upgrade to Coke, ginger ale, orange juice, grapefruit juice, café latte (HOT/ICE), or cappuccino (HOT/ICE) for +¥200'],
+            zhcn: ['附饮品（咖啡 HOT/ICE・红茶 HOT/ICE・梅昆布茶）', '更换为可乐・姜汁汽水・橙汁・西柚汁・拿铁咖啡（HOT/ICE）・卡布奇诺（HOT/ICE）需加200日元'],
+            zhtw: ['附飲品（咖啡 HOT/ICE・紅茶 HOT/ICE・梅昆布茶）', '更換為可樂・薑汁汽水・柳橙汁・葡萄柚汁・拿鐵咖啡（HOT/ICE）・卡布奇諾（HOT/ICE）需加200日圓'],
+            ko: ['음료 포함（커피 HOT/ICE・홍차 HOT/ICE・우메콘부차）', '콜라・진저에일・오렌지주스・자몽주스・카페라떼（HOT/ICE）・카푸치노（HOT/ICE）로 변경 시 +200엔'],
+          },
         },
       ];
       // ────────────────────────────────────────────
@@ -3928,6 +4281,8 @@
           return;
         }
 
+        grid.classList.toggle('limited-grid--single', LIMITED_MENUS.length === 1);
+
         function getLang() { return document.documentElement.getAttribute('data-lang') || 'ja'; }
         function lt(val) { if (!val || typeof val === 'string') return val || ''; var l = getLang(); return val[l] || val['ja'] || ''; }
 
@@ -3940,18 +4295,27 @@
           grid.appendChild(card);
         });
 
+        function notesHTML(item, listClass) {
+          var notes = lt(item.notes);
+          if (!notes || !notes.length) return '';
+          return '<ul class="' + listClass + '">' + notes.map(function(n) { return '<li>※ ' + n + '</li>'; }).join('') + '</ul>';
+        }
+
         function renderCards() {
           cards.forEach(function(c) {
             var item = c.item;
             c.card.innerHTML =
               '<div class="limited-card-img">' +
                 (item.image ? '<img src="' + item.image + '" alt="' + lt(item.title) + '" loading="lazy">' : '') +
-                '<span class="limited-badge">LIMITED</span>' +
+                '<span class="limited-badge">LUNCH</span>' +
               '</div>' +
               '<div class="limited-card-body">' +
-                '<p class="limited-card-date">' + item.date + '</p>' +
+                (item.date ? '<p class="limited-card-date">' + item.date + '</p>' : '') +
                 '<h3 class="limited-card-title">' + lt(item.title) + '</h3>' +
-                (item.body ? '<p class="limited-card-desc">' + lt(item.body).replace(/\n/g,' ') + '</p>' : '') +
+                (item.subtitle ? '<p class="limited-card-subtitle">' + item.subtitle + '</p>' : '') +
+                (item.price ? '<p class="limited-card-price"><span class="num">' + item.price + '</span><span class="unit">' + lt(item.priceUnit) + '</span></p>' : '') +
+                (item.desc ? '<p class="limited-card-desc">' + lt(item.desc) + '</p>' : '') +
+                notesHTML(item, 'limited-card-notes') +
               '</div>';
           });
         }
@@ -3959,16 +4323,20 @@
 
         function openModal(item) {
           modalContent.innerHTML =
-            '<p class="limited-modal-date">' + lt(item.label) + '　' + item.date + '</p>' +
+            '<p class="limited-modal-date">' + lt(item.label) + (item.date ? '　' + item.date : '') + '</p>' +
             '<h2 class="limited-modal-title">' + lt(item.title) + '</h2>' +
+            (item.subtitle ? '<p class="limited-modal-subtitle">' + item.subtitle + '</p>' : '') +
+            (item.price ? '<p class="limited-modal-price"><span class="num">' + item.price + '</span><span class="unit">' + lt(item.priceUnit) + '</span></p>' : '') +
             ((item.modalImage || item.image) ? '<div class="limited-modal-img"><img src="' + (item.modalImage || item.image) + '" alt="' + lt(item.title) + '"></div>' : '') +
-            '<p class="limited-modal-body">' + (lt(item.body) || '') + '</p>';
+            (item.desc ? '<p class="limited-modal-body">' + lt(item.desc) + '</p>' : '') +
+            notesHTML(item, 'limited-modal-notes');
           overlay.setAttribute('aria-hidden', 'false');
           overlay.classList.add('is-open');
           document.body.style.overflow = 'hidden';
         }
 
         window._renderLimitedCards = renderCards;
+        window._openLimitedModal = openModal;
 
         function closeModal() {
           overlay.classList.remove('is-open');
@@ -4022,7 +4390,7 @@
           menuDesc5: '心ときめく王道のアメリカンサンデー。シリアルのザクザク感とミルキーなアイス。チョコレートソースとふんわり生クリーム、仕上げはカラフルなチョコスプレーとチェリー。',
           menuDesc6: '豊かな香りと深みのあるコク。ゆっくりと流れる時間とともにお楽しみください。',
           menuVariant1: 'エメラルド', menuVariant2: 'サファイア', menuVariant3: 'トパーズ',
-          limitedHeading: '期間限定メニュー',
+          limitedHeading: 'ランチメニュー',
           hgCaption1: '「Soda」のステンドグラス。<br>創業当時から変わらず<br>店の顔として輝いている。',
           hgCaption2: '実際にロンドンの駅で<br>使用されていた時計を輸入。',
           hgCaption3: 'アメリカから輸入した<br>チョコレートのような天井。<br>職人さんが手作業で貼り付けた。',
@@ -4032,7 +4400,7 @@
           infoBtnLunch: '【ランチ】平日オープンから15:00まで', infoBtnHappy: '【ハッピーアワー】平日15:00から18:00まで',
           infoBtnSmoke: '【喫煙情報】18:00までは喫煙ブース / 18:00以降はお席にて可',
           infoBtnParty: '【貸切・撮影のご相談】お気軽にお問い合わせください',
-          modalBodyLunch: 'パスタ２種・プレート・サンドからお選びいただけます。ミニサラダ＆ドリンク付き。税込1,350円。＋400円でデザートもお楽しみいただけます。平日オープンから15:00まで。',
+          modalBodyLunch: 'パスタ２種・サンドからお選びいただけます。ミニコブサラダ＆ドリンク付き。税込1,500円。＋400円でデザートもお楽しみいただけます。平日オープンから15:00まで。',
           modalBodyHappy: 'ハッピーアワーは平日の15:00から18:00まで。夕方前の一杯を気軽に楽しめます。\n\nキリン一番搾り　¥400\nハイボール　¥350\nグラスワイン 赤/白　¥350\nテキーラショット　¥350',
           modalBodySmoke: 'オープンから18時まではブースにて喫煙していただけます。18時以降はお席にて喫煙可能です。',
           modalBodyParty: '貸切パーティー、歓送迎会、二次会、ロケ・写真撮影など、用途に合わせてお気軽にお問い合わせください。人数や時間、内容に合わせてご相談可能です。お電話または店頭にて承っております。',
@@ -4088,7 +4456,7 @@
           menuDesc5: 'The quintessential American sundae — crunchy cereal, milky ice cream, chocolate sauce, fluffy whipped cream, and colorful sprinkles topped with a cherry.',
           menuDesc6: 'Rich aroma and deep body. To be savored alongside the unhurried flow of time.',
           menuVariant1: 'Emerald', menuVariant2: 'Sapphire', menuVariant3: 'Topaz',
-          limitedHeading: 'Limited-Time Menu',
+          limitedHeading: 'Lunch Menu',
           hgCaption1: 'The "Soda" stained glass.<br>Shining as the face of the café<br>since the day it opened.',
           hgCaption2: 'A clock imported from<br>an actual London train station.',
           hgCaption3: 'The ceiling imported from America<br>— like chocolate.<br>Artisans installed it entirely by hand.',
@@ -4098,7 +4466,7 @@
           infoBtnLunch: '[Lunch] Weekdays until 3:00 PM', infoBtnHappy: '[Happy Hour] Weekdays 3:00 – 6:00 PM',
           infoBtnSmoke: '[Smoking] Booth until 6 PM / Table smoking after 6 PM',
           infoBtnParty: '[Private Party & Filming] Inquiries welcome',
-          modalBodyLunch: 'Weekday lunch until 3:00 PM. Choose from 2 pasta dishes, bowl, plate, or omelette. ¥1,350 including mini salad and coffee or tea. Add ¥150 for other drinks. Pasta and rice large size free. Lunch dessert ¥400.',
+          modalBodyLunch: 'Weekday lunch until 3:00 PM. Choose from 2 pasta dishes or a sandwich. ¥1,500 including mini cobb salad and a drink. Pasta/rice large size free. Add ¥400 for a lunch dessert.',
           modalBodyHappy: 'Happy Hour runs weekdays from 3:00 PM to 6:00 PM. Enjoy a relaxed drink before the evening.',
           modalBodySmoke: 'From opening until 6:00 PM, smoking is available in the designated booth. After 6:00 PM, smoking is permitted at your table.',
           modalBodyParty: 'Private parties, welcome/farewell gatherings, after-parties, location & photo shoots — feel free to contact us for any occasion. We can accommodate various group sizes, times and formats. Contact us by phone or in person.',
@@ -4154,7 +4522,7 @@
           menuDesc5: '经典美式圣代——麦片的酥脆感配上醇厚冰淇淋，浇上巧克力酱和蓬松奶油，点缀彩色糖针和樱桃。',
           menuDesc6: '馥郁的香气与醇厚的口感，在悠然流逝的时光中慢慢品味。',
           menuVariant1: '翡翠绿', menuVariant2: '宝石蓝', menuVariant3: '黄玉橙',
-          limitedHeading: '期间限定菜单',
+          limitedHeading: '午餐菜单',
           hgCaption1: '「Soda」的彩色玻璃。<br>自创业之初便作为本店的象征<br>熠熠生辉。',
           hgCaption2: '进口自伦敦实际<br>车站使用过的时钟。',
           hgCaption3: '从美国进口的巧克力色天花板。<br>由工匠手工逐片粘贴而成。',
@@ -4164,7 +4532,7 @@
           infoBtnLunch: '【午餐】工作日营业开始至15:00', infoBtnHappy: '【欢乐时光】工作日15:00至18:00',
           infoBtnSmoke: '【吸烟信息】18:00前吸烟区 / 18:00后可在座位吸烟',
           infoBtnParty: '【包场・拍摄咨询】欢迎随时询问',
-          modalBodyLunch: '工作日午餐至15:00。提供2种意面、碗饭、套餐、蛋包饭。价格1,350日元，含迷你沙拉及咖啡或红茶。加150日元可换其他饮品。意面和米饭可免费加量。午餐甜点400日元。',
+          modalBodyLunch: '工作日午餐至15:00。提供2种意面或三明治。价格1,500日元，含迷你科布沙拉及饮品。意面和米饭可免费加量。加400日元可享用午餐甜点。',
           modalBodyHappy: '欢乐时光为工作日15:00至18:00。轻松享用傍晚前的一杯。',
           modalBodySmoke: '从营业开始至18:00，可在吸烟区吸烟。18:00以后，可在座位处吸烟。',
           modalBodyParty: '包场派对、欢送会、二次会、外景・摄影拍摄等，欢迎根据需求联系我们。可根据人数、时间和内容进行协商。请致电或到店咨询。',
@@ -4220,7 +4588,7 @@
           menuDesc5: '經典美式聖代——麥片的酥脆感配上醇厚冰淇淋，澆上巧克力醬和蓬鬆鮮奶油，點綴彩色糖針和櫻桃。',
           menuDesc6: '馥郁的香氣與醇厚的口感，在悠然流逝的時光中慢慢品味。',
           menuVariant1: '翡翠綠', menuVariant2: '寶石藍', menuVariant3: '黃玉橙',
-          limitedHeading: '期間限定菜單',
+          limitedHeading: '午餐菜單',
           hgCaption1: '「Soda」的彩色玻璃。<br>自創業之初便作為本店的象徵<br>熠熠生輝。',
           hgCaption2: '進口自倫敦實際<br>車站使用過的時鐘。',
           hgCaption3: '從美國進口的巧克力色天花板。<br>由工匠手工逐片黏貼而成。',
@@ -4230,7 +4598,7 @@
           infoBtnLunch: '【午餐】工作日營業開始至15:00', infoBtnHappy: '【歡樂時光】工作日15:00至18:00',
           infoBtnSmoke: '【吸菸資訊】18:00前吸菸區 / 18:00後可在座位吸菸',
           infoBtnParty: '【包場・拍攝諮詢】歡迎隨時詢問',
-          modalBodyLunch: '工作日午餐至15:00。提供2種義大利麵、碗飯、套餐、蛋包飯。價格1,350日圓，含迷你沙拉及咖啡或紅茶。加150日圓可換其他飲品。義大利麵和米飯可免費加量。午餐甜點400日圓。',
+          modalBodyLunch: '工作日午餐至15:00。提供2種義大利麵或三明治。價格1,500日圓，含迷你科布沙拉及飲品。義大利麵和米飯可免費加量。加400日圓可享用午餐甜點。',
           modalBodyHappy: '歡樂時光為工作日15:00至18:00。輕鬆享用傍晚前的一杯。',
           modalBodySmoke: '從營業開始至18:00，可在吸菸區吸菸。18:00以後，可在座位處吸菸。',
           modalBodyParty: '包場派對、歡送會、二次會、外景・攝影拍攝等，歡迎根據需求聯繫我們。可根據人數、時間和內容進行協商。請致電或到店諮詢。',
@@ -4286,7 +4654,7 @@
           menuDesc5: '왕도의 아메리칸 선데 — 시리얼의 바삭한 식감과 진한 아이스크림, 초콜릿 소스와 생크림, 컬러 스프링클과 체리로 마무리。',
           menuDesc6: '풍부한 향기와 깊은 바디감。 여유로운 시간과 함께 천천히 즐겨보세요。',
           menuVariant1: '에메랄드', menuVariant2: '사파이어', menuVariant3: '토파즈',
-          limitedHeading: '기간 한정 메뉴',
+          limitedHeading: '런치 메뉴',
           hgCaption1: '「Soda」 스테인드글라스。<br>창업 당시부터 변함없이<br>가게의 얼굴로 빛나고 있습니다。',
           hgCaption2: '실제로 런던 기차역에서<br>사용되던 시계를 수입했습니다。',
           hgCaption3: '미국에서 수입한 초콜릿 같은 천장。<br>장인이 손으로 직접 붙였습니다。',
@@ -4296,7 +4664,7 @@
           infoBtnLunch: '【런치】평일 오픈부터 15:00까지', infoBtnHappy: '【해피아워】평일 15:00~18:00',
           infoBtnSmoke: '【흡연 정보】18:00까지 흡연 부스 / 18:00 이후 자리에서 가능',
           infoBtnParty: '【전세・촬영 상담】편하게 문의해 주세요',
-          modalBodyLunch: '평일 오픈부터 15:00까지 런치. 파스타 2종, 볼, 플레이트, 오믈렛 등. 가격 1,350엔. 미니 샐러드, 커피 또는 홍차 포함. +150엔으로 다른 음료로 변경 가능. 파스타・밥 대식 무료. 런치 디저트 400엔.',
+          modalBodyLunch: '평일 오픈부터 15:00까지 런치. 파스타 2종 또는 샌드 중 선택. 가격 1,500엔. 미니 콥 샐러드와 음료 포함. 파스타・밥 곱빼기 무료. +400엔으로 런치 디저트 추가 가능.',
           modalBodyHappy: '해피아워는 평일 15:00~18:00. 저녁 전 한 잔을 가볍게 즐기세요.',
           modalBodySmoke: '영업 시작부터 18시까지는 흡연 부스에서 흡연하실 수 있습니다. 18시 이후에는 자리에서 흡연 가능합니다.',
           modalBodyParty: '전세 파티, 환송영회, 2차, 로케이션・사진 촬영 등 용도에 맞게 편하게 문의해 주세요. 인원수, 시간, 내용에 맞춰 상담 가능합니다. 전화 또는 방문 시 접수합니다.',
