@@ -2220,6 +2220,9 @@
       .limited-modal-img img {
         width: 100%; height: 100%; object-fit: cover;
       }
+      .limited-modal-img.is-contain img {
+        object-fit: contain;
+      }
       .limited-modal-body {
         font-family: var(--font-display);
         font-size: clamp(0.88rem, 1.2vw, 0.95rem);
@@ -3997,6 +4000,7 @@
           label: { ja: 'サンド', en: 'Sandwich', zhcn: '三明治', zhtw: '三明治', ko: '샌드위치' },
           title: { ja: 'カラマリサンド', en: 'Calamari Sandwich', zhcn: '鱿鱼圈三明治', zhtw: '花枝圈三明治', ko: '칼라마리 샌드위치' },
           subtitle: 'Weekday Lunch',
+          imgFit: 'contain',
           image: './lunch-sand.jpg',
           modalImage: './lunch-sand.jpg',
           price: '¥1,500',
@@ -4361,7 +4365,7 @@
             '<h2 class="limited-modal-title">' + lt(item.title) + '</h2>' +
             (item.subtitle ? '<p class="limited-modal-subtitle">' + item.subtitle + '</p>' : '') +
             (item.price ? '<p class="limited-modal-price"><span class="num">' + item.price + '</span><span class="unit">' + lt(item.priceUnit) + '</span></p>' : '') +
-            ((item.modalImage || item.image) ? '<div class="limited-modal-img"><img src="' + (item.modalImage || item.image) + '" alt="' + lt(item.title) + '"></div>' : '') +
+            ((item.modalImage || item.image) ? '<div class="limited-modal-img' + (item.imgFit === 'contain' ? ' is-contain' : '') + '"><img src="' + (item.modalImage || item.image) + '" alt="' + lt(item.title) + '"></div>' : '') +
             (item.desc ? '<p class="limited-modal-body">' + lt(item.desc) + '</p>' : '') +
             notesHTML(item, 'limited-modal-notes');
           overlay.setAttribute('aria-hidden', 'false');
