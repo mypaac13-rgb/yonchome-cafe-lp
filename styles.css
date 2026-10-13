@@ -400,13 +400,6 @@ img {
   filter: brightness(0.54) saturate(0.76) sepia(0.24) contrast(1.06);
 }
 
-.photo-panel::after {
-  position: absolute;
-  inset: 16px;
-  border: 1px solid rgba(255, 232, 213, 0.06);
-  content: "";
-}
-
 .photo-copy {
   position: absolute;
   left: 28px;
@@ -442,10 +435,6 @@ img {
 
 .photo-panel-hero {
   min-height: 100svh;
-}
-
-.photo-panel-hero::after {
-  display: none;
 }
 
 /* ── Hero overlay logo ── */
