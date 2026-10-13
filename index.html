@@ -2078,6 +2078,9 @@
         object-fit: cover;
         transition: transform 0.5s ease;
       }
+      .lunch-set-card-img.is-contain img {
+        object-fit: contain;
+      }
       .lunch-set-card:hover .lunch-set-card-img img { transform: scale(1.05); }
       .lunch-set-card-body { padding-top: 18px; }
       .lunch-set-card-kicker {
@@ -3584,7 +3587,7 @@
             </div>
           </article>
           <article class="lunch-set-card" data-open-lunch="sand">
-            <div class="lunch-set-card-img"><img src="./lunch-sand.jpg" alt="カラマリサンド" loading="lazy"></div>
+            <div class="lunch-set-card-img is-contain"><img src="./lunch-sand.jpg" alt="カラマリサンド" loading="lazy"></div>
             <div class="lunch-set-card-body">
               <p class="lunch-set-card-kicker">サンド</p>
               <p class="lunch-set-card-name">カラマリサンド</p>
