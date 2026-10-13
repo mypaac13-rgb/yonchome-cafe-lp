@@ -444,6 +444,10 @@ img {
   min-height: 100svh;
 }
 
+.photo-panel-hero::after {
+  display: none;
+}
+
 /* ── Hero overlay logo ── */
 .hero-overlay-logo {
   position: absolute;
