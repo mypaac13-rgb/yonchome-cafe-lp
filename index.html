@@ -2058,7 +2058,7 @@
         font-family: var(--font-body);
         font-size: 0.76rem;
         letter-spacing: 0.08em;
-        color: var(--accent);
+        color: var(--muted);
       }
       .lunch-set-grid {
         display: grid;
@@ -2204,7 +2204,7 @@
         font-family: 'Shippori Mincho', serif;
         font-weight: 600;
         font-size: clamp(1.6rem, 3vw, 2.1rem);
-        color: var(--accent);
+        color: var(--text);
       }
       .limited-modal-price .unit {
         font-family: var(--font-body);
@@ -2378,8 +2378,8 @@
         align-items: center;
         justify-content: center;
       }
-      .popular-menu-img.is-contain img {
-        object-fit: contain;
+      .popular-menu-img--bluesoda img {
+        object-position: center 58%;
       }
       .popular-menu-new-badge {
         position: absolute;
@@ -2484,6 +2484,7 @@
         .popular-menu-img { width: calc(100% - 32px); margin: 0 auto; }
       }
       .popular-menu-mobile-nav { display: none; }
+      .popular-menu-featured-mobile { display: none; }
       @media (min-width: 721px) {
         .popular-menu-grid { display: grid !important; grid-template-columns: repeat(3, 1fr); }
         .popular-menu-item { display: block !important; }
@@ -2519,6 +2520,12 @@
           letter-spacing: 0.12em;
           min-width: 36px;
           text-align: center;
+        }
+        .popular-menu-featured-mobile {
+          display: block;
+          margin-top: 40px;
+          padding-top: 32px;
+          border-top: 1px solid rgba(240, 216, 190, 0.12);
         }
       }
 
@@ -3566,8 +3573,8 @@
               <li><span class="popular-menu-variant-name" data-i18n="menuVariant3">サファイア</span><span class="popular-menu-price">¥850</span></li>
             </ul>
           </div>
-          <div class="popular-menu-item anim-up">
-            <div class="popular-menu-img is-contain">
+          <div class="popular-menu-item popular-menu-item--pinned anim-up">
+            <div class="popular-menu-img popular-menu-img--bluesoda">
               <span class="popular-menu-new-badge">NEW</span>
               <img src="./blue-cream-soda.jpg" alt="ブルークリームソーダ" loading="lazy" decoding="async" />
             </div>
@@ -3587,6 +3594,18 @@
           <button class="popular-menu-mobile-btn popular-menu-mobile-next" aria-label="次のメニュー">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
+        </div>
+        <!-- Mobile-only featured callout: always visible below the swipe menu -->
+        <div class="popular-menu-featured-mobile anim-up">
+          <div class="popular-menu-img popular-menu-img--bluesoda">
+            <span class="popular-menu-new-badge">NEW</span>
+            <img src="./blue-cream-soda.jpg" alt="ブルークリームソーダ" loading="lazy" decoding="async" />
+          </div>
+          <div class="popular-menu-name-row">
+            <p class="popular-menu-name" data-i18n="menuName7">ブルークリームソーダ</p>
+            <span class="popular-menu-price">¥750</span>
+          </div>
+          <p class="popular-menu-desc" data-i18n="menuDesc7">涼やかなブルーが目を引く、バニラアイスとチェリーをのせた人気のクリームソーダ。</p>
         </div>
       </section>
 
@@ -4860,7 +4879,7 @@
       // ── Mobile: popular menu arrow navigation ──
       (function() {
         if (window.innerWidth > 720) return;
-        const items = Array.from(document.querySelectorAll('.popular-menu-item'));
+        const items = Array.from(document.querySelectorAll('.popular-menu-item:not(.popular-menu-item--pinned)'));
         const prevBtn = document.querySelector('.popular-menu-mobile-prev');
         const nextBtn = document.querySelector('.popular-menu-mobile-next');
         const countEl = document.querySelector('.popular-menu-mobile-count');
