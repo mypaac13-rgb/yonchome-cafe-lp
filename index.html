@@ -2052,6 +2052,124 @@
           font-size: 0.78rem;
         }
       }
+      /* ── Seasonal / Limited Time Menu (standout promo card) ── */
+      .seasonal-section { padding-top: 100px; padding-bottom: 40px; }
+      .seasonal-card {
+        position: relative;
+        padding: 2px;
+        background: linear-gradient(135deg, rgba(196,160,66,0.75), rgba(196,160,66,0.1) 45%, rgba(196,160,66,0.55));
+        box-shadow: 0 30px 80px rgba(0,0,0,0.35), 0 0 60px rgba(196,160,66,0.1);
+      }
+      .seasonal-card-inner {
+        display: flex;
+        align-items: center;
+        gap: 48px;
+        padding: 44px;
+        background: #140c06;
+      }
+      .seasonal-card-badge {
+        position: absolute;
+        top: -15px;
+        left: 40px;
+        z-index: 2;
+        padding: 8px 18px;
+        background: var(--accent);
+        color: #1a0e0b;
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: 0.66rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+      }
+      .seasonal-card-photos {
+        display: flex;
+        gap: 12px;
+        flex: 0 0 auto;
+      }
+      .seasonal-card-photo {
+        position: relative;
+        width: 170px;
+        aspect-ratio: 3/4;
+        overflow: hidden;
+      }
+      .seasonal-card-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.92) saturate(1.05);
+        transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .seasonal-card:hover .seasonal-card-photo img {
+        transform: scale(1.05);
+      }
+      .seasonal-card-photo-label {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        padding: 3px 9px;
+        background: rgba(10, 6, 4, 0.72);
+        color: rgba(245, 232, 210, 0.92);
+        font-family: var(--font-body);
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .seasonal-card-body { flex: 1; min-width: 0; }
+      .seasonal-card-eyebrow {
+        font-family: var(--font-body);
+        font-size: 0.68rem;
+        font-weight: 700;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin: 0 0 10px;
+      }
+      .seasonal-card-title {
+        font-family: 'Zen Old Mincho', serif;
+        font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+        font-weight: 400;
+        letter-spacing: 0.1em;
+        color: var(--text);
+        margin: 0 0 10px;
+      }
+      .seasonal-card-subtitle {
+        font-family: var(--font-display);
+        font-size: 0.88rem;
+        color: rgba(239,226,210,0.6);
+        letter-spacing: 0.04em;
+        margin: 0 0 18px;
+      }
+      .seasonal-card-price {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin: 0 0 18px;
+      }
+      .seasonal-card-price .num {
+        font-family: 'Shippori Mincho', serif;
+        font-weight: 600;
+        font-size: clamp(1.6rem, 3vw, 2rem);
+        color: var(--accent);
+      }
+      .seasonal-card-price .unit {
+        font-family: var(--font-body);
+        font-size: 0.86rem;
+        color: rgba(239,226,210,0.55);
+      }
+      .seasonal-card-desc {
+        font-family: var(--font-display);
+        font-size: 0.9rem;
+        line-height: 1.95;
+        color: rgba(239,226,210,0.72);
+        margin: 0;
+      }
+      @media (max-width: 720px) {
+        .seasonal-card-inner { flex-direction: column; align-items: flex-start; gap: 28px; padding: 32px 24px; }
+        .seasonal-card-photos { width: 100%; }
+        .seasonal-card-photo { flex: 1; width: auto; }
+      }
       /* Lunch set teaser cards (Aパスタ/Bパスタ/サンド) */
       .lunch-set-period {
         margin: 40px 0 0;
@@ -3646,6 +3764,36 @@
             </div>
           </article>
         </div>
+      </section>
+
+      <!-- SEASONAL / LIMITED TIME MENU -->
+      <section class="seasonal-section section-shell" id="seasonal-menu">
+        <div>
+          <span class="limited-kicker">Limited Time Menu</span>
+          <h2 class="limited-heading">期間限定メニュー</h2>
+        </div>
+        <article class="seasonal-card anim-up">
+          <span class="seasonal-card-badge">期間限定・10/15〜</span>
+          <div class="seasonal-card-inner">
+            <div class="seasonal-card-photos">
+              <div class="seasonal-card-photo">
+                <img src="./tiramisu-latte-iced.jpg" alt="ティラミスラテ（ICED）" loading="lazy" decoding="async" />
+                <span class="seasonal-card-photo-label">ICED</span>
+              </div>
+              <div class="seasonal-card-photo">
+                <img src="./tiramisu-latte-hot.jpg" alt="ティラミスラテ（HOT）" loading="lazy" decoding="async" />
+                <span class="seasonal-card-photo-label">HOT</span>
+              </div>
+            </div>
+            <div class="seasonal-card-body">
+              <p class="seasonal-card-eyebrow">NEW DRINK</p>
+              <h3 class="seasonal-card-title">ティラミスラテ</h3>
+              <p class="seasonal-card-subtitle">HOT・ICEDからお選びいただけます</p>
+              <p class="seasonal-card-price"><span class="num">¥950</span><span class="unit">（税込）</span></p>
+              <p class="seasonal-card-desc">芳醇なコーヒーにビターなココアパウダーを重ねた、ティラミスのような味わいのラテ。</p>
+            </div>
+          </div>
+        </article>
       </section>
 
       <!-- Limited Menu Modal -->
