@@ -2378,6 +2378,23 @@
         align-items: center;
         justify-content: center;
       }
+      .popular-menu-img.is-contain img {
+        object-fit: contain;
+      }
+      .popular-menu-new-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 2;
+        padding: 4px 10px;
+        background: var(--accent);
+        color: #1a0e0b;
+        font-family: var(--font-body);
+        font-size: 0.6rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
       .popular-menu-img:not(:has(img))::after {
         content: 'COMING SOON';
         font-family: var(--font-body);
@@ -3549,6 +3566,17 @@
               <li><span class="popular-menu-variant-name" data-i18n="menuVariant3">サファイア</span><span class="popular-menu-price">¥850</span></li>
             </ul>
           </div>
+          <div class="popular-menu-item anim-up">
+            <div class="popular-menu-img is-contain">
+              <span class="popular-menu-new-badge">NEW</span>
+              <img src="./blue-cream-soda.jpg" alt="ブルークリームソーダ" loading="lazy" decoding="async" />
+            </div>
+            <div class="popular-menu-name-row">
+              <p class="popular-menu-name" data-i18n="menuName7">ブルークリームソーダ</p>
+              <span class="popular-menu-price">¥750</span>
+            </div>
+            <p class="popular-menu-desc" data-i18n="menuDesc7">涼やかなブルーが目を引く、バニラアイスとチェリーをのせた人気のクリームソーダ。</p>
+          </div>
         </div>
         <!-- Mobile arrow navigation -->
         <div class="popular-menu-mobile-nav">
@@ -4427,6 +4455,8 @@
           menuDesc4: '色とりどりのソーダにバニラアイスとチェリーを添えた、どこか懐かしいクリームソーダ。',
           menuDesc5: '心ときめく王道のアメリカンサンデー。シリアルのザクザク感とミルキーなアイス。チョコレートソースとふんわり生クリーム、仕上げはカラフルなチョコスプレーとチェリー。',
           menuDesc6: '豊かな香りと深みのあるコク。ゆっくりと流れる時間とともにお楽しみください。',
+          menuName7: 'ブルークリームソーダ',
+          menuDesc7: '涼やかなブルーが目を引く、バニラアイスとチェリーをのせた人気のクリームソーダ。',
           menuVariant1: 'エメラルド', menuVariant2: 'ブルー', menuVariant3: 'サファイア',
           limitedHeading: 'ランチメニュー',
           hgCaption1: '「Soda」のステンドグラス。<br>創業当時から変わらず<br>店の顔として輝いている。',
@@ -4493,6 +4523,8 @@
           menuDesc4: 'A nostalgic cream soda — colorful soda water topped with vanilla ice cream and a cherry.',
           menuDesc5: 'The quintessential American sundae — crunchy cereal, milky ice cream, chocolate sauce, fluffy whipped cream, and colorful sprinkles topped with a cherry.',
           menuDesc6: 'Rich aroma and deep body. To be savored alongside the unhurried flow of time.',
+          menuName7: 'Blue Cream Soda',
+          menuDesc7: 'A refreshingly blue cream soda topped with vanilla ice cream and a cherry.',
           menuVariant1: 'Emerald', menuVariant2: 'Blue', menuVariant3: 'Sapphire',
           limitedHeading: 'Lunch Menu',
           hgCaption1: 'The "Soda" stained glass.<br>Shining as the face of the café<br>since the day it opened.',
@@ -4559,6 +4591,8 @@
           menuDesc4: '缤纷多彩的苏打水配上香草冰淇淋和樱桃，令人怀念的奶油苏打。',
           menuDesc5: '经典美式圣代——麦片的酥脆感配上醇厚冰淇淋，浇上巧克力酱和蓬松奶油，点缀彩色糖针和樱桃。',
           menuDesc6: '馥郁的香气与醇厚的口感，在悠然流逝的时光中慢慢品味。',
+          menuName7: '蓝色奶油苏打',
+          menuDesc7: '清凉碧蓝的奶油苏打，搭配香草冰淇淋与樱桃。',
           menuVariant1: '翡翠绿', menuVariant2: '宝石蓝', menuVariant3: '蓝宝石',
           limitedHeading: '午餐菜单',
           hgCaption1: '「Soda」的彩色玻璃。<br>自创业之初便作为本店的象征<br>熠熠生辉。',
@@ -4625,6 +4659,8 @@
           menuDesc4: '繽紛多彩的蘇打水配上香草冰淇淋和櫻桃，令人懷念的奶油蘇打。',
           menuDesc5: '經典美式聖代——麥片的酥脆感配上醇厚冰淇淋，澆上巧克力醬和蓬鬆鮮奶油，點綴彩色糖針和櫻桃。',
           menuDesc6: '馥郁的香氣與醇厚的口感，在悠然流逝的時光中慢慢品味。',
+          menuName7: '藍色奶油蘇打',
+          menuDesc7: '清涼碧藍的奶油蘇打，搭配香草冰淇淋與櫻桃。',
           menuVariant1: '翡翠綠', menuVariant2: '寶石藍', menuVariant3: '藍寶石',
           limitedHeading: '午餐菜單',
           hgCaption1: '「Soda」的彩色玻璃。<br>自創業之初便作為本店的象徵<br>熠熠生輝。',
@@ -4691,6 +4727,8 @@
           menuDesc4: '다양한 색의 소다에 바닐라 아이스크림과 체리를 얹은, 어딘가 추억을 불러오는 크림소다。',
           menuDesc5: '왕도의 아메리칸 선데 — 시리얼의 바삭한 식감과 진한 아이스크림, 초콜릿 소스와 생크림, 컬러 스프링클과 체리로 마무리。',
           menuDesc6: '풍부한 향기와 깊은 바디감。 여유로운 시간과 함께 천천히 즐겨보세요。',
+          menuName7: '블루 크림소다',
+          menuDesc7: '시원한 블루 컬러가 매력적인 크림소다。 바닐라 아이스크림과 체리를 곁들였습니다。',
           menuVariant1: '에메랄드', menuVariant2: '블루', menuVariant3: '사파이어',
           limitedHeading: '런치 메뉴',
           hgCaption1: '「Soda」 스테인드글라스。<br>창업 당시부터 변함없이<br>가게의 얼굴로 빛나고 있습니다。',
