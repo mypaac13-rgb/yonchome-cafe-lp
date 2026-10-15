@@ -3737,7 +3737,24 @@
           <span class="limited-kicker">Lunch Menu</span>
           <h2 class="limited-heading" data-i18n="limitedHeading">ランチメニュー</h2>
         </div>
-        <div class="limited-grid" id="limited-grid"></div>
+        <div class="limited-grid" id="limited-grid">
+          <article class="limited-card">
+            <div class="limited-card-img">
+              <img src="./chicken-over-rice.jpg" alt="チキンオーバーライス" loading="lazy" decoding="async">
+              <span class="limited-badge">LUNCH</span>
+            </div>
+            <div class="limited-card-body">
+              <h3 class="limited-card-title">チキンオーバーライス</h3>
+              <p class="limited-card-subtitle">Grilled Chicken + Rice + Salad + Drink</p>
+              <p class="limited-card-price"><span class="num">¥1,800</span><span class="unit">（税込）</span></p>
+              <p class="limited-card-desc">スパイスで香ばしく焼き上げたチキンを、ライス＆フレッシュサラダと一緒に。ボリューム満点の一皿です。</p>
+              <ul class="limited-card-notes">
+                <li>※ ドリンク付き（コーヒー HOT/ICE・紅茶 HOT/ICE・梅昆布茶）</li>
+                <li>※ コカコーラ・ジンジャーエール・オレンジジュース・グレープフルーツジュース・カフェラテ（HOT/ICE）・カプチーノ（HOT/ICE）への変更は＋200円</li>
+              </ul>
+            </div>
+          </article>
+        </div>
         <p class="lunch-set-period">10/13（火）〜10/23（金）の週替わりパスタ・サンド</p>
         <div class="lunch-set-grid">
           <article class="lunch-set-card" data-open-lunch="pastaA">
@@ -4515,13 +4532,17 @@
         function getLang() { return document.documentElement.getAttribute('data-lang') || 'ja'; }
         function lt(val) { if (!val || typeof val === 'string') return val || ''; var l = getLang(); return val[l] || val['ja'] || ''; }
 
+        var existingCards = Array.from(grid.querySelectorAll('.limited-card'));
         var cards = [];
         LIMITED_MENUS.forEach(function(item, i) {
-          var card = document.createElement('article');
-          card.className = 'limited-card';
+          var card = existingCards[i];
+          if (!card) {
+            card = document.createElement('article');
+            card.className = 'limited-card';
+            grid.appendChild(card);
+          }
           cards.push({ card: card, item: item });
           card.addEventListener('click', function() { openModal(item); });
-          grid.appendChild(card);
         });
 
         function notesHTML(item, listClass) {
