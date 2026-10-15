@@ -5213,12 +5213,14 @@
               event_category: 'contact',
               event_label: href,
               page_location: location.href,
+              transport_type: 'beacon',
             });
           } else if (href.indexOf('instagram.com') !== -1 && /reserve/i.test(link.className)) {
             gtag('event', 'reserve_dm_click', {
               event_category: 'contact',
               event_label: href,
               page_location: location.href,
+              transport_type: 'beacon',
             });
           }
         });
