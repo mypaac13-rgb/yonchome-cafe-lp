@@ -5203,6 +5203,7 @@
       document.addEventListener('touchstart', function() {}, { passive: true });
 
       // ── GA4: 電話・予約DMクリックの計測 ──
+      // capture phase で登録することで、各種ポップアップ内の stopPropagation() の影響を受けずに計測する
       (function () {
         document.addEventListener('click', function (e) {
           var link = e.target.closest('a');
@@ -5223,7 +5224,7 @@
               transport_type: 'beacon',
             });
           }
-        });
+        }, true);
       })();
     </script>
   </body>
