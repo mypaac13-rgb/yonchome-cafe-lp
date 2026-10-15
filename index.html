@@ -23,7 +23,7 @@
     <meta property="og:image" content="https://yonchome-cafe.com/hero-main-upscaled.jpg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Klee+One:wght@400;600&family=Caveat:wght@400;500;600;700&family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Yusei+Magic&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Yomogi&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Klee+One:wght@400;600&family=Caveat:wght@400;500;600;700&family=Zen+Old+Mincho:wght@400;700;900&family=Shippori+Mincho:wght@400;500;600;700;800&family=Yusei+Magic&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Yomogi&family=Mr+De+Haviland&display=swap" rel="stylesheet" />
     <link rel="preload" href="./店内画像.webp" as="image" />
     <link rel="stylesheet" href="./styles.css" />
     <style>
@@ -2052,6 +2052,127 @@
           font-size: 0.78rem;
         }
       }
+      /* ── Seasonal / Limited Time Menu (photo-forward, no frame) ── */
+      .seasonal-section { padding-top: 100px; padding-bottom: 40px; }
+      .seasonal-photos {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        max-width: 420px;
+        margin: 0 0 28px;
+      }
+      .seasonal-photo {
+        overflow: hidden;
+        position: relative;
+        transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+        -webkit-mask-image: radial-gradient(130% 130% at 50% 50%, #000 72%, transparent 100%);
+        mask-image: radial-gradient(130% 130% at 50% 50%, #000 72%, transparent 100%);
+      }
+      .seasonal-photo img {
+        width: 100%;
+        aspect-ratio: 4/5;
+        object-fit: cover;
+        display: block;
+        filter: brightness(0.95) saturate(1.05);
+        transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), filter 0.5s ease;
+      }
+      .seasonal-photo:hover,
+      .seasonal-photo:active {
+        transform: translateY(-6px);
+        box-shadow: 0 18px 38px rgba(0,0,0,0.5);
+        z-index: 2;
+      }
+      .seasonal-photo:hover img,
+      .seasonal-photo:active img {
+        transform: scale(1.08);
+        filter: brightness(1.02) saturate(1.1);
+      }
+      .seasonal-card-body { max-width: 640px; }
+      .seasonal-card-period {
+        font-family: var(--font-body);
+        font-size: 0.72rem;
+        letter-spacing: 0.1em;
+        color: rgba(239,226,210,0.45);
+        margin: 0 0 10px;
+      }
+      .seasonal-card-title-en {
+        font-family: 'Mr De Haviland', cursive;
+        font-weight: 400;
+        font-size: clamp(2.6rem, 4.6vw, 3.6rem);
+        color: var(--text);
+        line-height: 1;
+        margin: 0 0 6px;
+      }
+      .seasonal-card-title {
+        font-family: 'Shippori Mincho', serif;
+        font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+        font-weight: 500;
+        color: var(--text);
+        margin: 0 0 8px;
+        line-height: 1.5;
+      }
+      .seasonal-card-subtitle {
+        font-family: var(--font-body);
+        font-size: 0.78rem;
+        letter-spacing: 0.04em;
+        color: rgba(239,226,210,0.5);
+        margin: 0 0 16px;
+      }
+      .seasonal-card-price {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin: 0 0 16px;
+      }
+      .seasonal-card-price .num {
+        font-family: 'Shippori Mincho', serif;
+        font-weight: 600;
+        font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+        color: var(--text);
+      }
+      .seasonal-card-price .unit {
+        font-family: var(--font-body);
+        font-size: 0.78rem;
+        color: rgba(239,226,210,0.55);
+      }
+      .seasonal-card-desc {
+        font-family: var(--font-display);
+        font-size: 0.9rem;
+        line-height: 1.9;
+        color: rgba(239,226,210,0.65);
+        margin: 0;
+      }
+      @media (max-width: 640px) {
+        .seasonal-photos { max-width: none; gap: 0; }
+      }
+      /* Desktop: text beside two equal-size side-by-side photos */
+      @media (min-width: 900px) {
+        .seasonal-card {
+          display: flex;
+          align-items: center;
+          gap: 64px;
+        }
+        .seasonal-card-body { flex: 0 0 32%; order: 1; }
+        .seasonal-photos {
+          order: 2;
+          flex: 1;
+          max-width: 800px;
+          margin: 0;
+        }
+        .seasonal-photo img { box-shadow: 0 25px 50px rgba(0,0,0,0.4); }
+        .seasonal-card-title {
+          font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+          margin-bottom: 10px;
+        }
+        .seasonal-card-subtitle { font-size: 0.86rem; margin-bottom: 26px; }
+        .seasonal-card-desc { font-size: 0.95rem; margin-bottom: 30px; }
+        .seasonal-card-price {
+          padding-top: 18px;
+          border-top: 1px solid rgba(240, 216, 190, 0.14);
+          margin-bottom: 0;
+        }
+        .seasonal-card-price .num { font-size: clamp(2rem, 3.6vw, 2.6rem); }
+      }
       /* Lunch set teaser cards (Aパスタ/Bパスタ/サンド) */
       .lunch-set-period {
         margin: 40px 0 0;
@@ -2612,6 +2733,7 @@
       .menu-lightbox-prev:hover,
       .menu-lightbox-next:hover { opacity: 1; }
       .popular-menu-img { cursor: pointer; }
+      .seasonal-photo { cursor: pointer; }
 
       /* ── Hamburger button (all screen sizes) ── */
       .mobile-menu-btn {
@@ -3646,6 +3768,28 @@
             </div>
           </article>
         </div>
+      </section>
+
+      <!-- SEASONAL / LIMITED TIME MENU -->
+      <section class="seasonal-section section-shell" id="seasonal-menu">
+        <div>
+          <span class="limited-kicker">Limited Time Menu</span>
+          <h2 class="limited-heading">期間限定メニュー</h2>
+        </div>
+        <article class="seasonal-card anim-up">
+          <div class="seasonal-photos">
+            <div class="seasonal-photo"><img src="./tiramisu-latte-hot.jpg" alt="ティラミスラテ（HOT）" loading="lazy" decoding="async" /></div>
+            <div class="seasonal-photo"><img src="./tiramisu-latte-iced.jpg" alt="ティラミスラテ（ICED）" loading="lazy" decoding="async" /></div>
+          </div>
+          <div class="seasonal-card-body">
+            <p class="seasonal-card-period">期間限定・10/15〜</p>
+            <p class="seasonal-card-title-en">Tiramisu Latte</p>
+            <h3 class="seasonal-card-title">ティラミスラテ</h3>
+            <p class="seasonal-card-subtitle">HOT・ICED</p>
+            <p class="seasonal-card-price"><span class="num">¥950</span><span class="unit">（税込）</span></p>
+            <p class="seasonal-card-desc">芳醇なコーヒーにビターなココアパウダーを重ねた、ティラミスのような味わいのラテ。</p>
+          </div>
+        </article>
       </section>
 
       <!-- Limited Menu Modal -->
@@ -4839,17 +4983,33 @@
         const lightbox = document.getElementById('menu-lightbox');
         const lbImg    = lightbox.querySelector('.menu-lightbox-img');
         const lbName   = lightbox.querySelector('.menu-lightbox-name');
-        const items    = Array.from(document.querySelectorAll('.popular-menu-item'));
-        let current    = 0;
 
-        function show(index) {
-          current = (index + items.length) % items.length;
-          const item = items[current];
-          const img  = item.querySelector('.popular-menu-img img');
-          if (!img) return;
-          lbImg.src     = img.src;
-          lbImg.alt     = img.alt;
-          lbName.textContent = item.querySelector('.popular-menu-name').textContent.trim();
+        const popularItems = Array.from(document.querySelectorAll('.popular-menu-item')).map(function(item) {
+          return {
+            trigger: item.querySelector('.popular-menu-img'),
+            img: item.querySelector('.popular-menu-img img'),
+            name: function() { return item.querySelector('.popular-menu-name').textContent.trim(); },
+          };
+        });
+        const seasonalItems = Array.from(document.querySelectorAll('.seasonal-photo')).map(function(el) {
+          return {
+            trigger: el,
+            img: el.querySelector('img'),
+            name: function() { return el.querySelector('img').alt; },
+          };
+        });
+
+        let activeList = popularItems;
+        let current = 0;
+
+        function show(list, index) {
+          activeList = list;
+          current = (index + list.length) % list.length;
+          const entry = list[current];
+          if (!entry.img) return;
+          lbImg.src     = entry.img.src;
+          lbImg.alt     = entry.img.alt;
+          lbName.textContent = entry.name();
           lightbox.setAttribute('aria-hidden', 'false');
           document.body.style.overflow = 'hidden';
         }
@@ -4859,20 +5019,23 @@
           document.body.style.overflow = '';
         }
 
-        items.forEach((item, i) => {
-          item.querySelector('.popular-menu-img').addEventListener('click', () => show(i));
+        popularItems.forEach(function(entry, i) {
+          if (entry.trigger) entry.trigger.addEventListener('click', function() { show(popularItems, i); });
+        });
+        seasonalItems.forEach(function(entry, i) {
+          if (entry.trigger) entry.trigger.addEventListener('click', function() { show(seasonalItems, i); });
         });
 
         lightbox.querySelector('.menu-lightbox-backdrop').addEventListener('click', close);
         lightbox.querySelector('.menu-lightbox-close').addEventListener('click', close);
-        lightbox.querySelector('.menu-lightbox-prev').addEventListener('click', () => show(current - 1));
-        lightbox.querySelector('.menu-lightbox-next').addEventListener('click', () => show(current + 1));
+        lightbox.querySelector('.menu-lightbox-prev').addEventListener('click', () => show(activeList, current - 1));
+        lightbox.querySelector('.menu-lightbox-next').addEventListener('click', () => show(activeList, current + 1));
 
         document.addEventListener('keydown', (e) => {
           if (lightbox.getAttribute('aria-hidden') === 'true') return;
           if (e.key === 'Escape')      close();
-          if (e.key === 'ArrowLeft')   show(current - 1);
-          if (e.key === 'ArrowRight')  show(current + 1);
+          if (e.key === 'ArrowLeft')   show(activeList, current - 1);
+          if (e.key === 'ArrowRight')  show(activeList, current + 1);
         });
       })();
 
@@ -5008,6 +5171,9 @@
         window.addEventListener('scroll', update, { passive: true });
         update();
       })();
+
+      // iOS Safari requires a touch listener for :active styles to trigger on tap
+      document.addEventListener('touchstart', function() {}, { passive: true });
     </script>
   </body>
 </html>
