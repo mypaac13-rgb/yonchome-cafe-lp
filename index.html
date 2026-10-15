@@ -5201,6 +5201,28 @@
 
       // iOS Safari requires a touch listener for :active styles to trigger on tap
       document.addEventListener('touchstart', function() {}, { passive: true });
+
+      // ── GA4: 電話・予約DMクリックの計測 ──
+      (function () {
+        document.addEventListener('click', function (e) {
+          var link = e.target.closest('a');
+          if (!link || typeof gtag !== 'function') return;
+          var href = link.getAttribute('href') || '';
+          if (href.indexOf('tel:') === 0) {
+            gtag('event', 'phone_click', {
+              event_category: 'contact',
+              event_label: href,
+              page_location: location.href,
+            });
+          } else if (href.indexOf('instagram.com') !== -1 && /reserve/i.test(link.className)) {
+            gtag('event', 'reserve_dm_click', {
+              event_category: 'contact',
+              event_label: href,
+              page_location: location.href,
+            });
+          }
+        });
+      })();
     </script>
   </body>
 </html>
