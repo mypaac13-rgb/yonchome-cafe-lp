@@ -3107,8 +3107,11 @@
         }
 
         /* Hero: smaller, no crossfade on mobile */
-        .photo-panel-hero { min-height: 80svh; }
+        .photo-panel-hero { min-height: 58svh; }
         .hero-image-from { opacity: 0 !important; animation: none !important; }
+
+        /* Nav drawer: full-screen on mobile */
+        .mobile-drawer { width: 100%; }
 
         /* Filming: show one card at a time */
         .location-grid {
@@ -3375,13 +3378,13 @@
     <!-- MOBILE NAV DRAWER -->
     <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
       <nav class="mobile-drawer-nav">
-        <a class="mobile-drawer-link" href="#message" data-drawer-close>ABOUT</a>
-        <a class="mobile-drawer-link" href="#history" data-drawer-close>HISTORY</a>
-        <a class="mobile-drawer-link" href="#filming" data-drawer-close>FILMING LOCATIONS</a>
-        <a class="mobile-drawer-link" href="#popular-menu" data-drawer-close>MENU</a>
-        <a class="mobile-drawer-link" href="#banners" data-drawer-close>PRIVATE PARTY</a>
-        <a class="mobile-drawer-link" href="#access" data-drawer-close>ACCESS</a>
-        <button class="mobile-drawer-link mobile-drawer-reserve-toggle" type="button" id="mobile-drawer-reserve-btn">RESERVE</button>
+        <a class="mobile-drawer-link" href="#message" data-drawer-close data-i18n="mnavAbout">コンセプト</a>
+        <a class="mobile-drawer-link" href="#history" data-drawer-close data-i18n="mnavHistory">沿革</a>
+        <a class="mobile-drawer-link" href="#filming" data-drawer-close data-i18n="mnavFilming">ロケ地</a>
+        <a class="mobile-drawer-link" href="#popular-menu" data-drawer-close data-i18n="mnavMenu">メニュー</a>
+        <a class="mobile-drawer-link" href="#banners" data-drawer-close data-i18n="mnavParty">貸切・撮影</a>
+        <a class="mobile-drawer-link" href="#access" data-drawer-close data-i18n="mnavAccess">アクセス</a>
+        <button class="mobile-drawer-link mobile-drawer-reserve-toggle" type="button" id="mobile-drawer-reserve-btn" data-i18n="navReserve">ご予約</button>
         <div class="mobile-drawer-reserve" id="mobile-drawer-reserve" aria-hidden="true">
           <a class="mobile-drawer-reserve-item reserve-autoreserve-link" href="https://autoreserve.com/ja/restaurants/AdhhJpEjPGccBkroHsXJ" target="_blank" rel="noopener noreferrer">
             <span class="mobile-drawer-reserve-label">ONLINE</span>
@@ -4644,6 +4647,7 @@
       const T = {
         ja: {
           navParty: '貸し切り', navRecruit: '採用', navRecruit2: '採用情報', navCompany: '企業情報', navReserve: 'ご予約',
+          mnavAbout: 'コンセプト', mnavHistory: '沿革', mnavFilming: 'ロケ地', mnavMenu: 'メニュー', mnavParty: '貸切・撮影', mnavAccess: 'アクセス',
           heroBannerPartyTitle: '貸し切りパーティー', heroBannerPartySub: '20名〜 ／ 3プランからご選択',
           heroBannerShootTitle: '撮影利用の案内', heroBannerShootSub: 'ロケ・写真撮影 ／ お気軽にご相談ください',
           heroLine1: '高円寺で40年。', heroLine2: '変わる時代と、変わらない居場所。', heroLine3: '人が集い、語り、繋がる。',
@@ -4712,6 +4716,7 @@
         },
         en: {
           navParty: 'Private Party', navRecruit: 'Recruit', navRecruit2: 'Recruit', navCompany: 'About', navReserve: 'Reserve',
+          mnavAbout: 'About', mnavHistory: 'History', mnavFilming: 'Filming Locations', mnavMenu: 'Menu', mnavParty: 'Private Party', mnavAccess: 'Access',
           heroBannerPartyTitle: 'Private Party', heroBannerPartySub: 'From 20 guests / 3 plans',
           heroBannerShootTitle: 'Photography & Filming', heroBannerShootSub: 'Location & photo shoots / Inquiries welcome',
           heroLine1: '40 Years in Koenji.', heroLine2: 'Times change. This place doesn\'t.', heroLine3: 'Gather, talk, connect.',
@@ -4780,6 +4785,7 @@
         },
         zhcn: {
           navParty: '包场', navRecruit: '招聘', navRecruit2: '招聘信息', navCompany: '关于我们', navReserve: '电话预约',
+          mnavAbout: '关于我们', mnavHistory: '历史', mnavFilming: '取景地', mnavMenu: '菜单', mnavParty: '包场・拍摄', mnavAccess: '交通',
           heroBannerPartyTitle: '包场派对', heroBannerPartySub: '20人起 / 3种套餐',
           heroBannerShootTitle: '拍摄场地租借', heroBannerShootSub: '外景・摄影拍摄 / 欢迎咨询',
           heroLine1: '在高圆寺的40年。', heroLine2: '时代在变，这里不变。', heroLine3: '相聚、交流、连接。',
@@ -4848,6 +4854,7 @@
         },
         zhtw: {
           navParty: '包場', navRecruit: '招募', navRecruit2: '招募資訊', navCompany: '關於我們', navReserve: '電話預約',
+          mnavAbout: '關於我們', mnavHistory: '歷史', mnavFilming: '取景地', mnavMenu: '菜單', mnavParty: '包場・拍攝', mnavAccess: '交通',
           heroBannerPartyTitle: '包場派對', heroBannerPartySub: '20人起 / 3種方案',
           heroBannerShootTitle: '拍攝場地租借', heroBannerShootSub: '外景・攝影拍攝 / 歡迎諮詢',
           heroLine1: '在高圓寺的40年。', heroLine2: '時代在變，這裡不變。', heroLine3: '相聚、交流、連結。',
@@ -4916,6 +4923,7 @@
         },
         ko: {
           navParty: '전세', navRecruit: '채용', navRecruit2: '채용 정보', navCompany: '회사 정보', navReserve: '전화 예약',
+          mnavAbout: '소개', mnavHistory: '연혁', mnavFilming: '촬영지', mnavMenu: '메뉴', mnavParty: '전세・촬영', mnavAccess: '오시는 길',
           heroBannerPartyTitle: '전세 파티', heroBannerPartySub: '20명~ / 3가지 플랜',
           heroBannerShootTitle: '촬영 이용 안내', heroBannerShootSub: '로케이션・사진 촬영 / 문의 환영',
           heroLine1: '고엔지에서 40년。', heroLine2: '시대는 변해도, 이 곳은 변하지 않습니다。', heroLine3: '모이고, 이야기하고, 연결되다。',
@@ -4984,6 +4992,7 @@
         },
         es: {
           navParty: 'Fiestas privadas', navRecruit: 'Empleo', navRecruit2: 'Empleo', navCompany: 'Nosotros', navReserve: 'Reservar',
+          mnavAbout: 'Nosotros', mnavHistory: 'Historia', mnavFilming: 'Locaciones de rodaje', mnavMenu: 'Menú', mnavParty: 'Fiesta privada', mnavAccess: 'Cómo llegar',
           heroBannerPartyTitle: 'Fiesta privada', heroBannerPartySub: 'Desde 20 personas / 3 planes',
           heroBannerShootTitle: 'Rodajes y fotografía', heroBannerShootSub: 'Localizaciones y sesiones fotográficas / Consúltenos',
           heroLine1: '40 años en Koenji.', heroLine2: 'Los tiempos cambian. Este lugar, no.', heroLine3: 'Reunirse, conversar, conectar.',
