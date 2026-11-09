@@ -3366,6 +3366,7 @@
             <button class="lang-opt" data-lang="zhcn" role="option" type="button">中文（簡体字）</button>
             <button class="lang-opt" data-lang="zhtw" role="option" type="button">中文（繁体字）</button>
             <button class="lang-opt" data-lang="ko" role="option" type="button">한국어</button>
+            <button class="lang-opt" data-lang="es" role="option" type="button">Español</button>
           </div>
         </div>
       </div>
@@ -3785,31 +3786,31 @@
             </div>
           </article>
         </div>
-        <p class="lunch-set-period">10/26（月）〜11/6（金）の週替わりパスタ・サンド</p>
+        <p class="lunch-set-period">11/9（月）〜11/20（金）の週替わりパスタ・サンド</p>
         <div class="lunch-set-grid">
           <article class="lunch-set-card" data-open-lunch="pastaA">
-            <div class="lunch-set-card-img"><img src="./lunch-pasta-a.jpg" alt="ナスとほうれん草のガーリックトマトパスタ" loading="lazy"></div>
+            <div class="lunch-set-card-img"><img src="./lunch-pasta-a.jpg" alt="「キャベツときのこ」のトマトクリームパスタ" loading="lazy"></div>
             <div class="lunch-set-card-body">
               <p class="lunch-set-card-kicker">Aパスタ<span class="lunch-set-card-badge">週替わり</span></p>
-              <p class="lunch-set-card-name">ナスとほうれん草のガーリックトマトパスタ</p>
+              <p class="lunch-set-card-name">「キャベツときのこ」のトマトクリームパスタ</p>
               <p class="lunch-set-card-price">平日ランチ ¥1,500（税込）</p>
               <button type="button" class="lunch-set-card-more">VIEW MORE <span aria-hidden="true">→</span></button>
             </div>
           </article>
           <article class="lunch-set-card" data-open-lunch="pastaB">
-            <div class="lunch-set-card-img"><img src="./lunch-pasta-b.jpg" alt="ベーコンときのこのクリームパスタ" loading="lazy"></div>
+            <div class="lunch-set-card-img"><img src="./lunch-pasta-b.jpg" alt="秋ナスとベーコンのアンチョビペペロンチーノ" loading="lazy"></div>
             <div class="lunch-set-card-body">
               <p class="lunch-set-card-kicker">Bパスタ<span class="lunch-set-card-badge">週替わり</span></p>
-              <p class="lunch-set-card-name">ベーコンときのこのクリームパスタ</p>
+              <p class="lunch-set-card-name">秋ナスとベーコンのアンチョビペペロンチーノ</p>
               <p class="lunch-set-card-price">平日ランチ ¥1,500（税込）</p>
               <button type="button" class="lunch-set-card-more">VIEW MORE <span aria-hidden="true">→</span></button>
             </div>
           </article>
           <article class="lunch-set-card" data-open-lunch="sand">
-            <div class="lunch-set-card-img is-contain"><img src="./lunch-sand.jpg" alt="ポテサラパストラミサンド" loading="lazy"></div>
+            <div class="lunch-set-card-img"><img src="./lunch-sand.jpg" alt="チキンサンド" loading="lazy"></div>
             <div class="lunch-set-card-body">
               <p class="lunch-set-card-kicker">サンド</p>
-              <p class="lunch-set-card-name">ポテサラパストラミサンド</p>
+              <p class="lunch-set-card-name">チキンサンド</p>
               <p class="lunch-set-card-price">平日ランチ ¥1,500（税込）</p>
               <button type="button" class="lunch-set-card-more">VIEW MORE <span aria-hidden="true">→</span></button>
             </div>
@@ -4062,13 +4063,13 @@
 
       const INFO_PANELS = {
         happyhour: {
-          kicker: { ja: '平日15:00〜18:00', en: 'Weekdays 3:00 – 6:00 PM', zhcn: '工作日15:00至18:00', zhtw: '工作日15:00至18:00', ko: '평일 15:00~18:00' },
-          title: { ja: 'ハッピーアワー', en: 'Happy Hour', zhcn: '欢乐时光', zhtw: '歡樂時光', ko: '해피아워' },
+          kicker: { ja: '平日15:00〜18:00', en: 'Weekdays 3:00 – 6:00 PM', zhcn: '工作日15:00至18:00', zhtw: '工作日15:00至18:00', ko: '평일 15:00~18:00', es: 'Entre semana 15:00 – 18:00' },
+          title: { ja: 'ハッピーアワー', en: 'Happy Hour', zhcn: '欢乐时光', zhtw: '歡樂時光', ko: '해피아워', es: 'Happy Hour' },
           items: [
-            { name: { ja: 'キリン一番搾り', en: 'Kirin Ichiban', zhcn: '麒麟一番榨', zhtw: '麒麟一番搾', ko: '기린 이치방시보리' }, price: '¥400' },
-            { name: { ja: 'ハイボール', en: 'Highball', zhcn: '威士忌苏打', zhtw: '威士忌蘇打', ko: '하이볼' }, price: '¥350' },
-            { name: { ja: 'グラスワイン 赤/白', en: 'Glass Wine (Red/White)', zhcn: '杯装红/白葡萄酒', zhtw: '杯裝紅/白葡萄酒', ko: '글라스 와인 레드/화이트' }, price: '¥350' },
-            { name: { ja: 'テキーラショット', en: 'Tequila Shot', zhcn: '龙舌兰一口烈酒', zhtw: '龍舌蘭一口烈酒', ko: '데킬라 샷' }, price: '¥350' },
+            { name: { ja: 'キリン一番搾り', en: 'Kirin Ichiban', zhcn: '麒麟一番榨', zhtw: '麒麟一番搾', ko: '기린 이치방시보리', es: 'Kirin Ichiban' }, price: '¥400' },
+            { name: { ja: 'ハイボール', en: 'Highball', zhcn: '威士忌苏打', zhtw: '威士忌蘇打', ko: '하이볼', es: 'Highball' }, price: '¥350' },
+            { name: { ja: 'グラスワイン 赤/白', en: 'Glass Wine (Red/White)', zhcn: '杯装红/白葡萄酒', zhtw: '杯裝紅/白葡萄酒', ko: '글라스 와인 레드/화이트', es: 'Copa de vino (tinto/blanco)' }, price: '¥350' },
+            { name: { ja: 'テキーラショット', en: 'Tequila Shot', zhcn: '龙舌兰一口烈酒', zhtw: '龍舌蘭一口烈酒', ko: '데킬라 샷', es: 'Chupito de tequila' }, price: '¥350' },
           ],
         },
       };
@@ -4192,19 +4193,20 @@
       // Lunch set teaser cards → チキンオーバーライスと同じポップアップ形式で開く
       const LUNCH_SET_ITEMS = {
         pastaA: {
-          label: { ja: 'Aパスタ', en: 'Pasta A', zhcn: 'A意面', zhtw: 'A義大利麵', ko: 'A파스타' },
-          title: { ja: 'ナスとほうれん草のガーリックトマトパスタ', en: 'Eggplant & Spinach Garlic Tomato Pasta', zhcn: '茄子菠菜蒜香番茄意面', zhtw: '茄子菠菜蒜香番茄義大利麵', ko: '가지와 시금치 갈릭 토마토 파스타' },
+          label: { ja: 'Aパスタ', en: 'Pasta A', zhcn: 'A意面', zhtw: 'A義大利麵', ko: 'A파스타', es: 'Pasta A' },
+          title: { ja: '「キャベツときのこ」のトマトクリームパスタ', en: 'Cabbage & Mushroom Tomato Cream Pasta', zhcn: '卷心菜蘑菇番茄奶油意面', zhtw: '高麗菜蘑菇番茄奶油義大利麵', ko: '양배추 버섯 토마토 크림 파스타', es: 'Pasta cremosa de tomate con col y champiñones' },
           subtitle: 'Weekday Lunch',
           image: './lunch-pasta-a.jpg',
           modalImage: './lunch-pasta-a.jpg',
           price: '¥1,500',
-          priceUnit: { ja: '（税込）', en: '(tax incl.)', zhcn: '（含税）', zhtw: '（含稅）', ko: '（세금 포함）' },
+          priceUnit: { ja: '（税込）', en: '(tax incl.)', zhcn: '（含税）', zhtw: '（含稅）', ko: '（세금 포함）', es: '(impuestos incl.)' },
           desc: {
             ja: '平日ランチでご用意している週替わりパスタです。',
             en: 'A weekly-changing pasta served as part of the weekday lunch set.',
             zhcn: '工作日午餐中提供的每周更换的意面。',
             zhtw: '工作日午餐中提供的每週更換的義大利麵。',
             ko: '평일 런치에서 제공하는 주간 교체 파스타입니다.',
+            es: 'Una pasta de sabor semanal, servida como parte del almuerzo entre semana.',
           },
           notes: {
             ja: ['ミニコブサラダ・ドリンク付き（コーヒー HOT/ICE・紅茶 HOT/ICE・梅昆布茶）', 'コカコーラ・ジンジャーエール・オレンジジュース・グレープフルーツジュース・カフェラテ（HOT/ICE）・カプチーノ（HOT/ICE）への変更は＋200円', 'パスタ／ライスの大盛り無料'],
@@ -4212,22 +4214,24 @@
             zhcn: ['附迷你科布沙拉及饮品（咖啡 HOT/ICE・红茶 HOT/ICE・梅昆布茶）', '更换为可乐・姜汁汽水・橙汁・西柚汁・拿铁咖啡（HOT/ICE）・卡布奇诺（HOT/ICE）需加200日元', '意面／米饭可免费加量'],
             zhtw: ['附迷你科布沙拉及飲品（咖啡 HOT/ICE・紅茶 HOT/ICE・梅昆布茶）', '更換為可樂・薑汁汽水・柳橙汁・葡萄柚汁・拿鐵咖啡（HOT/ICE）・卡布奇諾（HOT/ICE）需加200日圓', '義大利麵／米飯可免費加量'],
             ko: ['미니 콥 샐러드와 음료 포함（커피 HOT/ICE・홍차 HOT/ICE・우메콘부차）', '콜라・진저에일・오렌지주스・자몽주스・카페라떼（HOT/ICE）・카푸치노（HOT/ICE）로 변경 시 +200엔', '파스타/밥 곱빼기 무료'],
+            es: ['Incluye mini ensalada cobb y una bebida (café HOT/ICE, té HOT/ICE o té de ciruela con kombu)', 'Cambio a Coca-Cola, ginger ale, zumo de naranja, zumo de pomelo, café con leche (HOT/ICE) o capuchino (HOT/ICE) por +¥200', 'Porción grande de pasta/arroz gratis'],
           },
         },
         pastaB: {
-          label: { ja: 'Bパスタ', en: 'Pasta B', zhcn: 'B意面', zhtw: 'B義大利麵', ko: 'B파스타' },
-          title: { ja: 'ベーコンときのこのクリームパスタ', en: 'Bacon & Mushroom Cream Pasta', zhcn: '培根蘑菇奶油意面', zhtw: '培根蘑菇奶油義大利麵', ko: '베이컨 버섯 크림 파스타' },
+          label: { ja: 'Bパスタ', en: 'Pasta B', zhcn: 'B意面', zhtw: 'B義大利麵', ko: 'B파스타', es: 'Pasta B' },
+          title: { ja: '秋ナスとベーコンのアンチョビペペロンチーノ', en: 'Autumn Eggplant & Bacon Anchovy Peperoncino', zhcn: '秋茄培根鳀鱼香蒜辣椒意面', zhtw: '秋茄培根鯷魚香蒜辣椒義大利麵', ko: '가을 가지와 베이컨 안초비 페페론치노', es: 'Peperoncino de berenjena de otoño, bacon y anchoas' },
           subtitle: 'Weekday Lunch',
           image: './lunch-pasta-b.jpg',
           modalImage: './lunch-pasta-b.jpg',
           price: '¥1,500',
-          priceUnit: { ja: '（税込）', en: '(tax incl.)', zhcn: '（含税）', zhtw: '（含稅）', ko: '（세금 포함）' },
+          priceUnit: { ja: '（税込）', en: '(tax incl.)', zhcn: '（含税）', zhtw: '（含稅）', ko: '（세금 포함）', es: '(impuestos incl.)' },
           desc: {
             ja: '平日ランチでご用意している週替わりパスタです。',
             en: 'A weekly-changing pasta served as part of the weekday lunch set.',
             zhcn: '工作日午餐中提供的每周更换的意面。',
             zhtw: '工作日午餐中提供的每週更換的義大利麵。',
             ko: '평일 런치에서 제공하는 주간 교체 파스타입니다.',
+            es: 'Una pasta de sabor semanal, servida como parte del almuerzo entre semana.',
           },
           notes: {
             ja: ['ミニコブサラダ・ドリンク付き（コーヒー HOT/ICE・紅茶 HOT/ICE・梅昆布茶）', 'コカコーラ・ジンジャーエール・オレンジジュース・グレープフルーツジュース・カフェラテ（HOT/ICE）・カプチーノ（HOT/ICE）への変更は＋200円', 'パスタ／ライスの大盛り無料'],
@@ -4235,23 +4239,24 @@
             zhcn: ['附迷你科布沙拉及饮品（咖啡 HOT/ICE・红茶 HOT/ICE・梅昆布茶）', '更换为可乐・姜汁汽水・橙汁・西柚汁・拿铁咖啡（HOT/ICE）・卡布奇诺（HOT/ICE）需加200日元', '意面／米饭可免费加量'],
             zhtw: ['附迷你科布沙拉及飲品（咖啡 HOT/ICE・紅茶 HOT/ICE・梅昆布茶）', '更換為可樂・薑汁汽水・柳橙汁・葡萄柚汁・拿鐵咖啡（HOT/ICE）・卡布奇諾（HOT/ICE）需加200日圓', '義大利麵／米飯可免費加量'],
             ko: ['미니 콥 샐러드와 음료 포함（커피 HOT/ICE・홍차 HOT/ICE・우메콘부차）', '콜라・진저에일・오렌지주스・자몽주스・카페라떼（HOT/ICE）・카푸치노（HOT/ICE）로 변경 시 +200엔', '파스타/밥 곱빼기 무료'],
+            es: ['Incluye mini ensalada cobb y una bebida (café HOT/ICE, té HOT/ICE o té de ciruela con kombu)', 'Cambio a Coca-Cola, ginger ale, zumo de naranja, zumo de pomelo, café con leche (HOT/ICE) o capuchino (HOT/ICE) por +¥200', 'Porción grande de pasta/arroz gratis'],
           },
         },
         sand: {
-          label: { ja: 'サンド', en: 'Sandwich', zhcn: '三明治', zhtw: '三明治', ko: '샌드위치' },
-          title: { ja: 'ポテサラパストラミサンド', en: 'Pastrami Sandwich with Potato Salad', zhcn: '烟熏牛肉三明治配土豆沙拉', zhtw: '燻牛肉三明治配馬鈴薯沙拉', ko: '포테이토 샐러드 파스트라미 샌드위치' },
+          label: { ja: 'サンド', en: 'Sandwich', zhcn: '三明治', zhtw: '三明治', ko: '샌드위치', es: 'Sándwich' },
+          title: { ja: 'チキンサンド', en: 'Chicken Sandwich', zhcn: '鸡肉三明治', zhtw: '雞肉三明治', ko: '치킨 샌드위치', es: 'Sándwich de pollo' },
           subtitle: 'Weekday Lunch',
-          imgFit: 'contain',
           image: './lunch-sand.jpg',
           modalImage: './lunch-sand.jpg',
           price: '¥1,500',
-          priceUnit: { ja: '（税込）', en: '(tax incl.)', zhcn: '（含税）', zhtw: '（含稅）', ko: '（세금 포함）' },
+          priceUnit: { ja: '（税込）', en: '(tax incl.)', zhcn: '（含税）', zhtw: '（含稅）', ko: '（세금 포함）', es: '(impuestos incl.)' },
           desc: {
             ja: '平日ランチでご用意しているサンドです。',
             en: 'A sandwich served as part of the weekday lunch set.',
             zhcn: '工作日午餐中提供的三明治。',
             zhtw: '工作日午餐中提供的三明治。',
             ko: '평일 런치에서 제공하는 샌드위치입니다.',
+            es: 'Un sándwich servido como parte del almuerzo entre semana.',
           },
           notes: {
             ja: ['ミニコブサラダ・ドリンク付き（コーヒー HOT/ICE・紅茶 HOT/ICE・梅昆布茶）', 'コカコーラ・ジンジャーエール・オレンジジュース・グレープフルーツジュース・カフェラテ（HOT/ICE）・カプチーノ（HOT/ICE）への変更は＋200円'],
@@ -4259,6 +4264,7 @@
             zhcn: ['附迷你科布沙拉及饮品（咖啡 HOT/ICE・红茶 HOT/ICE・梅昆布茶）', '更换为可乐・姜汁汽水・橙汁・西柚汁・拿铁咖啡（HOT/ICE）・卡布奇诺（HOT/ICE）需加200日元'],
             zhtw: ['附迷你科布沙拉及飲品（咖啡 HOT/ICE・紅茶 HOT/ICE・梅昆布茶）', '更換為可樂・薑汁汽水・柳橙汁・葡萄柚汁・拿鐵咖啡（HOT/ICE）・卡布奇諾（HOT/ICE）需加200日圓'],
             ko: ['미니 콥 샐러드와 음료 포함（커피 HOT/ICE・홍차 HOT/ICE・우메콘부차）', '콜라・진저에일・오렌지주스・자몽주스・카페라떼（HOT/ICE）・카푸치노（HOT/ICE）로 변경 시 +200엔'],
+            es: ['Incluye mini ensalada cobb y una bebida (café HOT/ICE, té HOT/ICE o té de ciruela con kombu)', 'Cambio a Coca-Cola, ginger ale, zumo de naranja, zumo de pomelo, café con leche (HOT/ICE) o capuchino (HOT/ICE) por +¥200'],
           },
         },
       };
@@ -4522,19 +4528,20 @@
       // ────────────────────────────────────────────
       const LIMITED_MENUS = [
         {
-          label: { ja: 'ランチ', en: 'Lunch', zhcn: '午餐', zhtw: '午餐', ko: '런치' },
-          title: { ja: 'チキンオーバーライス', en: 'Chicken Over Rice', zhcn: '鸡肉盖饭', zhtw: '雞肉蓋飯', ko: '치킨 오버 라이스' },
+          label: { ja: 'ランチ', en: 'Lunch', zhcn: '午餐', zhtw: '午餐', ko: '런치', es: 'Almuerzo' },
+          title: { ja: 'チキンオーバーライス', en: 'Chicken Over Rice', zhcn: '鸡肉盖饭', zhtw: '雞肉蓋飯', ko: '치킨 오버 라이스', es: 'Chicken Over Rice' },
           subtitle: 'Grilled Chicken + Rice + Salad + Drink',
           image: './chicken-over-rice.jpg',
           modalImage: './chicken-over-rice.jpg',
           price: '¥1,800',
-          priceUnit: { ja: '（税込）', en: '(tax incl.)', zhcn: '（含税）', zhtw: '（含稅）', ko: '（세금 포함）' },
+          priceUnit: { ja: '（税込）', en: '(tax incl.)', zhcn: '（含税）', zhtw: '（含稅）', ko: '（세금 포함）', es: '(impuestos incl.)' },
           desc: {
             ja: 'スパイスで香ばしく焼き上げたチキンを、ライス＆フレッシュサラダと一緒に。ボリューム満点の一皿です。',
             en: 'Spice-grilled chicken served over rice with a fresh salad. A hearty plate.',
             zhcn: '用香料烤制的喷香鸡肉，搭配米饭与新鲜沙拉，分量十足。',
             zhtw: '用香料烤製的噴香雞肉，搭配米飯與新鮮沙拉，份量十足。',
             ko: '향신료로 향긋하게 구운 치킨을 라이스, 신선한 샐러드와 함께. 푸짐한 한 접시입니다.',
+            es: 'Pollo asado con especias aromáticas, servido con arroz y una ensalada fresca. Un plato muy abundante.',
           },
           notes: {
             ja: ['ドリンク付き（コーヒー HOT/ICE・紅茶 HOT/ICE・梅昆布茶）', 'コカコーラ・ジンジャーエール・オレンジジュース・グレープフルーツジュース・カフェラテ（HOT/ICE）・カプチーノ（HOT/ICE）への変更は＋200円'],
@@ -4542,6 +4549,7 @@
             zhcn: ['附饮品（咖啡 HOT/ICE・红茶 HOT/ICE・梅昆布茶）', '更换为可乐・姜汁汽水・橙汁・西柚汁・拿铁咖啡（HOT/ICE）・卡布奇诺（HOT/ICE）需加200日元'],
             zhtw: ['附飲品（咖啡 HOT/ICE・紅茶 HOT/ICE・梅昆布茶）', '更換為可樂・薑汁汽水・柳橙汁・葡萄柚汁・拿鐵咖啡（HOT/ICE）・卡布奇諾（HOT/ICE）需加200日圓'],
             ko: ['음료 포함（커피 HOT/ICE・홍차 HOT/ICE・우메콘부차）', '콜라・진저에일・오렌지주스・자몽주스・카페라떼（HOT/ICE）・카푸치노（HOT/ICE）로 변경 시 +200엔'],
+            es: ['Incluye una bebida (café HOT/ICE, té HOT/ICE o té de ciruela con kombu)', 'Cambio a Coca-Cola, ginger ale, zumo de naranja, zumo de pomelo, café con leche (HOT/ICE) o capuchino (HOT/ICE) por +¥200'],
           },
         },
       ];
@@ -4973,6 +4981,74 @@
           infoPayment: '현금 / 전자결제 / 라쿠텐페이 / PayPay / 교통 IC카드 / au PAY<br />신용카드 / VISA / Mastercard / JCB / American Express',
           infoAddress: '〒166-0003<br />도쿄도 스기나미구 고엔지미나미 4-28-10<br />고엔지 릴리엔하임 2F',
           modalPrev: '이전', modalNext: '다음', floatReserve: '전화로 예약하기',
+        },
+        es: {
+          navParty: 'Fiestas privadas', navRecruit: 'Empleo', navRecruit2: 'Empleo', navCompany: 'Nosotros', navReserve: 'Reservar',
+          heroBannerPartyTitle: 'Fiesta privada', heroBannerPartySub: 'Desde 20 personas / 3 planes',
+          heroBannerShootTitle: 'Rodajes y fotografía', heroBannerShootSub: 'Localizaciones y sesiones fotográficas / Consúltenos',
+          heroLine1: '40 años en Koenji.', heroLine2: 'Los tiempos cambian. Este lugar, no.', heroLine3: 'Reunirse, conversar, conectar.',
+          heroAccess: '· A 1 min a pie de la estación de Koenji<br>· Alquiler privado disponible<br>· Se admiten rodajes',
+          msgPull: '«Un lugar donde la gente se reúne y los corazones se relajan.»',
+          msgText1: 'YonchoMe Cafe es mucho más que un lugar para comer.',
+          msgText2: 'Es un espacio donde las personas se encuentran, conversan y se conectan de forma natural, un ambiente que cuidamos con esmero.',
+          msgText3: 'Manteniendo vivo el espíritu construido durante más de 40 años, seguimos evolucionando hacia un espacio que responde a esta época.',
+          historyHeading: 'Una historia transmitida<br>a lo largo de cuarenta años.',
+          historyP1: 'Antiguamente, aquí había una cafetería llamada "Chaya". Un lugar que reflejaba el espíritu de su época, donde mucha gente se reunía, conversaba y era testigo del día a día de Koenji.',
+          historyP2: 'Un día, el fundador Makoto Fujimura no pudo olvidar una escena vista en Nueva York: los diners y cafés de las esquinas de Manhattan, el ambiente libre y relajado de quienes vivían allí.',
+          historyP3: '"Quiero crear un lugar así en Koenji." Ese deseo fue creciendo hasta superar incluso la oposición de quienes lo rodeaban.',
+          historyP4: 'Se trajeron muebles antiguos, iluminación y vidrieras recolectados en Nueva York, y el local renació desde cero.',
+          historyP5: 'Así nació <strong>"YonchoMe Cafe"</strong>.',
+          historyP6: 'El tiempo dedicado a creer en lo que amaba sigue vivo hoy en cada rincón de este espacio.',
+          ownerTheme: '«Cambiar para preservar.»',
+          ownerBody: 'Así como este lugar ha sido querido por muchos durante tantos años,<br>seguiremos cuidando esa calidez inalterable<br>mientras ofrecemos nuevos valores y alegrías a quienes nos visiten.',
+          ownerSig: 'Propietario: Noriyuki Ishihara',
+          filmingCta: 'Para consultas sobre rodajes y localizaciones, contáctenos por <a href="tel:0353771726">teléfono</a> o visítenos en persona.',
+          larcKicker: '— Una canción inspirada en YonchoMe Cafe —',
+          larcBody: '"The Fourth Avenue Cafe" de L\'Arc〜en〜Ciel<br>es una canción cuya letra, se dice,<br>HYDE escribió pensando en nuestro café.<br>Fue elegida como tema de cierre<br>del anime "Rurouni Kenshin."',
+          bdLead: 'Después de bodas, celebraciones de graduación, cumpleaños, despedidas…<br>le damos la bienvenida en esos momentos importantes.',
+          bdMeta: 'Mínimo <strong>30</strong> personas &ensp;/&ensp; desde <strong>¥5,000</strong> por persona<br>Niños de primaria: mitad de precio &ensp;/&ensp; Preescolares: ¥500<br>Proyector + pantalla: ¥5,000<br>Micrófono + altavoz: ¥3,000',
+          bdCasesText: 'Consúltenos sin compromiso sobre el número de personas, presupuesto y solicitudes especiales.<br>Juntos crearemos un espacio único para ese día.',
+          bdContactLabel: 'Consultar aquí',
+          filmingKicker: 'Locaciones de rodaje',
+          filmingLead: 'El asiento que ha aparecido en innumerables películas y series. Venga a disfrutar de la vista desde aquí.',
+          menuSubtitle: 'Nuestro menú más popular',
+          menuName1: 'Set de waffle deluxe', menuName2: 'Hamburguesa clásica', menuName3: 'Tarta de queso neoyorquina casera',
+          menuName4: 'Refresco de crema', menuName5: 'Sundae americano', menuName6: 'Café de mezcla original',
+          menuDesc1: 'Un clásico set de waffle estilo americano, crujiente por fuera y esponjoso por dentro, servido con salchicha jugosa, bacon y huevo frito.',
+          menuDesc2: 'Hamburguesa clásica con una jugosa carne 100% de res a la parrilla. Sencilla y deliciosa, dejando brillar la calidad de los ingredientes.',
+          menuDesc3: 'Tarta de queso estilo Nueva York, rica y cremosa, elaborada con generosa cantidad de queso crema. Textura suave que se deshace en la boca; receta original creada por nuestro propio personal.',
+          menuDesc4: 'Un nostálgico refresco de crema: soda de colores coronada con helado de vainilla y una cereza.',
+          menuDesc5: 'El sundae americano por excelencia: cereal crujiente, helado cremoso, salsa de chocolate, crema batida esponjosa y chispas de colores, rematado con una cereza.',
+          menuDesc6: 'Aroma intenso y cuerpo profundo. Para disfrutar al ritmo pausado del tiempo.',
+          menuName7: 'Refresco de crema azul',
+          menuDesc7: 'Un refrescante refresco de crema azul coronado con helado de vainilla y una cereza.',
+          menuVariant1: 'Esmeralda', menuVariant2: 'Azul', menuVariant3: 'Zafiro',
+          limitedHeading: 'Menú del almuerzo',
+          hgCaption1: 'La vidriera de "Soda".<br>Brilla como la imagen del café<br>desde el día de su apertura.',
+          hgCaption2: 'Un reloj importado de<br>una estación de tren de Londres.',
+          hgCaption3: 'El techo importado de Estados Unidos,<br>como de chocolate.<br>Instalado a mano por artesanos.',
+          hgCaption4: 'Arte en mosaico hecho a mano<br>por el personal de aquella época.',
+          hgCaption5: 'Arte en mosaico dentro del café.',
+          hgCaption6: 'Una lámpara de más de 100 años<br>encontrada en una tienda de antigüedades<br>en Nueva York.',
+          infoBtnLunch: '[Almuerzo] Entre semana hasta las 15:00', infoBtnHappy: '[Happy Hour] Entre semana de 15:00 a 18:00',
+          infoBtnSmoke: '[Fumadores] Cabina hasta las 18:00 / En la mesa después de las 18:00',
+          infoBtnParty: '[Fiestas privadas y rodajes] Consúltenos sin compromiso',
+          modalBodyLunch: 'Almuerzo entre semana hasta las 15:00. Elija entre 2 platos de pasta o un sándwich. ¥1,500 incluyendo mini ensalada cobb y una bebida. Porción grande de pasta/arroz gratis. Postre de almuerzo por ¥400 adicionales.',
+          modalBodyHappy: 'El Happy Hour es de lunes a viernes de 15:00 a 18:00. Disfrute de una bebida relajada antes del anochecer.',
+          modalBodySmoke: 'Desde la apertura hasta las 18:00, se puede fumar en la cabina designada. Después de las 18:00, se permite fumar en la mesa.',
+          modalBodyParty: 'Fiestas privadas, despedidas, bienvenidas, after-parties, rodajes y sesiones fotográficas: contáctenos para cualquier ocasión. Podemos adaptarnos a distintos tamaños de grupo, horarios y formatos. Contáctenos por teléfono o en persona.',
+          bannerPartyTitle: 'Fiesta privada', bannerPartyCta: 'Ver planes →',
+          bannerPartyDesc: 'Bienvenidas, cumpleaños, after-parties, sesiones fotográficas…<br />personalice la fiesta de sus sueños en este espacio.<br />Desde 20 personas, 3 planes disponibles.',
+          bannerRecruitTitle: 'Buscamos personal', bannerRecruitCta: 'Ver empleos →',
+          bannerRecruitDesc: 'Únase a un café con 40 años de historia en Koenji.<br />Damos la bienvenida a quienes disfrutan conectar con la gente<br />y actúan con naturalidad por los demás. No se requiere experiencia.',
+          newsLead: 'Últimas novedades de YonchoMe Cafe.', newsTag1: 'Noticias',
+          newsTitle1: 'Renovamos nuestro sitio web',
+          newsBody1: 'Hemos renovado nuestro sitio web. Gracias por seguir apoyando a YonchoMe Cafe.',
+          companyAbout: 'Nosotros', companyContact: 'Contacto', companyLegal: 'Aviso legal', companyPrivacy: 'Política de privacidad',
+          infoOpen: 'Entre semana 10:30 - 23:00<br />Fines de semana y festivos 11:30 - 23:00', infoReserveLabel: 'Reservas y consultas',
+          infoPayment: 'Efectivo / Pago electrónico / Rakuten Pay<br />PayPay / Tarjeta IC de transporte / au PAY<br />Tarjeta de crédito / VISA<br />Mastercard / JCB<br />American Express',
+          infoAddress: '〒166-0003<br />Koenji-Minami 4-chome 28-10, Suginami-ku, Tokio<br />Koenji Lilienheim 2F',
+          modalPrev: 'Anterior', modalNext: 'Siguiente', floatReserve: 'Llamar para reservar',
         }
       };
 
@@ -5005,7 +5081,7 @@
         });
 
         // Update html lang attribute
-        const langMap = { ja: 'ja', en: 'en', zhcn: 'zh-Hans', zhtw: 'zh-Hant', ko: 'ko' };
+        const langMap = { ja: 'ja', en: 'en', zhcn: 'zh-Hans', zhtw: 'zh-Hant', ko: 'ko', es: 'es' };
         document.documentElement.lang = langMap[lang] || lang;
 
         // Re-render limited menu cards
@@ -5024,7 +5100,7 @@
       langSwitcher.querySelector('.lang-dropdown').addEventListener('click', (e) => e.stopPropagation());
 
       // Lang option click
-      const langLabels = { ja: '日本語', en: 'English', zhcn: '中文（簡体字）', zhtw: '中文（繁体字）', ko: '한국어' };
+      const langLabels = { ja: '日本語', en: 'English', zhcn: '中文（簡体字）', zhtw: '中文（繁体字）', ko: '한국어', es: 'Español' };
       langSwitcher.querySelectorAll('.lang-opt').forEach(opt => {
         opt.addEventListener('click', () => {
           applyLang(opt.dataset.lang);
