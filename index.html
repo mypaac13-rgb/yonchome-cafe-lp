@@ -2789,6 +2789,23 @@
       .mobile-drawer.is-open {
         transform: translateX(0);
       }
+      .mobile-drawer-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        color: var(--text);
+        font-size: 2rem;
+        line-height: 1;
+        cursor: pointer;
+        z-index: 1;
+      }
       .mobile-drawer-overlay {
         position: fixed;
         inset: 0;
@@ -3110,9 +3127,6 @@
         .photo-panel-hero { min-height: 58svh; }
         .hero-image-from { opacity: 0 !important; animation: none !important; }
 
-        /* Nav drawer: full-screen on mobile */
-        .mobile-drawer { width: 100%; }
-
         /* Filming: show one card at a time */
         .location-grid {
           display: block !important;
@@ -3377,6 +3391,7 @@
 
     <!-- MOBILE NAV DRAWER -->
     <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+      <button class="mobile-drawer-close" id="mobile-drawer-close-btn" type="button" aria-label="メニューを閉じる">&times;</button>
       <nav class="mobile-drawer-nav">
         <a class="mobile-drawer-link" href="#message" data-drawer-close data-i18n="mnavAbout">コンセプト</a>
         <a class="mobile-drawer-link" href="#history" data-drawer-close data-i18n="mnavHistory">沿革</a>
@@ -4427,6 +4442,7 @@
         const btn = document.getElementById('mobile-menu-btn');
         const drawer = document.getElementById('mobile-drawer');
         const overlay = document.getElementById('mobile-drawer-overlay');
+        const closeBtn = document.getElementById('mobile-drawer-close-btn');
         if (!btn || !drawer) return;
 
         function openDrawer() {
@@ -4446,6 +4462,7 @@
           btn.getAttribute('aria-expanded') === 'true' ? closeDrawer() : openDrawer();
         });
         overlay.addEventListener('click', closeDrawer);
+        if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
 
         // Close on nav link click
         drawer.querySelectorAll('[data-drawer-close]').forEach(el => {
